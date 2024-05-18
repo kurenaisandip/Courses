@@ -1,0 +1,756 @@
+1
+00:00:05,280 --> 00:00:08,560
+Hello and welcome to this lecture on Kubernetes controllers.
+
+2
+00:00:08,580 --> 00:00:09,450
+My name is Mom.
+
+3
+00:00:10,410 --> 00:00:14,310
+And this lecture we will discuss about Kubernetes controllers.
+
+4
+00:00:14,910 --> 00:00:17,740
+Controllers are the brain behind Kubernetes.
+
+5
+00:00:17,760 --> 00:00:23,340
+They are the processes that monitor Kubernetes objects and respond accordingly.
+
+6
+00:00:23,760 --> 00:00:30,900
+In this lecture, we will discuss about one controller in particular, and that is the replication controller.
+
+7
+00:00:33,030 --> 00:00:37,980
+So what is a replica and why do we need a replication controller?
+
+8
+00:00:38,190 --> 00:00:43,590
+Let's go back to our first scenario where we had a single pod running our application.
+
+9
+00:00:43,980 --> 00:00:50,400
+What if, for some reason our application crashes and the pot fails, users will no longer be able to
+
+10
+00:00:50,400 --> 00:00:52,020
+access our application?
+
+11
+00:00:52,410 --> 00:00:58,710
+To prevent users from losing access to our application, we would like to have more than one instance
+
+12
+00:00:58,710 --> 00:01:01,050
+or pot running at the same time.
+
+13
+00:01:01,230 --> 00:01:06,210
+That way, if one fails, we still have our application running on the other one.
+
+14
+00:01:06,660 --> 00:01:14,070
+The replication controller helps us run multiple instances of a single pot in the Kubernetes cluster,
+
+15
+00:01:14,100 --> 00:01:16,950
+thus providing high availability.
+
+16
+00:01:17,520 --> 00:01:23,730
+So does that mean you can't use a replication controller if you plan to have a single pod?
+
+17
+00:01:24,270 --> 00:01:25,000
+No.
+
+18
+00:01:25,020 --> 00:01:32,640
+Even if you have a single pod, the replication controller can help by automatically bringing up a new
+
+19
+00:01:32,640 --> 00:01:35,070
+pod when the existing one fails.
+
+20
+00:01:35,310 --> 00:01:42,480
+Thus, the replication controller ensures that the specified number of pods are running at all times,
+
+21
+00:01:42,480 --> 00:01:44,970
+even if it's just one or 100.
+
+22
+00:01:46,550 --> 00:01:52,670
+Another reason we need a replication controller is to create multiple ports to share the load across
+
+23
+00:01:52,670 --> 00:01:53,090
+them.
+
+24
+00:01:53,210 --> 00:01:59,360
+For example, in this simple scenario, we have a single pod serving a set of users.
+
+25
+00:01:59,510 --> 00:02:06,500
+When the number of users increase, we deploy additional POD to balance the load across the two pods.
+
+26
+00:02:07,260 --> 00:02:13,770
+If the demand further increases and if we were to run out of resources on the first node, we could
+
+27
+00:02:13,770 --> 00:02:17,940
+deploy additional parts across the other nodes in the cluster.
+
+28
+00:02:18,120 --> 00:02:24,750
+As you can see, the replication controller spans across multiple nodes in the cluster.
+
+29
+00:02:24,780 --> 00:02:31,830
+It helps us balance the load across multiple paths on different nodes as well as scale our application
+
+30
+00:02:31,830 --> 00:02:33,870
+when the demand increases.
+
+31
+00:02:35,330 --> 00:02:42,560
+It's important to note that there are two similar terms replication controller and replica set.
+
+32
+00:02:42,980 --> 00:02:46,640
+Both have the same purpose, but they are not the same.
+
+33
+00:02:47,150 --> 00:02:53,090
+Replication controller is the older technology that is being replaced by replica set.
+
+34
+00:02:53,300 --> 00:02:57,800
+Replica set is the new recommended way to set up replication.
+
+35
+00:02:58,190 --> 00:03:05,210
+However, whatever we discussed in the previous few slides remain applicable to both these technologies.
+
+36
+00:03:05,450 --> 00:03:10,670
+There are minor differences in the way each works and we will look at that in a bit.
+
+37
+00:03:11,060 --> 00:03:18,320
+As such, we will try to stick to replica sets in all of our demos and implementations going forward.
+
+38
+00:03:19,380 --> 00:03:23,040
+Let us now look at how we create a replication controller.
+
+39
+00:03:23,710 --> 00:03:29,470
+As with the previous lecture, we start by creating a replication controller definition file.
+
+40
+00:03:29,800 --> 00:03:33,730
+We will name it rc dash definition yaml.
+
+41
+00:03:34,560 --> 00:03:42,810
+As with any Kubernetes definition file, we have four sections the API version, kind, metadata and
+
+42
+00:03:42,810 --> 00:03:43,470
+spec.
+
+43
+00:03:44,040 --> 00:03:48,060
+The API version is specific to what we are creating.
+
+44
+00:03:48,060 --> 00:03:54,180
+In this case, Replication controller is supported in Kubernetes API version V one.
+
+45
+00:03:54,480 --> 00:04:01,200
+So we will set it as V one, the kind, as we know is replication controller.
+
+46
+00:04:02,000 --> 00:04:10,340
+Under metadata, we will add a name and we will call it my AB dash RC, and we will also add a few labels,
+
+47
+00:04:10,340 --> 00:04:13,100
+app and type and assign values to them.
+
+48
+00:04:13,640 --> 00:04:18,950
+So far it has been very similar to how we created a pod in the previous section.
+
+49
+00:04:19,250 --> 00:04:26,720
+The next is the most crucial part of the definition file and that is the specification written as spec.
+
+50
+00:04:27,320 --> 00:04:29,870
+For any Kubernetes definition file.
+
+51
+00:04:29,870 --> 00:04:34,370
+The spec section defines what's inside the object we are creating.
+
+52
+00:04:34,550 --> 00:04:41,360
+In this case, we note that the replication controller creates multiple instances of a part.
+
+53
+00:04:41,870 --> 00:04:43,370
+But what part?
+
+54
+00:04:43,640 --> 00:04:51,440
+We create a template section under spec to provide a pod template to be used by the replication controller
+
+55
+00:04:51,440 --> 00:04:52,910
+to create replicas.
+
+56
+00:04:53,800 --> 00:04:57,190
+Now, how do we define the pod template?
+
+57
+00:04:57,220 --> 00:05:02,680
+It's not that hard because we have already done that in the previous exercise.
+
+58
+00:05:03,160 --> 00:05:08,300
+Remember, we created a pod definition file in the previous exercise.
+
+59
+00:05:08,320 --> 00:05:13,600
+We could reuse the contents of the file to populate the template section.
+
+60
+00:05:14,390 --> 00:05:21,130
+Move all the contents of the pod definition file into the template section of the replication controller,
+
+61
+00:05:21,140 --> 00:05:25,250
+except for the first few lines which are API version and kind.
+
+62
+00:05:26,070 --> 00:05:32,650
+Remember, whatever we move must be under the template section, meaning they should be intended to
+
+63
+00:05:32,650 --> 00:05:38,100
+the right and have more spaces before them than the template line itself.
+
+64
+00:05:38,430 --> 00:05:41,970
+They should be children of the template section.
+
+65
+00:05:42,820 --> 00:05:47,690
+Looking at our file now, we now have two metadata sections.
+
+66
+00:05:47,710 --> 00:05:53,530
+One is for the replication controller and another for the pod.
+
+67
+00:05:53,530 --> 00:05:58,180
+And we have two spec sections, one for each.
+
+68
+00:06:02,310 --> 00:06:09,000
+We have nested two definition files together, the replication controller being the parent and the pod
+
+69
+00:06:09,000 --> 00:06:10,890
+definition being the child.
+
+70
+00:06:11,750 --> 00:06:14,060
+Now there is something still missing.
+
+71
+00:06:14,060 --> 00:06:20,240
+We haven't mentioned how many replicas we need in the replication controller for that.
+
+72
+00:06:20,240 --> 00:06:27,120
+Add another property to the spec called replicas and input the number of replicas you need under it.
+
+73
+00:06:27,140 --> 00:06:34,760
+Remember that the template and replicas are direct children of spec sections, so they are siblings
+
+74
+00:06:34,760 --> 00:06:40,970
+and must be on the same vertical line, which means having equal number of spaces before them.
+
+75
+00:06:41,720 --> 00:06:49,490
+Once the file is ready, run the cube Ctrl, create command and input the file using the dash F parameter.
+
+76
+00:06:49,760 --> 00:06:52,370
+The replication controller is created.
+
+77
+00:06:52,370 --> 00:06:58,610
+When the replication controller is created, it first creates the part using the part definition template
+
+78
+00:06:58,610 --> 00:07:00,920
+as many as required, which is three.
+
+79
+00:07:00,920 --> 00:07:05,980
+In this case, to view the list of created replication controllers.
+
+80
+00:07:05,990 --> 00:07:11,480
+Run the Cube, CTL, get replication Controller command and you will see the replication controller
+
+81
+00:07:11,480 --> 00:07:12,230
+listed.
+
+82
+00:07:12,560 --> 00:07:18,500
+We can also see the desired number of replicas or pods, the current number of replicas, and how many
+
+83
+00:07:18,500 --> 00:07:20,510
+of them are ready in the output.
+
+84
+00:07:20,960 --> 00:07:26,630
+If you would like to see the pods that were created by the replication controller, run the Cube CTL,
+
+85
+00:07:26,660 --> 00:07:30,170
+get Pods command and you will see three pods running.
+
+86
+00:07:30,590 --> 00:07:36,910
+Note that all of them are starting with the name of the replication controller, which is my app Dash
+
+87
+00:07:36,950 --> 00:07:42,950
+RC, indicating that they are all created automatically by the replication controller.
+
+88
+00:07:44,260 --> 00:07:47,560
+What we just saw was the replication controller.
+
+89
+00:07:47,590 --> 00:07:49,900
+Let us now look at replica set.
+
+90
+00:07:50,080 --> 00:07:54,040
+It is very similar to a replication controller as usual.
+
+91
+00:07:54,190 --> 00:07:58,430
+First we have API version kind, metadata and spec.
+
+92
+00:07:58,450 --> 00:08:01,090
+The API version though is a bit different.
+
+93
+00:08:01,120 --> 00:08:07,630
+It is apps slash v one, which is different from what we had before for application controller, which
+
+94
+00:08:07,630 --> 00:08:09,070
+was just v one.
+
+95
+00:08:09,280 --> 00:08:13,870
+If you get this wrong, you are likely to get an error that looks like this.
+
+96
+00:08:13,960 --> 00:08:21,250
+It would say no match for kind replica set because the specified Kubernetes API version has no support
+
+97
+00:08:21,250 --> 00:08:22,450
+for replica set.
+
+98
+00:08:23,820 --> 00:08:29,940
+The kind would be replica set and we add name and labels in the metadata.
+
+99
+00:08:33,200 --> 00:08:37,260
+The specification section looks very similar to a replication controller.
+
+100
+00:08:37,280 --> 00:08:42,140
+It has a template section where we provide pod definition as before.
+
+101
+00:08:42,289 --> 00:08:45,860
+So I'm going to copy contents over from pod definition file.
+
+102
+00:08:45,860 --> 00:08:48,890
+And we have a number of replicas which is set to three.
+
+103
+00:08:49,280 --> 00:08:54,770
+However, there is one major difference between replication controller and replica set.
+
+104
+00:08:54,800 --> 00:08:58,580
+Replica set requires a selector definition.
+
+105
+00:08:58,790 --> 00:09:05,240
+The selector section helps the replica set identify what parts fall under it.
+
+106
+00:09:06,330 --> 00:09:12,600
+But why would you have to specify what parts fall under it if you have provided the contents of the
+
+107
+00:09:12,900 --> 00:09:15,630
+definition file itself in the template?
+
+108
+00:09:16,640 --> 00:09:24,470
+It's because replica set can also manage parts that were not created as part of the replica set creation.
+
+109
+00:09:24,800 --> 00:09:31,700
+Say for example, there were parts created before the creation of the replica set that match labels
+
+110
+00:09:31,700 --> 00:09:33,440
+specified in the selector.
+
+111
+00:09:33,470 --> 00:09:39,170
+The replica set will also take those parts into consideration when creating the replicas.
+
+112
+00:09:39,840 --> 00:09:42,420
+I will elaborate this in the next slide.
+
+113
+00:09:42,720 --> 00:09:48,510
+But before we get into that, I would like to mention that the selector is one of the major differences
+
+114
+00:09:48,510 --> 00:09:51,330
+between replication controller and replica set.
+
+115
+00:09:51,810 --> 00:09:58,410
+The selector is not a required field in case of a replication controller, but it is still available
+
+116
+00:09:58,410 --> 00:10:01,500
+when you skip it, as we did in the previous slide.
+
+117
+00:10:01,530 --> 00:10:06,900
+It assumes it to be the same as the labels provided in the pod definition file.
+
+118
+00:10:07,410 --> 00:10:14,130
+In case of replica set, a user input is required for this property and it has to be written in the
+
+119
+00:10:14,130 --> 00:10:17,490
+form of match labels as shown here.
+
+120
+00:10:17,790 --> 00:10:24,720
+The match labels selector simply matches the labels specified under it to the labels on the pod.
+
+121
+00:10:24,750 --> 00:10:32,160
+The replica set selector also provides many other options for matching labels that were not available
+
+122
+00:10:32,160 --> 00:10:33,960
+in a replication controller.
+
+123
+00:10:35,580 --> 00:10:41,310
+And as always, to create a replica set, run the cube CTL, create command providing the definition
+
+124
+00:10:41,310 --> 00:10:50,010
+file as input and to see the created replicas run the cube CTL get replica set command to get list of
+
+125
+00:10:50,010 --> 00:10:50,610
+pods.
+
+126
+00:10:50,610 --> 00:10:54,240
+Simply run the cube control get parts command.
+
+127
+00:10:56,020 --> 00:10:59,320
+So what is the deal with labels and selectors?
+
+128
+00:10:59,410 --> 00:11:02,920
+Why do we label our pods and objects in Kubernetes?
+
+129
+00:11:03,040 --> 00:11:05,170
+Let us look at a simple scenario.
+
+130
+00:11:05,650 --> 00:11:11,980
+Say we deployed three instances of our front end web application as three parts.
+
+131
+00:11:12,600 --> 00:11:18,630
+We would like to create a replication controller or replica set to ensure that we have three active
+
+132
+00:11:18,630 --> 00:11:20,190
+parts at any time.
+
+133
+00:11:20,580 --> 00:11:24,250
+And yes, that is one of the use case of replica sets.
+
+134
+00:11:24,270 --> 00:11:31,590
+You can use it to monitor existing parts if you have them already created as it is in this example.
+
+135
+00:11:32,280 --> 00:11:36,570
+In case they were not created, the replica set will create them for you.
+
+136
+00:11:37,170 --> 00:11:43,590
+The role of the replica set is to monitor the pods and if any of them were to fail deploy new ones.
+
+137
+00:11:43,800 --> 00:11:48,930
+The replica set is in fact a process that monitors the parts.
+
+138
+00:11:49,470 --> 00:11:51,070
+Now how does the replica set?
+
+139
+00:11:51,090 --> 00:11:53,700
+Know what parts to monitor?
+
+140
+00:11:53,730 --> 00:11:58,710
+There could be hundreds of other parts in the cluster running different applications.
+
+141
+00:11:59,250 --> 00:12:04,290
+This is where labeling our parts during creation comes in handy.
+
+142
+00:12:05,880 --> 00:12:10,560
+We could now provide these labels as a filter for replica set.
+
+143
+00:12:11,160 --> 00:12:17,220
+Under the selector section we use the match labels filter and provide the same label that we used while
+
+144
+00:12:17,220 --> 00:12:18,510
+creating the pods.
+
+145
+00:12:19,050 --> 00:12:23,400
+This way the replica set knows which parts to monitor.
+
+146
+00:12:24,200 --> 00:12:31,490
+The same concept of labels and selectors is used in many other places throughout Kubernetes.
+
+147
+00:12:33,170 --> 00:12:39,380
+Now, let me ask you a question along the same lines in the replica set specification section.
+
+148
+00:12:39,380 --> 00:12:46,640
+We learned that there are three sections template replicas and the selector, we need three replicas
+
+149
+00:12:46,640 --> 00:12:51,200
+and we have updated our selector based on our discussion in the previous slide.
+
+150
+00:12:52,010 --> 00:12:57,830
+Say, for instance, we have the same scenario as in the previous slide where we have three existing
+
+151
+00:12:57,830 --> 00:13:04,940
+parts that were created already and we need to create a replica set to monitor the parts to ensure there
+
+152
+00:13:04,940 --> 00:13:07,670
+are a minimum of three running at all times.
+
+153
+00:13:08,210 --> 00:13:14,990
+When the replication controller is created, it is not going to deploy a new instance of POD as three
+
+154
+00:13:14,990 --> 00:13:18,560
+of them with matching labels are already created.
+
+155
+00:13:19,450 --> 00:13:26,620
+In that case, do we really need to provide a template section in the replica set specification since
+
+156
+00:13:26,620 --> 00:13:31,180
+we are not expecting the replica set to create a new port on deployment?
+
+157
+00:13:31,870 --> 00:13:32,940
+Yes, we do.
+
+158
+00:13:32,950 --> 00:13:40,240
+Because in case one of the parts were to fail in the future, the replica set needs to create a new
+
+159
+00:13:40,240 --> 00:13:46,510
+one to maintain the desired number of parts and for the replica set to create a new pod.
+
+160
+00:13:46,540 --> 00:13:50,080
+The template definition section is required.
+
+161
+00:13:52,110 --> 00:13:55,020
+Let's now look at how we scale the replica set.
+
+162
+00:13:55,050 --> 00:13:58,290
+Say we started with three replicas and the future.
+
+163
+00:13:58,290 --> 00:14:00,210
+We decided to scale to six.
+
+164
+00:14:00,480 --> 00:14:04,710
+How do we update our replica set to scale to six replicas?
+
+165
+00:14:05,130 --> 00:14:07,240
+Well, there are multiple ways to do it.
+
+166
+00:14:07,260 --> 00:14:12,810
+The first is to update the number of replicas in the definition file to six.
+
+167
+00:14:15,210 --> 00:14:22,920
+Then run the cube Ctrl replace command to specify the same file using the dash F parameter and that
+
+168
+00:14:22,920 --> 00:14:26,340
+will update the replica set to have six replicas.
+
+169
+00:14:27,210 --> 00:14:31,620
+The second way to do it is to run the cube control scale command.
+
+170
+00:14:31,800 --> 00:14:38,460
+Use the replicas parameter to provide the new number of replicas and specify the same file as input.
+
+171
+00:14:39,450 --> 00:14:46,230
+You may either input the definition file or provide the replica set name in the type name format.
+
+172
+00:14:47,180 --> 00:14:54,170
+However, remember that using the file name as input will not result in the number of replicas being
+
+173
+00:14:54,170 --> 00:14:56,540
+updated automatically in the file.
+
+174
+00:14:56,810 --> 00:15:03,440
+In other words, the number of replicas in the replica set definition file will still be three, even
+
+175
+00:15:03,440 --> 00:15:09,290
+though you scaled your replica set to have six replicas using the cube control scale command and the
+
+176
+00:15:09,290 --> 00:15:10,730
+file as input.
+
+177
+00:15:11,500 --> 00:15:18,280
+There are also options available for automatically scaling the replica set based on load, but that
+
+178
+00:15:18,280 --> 00:15:22,060
+is an advanced topic and we will discuss it at a later time.
+
+179
+00:15:23,270 --> 00:15:25,550
+Let us now review the commands real quick.
+
+180
+00:15:26,300 --> 00:15:32,630
+The cube control create command, as we know, is used to create a replica set or basically any object
+
+181
+00:15:32,630 --> 00:15:36,200
+in Kubernetes, depending on the file we are providing as input.
+
+182
+00:15:36,860 --> 00:15:40,520
+You must provide the input file using the dash F parameter.
+
+183
+00:15:41,570 --> 00:15:45,710
+Use the cube control, get command to see list of replica sets created.
+
+184
+00:15:45,710 --> 00:15:51,620
+Use the cube control delete replica set command followed by the name of the replica set to delete the
+
+185
+00:15:51,620 --> 00:15:52,610
+replica set.
+
+186
+00:15:52,850 --> 00:15:59,240
+And then we have the cube control replace command to replace or update the replica set and also the
+
+187
+00:15:59,240 --> 00:16:05,600
+cube control scale command to scale replica set simply from the command line without having to modify
+
+188
+00:16:05,600 --> 00:16:06,320
+the file.
+
+189
+00:16:07,710 --> 00:16:09,210
+That's it for this lecture.
+

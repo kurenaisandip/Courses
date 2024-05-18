@@ -1,0 +1,332 @@
+1
+00:00:04,710 --> 00:00:08,039
+Hello and welcome to this lecture on Docker Images.
+
+2
+00:00:09,050 --> 00:00:13,220
+In this lecture, we're going to see how to create your own image.
+
+3
+00:00:14,330 --> 00:00:17,690
+Before that, why would you need to create your own image?
+
+4
+00:00:18,170 --> 00:00:24,140
+It could either be because you cannot find a component or a service that you want to use as part of
+
+5
+00:00:24,140 --> 00:00:30,890
+your application on Docker Hub already, or you and your team decided that the application you're developing
+
+6
+00:00:30,890 --> 00:00:34,730
+will be Docker ized for ease of shipping and deployment.
+
+7
+00:00:35,520 --> 00:00:42,600
+In this case, I'm going to containerized an application, a simple web application that I have built
+
+8
+00:00:42,630 --> 00:00:45,270
+using the Python Flask framework.
+
+9
+00:00:46,360 --> 00:00:52,300
+First, we need to understand what we are contain arising, or what application we are creating an image
+
+10
+00:00:52,300 --> 00:00:54,970
+for and how the application is built.
+
+11
+00:00:55,210 --> 00:01:00,100
+So start by thinking what you might do if you want to deploy the application manually.
+
+12
+00:01:00,460 --> 00:01:07,180
+We write down the steps required in the right order and creating an image for a simple web application.
+
+13
+00:01:07,450 --> 00:01:13,000
+If I were to set it up manually, I would start with an operating system like Ubuntu.
+
+14
+00:01:13,030 --> 00:01:17,300
+Then update the source repositories using the apt command.
+
+15
+00:01:17,320 --> 00:01:20,690
+Then install dependencies using the apt command.
+
+16
+00:01:20,710 --> 00:01:27,520
+Then install python dependencies using the pip command, then copy over the source code of my application
+
+17
+00:01:27,520 --> 00:01:29,980
+to a location like opt.
+
+18
+00:01:30,220 --> 00:01:34,150
+And then finally run the web server using the flask command.
+
+19
+00:01:34,630 --> 00:01:38,830
+Now that I have the instructions, create a docker file using these.
+
+20
+00:01:39,100 --> 00:01:43,030
+Here's a quick overview of the process of creating your own image.
+
+21
+00:01:43,420 --> 00:01:50,590
+First, create a Docker file named Docker file and write down the instructions for setting up your application
+
+22
+00:01:50,590 --> 00:01:57,820
+in it, such as installing dependencies, where to copy the source code from and to, and what the entry
+
+23
+00:01:57,820 --> 00:01:59,980
+point of the application is, etc..
+
+24
+00:02:00,430 --> 00:02:07,630
+Once done, build your image using the Docker, build command and specify the Docker file as input as
+
+25
+00:02:07,630 --> 00:02:09,729
+well as a tag name for the image.
+
+26
+00:02:10,389 --> 00:02:17,710
+This will create an image locally on your system to make it available on the Public Docker Hub Registry.
+
+27
+00:02:18,190 --> 00:02:20,050
+Run the Docker Push Command.
+
+28
+00:02:20,800 --> 00:02:23,890
+And specify the name of the image you just created.
+
+29
+00:02:24,950 --> 00:02:33,410
+In this case, the name of the image is my account name, which is Shard, followed by the image name,
+
+30
+00:02:33,410 --> 00:02:35,420
+which is my custom app.
+
+31
+00:02:37,180 --> 00:02:40,060
+Now let's take a closer look at that Dr. File.
+
+32
+00:02:40,180 --> 00:02:45,470
+Dr. File is a text file written in a specific format that Dr. can understand.
+
+33
+00:02:45,490 --> 00:02:48,790
+It's in an instruction and arguments format.
+
+34
+00:02:49,240 --> 00:02:57,550
+For example, in this Docker file, everything on the left in caps is an instruction in this case from
+
+35
+00:02:57,550 --> 00:03:01,690
+run copy and entry point are all instructions.
+
+36
+00:03:02,170 --> 00:03:07,420
+Each of these instruct Docker to perform a specific action while creating the image.
+
+37
+00:03:07,990 --> 00:03:12,040
+Everything on the right is an argument to those instructions.
+
+38
+00:03:12,520 --> 00:03:18,850
+The first line from Ubuntu defines what the base OS should be for this container.
+
+39
+00:03:19,330 --> 00:03:26,560
+Every docker image must be based off of another image, either an OS or another image that was created
+
+40
+00:03:26,560 --> 00:03:28,450
+before based on an OS.
+
+41
+00:03:28,600 --> 00:03:33,220
+You can find official releases of all operating systems on Docker Hub.
+
+42
+00:03:33,340 --> 00:03:38,740
+It's important to note that all Docker files must start with a from instruction.
+
+43
+00:03:39,250 --> 00:03:45,520
+The run instruction instructs Docker to run a particular command on those base images.
+
+44
+00:03:45,730 --> 00:03:53,080
+So at this point, Docker runs the apt get update commands to fetch the updated packages and installs
+
+45
+00:03:53,080 --> 00:03:55,390
+required dependencies on the image.
+
+46
+00:03:56,070 --> 00:04:01,290
+Then the copy instruction copies files from the local system onto the Docker image.
+
+47
+00:04:01,470 --> 00:04:06,720
+In this case, the source code of our application is in the current folder and I will be copying it
+
+48
+00:04:06,720 --> 00:04:11,310
+over to the location or source code inside the Docker image.
+
+49
+00:04:11,490 --> 00:04:19,019
+And finally, entry point allows us to specify a command that will be run when the image is run as a
+
+50
+00:04:19,019 --> 00:04:19,860
+container.
+
+51
+00:04:21,870 --> 00:04:28,500
+When Dr. Bales the images it bales these in a layered architecture, each line of instruction creates
+
+52
+00:04:28,500 --> 00:04:33,270
+a new layer in the darker image with just the changes from the previous layer.
+
+53
+00:04:33,420 --> 00:04:41,580
+For example, the first layer is a base Ubuntu OS, followed by the second instruction that creates
+
+54
+00:04:41,580 --> 00:04:44,970
+a second layer which installs all the APK packages.
+
+55
+00:04:44,970 --> 00:04:50,430
+And then the third instruction creates a third layer with the python packages followed by the fourth
+
+56
+00:04:50,430 --> 00:04:56,310
+layer that copies the source code over and the final layer that updates the entry point of the image.
+
+57
+00:04:56,790 --> 00:05:03,360
+Since each layer only stores the changes from the previous layer, it is reflected in the size as well.
+
+58
+00:05:03,480 --> 00:05:09,220
+If you look at the base ubuntu image, it is around 120 and be in size.
+
+59
+00:05:09,240 --> 00:05:15,180
+The apt packages that I install is around 300 mb b and the remaining layers are small.
+
+60
+00:05:15,630 --> 00:05:21,270
+You could see this information if you run the Docker history command followed by the image name.
+
+61
+00:05:26,490 --> 00:05:31,590
+When you run the Docker build command, you could see the various steps involved and the result of each
+
+62
+00:05:31,590 --> 00:05:32,340
+task.
+
+63
+00:05:32,370 --> 00:05:38,910
+All the layers built are cast, so the layered architecture helps you restart Docker build from that
+
+64
+00:05:38,910 --> 00:05:41,240
+particular step in case it fails.
+
+65
+00:05:41,250 --> 00:05:46,980
+Or if you were to add new steps in the build process, you wouldn't have to start all over again.
+
+66
+00:05:51,670 --> 00:05:54,570
+All the layers built are cached by Docker.
+
+67
+00:05:54,580 --> 00:06:01,900
+So in case a particular step was to fail, for example, in this case, step three failed and you were
+
+68
+00:06:01,900 --> 00:06:04,990
+to fix the issue and re run Docker build.
+
+69
+00:06:05,140 --> 00:06:11,140
+It will reuse the previous layers from cache and continue to build the remaining layers.
+
+70
+00:06:11,440 --> 00:06:16,360
+The same is true if you were to add additional steps in the Docker file.
+
+71
+00:06:16,900 --> 00:06:24,220
+This way, rebuilding your image is faster and you don't have to wait for Docker to rebuild the entire
+
+72
+00:06:24,220 --> 00:06:25,750
+image each time.
+
+73
+00:06:25,990 --> 00:06:32,590
+This is helpful, especially when you update source code of your application as it may change more frequently,
+
+74
+00:06:32,770 --> 00:06:36,850
+only the layers above the updated layers needs to be rebuilt.
+
+75
+00:06:41,560 --> 00:06:49,660
+We just saw a number of products containerized, such as databases, development tools, operating systems,
+
+76
+00:06:49,660 --> 00:06:52,520
+etc. but that's just not it.
+
+77
+00:06:52,540 --> 00:06:59,290
+You can containerized almost all of the application, even simple ones like browsers or utilities like
+
+78
+00:06:59,290 --> 00:07:03,580
+curl applications, like Spotify, Skype, etc..
+
+79
+00:07:03,790 --> 00:07:06,610
+Basically, you can containerized everything.
+
+80
+00:07:06,640 --> 00:07:11,530
+And going forward, I see that's how everyone is going to run applications.
+
+81
+00:07:11,800 --> 00:07:16,010
+Nobody is going to install anything anymore going forward.
+
+82
+00:07:16,030 --> 00:07:22,930
+Instead, they're just going to run it using Docker and when they don't need it anymore, get rid of
+
+83
+00:07:22,930 --> 00:07:25,810
+it easily without having to clean up too much.
+

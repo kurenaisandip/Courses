@@ -1,0 +1,80 @@
+1
+00:00:04,860 --> 00:00:07,620
+We will now see how to get started with Docker.
+
+2
+00:00:07,770 --> 00:00:12,930
+Now Docker has two editions, the Community Edition and the Enterprise edition.
+
+3
+00:00:13,200 --> 00:00:17,060
+The community edition is the set of free Docker products.
+
+4
+00:00:17,070 --> 00:00:23,280
+The Enterprise edition is the certified and supported container platform that comes with enterprise
+
+5
+00:00:23,280 --> 00:00:29,970
+add ons like the Image Management Image Security, Universal Control Plan for managing and orchestrating
+
+6
+00:00:29,970 --> 00:00:31,170
+container runtimes.
+
+7
+00:00:31,260 --> 00:00:33,600
+But of course these come with a price.
+
+8
+00:00:33,930 --> 00:00:39,960
+We will discuss more about container orchestration later in this course and along with some alternatives.
+
+9
+00:00:40,350 --> 00:00:43,830
+For now, we will go ahead with the community edition.
+
+10
+00:00:44,280 --> 00:00:52,320
+The community edition is available on Linux, Mac Windows or on cloud platforms like AWS or Azure.
+
+11
+00:00:52,800 --> 00:00:58,800
+In the upcoming demo, we will take a look at how to install and get started with Docker on a Linux
+
+12
+00:00:58,800 --> 00:00:59,460
+system.
+
+13
+00:00:59,850 --> 00:01:04,200
+Now, if you are on Mac or Windows, you have two options.
+
+14
+00:01:04,200 --> 00:01:11,310
+Either install a Linux VM using VirtualBox or some kind of virtualization platform and then follow along
+
+15
+00:01:11,310 --> 00:01:16,230
+with the upcoming demo, which is really the most easiest way to get started with Docker.
+
+16
+00:01:16,590 --> 00:01:23,490
+The second option is to install Docker desktop for Mac or Docker desktop for Windows, which are native
+
+17
+00:01:23,490 --> 00:01:24,450
+applications.
+
+18
+00:01:24,660 --> 00:01:31,140
+So if that is really what you want to take out the Docker for Mac and the Windows sections towards the
+
+19
+00:01:31,140 --> 00:01:35,400
+end of this course and then head back here once you are all set up.
+
+20
+00:01:35,970 --> 00:01:42,600
+We will now head over to a demo and we will take a look at how to install Docker on a Linux machine.
+

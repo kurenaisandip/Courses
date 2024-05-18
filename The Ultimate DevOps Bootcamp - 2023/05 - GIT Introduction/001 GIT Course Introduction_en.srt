@@ -1,0 +1,92 @@
+1
+00:00:18,380 --> 00:00:19,040
+Hey, everyone.
+
+2
+00:00:19,040 --> 00:00:24,040
+I'm Lydia, Hailey, and I'll be your instructor for this Gift for Beginners course on Code Cloud.
+
+3
+00:00:24,050 --> 00:00:29,870
+Throughout my career as a software developer, I've also mentored a lot of new and advanced developers
+
+4
+00:00:29,870 --> 00:00:32,509
+in order to help them improve and optimize their work.
+
+5
+00:00:32,630 --> 00:00:38,630
+And by writing technical blog posts in a more visual way, I try to make those overwhelming computer
+
+6
+00:00:38,630 --> 00:00:41,030
+science concepts seem less overwhelming.
+
+7
+00:00:41,030 --> 00:00:43,700
+And one of those topics is get through this course.
+
+8
+00:00:43,700 --> 00:00:49,250
+I want to show you that git is actually an amazing tool to work with and I want to make you a fearless
+
+9
+00:00:49,250 --> 00:00:50,180
+git developer.
+
+10
+00:00:50,180 --> 00:00:55,100
+In this course, you'll learn how to get up and running with gates, how to use it in your daily life,
+
+11
+00:00:55,100 --> 00:00:57,320
+and how it actually works under the hood.
+
+12
+00:00:57,320 --> 00:01:02,750
+We'll cover the possibilities of having a local and remote git repository and adding version control
+
+13
+00:01:02,750 --> 00:01:04,550
+to your project by using branches.
+
+14
+00:01:04,550 --> 00:01:09,260
+And of course we'll cover all the useful commands that you can use with these branches to make working
+
+15
+00:01:09,260 --> 00:01:12,080
+with get even more powerful besides some common gate commands.
+
+16
+00:01:12,080 --> 00:01:16,820
+We'll also cover how Git actually works under the hood in order to get a better understanding of what
+
+17
+00:01:16,820 --> 00:01:17,990
+we're actually doing.
+
+18
+00:01:17,990 --> 00:01:23,810
+After each section, you'll get to test your new information with the hands on labs in order to fully
+
+19
+00:01:23,810 --> 00:01:29,510
+grasp the new concepts you'll work as if you're working on a real project with real team members.
+
+20
+00:01:29,510 --> 00:01:34,940
+So you have to push code, pull code, resolve, merge conflicts, and will validate it in order to
+
+21
+00:01:34,940 --> 00:01:37,490
+make sure that you actually understood it correctly.
+
+22
+00:01:37,490 --> 00:01:41,780
+I am really excited to be teaching this interactive course on Git and I hope you are too.
+
+23
+00:01:41,780 --> 00:01:42,980
+So let's dive right in.
+

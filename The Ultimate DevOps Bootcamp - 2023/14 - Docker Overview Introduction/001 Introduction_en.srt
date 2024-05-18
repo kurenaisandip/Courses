@@ -1,0 +1,136 @@
+1
+00:00:10,410 --> 00:00:13,020
+Hello and welcome to the Docker for Beginners Course.
+
+2
+00:00:13,020 --> 00:00:17,430
+My name is Moonchild Manabat and I will be your instructor for this course.
+
+3
+00:00:17,940 --> 00:00:24,090
+I'm a DevOps and cloud trainer at Code Icloud.com, which is an interactive hands on online learning
+
+4
+00:00:24,090 --> 00:00:24,870
+platform.
+
+5
+00:00:24,990 --> 00:00:31,230
+I've been working in the industry as a consultant for over 13 years and have helped hundreds of thousands
+
+6
+00:00:31,230 --> 00:00:35,280
+of students learn technology in a fun and interactive way.
+
+7
+00:00:35,550 --> 00:00:41,730
+In this course, you will learn Docker through a series of lectures that use animation illustration
+
+8
+00:00:41,730 --> 00:00:45,810
+and some fun analogies that simplify complex concepts.
+
+9
+00:00:45,930 --> 00:00:51,390
+We have demos that will show you how to install and get started with Docker, and most importantly,
+
+10
+00:00:51,390 --> 00:00:55,500
+we have hands on labs that you can access right in your browser.
+
+11
+00:00:55,650 --> 00:00:57,670
+I will explain more about it in a bit.
+
+12
+00:00:57,690 --> 00:01:00,900
+But first, let's look at the objectives of this course.
+
+13
+00:01:01,110 --> 00:01:07,080
+In this course we first try to understand what containers are, what Docker is, and why you might need
+
+14
+00:01:07,080 --> 00:01:08,820
+it and what it can do for you.
+
+15
+00:01:08,850 --> 00:01:13,730
+We will see how to run a Docker container, how to build your own Docker image.
+
+16
+00:01:13,740 --> 00:01:19,980
+We will see networking in Docker and how to use Docker compose what Docker registry is, how to deploy
+
+17
+00:01:19,980 --> 00:01:21,570
+your own private registry.
+
+18
+00:01:21,570 --> 00:01:27,300
+And we then look at some of these concepts in depth and we try to understand how Docker really works
+
+19
+00:01:27,300 --> 00:01:28,230
+under the hood.
+
+20
+00:01:28,650 --> 00:01:35,250
+We look at Docker for Windows and Mac before finally getting a basic introduction to container orchestration
+
+21
+00:01:35,250 --> 00:01:38,370
+tools like Docker Swarm and Kubernetes.
+
+22
+00:01:38,400 --> 00:01:40,650
+Here's a quick note about Hands on Labs.
+
+23
+00:01:40,650 --> 00:01:44,820
+First of all, to complete this course, you don't have to set up your own labs.
+
+24
+00:01:44,820 --> 00:01:49,380
+Well, you may set it up if you wish to, if you wish to have your own environment.
+
+25
+00:01:49,380 --> 00:01:50,990
+And we have a demo as well.
+
+26
+00:01:51,000 --> 00:01:57,570
+But as part of this course, we provide real labs that you can access right in your browser anywhere,
+
+27
+00:01:57,570 --> 00:02:00,060
+anytime, and as many times as you want.
+
+28
+00:02:00,240 --> 00:02:06,600
+The labs give you instant access to a terminal to a docker host and an accompanying quiz portal.
+
+29
+00:02:06,780 --> 00:02:12,540
+The quiz portal asks a set of questions such as exploring the environment and gathering information,
+
+30
+00:02:12,540 --> 00:02:17,100
+or you might be asked to perform an action such as running Docker Container.
+
+31
+00:02:17,340 --> 00:02:21,900
+The quiz portal then validates your work and gives you feedback instantly.
+
+32
+00:02:21,990 --> 00:02:28,530
+Every lecture in this course is accompanied by such challenging interactive quizzes that makes learning
+
+33
+00:02:28,530 --> 00:02:34,890
+Docker a fun activity, so I hope you're as thrilled as I am to get started.
+
+34
+00:02:34,890 --> 00:02:36,060
+So let us begin.
+

@@ -1,0 +1,336 @@
+1
+00:00:00,670 --> 00:00:03,190
+In this lecture, we will look at loops.
+
+2
+00:00:04,250 --> 00:00:10,910
+Let's look at this example where we are creating an Ansible playbook to create users and a system using
+
+3
+00:00:10,910 --> 00:00:12,140
+the user module.
+
+4
+00:00:12,350 --> 00:00:16,710
+The user module helps you create users on the target systems.
+
+5
+00:00:16,730 --> 00:00:19,520
+In this case, we are just creating one user.
+
+6
+00:00:19,880 --> 00:00:22,310
+But what if we have multiple users?
+
+7
+00:00:22,340 --> 00:00:24,860
+What if we have a lot of users to create?
+
+8
+00:00:25,100 --> 00:00:30,860
+Well, one way to do this would be to duplicate these lines as many times as required.
+
+9
+00:00:31,400 --> 00:00:35,570
+But that is not very elegant and as there is a lot of duplication.
+
+10
+00:00:36,290 --> 00:00:41,540
+A better way to do this would be to have a single task loop over all the users.
+
+11
+00:00:41,750 --> 00:00:43,880
+That's where we use loops.
+
+12
+00:00:44,270 --> 00:00:52,110
+Loop is a looping directive that executes the same task multiple number of times each time it runs.
+
+13
+00:00:52,130 --> 00:00:57,890
+It stores the value of each item in the loop in a variable named item.
+
+14
+00:00:58,280 --> 00:01:05,900
+So you can simply replace the user name in this case Joe with the item variable inside double braces
+
+15
+00:01:05,900 --> 00:01:06,740
+like this.
+
+16
+00:01:07,100 --> 00:01:13,040
+This makes your playbooks much more organized and with reduced repetition.
+
+17
+00:01:13,550 --> 00:01:18,560
+In this case, you are not repeating the lines of the user module or the state.
+
+18
+00:01:19,830 --> 00:01:26,010
+If you didn't get how the part about item works, let me visualize that for you.
+
+19
+00:01:26,650 --> 00:01:33,670
+So any time you come across a playbook probably written by someone else and the loop part is confusing,
+
+20
+00:01:33,790 --> 00:01:39,070
+I would recommend visualizing it like this for visualization purposes.
+
+21
+00:01:39,100 --> 00:01:44,760
+A loop would break down into multiple tasks within each task.
+
+22
+00:01:44,770 --> 00:01:52,720
+You have a variable defined which is by default named item, and it has the value of each item in the
+
+23
+00:01:52,720 --> 00:01:53,350
+list.
+
+24
+00:01:53,800 --> 00:02:00,790
+In this case, the loop breaks down into ten or more tasks that uses the same user module.
+
+25
+00:02:01,390 --> 00:02:07,090
+Each task has a variable item whose value is set to each item in the loop.
+
+26
+00:02:07,630 --> 00:02:14,800
+The first task has the value of items at Joe, the second with George, third Ravi, and so on it goes.
+
+27
+00:02:15,430 --> 00:02:19,150
+When the playbook is executed, this is how it will be run.
+
+28
+00:02:20,010 --> 00:02:23,550
+In this case, the loop is an array of string values.
+
+29
+00:02:23,880 --> 00:02:25,290
+Just the usernames.
+
+30
+00:02:25,970 --> 00:02:29,690
+But what if I want to specify the user ID as well?
+
+31
+00:02:29,960 --> 00:02:37,070
+That would mean each item in the loop would have to have two values the username and the user ID.
+
+32
+00:02:37,790 --> 00:02:44,450
+But how do you pass into values in an array instead of passing in an array of strings to the loop?
+
+33
+00:02:44,480 --> 00:02:47,390
+I would pass in an array of dictionaries.
+
+34
+00:02:47,630 --> 00:02:50,930
+Each dictionary will have two key value pairs.
+
+35
+00:02:51,020 --> 00:02:58,880
+The keys would be name and UID, and values would be name and IDs of each user.
+
+36
+00:02:59,750 --> 00:03:03,560
+If you do that, what would you specify inside the task?
+
+37
+00:03:03,800 --> 00:03:08,960
+You can no longer use just item because item is now not just a string.
+
+38
+00:03:09,290 --> 00:03:15,050
+So let's try to visualize that to find out what you can specify inside the command.
+
+39
+00:03:16,110 --> 00:03:17,010
+As before.
+
+40
+00:03:17,010 --> 00:03:20,070
+Let's break down the loop into multiple tasks.
+
+41
+00:03:20,370 --> 00:03:22,590
+We'll just look at the first four.
+
+42
+00:03:23,100 --> 00:03:26,470
+Each task uses the same module and parameters.
+
+43
+00:03:26,490 --> 00:03:33,300
+We still don't know what to specify for name or UID, and we can see that each task has a variable item
+
+44
+00:03:33,300 --> 00:03:34,020
+defined.
+
+45
+00:03:34,560 --> 00:03:38,270
+How does item look in this case as before?
+
+46
+00:03:38,280 --> 00:03:42,810
+Move each item in the loop under the item variable in the tasks.
+
+47
+00:03:43,490 --> 00:03:49,970
+We can now see that the item variable inside each task in the loop is a dictionary which has the name
+
+48
+00:03:49,970 --> 00:03:52,040
+and UID of each user.
+
+49
+00:03:52,340 --> 00:04:00,950
+So within each task to get the user name, I could do item name and to get user ID, I could do item
+
+50
+00:04:01,280 --> 00:04:02,150
+UID.
+
+51
+00:04:02,570 --> 00:04:07,640
+And that is what we will have in the task section back in our playbook.
+
+52
+00:04:08,570 --> 00:04:14,450
+So that's how loops work with an array of strings and array of dictionaries with array of dictionaries.
+
+53
+00:04:14,780 --> 00:04:22,700
+Remember that you could simply use item property name in the dictionary to get an item within each dictionary
+
+54
+00:04:22,700 --> 00:04:23,570
+in the list.
+
+55
+00:04:24,140 --> 00:04:32,120
+But I did all of that to show you how it works when the data in the array gets really complex, using
+
+56
+00:04:32,120 --> 00:04:37,940
+this kind of visualization technique of breaking the loop down might help you understand it a little
+
+57
+00:04:37,940 --> 00:04:38,690
+bit better.
+
+58
+00:04:39,720 --> 00:04:45,810
+Also note that an array of dictionary can also be represented like this in a JSON format.
+
+59
+00:04:47,010 --> 00:04:53,670
+The Loop directive we just saw are used to create simple loops that iterate over a lot of items.
+
+60
+00:04:53,760 --> 00:05:00,540
+There's another way to create loops in playbooks, and that is using the width underscore directives.
+
+61
+00:05:01,340 --> 00:05:07,460
+This playbook that we developed can also be written using the width underscore items directive like
+
+62
+00:05:07,460 --> 00:05:08,000
+this.
+
+63
+00:05:08,300 --> 00:05:12,500
+In fact, the loop directive is newly added in Ansible.
+
+64
+00:05:12,710 --> 00:05:16,820
+In the past we just had the width underscore items directive.
+
+65
+00:05:17,210 --> 00:05:23,420
+In this case, both playbooks yield the same results and there is no much difference between the two.
+
+66
+00:05:24,630 --> 00:05:28,020
+For a simple lubes like the ones we have been working on.
+
+67
+00:05:28,020 --> 00:05:31,350
+It is recommended to use the LUBE Directive itself.
+
+68
+00:05:31,710 --> 00:05:38,760
+However, in some of the older playbooks you might come across the with Items directive, so you should
+
+69
+00:05:38,760 --> 00:05:42,450
+understand what that means when you when you see that.
+
+70
+00:05:44,050 --> 00:05:49,060
+Now let's look at the advantage of the width directives with items.
+
+71
+00:05:49,060 --> 00:05:51,550
+Just iterates over a list of items.
+
+72
+00:05:52,090 --> 00:05:59,770
+We have other directives such as with files that iterate over multiple files with a URL that connects
+
+73
+00:05:59,770 --> 00:06:05,870
+to multiple URLs with MongoDB that connects to multiple MongoDB databases.
+
+74
+00:06:05,890 --> 00:06:08,020
+And these are just a few.
+
+75
+00:06:08,560 --> 00:06:11,410
+So are these all or are there more?
+
+76
+00:06:11,680 --> 00:06:13,180
+If so, how many are there?
+
+77
+00:06:14,150 --> 00:06:19,430
+It so happens that these are just a few among the many white directives available.
+
+78
+00:06:19,760 --> 00:06:27,260
+In fact, everything you see after the width underscore string is a lookup plugin.
+
+79
+00:06:27,740 --> 00:06:33,740
+So whatever lookup plugin you have or you create you can use with underscore with that.
+
+80
+00:06:34,810 --> 00:06:36,970
+So what are lookup plugins?
+
+81
+00:06:37,360 --> 00:06:43,990
+Well, just think of them as custom scripts that can do specific tasks like read files, connect to
+
+82
+00:06:43,990 --> 00:06:49,180
+a URL or connect to a database or connect to other systems like Kubernetes or OpenShift.
+
+83
+00:06:49,600 --> 00:06:51,880
+Well, more on that some other time.
+
+84
+00:06:51,910 --> 00:06:58,210
+For now, let's head over to coding exercises and practice working with loops.
+

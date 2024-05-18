@@ -1,0 +1,1124 @@
+1
+00:00:00,240 --> 00:00:02,130
+Hello and welcome to this demo.
+
+2
+00:00:02,280 --> 00:00:08,940
+In this demo, we're going to look at some of the advanced options with Docker commands, some of the
+
+3
+00:00:08,940 --> 00:00:15,750
+advanced options available with the with running Docker containers using the Docker run command.
+
+4
+00:00:16,650 --> 00:00:23,430
+So in the previous demos, we saw how to install Docker and how to set it up and how to run some images.
+
+5
+00:00:23,430 --> 00:00:30,330
+And we saw some of the basic commands, such as the commands to run a Docker container to look at the
+
+6
+00:00:30,330 --> 00:00:37,260
+list of running and dead Docker containers to execute a command inside a Docker container, etc. In
+
+7
+00:00:37,260 --> 00:00:41,940
+this case, in this demo, we're going to look a little bit more about running Docker containers, but
+
+8
+00:00:41,940 --> 00:00:44,700
+some advanced options available for us.
+
+9
+00:00:45,270 --> 00:00:51,690
+So I'm just going to run the Docker command, just check if there are any existing running containers
+
+10
+00:00:51,690 --> 00:00:53,490
+and I see there are no containers running.
+
+11
+00:00:53,490 --> 00:01:00,570
+And earlier we saw that we could run an Ubuntu or container based off of an Ubuntu or a center where
+
+12
+00:01:00,570 --> 00:01:03,190
+by running the Docker run Ubuntu command.
+
+13
+00:01:03,210 --> 00:01:11,220
+So I'm just going to run docker on Ubuntu and I'm going to append a command next to this docker run
+
+14
+00:01:11,220 --> 00:01:19,230
+just so it runs the when it runs or starts up the ubuntu container and before it exits it can run this
+
+15
+00:01:19,230 --> 00:01:21,120
+particular command and give me the output.
+
+16
+00:01:21,120 --> 00:01:25,500
+So what I want to do is I want to see the version of Ubuntu running.
+
+17
+00:01:25,500 --> 00:01:32,190
+So we, we downloaded our docker downloaded and image of ubuntu automatically, but I don't know what
+
+18
+00:01:32,190 --> 00:01:33,990
+version of ubuntu it is running.
+
+19
+00:01:33,990 --> 00:01:36,090
+So I'm just going to run this.
+
+20
+00:01:36,180 --> 00:01:39,330
+Append this particular command to the end of the run command.
+
+21
+00:01:39,330 --> 00:01:45,060
+So get this is for slash star release star.
+
+22
+00:01:45,540 --> 00:01:51,750
+And so it ran the Docker container, ran this particular command and gave me this output.
+
+23
+00:01:51,750 --> 00:01:55,170
+And as you can see, the version is 16.04.
+
+24
+00:01:55,170 --> 00:02:00,840
+But what if I want to run another version of this particular operating system?
+
+25
+00:02:00,840 --> 00:02:07,320
+So the first thing that I need to do is go to the Docker hub site, identify the repository I'm using.
+
+26
+00:02:07,320 --> 00:02:13,410
+And if you look inside this particular repository, in this case Ubuntu, you will see a list of supported
+
+27
+00:02:13,410 --> 00:02:13,890
+tags.
+
+28
+00:02:13,890 --> 00:02:15,750
+So that's the first thing in the description.
+
+29
+00:02:15,750 --> 00:02:19,950
+So support tags and respective Docker files.
+
+30
+00:02:19,950 --> 00:02:21,990
+So these are the tags that it supports.
+
+31
+00:02:21,990 --> 00:02:28,410
+For example, 16.04 is actually the, the default and the latest.
+
+32
+00:02:28,530 --> 00:02:35,130
+As we know, if you don't specify any tag, it's going to assume that it's going to assume a latest
+
+33
+00:02:35,130 --> 00:02:35,780
+tag.
+
+34
+00:02:35,790 --> 00:02:42,540
+So since we didn't specify any tag when we ran the Docker Ubuntu command right here, it actually assumed
+
+35
+00:02:42,540 --> 00:02:48,060
+to be the latest tag, which is why it downloaded the 16.4 image.
+
+36
+00:02:48,090 --> 00:02:49,800
+And what if I want to run another version?
+
+37
+00:02:49,800 --> 00:02:53,120
+Let's say 17.10.
+
+38
+00:02:53,130 --> 00:03:00,510
+If I want to run this particular version, what I could do is just append this tag to the the name of
+
+39
+00:03:00,510 --> 00:03:01,890
+the image.
+
+40
+00:03:01,890 --> 00:03:07,320
+So I'm going to run the same command as before, which is Docker run Ubuntu.
+
+41
+00:03:07,590 --> 00:03:13,260
+And I'm also going to print out the version of the OS using the CAT command.
+
+42
+00:03:13,260 --> 00:03:17,100
+And right here I could append a tag.
+
+43
+00:03:17,190 --> 00:03:21,060
+So the tag is to be appended following a colon.
+
+44
+00:03:21,180 --> 00:03:30,630
+And if you look at this list here, it could either be 17.10, it could be artful dash and then this
+
+45
+00:03:30,630 --> 00:03:35,370
+particular number here, or it could be artful or it could be devil, it could be any of these.
+
+46
+00:03:35,370 --> 00:03:40,220
+So these are all supported tags for the same version, which is 17.10.
+
+47
+00:03:40,260 --> 00:03:47,790
+So I'm going to just give 70.10 for now, and it's first going to find out if that image is available
+
+48
+00:03:47,790 --> 00:03:48,240
+locally.
+
+49
+00:03:48,240 --> 00:03:49,380
+It's definitely not.
+
+50
+00:03:49,380 --> 00:03:54,180
+So it's going to go out to Docker Hub and find out the image.
+
+51
+00:03:54,180 --> 00:03:59,250
+So it's going to download the image from Docker Hub.
+
+52
+00:04:01,280 --> 00:04:04,400
+And so it's downloaded the image and run it.
+
+53
+00:04:04,400 --> 00:04:10,100
+And when it ran, it ran the cat command to print out the version of Ubuntu.
+
+54
+00:04:10,100 --> 00:04:14,860
+And as you can see, the version of Ubuntu is 17.10.
+
+55
+00:04:14,870 --> 00:04:19,310
+So it's downloaded the right version because we provided a different tag.
+
+56
+00:04:20,570 --> 00:04:22,470
+So that's that's about tags.
+
+57
+00:04:22,490 --> 00:04:28,580
+This way you can tag your images differently for different purposes.
+
+58
+00:04:29,120 --> 00:04:33,080
+You can tag you can use tags for versioning, etc..
+
+59
+00:04:34,560 --> 00:04:40,800
+The next thing that we're going to do is we're going to see a test and detach modes.
+
+60
+00:04:41,040 --> 00:04:49,800
+So as we did before, I'm going to run a Docker container with Ubuntu and what I'm going to do is I'm
+
+61
+00:04:49,800 --> 00:04:53,670
+just going to keep it alive by using the sleep command.
+
+62
+00:04:53,670 --> 00:05:00,990
+So I'm just going to run the sleep command and keep it alive for, let's say 1100 seconds.
+
+63
+00:05:02,090 --> 00:05:07,370
+Now I'm just going to change that to 15.
+
+64
+00:05:08,330 --> 00:05:15,500
+Now, when I run this, what I expect is for Docker to run a container based off of Ubuntu and run this
+
+65
+00:05:15,500 --> 00:05:17,690
+particular application.
+
+66
+00:05:17,690 --> 00:05:22,490
+In my case, this the application is just a sleep command, so it's going to run the sleep command for
+
+67
+00:05:22,490 --> 00:05:23,810
+15 seconds.
+
+68
+00:05:24,470 --> 00:05:26,540
+And it's going to exit the container.
+
+69
+00:05:26,570 --> 00:05:31,950
+Now, if I hit enter, I can actually see that I'm I'm kind of stuck in that console.
+
+70
+00:05:31,970 --> 00:05:33,050
+I don't see anything.
+
+71
+00:05:33,050 --> 00:05:36,210
+If I do a control C, it doesn't actually take me out.
+
+72
+00:05:36,230 --> 00:05:43,490
+I'm kind of stuck and I'm not I cannot come out of this particular this particular console until the
+
+73
+00:05:43,940 --> 00:05:47,900
+O's or the container automatically exits, which it's done now.
+
+74
+00:05:47,900 --> 00:05:51,710
+So it waited for 15 seconds and it kind of exited.
+
+75
+00:05:51,740 --> 00:05:57,470
+Now, if I were to run an actual application instead of the test sleep command that I run here, such
+
+76
+00:05:57,470 --> 00:06:05,420
+as running a web server which is supposed to stay alive permanently, then I wouldn't be able to come
+
+77
+00:06:05,420 --> 00:06:11,990
+out of this and the console would just show me the output of that application I'm running.
+
+78
+00:06:12,770 --> 00:06:16,730
+Now, this is the default way how a container runs.
+
+79
+00:06:16,850 --> 00:06:17,690
+It doesn't really matter.
+
+80
+00:06:17,690 --> 00:06:21,950
+You could always use another session or terminal to your Docker host.
+
+81
+00:06:21,950 --> 00:06:28,070
+For example, I'm going to run the same command, but in this case I'm going to add two zeros to keep
+
+82
+00:06:28,070 --> 00:06:31,250
+it alive for 1500 seconds.
+
+83
+00:06:31,280 --> 00:06:35,750
+Now, in this case, as you can see, if I hit control C, whatever I try to do, it doesn't actually
+
+84
+00:06:35,750 --> 00:06:37,260
+come out of that.
+
+85
+00:06:37,280 --> 00:06:42,020
+It's because the Docker container is running in the foreground.
+
+86
+00:06:42,020 --> 00:06:49,700
+And what I could always do is I could establish another duplicate connection to my Docker host and once
+
+87
+00:06:49,700 --> 00:06:55,670
+I'm logged in, I run the Docker command to see the running images and then I can actually stop that
+
+88
+00:06:55,670 --> 00:07:01,550
+if I want to by using the Docker stop and specifying the container ID.
+
+89
+00:07:04,610 --> 00:07:12,560
+So this stops my container and if I go back, it takes a couple of seconds to stop and as soon as it
+
+90
+00:07:12,560 --> 00:07:16,970
+stops the container, I should be back to my console right here.
+
+91
+00:07:16,970 --> 00:07:24,020
+So as you can see, when I stopped the container from here, I'm actually back to my prompt right here.
+
+92
+00:07:24,020 --> 00:07:34,010
+It isn't actually anything to anything of a serious concern, but the next time you run the Docker container,
+
+93
+00:07:34,010 --> 00:07:40,720
+if you'd like to run it in the background or in a detached mode, you could actually specify the dash
+
+94
+00:07:40,760 --> 00:07:43,130
+D parameter.
+
+95
+00:07:43,130 --> 00:07:51,160
+So the dash d parameter is used to run it in the test mode in the background when when it starts.
+
+96
+00:07:51,170 --> 00:07:58,240
+So as you can see, it's listed the this is the actual container ID, the unique container ID, And
+
+97
+00:07:58,250 --> 00:08:00,990
+so this means that it's actually successful in running.
+
+98
+00:08:01,010 --> 00:08:06,800
+Now if you run the Docker command here, you can actually see the information about the container.
+
+99
+00:08:06,800 --> 00:08:12,920
+So if you look at this right now, this is the container ID, unique container I.D. it's actually this
+
+100
+00:08:12,920 --> 00:08:21,200
+big, but when you see it here, it just takes the first few characters and displays that here.
+
+101
+00:08:22,640 --> 00:08:28,010
+So it's running the Docker in the detached mode now and.
+
+102
+00:08:29,100 --> 00:08:31,140
+I'd like to attach back to it.
+
+103
+00:08:31,140 --> 00:08:37,260
+So I'm going to do a four and four that you could actually do a docker attach and then specify the container
+
+104
+00:08:37,260 --> 00:08:37,890
+ID.
+
+105
+00:08:40,419 --> 00:08:42,909
+And this will get you back to the doctor.
+
+106
+00:08:44,080 --> 00:08:48,280
+This will bring doctor process container and run it in the foreground.
+
+107
+00:08:48,310 --> 00:08:55,480
+Now I'm back to the same situation again because it's currently am actually attached to the Docker container
+
+108
+00:08:55,480 --> 00:08:56,980
+and nothing actually works.
+
+109
+00:08:56,980 --> 00:09:04,720
+So I'm going to go back to the other host and I'm going to stop I'm sorry, I'm going to go back to
+
+110
+00:09:04,720 --> 00:09:09,220
+the other terminal on the same host and I'm going to stop the Docker container.
+
+111
+00:09:13,910 --> 00:09:17,270
+Okay, so I'm back to my prompt here.
+
+112
+00:09:22,130 --> 00:09:27,860
+Okay, So I'd like to show the same example with another Docker image.
+
+113
+00:09:27,860 --> 00:09:35,240
+For example, I have another Docker image called Timer, which simply prints the time, the current
+
+114
+00:09:35,240 --> 00:09:38,050
+time into onto the screen every second.
+
+115
+00:09:38,060 --> 00:09:39,950
+So I'm going to run that image.
+
+116
+00:09:41,420 --> 00:09:46,550
+And as you can see, it prints the time on the screen every second.
+
+117
+00:09:46,880 --> 00:09:49,010
+Now, this runs infinitely.
+
+118
+00:09:49,100 --> 00:09:51,370
+So this Docker container never stops.
+
+119
+00:09:51,380 --> 00:09:54,890
+It just keeps printing the time onto the screen infinitely.
+
+120
+00:09:54,920 --> 00:10:01,610
+Now, since I'm running it without any additional parameters, it runs in the foreground or in the attached
+
+121
+00:10:01,610 --> 00:10:02,180
+mode.
+
+122
+00:10:02,300 --> 00:10:06,260
+If you'd like to run it in the background.
+
+123
+00:10:08,090 --> 00:10:10,620
+Run with the RD parameter.
+
+124
+00:10:15,570 --> 00:10:23,190
+And if you go back, run the Docker command, you'll see that it's running, but you cannot actually
+
+125
+00:10:23,190 --> 00:10:24,420
+see the output.
+
+126
+00:10:24,900 --> 00:10:27,480
+So if you run the Docker attach command.
+
+127
+00:10:31,640 --> 00:10:33,770
+And provide the container ID.
+
+128
+00:10:36,030 --> 00:10:42,990
+And you're back to the console of the Docker container and you can see the output being displayed.
+
+129
+00:10:44,940 --> 00:10:48,950
+So let's explore some additional Docker images from Docker Hub.
+
+130
+00:10:48,960 --> 00:10:52,140
+So something that I'm interested in is Jenkins.
+
+131
+00:10:52,140 --> 00:10:59,040
+So Jenkins is, as you might know, already is a build system.
+
+132
+00:11:00,030 --> 00:11:06,120
+And so let's say if you wanted to try a new application like this.
+
+133
+00:11:06,390 --> 00:11:10,230
+In fact, this is my favorite way of trying out any application.
+
+134
+00:11:10,230 --> 00:11:13,400
+So Jenkins is a continuous integration and delivery server.
+
+135
+00:11:13,410 --> 00:11:19,350
+And if I haven't worked with it before and if I just want to play around with it, get some hands on
+
+136
+00:11:19,350 --> 00:11:24,630
+experience on it, instead of going through the installation instructions and installing a lot of dependencies
+
+137
+00:11:24,630 --> 00:11:32,850
+on my underlying host, what I would like to do is simply run Jenkins as a container and just play around
+
+138
+00:11:32,850 --> 00:11:33,690
+with it that way.
+
+139
+00:11:33,780 --> 00:11:37,800
+So if you look at the site here, you can see instructions on running.
+
+140
+00:11:37,800 --> 00:11:38,280
+Jenkins.
+
+141
+00:11:38,280 --> 00:11:42,760
+So the repository name is just Jenkins and that that should get you started.
+
+142
+00:11:42,780 --> 00:11:44,880
+So the ideal way.
+
+143
+00:11:45,180 --> 00:11:52,080
+So what we have seen until now is simply running containers like this called Jenkins and it should go
+
+144
+00:11:52,080 --> 00:12:00,150
+out, pull up the Jenkins images and layers and run an instance of Jenkins.
+
+145
+00:12:00,270 --> 00:12:04,080
+Now, as you know, Jenkins is a web server.
+
+146
+00:12:04,870 --> 00:12:12,910
+So what we are expecting is once we deploy this particular container, we're actually expecting to go
+
+147
+00:12:12,910 --> 00:12:19,870
+to a website, to a browser and browse to this Jenkins server and access the web UI.
+
+148
+00:12:20,200 --> 00:12:23,020
+So let me just go back.
+
+149
+00:12:23,110 --> 00:12:25,060
+We'll wait for it to pull down the image.
+
+150
+00:12:38,050 --> 00:12:41,500
+Okay, so it's just finished pulling the image.
+
+151
+00:12:41,500 --> 00:12:47,620
+And as you can see, it's extracted and Jenkins is actually running.
+
+152
+00:12:47,620 --> 00:12:50,290
+So it started Jenkins and is actually running.
+
+153
+00:12:51,250 --> 00:12:51,610
+Okay.
+
+154
+00:12:51,610 --> 00:12:58,660
+So all I did was run a Docker, run Jenkins command, and it just pulled down the Jenkins latest version
+
+155
+00:12:58,660 --> 00:13:00,310
+of Jenkins and run it.
+
+156
+00:13:00,460 --> 00:13:02,350
+Now how do I access it?
+
+157
+00:13:03,400 --> 00:13:14,320
+So if I go to the if I go to my the UI of my host, so this is my Docker host and I actually this is
+
+158
+00:13:14,320 --> 00:13:20,460
+the same host where I have a terminal here and this is just the UI UI of that host.
+
+159
+00:13:20,470 --> 00:13:26,350
+Now what I'm going to do is if I run the Docker piece command here, I'll be able to see that its Jenkins
+
+160
+00:13:26,350 --> 00:13:30,300
+is running and it's on port 80, 80 and 50,000.
+
+161
+00:13:30,310 --> 00:13:35,470
+Now, as we discussed in the lecture, there are two ways to access the web.
+
+162
+00:13:35,990 --> 00:13:43,420
+This particular application on the web UI, one is using the internal IP and two is using by mapping
+
+163
+00:13:43,420 --> 00:13:49,030
+a port to the my Docker host and accessing it using the external IP.
+
+164
+00:13:49,030 --> 00:13:53,860
+Now to access it, using the internal IP, you need to be inside your Docker host, which is where I
+
+165
+00:13:53,860 --> 00:13:54,340
+am.
+
+166
+00:13:54,520 --> 00:13:59,230
+This is the user interface for my DB and Docker host.
+
+167
+00:13:59,680 --> 00:14:07,870
+So if I open up a browser and go to the IP address, so what IP address should I be using here?
+
+168
+00:14:08,560 --> 00:14:14,440
+So it should be the internal IP to find out the internal IP of the Docker container.
+
+169
+00:14:15,280 --> 00:14:16,210
+Go back here.
+
+170
+00:14:18,320 --> 00:14:25,730
+So if around the Docker command I see the container and to find out the internal IP of my Jenkins container,
+
+171
+00:14:25,730 --> 00:14:27,940
+I could use the Docker inspect command.
+
+172
+00:14:27,950 --> 00:14:31,370
+So to run the Docker inspect command followed by the container ID.
+
+173
+00:14:31,760 --> 00:14:38,510
+And when I do that, I actually see a lot of information about my Docker container, the status, the
+
+174
+00:14:38,510 --> 00:14:40,640
+image that it's using and all of that.
+
+175
+00:14:40,640 --> 00:14:46,730
+And if you scroll down in the network section under networks, you'll see that it's using the bridge
+
+176
+00:14:46,730 --> 00:14:47,500
+network.
+
+177
+00:14:47,510 --> 00:14:49,940
+We'll talk about networks in a bit.
+
+178
+00:14:50,840 --> 00:14:54,860
+But right here, if you look at the IP address, you can see the IP address here.
+
+179
+00:14:54,860 --> 00:14:57,230
+So it's one 7217 .0.2.
+
+180
+00:14:57,230 --> 00:15:02,810
+So this is the IP that I would use if I were to access this Docker container from inside my host.
+
+181
+00:15:02,810 --> 00:15:16,010
+So I'm going to go back to the UI for my host and I have a Firefox running enter the IP 170 2.79.0.2
+
+182
+00:15:16,010 --> 00:15:18,050
+followed by port 8080.
+
+183
+00:15:21,910 --> 00:15:25,990
+And I'm actually at on the Jenkins page.
+
+184
+00:15:26,630 --> 00:15:31,400
+So and then I follow the instructions that I have here.
+
+185
+00:15:31,400 --> 00:15:38,600
+So if you look at the output, after you run the Docker run command, you will be able to see that there's
+
+186
+00:15:38,600 --> 00:15:43,460
+a there's an admin user has been created and a password generated automatically.
+
+187
+00:15:43,460 --> 00:15:50,180
+So I'd be using this password to unlock and start configurations on the Jenkins.
+
+188
+00:15:50,180 --> 00:15:56,950
+But as you can see, we're on we are on the web page by using the internal IP, so that's good.
+
+189
+00:15:56,960 --> 00:16:00,050
+Now how do I access it externally?
+
+190
+00:16:00,900 --> 00:16:11,300
+So if I open a web page, so if I open a web page and go to the IP of my Docker host, which is 192
+
+191
+00:16:11,300 --> 00:16:20,490
+to 160 8.1. 14, and if I try to access the Jenkins server using that IP address, I won't be able to
+
+192
+00:16:20,490 --> 00:16:27,150
+access this is because that particular port or service is not listening on the Docker host.
+
+193
+00:16:27,180 --> 00:16:32,490
+Now, in order to do that, as we saw in the lecture, you need to add a port mapping so you cannot
+
+194
+00:16:32,490 --> 00:16:35,100
+add a port mapping while the server is running.
+
+195
+00:16:35,100 --> 00:16:36,570
+So you have to stop.
+
+196
+00:16:37,500 --> 00:16:44,460
+So I'm going to try and stop the Docker container and if I do it over here, I see that it's no longer
+
+197
+00:16:44,460 --> 00:16:50,640
+running and I'm going to run, use the same Docker run command and in this case I'm going to map the
+
+198
+00:16:50,640 --> 00:16:55,710
+port 8080 to the port on the Docker host.
+
+199
+00:16:57,570 --> 00:16:58,860
+And I'm going to run it again.
+
+200
+00:17:13,880 --> 00:17:16,819
+And if I go back to my browser and refresh.
+
+201
+00:17:20,200 --> 00:17:24,790
+I should now be able to see the Jenkins page.
+
+202
+00:17:27,109 --> 00:17:27,859
+Okay, cool.
+
+203
+00:17:27,859 --> 00:17:32,300
+So I can just follow the instructions right here and.
+
+204
+00:17:36,280 --> 00:17:37,360
+Get started with it.
+
+205
+00:17:37,630 --> 00:17:38,830
+So that's really cool.
+
+206
+00:17:38,830 --> 00:17:47,410
+So I don't I didn't have to install dependencies or follow a lot of set of instructions or install binaries,
+
+207
+00:17:47,410 --> 00:17:54,130
+etc. to get or get started with Jenkins or any application like that.
+
+208
+00:17:54,160 --> 00:17:59,230
+It's as easy as running the Docker container for that particular application.
+
+209
+00:18:00,370 --> 00:18:09,460
+So we've done our port mapping and if you look at this instructions right here, it also gives you instructions
+
+210
+00:18:09,460 --> 00:18:11,050
+on mapping a volume.
+
+211
+00:18:11,080 --> 00:18:18,100
+This is because, as you can read here, a Jenkins will store the data in your home directory on the
+
+212
+00:18:18,100 --> 00:18:18,400
+host.
+
+213
+00:18:18,400 --> 00:18:26,160
+So by default, Jenkins stores the data in where Jenkins home inside of the Jenkins container.
+
+214
+00:18:26,170 --> 00:18:29,650
+And if you want to save that information, you need to map a volume.
+
+215
+00:18:29,650 --> 00:18:36,550
+So just to demo that here, I've actually provided the the password and I've set the initial password
+
+216
+00:18:36,550 --> 00:18:39,400
+and I'm just going to install it and set it up real quick.
+
+217
+00:18:39,400 --> 00:18:46,120
+So I'm going to install suggested plugins and it's going to take a few minutes for you to install some
+
+218
+00:18:46,120 --> 00:18:47,500
+of the default plugins.
+
+219
+00:18:47,500 --> 00:18:50,020
+So I'm just going to give it, give it some time.
+
+220
+00:18:50,020 --> 00:18:55,060
+So all that I'm trying to do here is I'm just trying to make some configuration changes on my Jenkins.
+
+221
+00:18:55,360 --> 00:19:01,900
+Setting it up is a configuration change, setting a password, etc. or you know, installing plugins
+
+222
+00:19:01,900 --> 00:19:03,820
+are all configuration changes.
+
+223
+00:19:03,820 --> 00:19:08,260
+So I want to see if the changes that I make will live.
+
+224
+00:19:08,260 --> 00:19:15,460
+If I were to stop the container and restart it or remove the Jenkins container and run another instance
+
+225
+00:19:15,460 --> 00:19:19,420
+of Jenkins and will I be able to still see the differences that I made?
+
+226
+00:19:23,130 --> 00:19:28,660
+So it's installed all the default plug ins and I'm going to create a first user.
+
+227
+00:19:28,710 --> 00:19:32,040
+I'm going to create an admin user, provide a password,
+
+228
+00:19:34,830 --> 00:19:37,980
+provide a full name and an email address.
+
+229
+00:19:43,530 --> 00:19:45,150
+And I'm going to save and finish.
+
+230
+00:19:46,230 --> 00:19:47,460
+So I'm all set.
+
+231
+00:19:47,490 --> 00:19:49,650
+Jenkins is ready, and I'm going to start a job.
+
+232
+00:19:50,160 --> 00:19:57,660
+I'll do I'll add something like enter an item name, for example, test job or something.
+
+233
+00:19:58,590 --> 00:20:02,580
+And I'm going to select a freestyle project.
+
+234
+00:20:03,210 --> 00:20:04,470
+And click okay.
+
+235
+00:20:12,130 --> 00:20:17,530
+Okay, So if I go back to my home page on Jenkins, I see that there's a test job created.
+
+236
+00:20:17,680 --> 00:20:20,170
+So I have made some configuration change.
+
+237
+00:20:20,200 --> 00:20:23,140
+Now, if I go back and stop my container.
+
+238
+00:20:30,130 --> 00:20:31,810
+And if I do a Docker piece.
+
+239
+00:20:31,840 --> 00:20:33,550
+I don't see any container running.
+
+240
+00:20:33,970 --> 00:20:37,870
+And if I refresh this page, I see that it's gone.
+
+241
+00:20:38,920 --> 00:20:44,560
+Now, if I were to rerun another container using the same command.
+
+242
+00:20:48,290 --> 00:20:55,400
+And so it comes back saying Jenkins initial setup is required and Jenkins is fully up and running.
+
+243
+00:20:55,400 --> 00:21:01,130
+So if I go back to the browser and refresh the page now this is since I ran the Docker run command.
+
+244
+00:21:01,280 --> 00:21:09,260
+So it's a new container that's running and obviously we are back to square one where we are asked to
+
+245
+00:21:09,260 --> 00:21:14,660
+set up an initial administrator password and we'll have to do everything that we just did all over again.
+
+246
+00:21:15,320 --> 00:21:23,780
+Now, in order to persist that data across Docker containers or across Docker container restarts, or
+
+247
+00:21:24,170 --> 00:21:29,870
+even if you destroy Docker containers and run a new container, and if you'd like to persist your configuration
+
+248
+00:21:29,870 --> 00:21:37,340
+data, as you can see here in the instructions, you've got to map a volume and this is the same for
+
+249
+00:21:37,850 --> 00:21:41,300
+MySQL database or anything like that.
+
+250
+00:21:41,390 --> 00:21:54,230
+So what I'm going to do is I'm going to create a local directory called my Jenkins data.
+
+251
+00:21:55,830 --> 00:22:01,620
+And what I'm going to do is when I run the Docker container, next time, I'm going to map.
+
+252
+00:22:04,150 --> 00:22:10,330
+That volume which is route my Jenkins data.
+
+253
+00:22:10,930 --> 00:22:19,510
+To the location where dock where Jenkins Docker container stores its data by default that's under Jenkins
+
+254
+00:22:19,510 --> 00:22:20,110
+home.
+
+255
+00:22:20,770 --> 00:22:26,680
+I'm going to put that and I'm going to run so there's a permission issue.
+
+256
+00:22:26,680 --> 00:22:33,970
+There's you have that instruction here so we could use you and specify another user.
+
+257
+00:22:43,750 --> 00:22:45,640
+So I'm going to start it with the root user.
+
+258
+00:22:57,350 --> 00:23:04,460
+Okay, so since this is the first time we're mapping a directory, we're just going to go back and we'll
+
+259
+00:23:04,460 --> 00:23:06,590
+have to do everything once.
+
+260
+00:23:06,590 --> 00:23:09,200
+So I'm going to copy this password.
+
+261
+00:23:09,690 --> 00:23:12,380
+And I'm just going to quickly redo what we just did before.
+
+262
+00:23:29,060 --> 00:23:30,980
+And I'm going to create a new job.
+
+263
+00:23:36,190 --> 00:23:39,610
+Okay, So I've set up Jenkins, and I've created a test job.
+
+264
+00:23:39,790 --> 00:23:43,120
+Now I'm going to go back and stop this container.
+
+265
+00:23:47,810 --> 00:23:50,740
+And as you can see, there's no container running.
+
+266
+00:23:50,750 --> 00:23:56,600
+And unlike before, I'm going to rerun the same command, but this time I'm going to map the directory,
+
+267
+00:23:56,840 --> 00:23:59,180
+my local directory, into Jenkins home.
+
+268
+00:24:01,870 --> 00:24:04,090
+Okay, so this time it's a.
+
+269
+00:24:05,030 --> 00:24:06,050
+Fully up and running.
+
+270
+00:24:06,050 --> 00:24:12,710
+And if I refresh my page, instead of going to the initial page where we are asked to enter the initial
+
+271
+00:24:12,710 --> 00:24:15,590
+admin password, I'm actually asked to log in.
+
+272
+00:24:15,590 --> 00:24:20,630
+So I'm going to log in with the user that I created and once I log in.
+
+273
+00:24:23,960 --> 00:24:27,890
+I'm able now to see the test job that I created before.
+
+274
+00:24:28,840 --> 00:24:37,150
+So that shows that all the custom data that is being generated by the Docker container is actually stored
+
+275
+00:24:37,150 --> 00:24:39,240
+locally on my Docker host.
+
+276
+00:24:39,250 --> 00:24:48,010
+And so every time I run a new instance of Jenkins, I could just map that folder and all, all the configuration
+
+277
+00:24:48,010 --> 00:24:51,940
+data will be picked up by Jenkins when it runs the Docker container.
+
+278
+00:24:52,480 --> 00:24:59,560
+So that shows how to map a port and how to map a volume on an actual Docker container.
+
+279
+00:24:59,890 --> 00:25:06,160
+It's a real life example of using Docker with Jenkins.
+
+280
+00:25:06,460 --> 00:25:08,740
+So that's about it for now.
+
+281
+00:25:08,860 --> 00:25:12,580
+Thank you very much for your time and see you in the next lecture.
+

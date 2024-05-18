@@ -1,0 +1,360 @@
+1
+00:00:05,520 --> 00:00:07,320
+Hello and welcome to this lecture.
+
+2
+00:00:07,320 --> 00:00:12,000
+In this lecture we will talk about updates and rollbacks in a deployment.
+
+3
+00:00:12,940 --> 00:00:19,360
+Before we look at how we upgrade our application, let's try to understand rollouts and versioning in
+
+4
+00:00:19,360 --> 00:00:20,260
+a deployment.
+
+5
+00:00:21,070 --> 00:00:25,090
+When you first create a deployment, it triggers a rollout.
+
+6
+00:00:25,480 --> 00:00:29,470
+A new rollout creates a new deployment revision.
+
+7
+00:00:29,650 --> 00:00:31,510
+Let's call it revision one.
+
+8
+00:00:32,479 --> 00:00:38,210
+In the future when the application is upgraded, meaning when the container version is updated to a
+
+9
+00:00:38,210 --> 00:00:45,530
+new one, a new rollout is triggered and a new deployment revision is created named Revision two.
+
+10
+00:00:46,160 --> 00:00:53,360
+This helps us keep track of the changes made to our deployment and enables us to roll back to a previous
+
+11
+00:00:53,360 --> 00:00:55,970
+version of deployment if necessary.
+
+12
+00:00:57,060 --> 00:01:03,450
+You can see the status of your rollout by running the command cube control rollout status, followed
+
+13
+00:01:03,450 --> 00:01:08,940
+by the name of the deployment to see the revisions and history of rollout.
+
+14
+00:01:08,970 --> 00:01:14,340
+Run the Cube control rollout History Command, followed by the deployment name.
+
+15
+00:01:14,340 --> 00:01:19,050
+And this will show you the revisions and history of our deployment.
+
+16
+00:01:21,070 --> 00:01:24,260
+There are two types of deployment strategies.
+
+17
+00:01:24,280 --> 00:01:29,680
+Say, for example, you have five replicas of your web application instance deployed.
+
+18
+00:01:30,270 --> 00:01:37,170
+One way to upgrade these to a newer version is to destroy all of these and then create newer versions
+
+19
+00:01:37,170 --> 00:01:45,060
+of application instances, meaning first destroy the five running instances and then deploy five new
+
+20
+00:01:45,060 --> 00:01:47,580
+instances of the new application version.
+
+21
+00:01:47,940 --> 00:01:54,420
+The problem with this, as you can imagine, is that during the period after the older versions are
+
+22
+00:01:54,420 --> 00:02:01,200
+down and before any newer version is up, the application is down and inaccessible to users.
+
+23
+00:02:01,940 --> 00:02:08,330
+This strategy is known as the recreate strategy, and thankfully this is not the default deployment
+
+24
+00:02:08,330 --> 00:02:09,169
+strategy.
+
+25
+00:02:09,740 --> 00:02:14,360
+The second strategy is where we do not destroy all of them at once.
+
+26
+00:02:14,390 --> 00:02:20,000
+Instead, we take down the older version and bring up a newer version one by one.
+
+27
+00:02:20,390 --> 00:02:25,190
+This way the application never goes down and the upgrade is seamless.
+
+28
+00:02:25,760 --> 00:02:31,790
+Remember, if you do not specify a strategy while creating the deployment, it will assume it to be
+
+29
+00:02:31,790 --> 00:02:32,330
+rolling.
+
+30
+00:02:32,330 --> 00:02:32,990
+Update.
+
+31
+00:02:33,020 --> 00:02:38,420
+In other words, rolling update is the default deployment strategy.
+
+32
+00:02:40,110 --> 00:02:42,340
+So we talked about upgrades.
+
+33
+00:02:42,360 --> 00:02:45,570
+How exactly do you update your deployment?
+
+34
+00:02:45,960 --> 00:02:51,750
+When I say update, it could be different things, such as updating your application version by updating
+
+35
+00:02:51,750 --> 00:02:58,170
+the version of Docker containers used, updating their labels or updating the number of replicas, etc.
+
+36
+00:02:58,440 --> 00:03:05,040
+Since we already have a deployment definition file, it is easy for us to modify these files once we
+
+37
+00:03:05,040 --> 00:03:06,810
+make the necessary changes.
+
+38
+00:03:06,840 --> 00:03:08,400
+We run the cube control.
+
+39
+00:03:08,400 --> 00:03:10,860
+Apply command to apply the changes.
+
+40
+00:03:12,360 --> 00:03:17,310
+A new rollout is triggered and a new revision of the deployment is created.
+
+41
+00:03:17,790 --> 00:03:20,500
+But there is another way to do the same thing.
+
+42
+00:03:20,520 --> 00:03:26,310
+You could use the cube control set image command to update the image of your application.
+
+43
+00:03:26,640 --> 00:03:33,990
+But remember, doing it this way will result in the deployment definition file having a different configuration.
+
+44
+00:03:33,990 --> 00:03:40,320
+So you must be careful when using the same definition file to make changes in the future.
+
+45
+00:03:42,260 --> 00:03:48,020
+The difference between the recreate and rolling update strategies can also be seen when you view the
+
+46
+00:03:48,020 --> 00:03:49,730
+deployments in detail.
+
+47
+00:03:50,150 --> 00:03:51,440
+Run the Cube control.
+
+48
+00:03:51,440 --> 00:03:56,690
+Describe Deployment Command to see the detailed information regarding the deployments.
+
+49
+00:03:57,050 --> 00:04:04,370
+You will notice when the recreate strategy was used, the events indicate that the old replica set was
+
+50
+00:04:04,370 --> 00:04:09,890
+scaled down to zero first and then the new replica set scaled up to five.
+
+51
+00:04:10,250 --> 00:04:17,209
+However, when the rolling update strategy was used, the old replica set was scaled down one at a time,
+
+52
+00:04:17,209 --> 00:04:21,800
+simultaneously scaling up the new replica set one at a time.
+
+53
+00:04:22,970 --> 00:04:29,690
+Let's look at how a deployment performs, an upgrade under the hood when a new deployment is created,
+
+54
+00:04:29,690 --> 00:04:37,520
+say, to deploy five replicas, it first creates a replica set automatically, which in turn creates
+
+55
+00:04:37,520 --> 00:04:40,970
+the number of pods required to meet the number of replicas.
+
+56
+00:04:41,450 --> 00:04:47,960
+When you upgrade your application, as we saw in the previous slide, the Kubernetes deployment object
+
+57
+00:04:47,960 --> 00:04:53,990
+creates a new replica set under the hood and starts deploying the containers there.
+
+58
+00:04:54,260 --> 00:04:58,130
+At the same time, taking down the pods in the old replica set.
+
+59
+00:04:58,160 --> 00:05:00,710
+Following a rolling update strategy.
+
+60
+00:05:01,470 --> 00:05:06,120
+This can be seen when you try to list the replica sets using the cube control.
+
+61
+00:05:06,120 --> 00:05:08,040
+Get replica sets command.
+
+62
+00:05:08,070 --> 00:05:14,790
+Here we see the old replica set with zero parts and the new replica set with five parts.
+
+63
+00:05:15,560 --> 00:05:20,720
+Say, for instance, once you upgrade your application, you realize something isn't very right.
+
+64
+00:05:20,720 --> 00:05:25,340
+Something's wrong with the new version of build you use to upgrade.
+
+65
+00:05:25,340 --> 00:05:27,950
+So you would like to roll back your update.
+
+66
+00:05:28,100 --> 00:05:34,460
+Kubernetes deployments allow you to roll back to a previous revision to undo a change.
+
+67
+00:05:34,460 --> 00:05:39,920
+Run the cube control rollout, undo command, followed by the name of the deployment.
+
+68
+00:05:40,340 --> 00:05:46,760
+The deployment will then destroy the parts in the new replica set and bring the older ones up in the
+
+69
+00:05:46,760 --> 00:05:51,770
+old replica set and your application is back to its older format.
+
+70
+00:05:52,010 --> 00:05:58,970
+When you compare the output of the cube control, get replica sets command before and after the rollback,
+
+71
+00:05:58,970 --> 00:06:03,140
+you will be able to notice this difference before the rollback.
+
+72
+00:06:03,140 --> 00:06:11,780
+The first replica set had zero parts and new replica set had five parts and this is reversed after the
+
+73
+00:06:11,780 --> 00:06:13,460
+rollback is finished.
+
+74
+00:06:15,100 --> 00:06:20,710
+And finally, let's get back to one of the commands we ran initially when we learned about pods for
+
+75
+00:06:20,710 --> 00:06:25,960
+the first time, we used the cube control run command to create a pod.
+
+76
+00:06:26,350 --> 00:06:31,420
+This command, in fact, creates a deployment and not just a pod.
+
+77
+00:06:31,780 --> 00:06:36,910
+This is why the output of the command says Deployment Engine X created.
+
+78
+00:06:37,660 --> 00:06:44,950
+This is another way of creating a deployment by only specifying the image name and not using a definition
+
+79
+00:06:44,950 --> 00:06:45,610
+file.
+
+80
+00:06:45,610 --> 00:06:51,020
+The required replica set and parts are automatically created in the back end.
+
+81
+00:06:51,040 --> 00:06:58,030
+Using a definition file is recommended though, as you can save the file, check it into the code repository
+
+82
+00:06:58,030 --> 00:07:00,760
+and modify it later as required.
+
+83
+00:07:01,780 --> 00:07:04,930
+To summarize the commands real quick, used the cube control.
+
+84
+00:07:04,930 --> 00:07:07,570
+Create command to create the deployment.
+
+85
+00:07:07,750 --> 00:07:08,800
+Get deployments.
+
+86
+00:07:08,800 --> 00:07:11,530
+Command to list the deployments.
+
+87
+00:07:11,650 --> 00:07:17,950
+Apply and set image commands to update the deployments and roll out status.
+
+88
+00:07:17,950 --> 00:07:26,290
+Command to see the status of rollouts and roll out undo command to roll back a deployment operation.
+
+89
+00:07:33,840 --> 00:07:35,220
+That's it for this lecture.
+
+90
+00:07:35,220 --> 00:07:39,120
+We will now head over to a demo and I will see you in the next lecture.
+

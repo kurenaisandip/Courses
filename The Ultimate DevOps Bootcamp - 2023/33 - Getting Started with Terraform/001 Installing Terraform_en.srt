@@ -1,0 +1,152 @@
+1
+00:00:00,180 --> 00:00:03,840
+In this section, we will learn how to install TerraForm.
+
+2
+00:00:05,400 --> 00:00:12,270
+TerraForm can be downloaded as a single binary or an executable file from the TerraForm download section
+
+3
+00:00:12,270 --> 00:00:13,740
+in w w w.
+
+4
+00:00:13,740 --> 00:00:15,010
+Dot terraform i.
+
+5
+00:00:15,030 --> 00:00:15,300
+O.
+
+6
+00:00:16,170 --> 00:00:22,110
+Installing their form is as simple as downloading this file and copying it to the system path.
+
+7
+00:00:22,690 --> 00:00:23,950
+Once installed.
+
+8
+00:00:23,950 --> 00:00:28,540
+We can check the version by running the command TerraForm version.
+
+9
+00:00:29,490 --> 00:00:37,050
+The latest version of TerraForm as of this recording is 0.13 and will be making use of this version
+
+10
+00:00:37,050 --> 00:00:38,250
+throughout the course.
+
+11
+00:00:39,470 --> 00:00:45,200
+TerraForm is supported on Windows, Mac and several other Linux based distributions.
+
+12
+00:00:46,170 --> 00:00:52,110
+Please note that all the examples and labs used in this course will make use of TerraForm running on
+
+13
+00:00:52,110 --> 00:00:56,250
+a Linux machine and specifically the version 0.13.
+
+14
+00:00:57,240 --> 00:00:57,990
+And that's it.
+
+15
+00:00:57,990 --> 00:01:00,900
+We can now start deploying resources using TerraForm.
+
+16
+00:01:01,890 --> 00:01:08,220
+As stated earlier, TerraForm uses configuration files which are written in SQL to deploy infrastructure
+
+17
+00:01:08,220 --> 00:01:09,090
+resources.
+
+18
+00:01:09,910 --> 00:01:17,650
+These files have a dot F extension and can be created using any text editor such as notepad or notepad
+
+19
+00:01:17,650 --> 00:01:23,440
+plus plus for windows or command line text editors such as Vim or Mac in Linux.
+
+20
+00:01:23,590 --> 00:01:26,110
+Or it could be any ID of your choice.
+
+21
+00:01:27,310 --> 00:01:29,530
+So what is the resource?
+
+22
+00:01:29,860 --> 00:01:32,650
+A resource is an object that therefore manages.
+
+23
+00:01:32,890 --> 00:01:38,530
+It could be a file on a local host, or it could be a virtual machine on the cloud, such as an easy
+
+24
+00:01:38,530 --> 00:01:38,710
+to.
+
+25
+00:01:38,740 --> 00:01:39,520
+Instance.
+
+26
+00:01:39,520 --> 00:01:44,950
+Or it could be services like SSE three buckets x Dynamo db tables.
+
+27
+00:01:44,950 --> 00:01:49,330
+I am users or I am groups, roles, policies, etc..
+
+28
+00:01:50,210 --> 00:01:57,410
+Or it could be resources on major cloud providers such as the Compute and app engine from GCP databases
+
+29
+00:01:57,410 --> 00:02:00,500
+on Azure, Azure Active Directory, etc..
+
+30
+00:02:01,620 --> 00:02:07,260
+There are literally hundreds of resources that can be provisioned across most of the cloud and on premise
+
+31
+00:02:07,260 --> 00:02:09,150
+infrastructure using TerraForm.
+
+32
+00:02:11,130 --> 00:02:14,550
+We will look into some of these examples later in this course.
+
+33
+00:02:14,550 --> 00:02:21,300
+But for the first few sections, we will stick to two very easy to understand resources, the local
+
+34
+00:02:21,300 --> 00:02:26,130
+file type of resource, and a special kind of resource called a random pit.
+
+35
+00:02:26,610 --> 00:02:32,400
+It is important to use a simple resource type to really understand the basics of TerraForm, such as
+
+36
+00:02:32,400 --> 00:02:39,900
+the lifecycle of resources, the SQL format, etc. Once we gain a good understanding of the basics,
+
+37
+00:02:39,900 --> 00:02:46,110
+we can easily apply that knowledge to other real life use cases and we will see that in later sections
+
+38
+00:02:46,110 --> 00:02:47,100
+of this course.
+

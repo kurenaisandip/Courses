@@ -1,0 +1,508 @@
+1
+00:00:00,420 --> 00:00:03,540
+Let's now talk about services in Linux.
+
+2
+00:00:04,340 --> 00:00:11,450
+Once you install a software on servers, especially those that run in the background, such as web servers
+
+3
+00:00:11,450 --> 00:00:17,900
+or database servers, you would need to make sure that those servers or services are running and that
+
+4
+00:00:17,900 --> 00:00:21,710
+they stay running even after the servers are rebooted.
+
+5
+00:00:22,070 --> 00:00:28,220
+And also you want to make sure that these servers are started in the right order, especially if there
+
+6
+00:00:28,220 --> 00:00:34,040
+are multiple services available on the server and if they are kind of dependent on each other, you
+
+7
+00:00:34,040 --> 00:00:37,460
+want to make sure that they all kind of start in the right order.
+
+8
+00:00:37,820 --> 00:00:45,650
+So services in Linux help you configure software to run in the background and make sure that they run
+
+9
+00:00:45,650 --> 00:00:53,420
+all the time automatically when servers are rebooted as well as they follow the right order of startup.
+
+10
+00:00:55,100 --> 00:01:01,280
+When any software that runs as a service in the background is installed, such as a web server or database
+
+11
+00:01:01,280 --> 00:01:07,880
+server or DevOps tools like Docker, they are automatically configured as a service on the system.
+
+12
+00:01:08,300 --> 00:01:14,630
+To start that service, you run the service, start command and providing the service name, which happens
+
+13
+00:01:14,630 --> 00:01:16,910
+to be in this case http ID.
+
+14
+00:01:16,940 --> 00:01:20,840
+So HTTP in this example is an Apache web server.
+
+15
+00:01:20,990 --> 00:01:25,820
+Later on we have a section just for http D, but here we're just going to look at it as a service.
+
+16
+00:01:26,120 --> 00:01:34,910
+The newer method to start a service is to use the system kernel command and run the system kernel start
+
+17
+00:01:35,270 --> 00:01:38,590
+command and provide the service name.
+
+18
+00:01:38,600 --> 00:01:44,750
+So in this case system or system, CTL start http d.
+
+19
+00:01:45,820 --> 00:01:51,340
+System is the command used to manage services on a system de managed server.
+
+20
+00:01:51,460 --> 00:01:57,310
+Both the commands, the service command and the system command serve the same purpose.
+
+21
+00:01:57,700 --> 00:02:02,530
+The service command uses the system cuddle utility underneath.
+
+22
+00:02:03,070 --> 00:02:08,710
+So we will just focus on using the system command for the remainder of this lecture.
+
+23
+00:02:09,430 --> 00:02:16,210
+To stop a running service, run the system all stop command, followed by the service name to check
+
+24
+00:02:16,210 --> 00:02:17,350
+the status of a service.
+
+25
+00:02:17,350 --> 00:02:19,420
+Run the system Call status Command.
+
+26
+00:02:20,520 --> 00:02:26,220
+To configure a service to start automatically when the system boots up, run the system called Enable
+
+27
+00:02:26,220 --> 00:02:29,610
+Command and to disable the service at boot up.
+
+28
+00:02:29,610 --> 00:02:30,360
+Run the system.
+
+29
+00:02:30,360 --> 00:02:31,890
+Call disable command.
+
+30
+00:02:32,620 --> 00:02:39,100
+Once services are configured, it is so convenient for administrators to start, stop or enable these
+
+31
+00:02:39,100 --> 00:02:39,940
+services.
+
+32
+00:02:40,180 --> 00:02:44,950
+You don't have to go looking for the executables to start these services.
+
+33
+00:02:46,090 --> 00:02:50,770
+So how do you configure a program or software as a service?
+
+34
+00:02:50,860 --> 00:02:58,450
+Say, for example, you have a simple Python program and it could be a simple web server that's developed
+
+35
+00:02:58,450 --> 00:02:59,230
+in Python.
+
+36
+00:02:59,350 --> 00:03:02,950
+And the code is available at opt code.
+
+37
+00:03:02,950 --> 00:03:04,510
+My API.
+
+38
+00:03:04,780 --> 00:03:09,040
+You can run this server with the python interpreter.
+
+39
+00:03:09,370 --> 00:03:17,260
+Once it's running, if you call the local host for port 5000, you see it return Hello World, which
+
+40
+00:03:17,260 --> 00:03:19,270
+happens to be the response of the web server.
+
+41
+00:03:19,360 --> 00:03:20,920
+So it's a very simple web server.
+
+42
+00:03:20,940 --> 00:03:25,010
+You don't have to worry about Python or the code as of now.
+
+43
+00:03:25,130 --> 00:03:31,660
+And just know that if you run this command, it's going to start as simple web server that listens on
+
+44
+00:03:31,660 --> 00:03:32,770
+Port 5000.
+
+45
+00:03:32,770 --> 00:03:37,640
+And to access that web server, you use the code command to test it, Right?
+
+46
+00:03:37,660 --> 00:03:44,860
+Later in this course we have sections on Python and where we look at how to work with Python, etc.
+
+47
+00:03:44,860 --> 00:03:52,210
+But for now we'll just assume that Python is all set up and configured and we can run a simple web server
+
+48
+00:03:52,210 --> 00:03:53,260
+using this command.
+
+49
+00:03:53,800 --> 00:03:59,590
+So I have this application and now I want to configure this as a service.
+
+50
+00:04:00,030 --> 00:04:06,710
+You know, so you want your program to run as a service so that when you run this system, cuddle,
+
+51
+00:04:07,330 --> 00:04:09,610
+start, command, it starts.
+
+52
+00:04:09,610 --> 00:04:15,060
+And when you run the system called Stop Command, it stops as simple as that.
+
+53
+00:04:15,070 --> 00:04:20,920
+So the administrator, when this application is finally configured on a server, the administrator does
+
+54
+00:04:20,920 --> 00:04:27,460
+not really have to bother about this, the path of this file or the options and arguments that you pass
+
+55
+00:04:27,460 --> 00:04:29,980
+to it or the path to the python file.
+
+56
+00:04:29,980 --> 00:04:30,430
+Right.
+
+57
+00:04:31,030 --> 00:04:34,660
+You want to be able to configure it and to to start the service.
+
+58
+00:04:34,660 --> 00:04:40,270
+All that you need to do is run the system, call, start command and to stop it, run the stop command
+
+59
+00:04:40,270 --> 00:04:40,810
+and that's it.
+
+60
+00:04:41,500 --> 00:04:43,270
+So that's our goal here.
+
+61
+00:04:44,540 --> 00:04:48,950
+And similarly, you want to configure your application to automatically start when the system boots
+
+62
+00:04:48,950 --> 00:04:54,180
+up and even automatically restart in case the application crashes.
+
+63
+00:04:54,200 --> 00:04:56,390
+So how do you how do you do that?
+
+64
+00:04:56,690 --> 00:05:03,710
+As we just saw, the system called command line utility is used to manage the system services, so we
+
+65
+00:05:03,710 --> 00:05:07,310
+must configure our program as a systemd service.
+
+66
+00:05:07,700 --> 00:05:09,110
+So how do we do that?
+
+67
+00:05:09,140 --> 00:05:13,800
+A system The service is configured using a system, the unit file.
+
+68
+00:05:13,820 --> 00:05:20,210
+These files may be located at ETSI System rd slash system path.
+
+69
+00:05:21,540 --> 00:05:24,750
+So let's create a unit file at Etsy.
+
+70
+00:05:24,930 --> 00:05:25,380
+System.
+
+71
+00:05:25,380 --> 00:05:26,490
+The system path.
+
+72
+00:05:26,610 --> 00:05:31,580
+The file must be named with the name that you eventually want the service to be known as.
+
+73
+00:05:31,590 --> 00:05:36,960
+In this case, we'll name it my app and with an extension service.
+
+74
+00:05:37,730 --> 00:05:45,710
+Define a section called service using the square brackets inside the file and provide a directive named
+
+75
+00:05:45,710 --> 00:05:46,190
+exec.
+
+76
+00:05:46,190 --> 00:05:47,570
+Start under it.
+
+77
+00:05:48,230 --> 00:05:54,020
+This is where you specify the command that you will be using to run your application.
+
+78
+00:05:54,410 --> 00:05:58,700
+So the same command that we run here, we're going to put it over here.
+
+79
+00:05:59,430 --> 00:06:00,300
+And that's it.
+
+80
+00:06:00,300 --> 00:06:03,840
+That's enough to configure your application as a service.
+
+81
+00:06:04,110 --> 00:06:11,040
+Run the system, call daemon reload command to let system D know that there is a new service configured
+
+82
+00:06:11,040 --> 00:06:15,830
+and then run the system called START Command and provide the name of the service.
+
+83
+00:06:15,840 --> 00:06:18,450
+In this case my underscore app.
+
+84
+00:06:20,110 --> 00:06:24,520
+Let's check the status of the new service using the system called Status Command.
+
+85
+00:06:24,790 --> 00:06:30,100
+It lists that the service is in an active and running state.
+
+86
+00:06:30,550 --> 00:06:37,510
+You can now test by performing a call operation on port 5000 of local host to stop the application.
+
+87
+00:06:37,510 --> 00:06:40,120
+Run the system call stop command.
+
+88
+00:06:41,370 --> 00:06:46,770
+Okay, So we have configured our application to run as a service and we are now able to start and stop
+
+89
+00:06:46,770 --> 00:06:47,850
+it as required.
+
+90
+00:06:48,150 --> 00:06:52,800
+So how do we configure it to automatically run when the system boots up?
+
+91
+00:06:54,190 --> 00:06:59,950
+We configure that in the unit file and the unit configuration file has many other options.
+
+92
+00:07:00,560 --> 00:07:03,200
+The service section is only one of the many sections.
+
+93
+00:07:03,220 --> 00:07:05,920
+Another section is the install section.
+
+94
+00:07:05,920 --> 00:07:13,270
+So in this section we basically need to configure this service to run after a particular service that
+
+95
+00:07:13,270 --> 00:07:14,740
+runs at boot up.
+
+96
+00:07:15,160 --> 00:07:19,430
+So one way to specify that is using the wanted by directive.
+
+97
+00:07:19,450 --> 00:07:25,300
+We can configure this service to run after the multi user target run level is started.
+
+98
+00:07:26,080 --> 00:07:31,180
+Once this is done, you can configure the service to start during boot up using the system.
+
+99
+00:07:31,180 --> 00:07:33,190
+Call Enable command.
+
+100
+00:07:34,550 --> 00:07:40,550
+You can also provide additional metadata information about the service, such as description that would
+
+101
+00:07:40,550 --> 00:07:44,270
+allow others to understand what this service is about.
+
+102
+00:07:44,610 --> 00:07:50,600
+Now, for that, add a new section in the file called Unit and use the description directive.
+
+103
+00:07:50,930 --> 00:07:57,350
+If your application has other dependencies such as commands or scripts that are to be run before starting
+
+104
+00:07:57,350 --> 00:08:05,150
+the application or after starting the application, then add the exec start pre and exec start post
+
+105
+00:08:05,150 --> 00:08:09,140
+directives and specify the scripts or commands to be run.
+
+106
+00:08:11,610 --> 00:08:18,360
+If you'd like the application to automatically restart in case it crashes, specify the Restart directive
+
+107
+00:08:18,360 --> 00:08:20,460
+and set its value to always.
+
+108
+00:08:21,500 --> 00:08:30,410
+So this is a simple form of a unit configuration file that we've used to configure a simple Python application.
+
+109
+00:08:30,680 --> 00:08:38,380
+But when it comes to real systems and servers and softwares, this file can be a lot more larger and
+
+110
+00:08:38,390 --> 00:08:39,720
+with a lot more options.
+
+111
+00:08:39,740 --> 00:08:43,520
+So let's take an example of a real software, say Docker, right?
+
+112
+00:08:43,549 --> 00:08:46,020
+But we're not going to talk about Docker itself.
+
+113
+00:08:46,020 --> 00:08:50,990
+So we have multiple courses on Docker where we talk a lot about Docker.
+
+114
+00:08:50,990 --> 00:08:54,140
+In this context, Docker is just an example of a software.
+
+115
+00:08:54,140 --> 00:09:00,110
+So and it's the same with any software, so you don't really need to know anything about Docker to understand
+
+116
+00:09:00,110 --> 00:09:00,620
+this lecture.
+
+117
+00:09:00,620 --> 00:09:09,410
+So once Docker is installed, Docker Daemon runs as a background process that listens for Docker commands.
+
+118
+00:09:10,160 --> 00:09:17,000
+When Docker is installed and executable named Docker DD is made available on the system at PATH slash
+
+119
+00:09:17,000 --> 00:09:19,010
+user slash bin slash Docker RD.
+
+120
+00:09:20,150 --> 00:09:26,900
+This is configured as a service using the system unit file at path lib a system, the system Docker
+
+121
+00:09:27,080 --> 00:09:27,740
+Service.
+
+122
+00:09:28,010 --> 00:09:34,040
+Now this file has three sections the unit service and install section as we just learned, and you can
+
+123
+00:09:34,040 --> 00:09:41,180
+see the description as well as some of the other details such as link to documentation, etc. And the
+
+124
+00:09:41,180 --> 00:09:49,880
+service section has the command that is run to start the docker daemon which is specified under the
+
+125
+00:09:49,880 --> 00:09:51,920
+exec start section.
+
+126
+00:09:53,230 --> 00:09:54,550
+Well, the search for now.
+
+127
+00:09:54,550 --> 00:09:57,940
+I head over to the labs and practice working with services.
+

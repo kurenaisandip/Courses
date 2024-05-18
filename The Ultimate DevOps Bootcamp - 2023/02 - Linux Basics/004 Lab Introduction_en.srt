@@ -1,0 +1,136 @@
+1
+00:00:00,500 --> 00:00:01,130
+Hello.
+
+2
+00:00:01,130 --> 00:00:05,720
+In this video, I will explain how to access labs part of this course.
+
+3
+00:00:06,110 --> 00:00:11,690
+This course comes with real hands on labs that you can access right in your browser.
+
+4
+00:00:12,080 --> 00:00:19,760
+Unfortunately, Udemy does not have native support for embedding real hands on labs in the course.
+
+5
+00:00:19,880 --> 00:00:23,450
+And that's why these labs are hosted on Code Cloud.
+
+6
+00:00:23,960 --> 00:00:30,530
+Students who purchased this course on Udemy can get access to the labs for free on Code Cloud.
+
+7
+00:00:30,560 --> 00:00:35,060
+You don't have to make any extra payments to access the labs.
+
+8
+00:00:35,060 --> 00:00:38,510
+There is a lecture named Access Labs in your course.
+
+9
+00:00:39,730 --> 00:00:42,070
+Right before the first lab starts.
+
+10
+00:00:42,070 --> 00:00:45,490
+In the lecture, there is a link to enroll in the labs.
+
+11
+00:00:46,030 --> 00:00:51,520
+Use the link to go to the checkout page on Code Cloud to gain access to the labs for free.
+
+12
+00:00:52,120 --> 00:00:57,280
+If you haven't signed up on the Code Cloud website before, you will need to provide your email address.
+
+13
+00:00:57,370 --> 00:01:01,030
+A temporary password will be emailed to you so that you can log in.
+
+14
+00:01:01,660 --> 00:01:08,290
+Code Cloud and Udemy are different platforms and unfortunately there is no option available yet to share
+
+15
+00:01:08,290 --> 00:01:10,690
+the same user accounts between the two.
+
+16
+00:01:11,020 --> 00:01:15,970
+So you must create an account and sign up on Code Cloud to access the labs.
+
+17
+00:01:16,270 --> 00:01:20,180
+Remember your Udemy credentials won't work on code Cloud.
+
+18
+00:01:20,200 --> 00:01:25,820
+If you are accessing through Udemy for business, then your company credentials won't work either.
+
+19
+00:01:25,840 --> 00:01:28,840
+You must create a new account on Code Cloud.
+
+20
+00:01:29,200 --> 00:01:32,050
+This is something we hope to improve in the future.
+
+21
+00:01:34,860 --> 00:01:40,320
+Once logged in, you can find your course under the courses page.
+
+22
+00:01:40,350 --> 00:01:44,460
+Lab courses start with the term labs in their name.
+
+23
+00:01:45,400 --> 00:01:52,150
+Once the labs are open, use the maximize button to hide the course curriculum to get more space for
+
+24
+00:01:52,150 --> 00:01:52,840
+your labs.
+
+25
+00:01:52,990 --> 00:01:57,550
+And if you want to see the course curriculum again, click on the same button.
+
+26
+00:01:59,260 --> 00:02:04,510
+And to turn on dark mode, click the theme toggle button in the top right corner of your screen.
+
+27
+00:02:05,640 --> 00:02:10,169
+Once you're done working on a lab market, complete, using the complete button.
+
+28
+00:02:10,500 --> 00:02:15,900
+As you can see, there are multiple lab scenarios for each course and when to access which lab.
+
+29
+00:02:16,290 --> 00:02:19,260
+The detail of that will be given within the course.
+
+30
+00:02:19,260 --> 00:02:24,570
+AS and when you progress through the course on Udemy, you will know when to access what lab.
+
+31
+00:02:25,260 --> 00:02:26,670
+Well, that's it for now.
+
+32
+00:02:27,120 --> 00:02:28,260
+I wish you all the best.
+
+33
+00:02:28,260 --> 00:02:33,810
+And if you run into issues with accessing labs, please write to support and support at icloud.com.
+
+34
+00:02:34,200 --> 00:02:36,870
+I hope you have a great learning experience from us.
+

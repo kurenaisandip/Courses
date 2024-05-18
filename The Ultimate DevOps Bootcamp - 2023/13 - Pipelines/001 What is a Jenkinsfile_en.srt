@@ -1,0 +1,304 @@
+1
+00:00:03,469 --> 00:00:10,700
+When you do anything in life, whether it's putting together a toy chest or it's cleaning a car or it's
+
+2
+00:00:10,700 --> 00:00:17,000
+making something for dinner, there's always some instruction that you either have to read or that you
+
+3
+00:00:17,000 --> 00:00:17,960
+have to learn.
+
+4
+00:00:17,960 --> 00:00:20,260
+Nobody's just born knowing it, right?
+
+5
+00:00:20,270 --> 00:00:25,850
+You have to read instructions online or somebody has to teach you the instructions.
+
+6
+00:00:25,850 --> 00:00:27,890
+There's always some type of template.
+
+7
+00:00:27,890 --> 00:00:31,730
+There's always some instructions on how to do something.
+
+8
+00:00:31,730 --> 00:00:35,450
+Well, that's pretty much what a Jenkins file is.
+
+9
+00:00:35,450 --> 00:00:40,100
+So a Jenkins file is a text file that contains definitions.
+
+10
+00:00:40,100 --> 00:00:45,920
+And those definitions, when I say definitions, think template, think instructions.
+
+11
+00:00:46,850 --> 00:00:53,570
+So it tells a pipeline what it should be doing and what services and plugins it should be interacting
+
+12
+00:00:53,570 --> 00:00:53,990
+with.
+
+13
+00:00:53,990 --> 00:01:01,640
+So for example, let's say you're deploying some code to, I don't know, Azure or AWS or even on prem.
+
+14
+00:01:01,640 --> 00:01:05,930
+Well, there's going to be some plugins that are there of course, and we've went through plug ins in
+
+15
+00:01:05,930 --> 00:01:12,410
+the plugin section and we understand all of that and the Jenkins file would contain those plug ins or
+
+16
+00:01:12,410 --> 00:01:14,510
+at least pointers to those plugins.
+
+17
+00:01:14,510 --> 00:01:21,080
+So the Jenkins file knows, hey, I need to be able to use that plugin or that service or that credential
+
+18
+00:01:21,080 --> 00:01:22,730
+or something along those lines.
+
+19
+00:01:24,260 --> 00:01:30,200
+So as you can see here, we actually have a little screenshot of a Jenkins file and what it actually
+
+20
+00:01:30,200 --> 00:01:30,560
+is.
+
+21
+00:01:30,560 --> 00:01:32,780
+And we're going to go over what each of these mean.
+
+22
+00:01:32,780 --> 00:01:37,880
+But what I want you to keep in mind is this is kind of what it looks like.
+
+23
+00:01:39,280 --> 00:01:40,120
+You got a key.
+
+24
+00:01:40,840 --> 00:01:45,010
+And then right underneath that keyword, you got a couple of brackets.
+
+25
+00:01:45,190 --> 00:01:52,000
+And then within those brackets you tab over either one tab or four spaces, and then you start to define
+
+26
+00:01:52,000 --> 00:01:53,230
+what things look like.
+
+27
+00:01:53,410 --> 00:01:59,590
+So this is, in short, what a Jenkins file actually looks like as you're writing it, as you see it.
+
+28
+00:01:59,620 --> 00:02:04,570
+So let's go over each of the pieces that we saw in that screenshot of a Jenkins file.
+
+29
+00:02:04,630 --> 00:02:09,710
+So first you have your pipeline and you're always defining some pipeline.
+
+30
+00:02:09,729 --> 00:02:11,410
+It could be just a C pipeline.
+
+31
+00:02:11,410 --> 00:02:13,090
+It could be just a CD pipeline.
+
+32
+00:02:13,090 --> 00:02:14,740
+It could be a C, D pipeline.
+
+33
+00:02:14,920 --> 00:02:20,140
+But really what that pipeline is, is it's the task that you're trying to accomplish.
+
+34
+00:02:20,140 --> 00:02:25,570
+So let's say, I don't know, you're trying to build some code or maybe you just want to build and test
+
+35
+00:02:25,570 --> 00:02:31,030
+some code, or maybe you want to build, test and turn it into an artifact, or maybe you want to go
+
+36
+00:02:31,030 --> 00:02:32,980
+through the entire pipeline.
+
+37
+00:02:32,980 --> 00:02:38,860
+So you want to build the code, you want to run your automated test, you want to run your lenders and
+
+38
+00:02:38,860 --> 00:02:41,860
+you want to deploy it to the specific location.
+
+39
+00:02:41,860 --> 00:02:44,020
+Maybe that's on prem, maybe that's in the cloud.
+
+40
+00:02:44,020 --> 00:02:49,180
+Maybe that's a container point Is the pipeline to the task that you are trying to accomplish.
+
+41
+00:02:49,450 --> 00:02:52,240
+The node is the build agent.
+
+42
+00:02:52,240 --> 00:02:58,480
+So in the next section coming up, we will be going over build agents and what they are, why we use
+
+43
+00:02:58,480 --> 00:02:59,290
+them, etc..
+
+44
+00:02:59,290 --> 00:03:04,720
+But really what I want you to think of when you hear build agent right now is the place that runs your
+
+45
+00:03:04,720 --> 00:03:05,440
+pipeline.
+
+46
+00:03:06,720 --> 00:03:13,470
+Next, you set up your stages so you have a dev stage, you have a staging stage, or sometimes people
+
+47
+00:03:13,470 --> 00:03:18,690
+call it UAT and then you can have a prod stage, you can have a QA stage, a bunch of different stages,
+
+48
+00:03:18,690 --> 00:03:21,570
+whatever you call them, whatever your organization calls them.
+
+49
+00:03:21,570 --> 00:03:26,220
+Point being you set up those stages of work inside of your pipeline.
+
+50
+00:03:27,150 --> 00:03:28,950
+And then finally you have steps.
+
+51
+00:03:28,950 --> 00:03:32,960
+So the steps are the work that's being done in the pipeline.
+
+52
+00:03:32,970 --> 00:03:38,970
+So, for example, you might have a step to deploy code to Azure or to a AWS.
+
+53
+00:03:39,860 --> 00:03:41,660
+It all depends on what you want to be doing.
+
+54
+00:03:41,660 --> 00:03:44,930
+But the point is that you have those steps available.
+
+55
+00:03:44,930 --> 00:03:48,680
+And again, those steps could even be just for your CI pipeline.
+
+56
+00:03:48,680 --> 00:03:55,430
+So for example, maybe you have just the PSI pipeline and you have just steps in there to test the code
+
+57
+00:03:55,430 --> 00:03:58,130
+and then to build the code, that's perfectly fine as well.
+
+58
+00:03:59,480 --> 00:04:02,960
+Now a quick note here on multi stage pipelines.
+
+59
+00:04:02,970 --> 00:04:09,410
+So if you're not familiar with multi stage pipelines, it's one Jenkins file, multiple stages.
+
+60
+00:04:09,410 --> 00:04:13,850
+So again, those stages could be dev staging and prod.
+
+61
+00:04:14,180 --> 00:04:18,019
+Now you could have a Jenkins file that just does one of these stages.
+
+62
+00:04:18,019 --> 00:04:23,360
+So for example, you might have a Jenkins file that just deploys to dev or just deploys a staging or
+
+63
+00:04:23,360 --> 00:04:24,680
+just deploys to prod.
+
+64
+00:04:24,980 --> 00:04:33,290
+Or you could have a multi stage pipeline which takes dev staging and prod and puts them into one Jenkins
+
+65
+00:04:33,290 --> 00:04:36,050
+file and then you deploy to all of those environments.
+
+66
+00:04:36,080 --> 00:04:38,960
+Now the cool thing about multi stage pipelines is.
+
+67
+00:04:39,600 --> 00:04:45,330
+Let's say, for example, you have devastating prod and you try to deploy to Dev, which is the first
+
+68
+00:04:45,330 --> 00:04:46,590
+stage and it fails.
+
+69
+00:04:46,590 --> 00:04:47,430
+Well, guess what?
+
+70
+00:04:47,430 --> 00:04:52,920
+If it fails, you're not going to move forward onto the new stage.
+
+71
+00:04:52,920 --> 00:04:54,480
+Instead, it's going to fail.
+
+72
+00:04:54,480 --> 00:04:57,510
+Then you're going to go back and you're going to fix and then you're going to try to deploy again.
+
+73
+00:04:57,510 --> 00:05:01,530
+And then once it passes Dev, then it'll go to staging and want to pass a staging.
+
+74
+00:05:01,530 --> 00:05:02,730
+Then it'll go to prod.
+
+75
+00:05:03,790 --> 00:05:05,940
+Well, that's it for this lecture.
+
+76
+00:05:05,950 --> 00:05:07,390
+We'll see you in the next.
+

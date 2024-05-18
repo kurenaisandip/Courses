@@ -1,0 +1,116 @@
+1
+00:00:01,050 --> 00:00:04,350
+Let us now look at output variables in TerraForm.
+
+2
+00:00:04,800 --> 00:00:10,620
+So far we have used input variables and reference expressions in our TerraForm configuration files.
+
+3
+00:00:11,470 --> 00:00:16,120
+Along with input variables, TerraForm also supports output variables.
+
+4
+00:00:16,690 --> 00:00:21,040
+These variables can be used to store the value of an expression in TerraForm.
+
+5
+00:00:21,610 --> 00:00:26,830
+For example, let us go back to the configuration file that we used in the previous lecture.
+
+6
+00:00:27,370 --> 00:00:33,190
+We already know that the random pet resource will generate a random pet name using the attribute called
+
+7
+00:00:33,190 --> 00:00:33,820
+ID.
+
+8
+00:00:33,850 --> 00:00:40,300
+When we apply the configuration to save this ID in an output variable called pet name, we can create
+
+9
+00:00:40,300 --> 00:00:42,040
+an output block like this.
+
+10
+00:00:43,210 --> 00:00:49,150
+The syntax used to create this output block is the keyword called output, followed by the name that
+
+11
+00:00:49,150 --> 00:00:52,670
+we want to call this variable inside this block.
+
+12
+00:00:52,690 --> 00:00:56,140
+The mandatory argument for value is the reference expression.
+
+13
+00:00:56,860 --> 00:01:01,990
+We can also add a description, which is an optional argument to describe what this output variable
+
+14
+00:01:01,990 --> 00:01:03,040
+will be used for.
+
+15
+00:01:03,640 --> 00:01:09,010
+Once this block has been created, when we run TerraForm Apply, we can see that the output variable
+
+16
+00:01:09,010 --> 00:01:10,330
+is printed on the screen.
+
+17
+00:01:11,730 --> 00:01:13,650
+Once the resource has been created.
+
+18
+00:01:13,650 --> 00:01:19,410
+We can also make use of the TerraForm Output Command to print the value of the output variables.
+
+19
+00:01:20,230 --> 00:01:26,320
+The command TerraForm output by itself will print all the output variables defined in all the files
+
+20
+00:01:26,320 --> 00:01:28,270
+in the current configuration directory.
+
+21
+00:01:28,840 --> 00:01:35,020
+We can also use this command specifically to print the value of an existing output variable like this.
+
+22
+00:01:36,150 --> 00:01:40,350
+Now you may wonder where we can make use of these output variables.
+
+23
+00:01:40,920 --> 00:01:46,650
+We already saw that dependent resources can make use of reference expressions to get the output from
+
+24
+00:01:46,650 --> 00:01:49,830
+one resource block as an input to another block.
+
+25
+00:01:50,280 --> 00:01:53,580
+As such, output variables are not really required here.
+
+26
+00:01:54,400 --> 00:01:59,950
+The best use of their foam output variables is when you want to quickly display details about a provision
+
+27
+00:01:59,950 --> 00:02:06,760
+resource on the screen or to feed the output variables to other easy tools such as an ad hoc script
+
+28
+00:02:06,760 --> 00:02:10,330
+or Ansible playbook for configuration management and testing.
+
+29
+00:02:11,080 --> 00:02:16,240
+Now let's head over to the Hands-On Labs and practice working with output variables.
+

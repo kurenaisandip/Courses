@@ -1,0 +1,228 @@
+1
+00:00:00,150 --> 00:00:04,710
+In this demo, we look at how to install and get started with Docker.
+
+2
+00:00:05,250 --> 00:00:11,430
+First of all, identify a system, physical or virtual machine or laptop that has a supported operating
+
+3
+00:00:11,430 --> 00:00:12,120
+system.
+
+4
+00:00:12,300 --> 00:00:14,610
+In my case I have an ubuntu VM.
+
+5
+00:00:15,150 --> 00:00:17,670
+Go to docs dot docker dot com.
+
+6
+00:00:19,110 --> 00:00:21,150
+And click on Get Darker.
+
+7
+00:00:22,250 --> 00:00:25,880
+You will be taken to the Docker Engine Community Edition page.
+
+8
+00:00:26,240 --> 00:00:28,910
+That is the free version that we are after.
+
+9
+00:00:30,360 --> 00:00:31,850
+From the left hand menu.
+
+10
+00:00:31,860 --> 00:00:33,870
+Select your system type.
+
+11
+00:00:34,580 --> 00:00:39,520
+I chose Linux in my case and then select your OS flavor.
+
+12
+00:00:39,530 --> 00:00:41,060
+I choose Ubuntu.
+
+13
+00:00:41,600 --> 00:00:44,510
+Read through the prerequisites and requirements.
+
+14
+00:00:44,900 --> 00:00:52,940
+Your ubuntu system must be 64 bit and one of the supported versions like disco, cosmic, bionic or
+
+15
+00:00:52,940 --> 00:00:53,660
+senile.
+
+16
+00:00:54,230 --> 00:00:58,700
+In my case, I have a bionic version to confirm.
+
+17
+00:00:58,700 --> 00:01:01,610
+View the ETSI release file.
+
+18
+00:01:03,380 --> 00:01:08,180
+Next uninstall any older versions if one exists.
+
+19
+00:01:08,510 --> 00:01:12,410
+So let's just make sure that there is none on my host.
+
+20
+00:01:12,410 --> 00:01:14,900
+So I'll just copy and paste that command.
+
+21
+00:01:15,110 --> 00:01:20,420
+And I confirm that there are no older version that exists on my system.
+
+22
+00:01:21,510 --> 00:01:25,950
+The next step is to set up repository and install the software.
+
+23
+00:01:26,530 --> 00:01:28,900
+Now, there are two ways to go about this.
+
+24
+00:01:28,920 --> 00:01:36,650
+The first is using the package manager by first updating the repository using the app git update command,
+
+25
+00:01:36,660 --> 00:01:43,080
+then installing the prerequisite packages and then adding dockers official GPG keys and then installing
+
+26
+00:01:43,080 --> 00:01:43,740
+docker.
+
+27
+00:01:44,220 --> 00:01:46,110
+But I'm not going to go that route.
+
+28
+00:01:46,650 --> 00:01:48,090
+There is an easier way.
+
+29
+00:01:48,900 --> 00:01:54,300
+If you scroll all the way to the bottom, you will find the instructions to install Docker using the
+
+30
+00:01:54,300 --> 00:01:55,650
+convenience script.
+
+31
+00:01:56,540 --> 00:02:02,570
+It's a script that automates the entire installation process and works on most operating systems.
+
+32
+00:02:03,530 --> 00:02:09,650
+Run the first command to download a copy of the script and then run the second command to execute the
+
+33
+00:02:09,650 --> 00:02:12,680
+script to install Docker automatically.
+
+34
+00:02:13,130 --> 00:02:15,620
+Give it a few minutes to complete the installation.
+
+35
+00:02:23,540 --> 00:02:25,400
+The installation is now successful.
+
+36
+00:02:25,880 --> 00:02:30,110
+Let us now check the version of Docker using the Docker version command.
+
+37
+00:02:30,470 --> 00:02:33,980
+We've installed version 19.0 3.1.
+
+38
+00:02:35,200 --> 00:02:40,090
+We will now run a simple container to ensure everything is working as expected.
+
+39
+00:02:40,570 --> 00:02:41,410
+For this.
+
+40
+00:02:41,440 --> 00:02:43,830
+Head over to Docker Hub at Hub.
+
+41
+00:02:44,110 --> 00:02:45,190
+Docker dot com.
+
+42
+00:02:45,370 --> 00:02:53,260
+Here you will find a list of the most popular Docker images like Engine X, MongoDB, Alpine, Node.js,
+
+43
+00:02:53,260 --> 00:02:54,580
+Redis, etc..
+
+44
+00:02:54,820 --> 00:02:58,210
+Let's search for a fun image called We'll See.
+
+45
+00:02:58,750 --> 00:03:06,280
+We'll say is Docker version of Cows, which is basically a simple application that trains a cow saying
+
+46
+00:03:06,280 --> 00:03:06,940
+something.
+
+47
+00:03:07,570 --> 00:03:13,300
+In this case, it happens to be a will copy the Docker run command given here.
+
+48
+00:03:13,660 --> 00:03:19,420
+Remember to add sudo and we will change the message to Hello world.
+
+49
+00:03:35,120 --> 00:03:36,280
+On running this command.
+
+50
+00:03:36,290 --> 00:03:45,260
+Docker pulls the image of the Wales application from Docker Hub and runs it, and we have our Vale saying
+
+51
+00:03:45,260 --> 00:03:46,070
+Hello.
+
+52
+00:03:46,860 --> 00:03:47,220
+Great.
+
+53
+00:03:47,850 --> 00:03:48,870
+We're all set.
+
+54
+00:03:50,030 --> 00:03:54,410
+Remember, for the purpose of this course, you don't really need to set up a Docker system on your
+
+55
+00:03:54,410 --> 00:03:54,860
+own.
+
+56
+00:03:55,100 --> 00:04:00,920
+We provide hands on labs that you will get access to, but if you wish to experiment on your own and
+
+57
+00:04:00,920 --> 00:04:02,900
+follow along, feel free to do so.
+

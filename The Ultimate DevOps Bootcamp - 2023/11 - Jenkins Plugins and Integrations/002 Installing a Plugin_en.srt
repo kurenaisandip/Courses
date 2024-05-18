@@ -1,0 +1,128 @@
+1
+00:00:03,030 --> 00:00:09,810
+So remember in the video when we were installing Jenkins, we had that option to install the basic plug
+
+2
+00:00:09,810 --> 00:00:13,390
+ins, like the recommended plug ins, and then we could install other plugins.
+
+3
+00:00:13,410 --> 00:00:15,870
+Well, that's one way to install plugins.
+
+4
+00:00:15,870 --> 00:00:19,800
+But after Jenkins is actually deployed, how do we install plugins?
+
+5
+00:00:19,830 --> 00:00:22,200
+Well, we do that with.
+
+6
+00:00:22,980 --> 00:00:24,780
+The plugins index.
+
+7
+00:00:24,780 --> 00:00:29,190
+So there are so many different plug ins that are available.
+
+8
+00:00:29,190 --> 00:00:34,920
+Jenkins You've got to remember, Jenkins has been around for, I believe, over a decade now.
+
+9
+00:00:34,920 --> 00:00:41,880
+And because of that and because of its popularity, there's always going to be plug ins available for
+
+10
+00:00:41,880 --> 00:00:42,330
+Jenkins.
+
+11
+00:00:42,330 --> 00:00:44,910
+So if we go ahead and we look at plug ins.
+
+12
+00:00:45,090 --> 00:00:51,660
+Jenkins I o and we search for, I don't know, maybe Azure, we can see here that there are a bunch
+
+13
+00:00:51,660 --> 00:00:52,890
+of different plug ins available.
+
+14
+00:00:52,890 --> 00:00:58,620
+So if you want to manage Azure credentials using the Jenkins Credentials API, you can do that.
+
+15
+00:00:58,620 --> 00:01:05,099
+If you want to work with the Azure SDK API, you can do that Azure ad, you can do that Azure VM agents,
+
+16
+00:01:05,099 --> 00:01:07,770
+you can do that Azure CLY, you can do that.
+
+17
+00:01:07,770 --> 00:01:08,820
+You get my point.
+
+18
+00:01:08,820 --> 00:01:14,550
+There is a bunch of different ways that you can do this and then there are other plugins available as
+
+19
+00:01:14,550 --> 00:01:14,790
+well.
+
+20
+00:01:14,790 --> 00:01:17,550
+So like eight of us, there are a ton of plugins.
+
+21
+00:01:17,550 --> 00:01:21,630
+Let's look at maybe Python, there's a ton of plugins here as well.
+
+22
+00:01:21,630 --> 00:01:27,330
+Let's look up, I don't know, Golang, there's one plug in here that automatically installs and sets
+
+23
+00:01:27,330 --> 00:01:27,780
+up.
+
+24
+00:01:27,780 --> 00:01:31,560
+Go for the tools for the build agents, which we're going to get into.
+
+25
+00:01:31,560 --> 00:01:37,800
+But think of build agents like they're the things that run your pipeline essentially depending on your
+
+26
+00:01:37,800 --> 00:01:38,310
+platform.
+
+27
+00:01:38,310 --> 00:01:41,190
+So maybe you want to run a c i C platform for Mac OS.
+
+28
+00:01:41,190 --> 00:01:43,140
+Anyways, don't worry about that right now.
+
+29
+00:01:43,140 --> 00:01:44,820
+We're going to absolutely get into it.
+
+30
+00:01:44,820 --> 00:01:51,030
+But the point being is there are so many different plug ins that are available now.
+
+31
+00:01:51,030 --> 00:01:53,880
+How do we actually install those plug ins?
+
+32
+00:01:54,630 --> 00:01:58,260
+Well, that's it for this lecture we'll see in the next.
+

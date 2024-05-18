@@ -1,0 +1,88 @@
+1
+00:00:00,960 --> 00:00:06,030
+So far, our examples used a small team of individuals working together.
+
+2
+00:00:06,210 --> 00:00:07,920
+Since it's a small team.
+
+3
+00:00:07,950 --> 00:00:13,890
+All members of the remote Git repository had the right permissions to push their changes right in.
+
+4
+00:00:14,400 --> 00:00:16,870
+However, this isn't always the case.
+
+5
+00:00:16,890 --> 00:00:22,800
+There are thousands of open source projects on GitHub with millions of contributors contributing to
+
+6
+00:00:22,800 --> 00:00:23,310
+them.
+
+7
+00:00:23,940 --> 00:00:28,420
+All of these contributors are not members of these projects with write permissions.
+
+8
+00:00:28,440 --> 00:00:32,369
+We don't want just anyone to be able to modify our code, of course.
+
+9
+00:00:32,820 --> 00:00:39,030
+So how do you create a pool request if you're not part of the get project and therefore not allowed
+
+10
+00:00:39,030 --> 00:00:42,210
+to create branches or push your changes right in?
+
+11
+00:00:43,060 --> 00:00:48,310
+One way to contribute to such projects is to first fork the main project.
+
+12
+00:00:48,820 --> 00:00:55,060
+After forking the project, you can add your changes to a branch on the fourth copy and send a pull
+
+13
+00:00:55,060 --> 00:00:58,870
+request to the original project to merge your changes right in.
+
+14
+00:01:00,080 --> 00:01:06,170
+When you forge a git repository, you're creating your own copy of the original project.
+
+15
+00:01:06,560 --> 00:01:12,110
+You're free to experiment with it and do whatever you want to do with the repository without impacting
+
+16
+00:01:12,110 --> 00:01:13,610
+the original project.
+
+17
+00:01:14,270 --> 00:01:19,490
+Once you think that you have something to contribute to the original project, you can create a pool
+
+18
+00:01:19,490 --> 00:01:20,600
+request safely.
+
+19
+00:01:21,830 --> 00:01:27,920
+The reviewers of the original project can now review the changes submitted by you and give feedback
+
+20
+00:01:27,920 --> 00:01:29,300
+to you if required.
+
+21
+00:01:29,750 --> 00:01:36,320
+Once your PR has been approved by the maintainers, they can merge your changes into the original repository.
+
+22
+00:01:36,650 --> 00:01:40,550
+You've now successfully contributed to an open source project.
+

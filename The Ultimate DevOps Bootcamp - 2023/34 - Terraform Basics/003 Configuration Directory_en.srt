@@ -1,0 +1,72 @@
+1
+00:00:01,440 --> 00:00:08,130
+Now let's take a look at the configuration directory and the file naming conventions used in TerraForm.
+
+2
+00:00:09,260 --> 00:00:16,219
+So far, we have been working with a single configuration file called local ATF, and this is within
+
+3
+00:00:16,219 --> 00:00:21,230
+the directory called TerraForm Dash local file, which is our configuration directory.
+
+4
+00:00:22,070 --> 00:00:25,490
+This directory is not limited to one configuration file.
+
+5
+00:00:26,320 --> 00:00:29,380
+We can create another configuration file like this.
+
+6
+00:00:30,330 --> 00:00:36,870
+The ADF is another configuration file that makes use of the same local underscore file resource.
+
+7
+00:00:37,820 --> 00:00:41,720
+When applied, it will create a new file called cad dot txt.
+
+8
+00:00:42,760 --> 00:00:48,160
+TerraForm will consider any file with the TTF extension within the configuration directory.
+
+9
+00:00:48,900 --> 00:00:54,660
+Another common practice is to have one single configuration file that contains all the resource blocks
+
+10
+00:00:54,660 --> 00:00:56,700
+required to provision the infrastructure.
+
+11
+00:00:57,240 --> 00:01:02,520
+A single configuration file can have as many number of configuration blocks that you need.
+
+12
+00:01:03,610 --> 00:01:09,850
+A common naming convention used for such a configuration file is to call it the main F.
+
+13
+00:01:10,670 --> 00:01:15,950
+There are other configuration files that can be created within the directory, such as the variables
+
+14
+00:01:15,950 --> 00:01:17,330
+ATF output.
+
+15
+00:01:17,340 --> 00:01:18,800
+ATF and providers.
+
+16
+00:01:18,920 --> 00:01:19,610
+ATF.
+
+17
+00:01:20,450 --> 00:01:24,410
+We will talk more about these files in the later sections of this course.
+
+18
+00:01:25,580 --> 00:01:31,100
+Now let's head over to the Hands-On Labs and explore working with providers.
+

@@ -1,0 +1,184 @@
+1
+00:00:00,150 --> 00:00:04,530
+In this section, we will look into the basics of a Node.js application.
+
+2
+00:00:04,890 --> 00:00:09,270
+Before talking about Node.js, let me quickly introduce JavaScript.
+
+3
+00:00:09,570 --> 00:00:18,270
+So in the past websites looked like this playing with mostly just text links and probably some images.
+
+4
+00:00:18,840 --> 00:00:23,910
+It was built with basic HTML code and some CSS to style it.
+
+5
+00:00:24,570 --> 00:00:31,530
+JavaScript is the technology that drives modern web development from a plain text website.
+
+6
+00:00:31,560 --> 00:00:41,160
+JavaScript allowed us to build websites that are intelligent and interactive, such as building calculators,
+
+7
+00:00:41,310 --> 00:00:48,900
+fun animations, games, graphs, running predictions on the web, running mathematic, mathematics
+
+8
+00:00:48,900 --> 00:00:56,670
+calculations, etc. So JavaScript made it possible to develop web pages that can almost do anything
+
+9
+00:00:56,670 --> 00:01:01,050
+that you can really think of today that you can do on a web page.
+
+10
+00:01:01,620 --> 00:01:08,610
+JavaScript paved the way for different client side frameworks like jQuery, Angular, JS, React, JS,
+
+11
+00:01:08,640 --> 00:01:12,060
+Vue.js, Enbridge's Backbone, JS, etc..
+
+12
+00:01:12,270 --> 00:01:16,680
+But remember, all of these are client side technologies.
+
+13
+00:01:16,680 --> 00:01:23,250
+That is, they're used to build web pages that would eventually run on clients or users systems like
+
+14
+00:01:23,250 --> 00:01:24,180
+our laptops.
+
+15
+00:01:24,540 --> 00:01:29,430
+They didn't actually have anything to do with the application server itself.
+
+16
+00:01:30,000 --> 00:01:37,560
+In the past server side code or the back end code, as you call it, was mostly only on Java or Python
+
+17
+00:01:37,690 --> 00:01:38,520
+Ruby.
+
+18
+00:01:38,700 --> 00:01:46,110
+So you had one of these on the server side and then you'd have a JavaScript based framework that would
+
+19
+00:01:46,110 --> 00:01:48,750
+run on the client side in the browsers.
+
+20
+00:01:48,780 --> 00:01:54,720
+Node.js took JavaScript out of the web browsers and onto the server side.
+
+21
+00:01:54,900 --> 00:02:01,920
+Node.js is a server side JavaScript environment that can be used to develop applications such as Web
+
+22
+00:02:01,920 --> 00:02:04,050
+servers using JavaScript.
+
+23
+00:02:04,410 --> 00:02:11,760
+An important feature that distinguishes Node.js from others is its ability to handle a large number
+
+24
+00:02:11,760 --> 00:02:16,380
+of concurrent connections by implementing a non blocking i o model.
+
+25
+00:02:16,950 --> 00:02:22,950
+Now Node.js is open source and free and it's compatible with different platforms like Windows, Linux,
+
+26
+00:02:22,950 --> 00:02:25,500
+Unix, Mac OS, etc..
+
+27
+00:02:26,040 --> 00:02:28,560
+Here are the different versions of Node.js.
+
+28
+00:02:28,740 --> 00:02:32,430
+As of this recording, the latest version is 13.
+
+29
+00:02:32,670 --> 00:02:38,310
+To install Node.js, follow instructions in the Node.js documentation site.
+
+30
+00:02:38,490 --> 00:02:46,290
+The node source repository contains binary distributions for all different Linux flavors.
+
+31
+00:02:46,470 --> 00:02:50,500
+So we will look at an example for CentOS here on CentOS.
+
+32
+00:02:50,520 --> 00:02:58,440
+First, add the repository for Node.js and then use the YAML, install Node.js command to to install
+
+33
+00:02:58,440 --> 00:02:58,830
+it.
+
+34
+00:02:59,770 --> 00:03:01,450
+Once installed successfully.
+
+35
+00:03:01,450 --> 00:03:07,330
+Node is the command line utility run the node v command to list the node version.
+
+36
+00:03:07,720 --> 00:03:14,080
+So if you're given an application written in Node.js as you see it here on the right, then to run it,
+
+37
+00:03:14,080 --> 00:03:17,650
+simply run the node command followed by the file name.
+
+38
+00:03:19,690 --> 00:03:25,150
+As I was saying, working with the code inside of these application files are out of scope for this
+
+39
+00:03:25,150 --> 00:03:25,510
+course.
+
+40
+00:03:25,510 --> 00:03:27,820
+So we're not really going to look into coding.
+
+41
+00:03:28,000 --> 00:03:34,510
+Our focus is understanding how to deploy a Node.js application when given a set of code and not really
+
+42
+00:03:34,510 --> 00:03:36,240
+read through and understand the code itself.
+
+43
+00:03:36,250 --> 00:03:38,230
+So that's it for this lecture.
+
+44
+00:03:38,350 --> 00:03:45,340
+Head over to the labs and practice working with the basics of installing and running a simple node application.
+
+45
+00:03:45,970 --> 00:03:47,200
+And I will see you in the next lecture.
+
+46
+00:03:47,200 --> 00:03:51,370
+We will where we will talk more about Node.js and packages.
+

@@ -1,0 +1,168 @@
+1
+00:00:00,150 --> 00:00:06,210
+I wanted to share a quick tip about how I think you can maximize the hands on experience and results
+
+2
+00:00:06,330 --> 00:00:07,770
+you gain from this course.
+
+3
+00:00:08,039 --> 00:00:11,340
+So think of this like learning how to build a car.
+
+4
+00:00:11,380 --> 00:00:17,280
+Now, if you start building the car without ever having driven or being in one, you will find it especially
+
+5
+00:00:17,280 --> 00:00:17,890
+difficult.
+
+6
+00:00:17,910 --> 00:00:24,270
+Now, you would have no idea what the wheels, the transmission or electronics are for and how the brakes
+
+7
+00:00:24,270 --> 00:00:26,830
+work or why you need a hand brake and so on.
+
+8
+00:00:26,850 --> 00:00:32,970
+But once you have driven a car for some time, then you'll know the role that all these vital elements
+
+9
+00:00:32,970 --> 00:00:34,720
+play in the function of the car.
+
+10
+00:00:34,740 --> 00:00:40,890
+And then when you learn how to build the car, it will be with a feel for the machine that you are aspiring
+
+11
+00:00:40,890 --> 00:00:46,830
+to build, and you will build it with an actual understanding of the parts that you are putting together.
+
+12
+00:00:46,860 --> 00:00:54,900
+Now, typically most courses out there ask you to set up virtual machines on virtual box or cloud environments
+
+13
+00:00:54,900 --> 00:00:56,220
+at this stage of the course.
+
+14
+00:00:56,250 --> 00:01:01,410
+However, this takes a lot of time and not to mention the extra time troubleshooting so you can get
+
+15
+00:01:01,410 --> 00:01:06,960
+everything working correctly and even then you may not have access to enough resources on your system
+
+16
+00:01:06,960 --> 00:01:09,540
+or on access to cloud platforms.
+
+17
+00:01:09,540 --> 00:01:15,240
+And often you will have to clean up your work before you can even begin working on the next course topic.
+
+18
+00:01:15,270 --> 00:01:21,240
+And all of these take away a lot of time when it comes to focusing on the things that actually matter.
+
+19
+00:01:22,160 --> 00:01:26,660
+Now, of course, it's important to learn how to set this up, and you'll learn a lot by troubleshooting
+
+20
+00:01:26,660 --> 00:01:29,340
+and figuring things out for yourself.
+
+21
+00:01:29,360 --> 00:01:36,920
+But repeated issues will discourage some of you, and others will even give up and everyone will miss
+
+22
+00:01:36,920 --> 00:01:39,860
+out on the new skills that they were about to gain.
+
+23
+00:01:40,190 --> 00:01:45,710
+At the end of the day, all this teaches you is how to provision VMs on your laptop and figure out networking
+
+24
+00:01:45,710 --> 00:01:46,340
+functions.
+
+25
+00:01:46,340 --> 00:01:50,030
+And we have specific courses for this that can be taken separately.
+
+26
+00:01:50,030 --> 00:01:54,470
+And you should, if you want to learn how to set up your own local environments.
+
+27
+00:01:54,800 --> 00:02:01,370
+However, if your main goal is to learn about the topic that's taught in this course, the best approach
+
+28
+00:02:01,370 --> 00:02:06,170
+is to spend maximum time gaining hands on experience in this specific topic.
+
+29
+00:02:06,170 --> 00:02:10,250
+And that's exactly why we build our dedicated labs.
+
+30
+00:02:10,460 --> 00:02:17,000
+So my recommendation to you is to go through and aim to complete this course as soon as possible and
+
+31
+00:02:17,000 --> 00:02:21,500
+to complete it using our labs for the best possible experience and results.
+
+32
+00:02:21,530 --> 00:02:27,470
+Each lab is specifically crafted for the lecture that you learned before, so there is no cleanup needed,
+
+33
+00:02:27,470 --> 00:02:30,140
+no messed up environments, no missing prerequisites.
+
+34
+00:02:30,140 --> 00:02:35,930
+You go from learning something to actually gaining experience in about less than 20 seconds.
+
+35
+00:02:37,350 --> 00:02:44,040
+So protect yourself and your learning journey from distracting issues that are out of your control For
+
+36
+00:02:44,040 --> 00:02:44,540
+now.
+
+37
+00:02:44,550 --> 00:02:50,520
+Contain that urge to set up your own local environments and build your own local system.
+
+38
+00:02:51,090 --> 00:02:56,850
+Once you complete the entire course, you can dedicate your time and focus to setting up your own environments
+
+39
+00:02:56,850 --> 00:02:59,100
+and working on your own research and projects.
+
+40
+00:02:59,100 --> 00:03:02,450
+And we have a lot of resources to help with that too.
+
+41
+00:03:02,460 --> 00:03:06,870
+And by then you will have all the prerequisite knowledge to build your own environment.
+
+42
+00:03:06,870 --> 00:03:12,570
+And if you do run into issues, you will be in a far better position to resolve them.
+

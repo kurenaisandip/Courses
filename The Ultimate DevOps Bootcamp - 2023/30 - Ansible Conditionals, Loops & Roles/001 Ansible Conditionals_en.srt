@@ -1,0 +1,212 @@
+1
+00:00:00,120 --> 00:00:02,940
+In this lecture, we will look at conditionals.
+
+2
+00:00:04,050 --> 00:00:06,510
+Let us start with a simple example.
+
+3
+00:00:06,630 --> 00:00:09,840
+I have two playbooks here that does the same thing.
+
+4
+00:00:10,230 --> 00:00:15,480
+Install engine X on a host, but as you know, different OS flavors.
+
+5
+00:00:15,480 --> 00:00:20,280
+Use different package managers, debian users, APT and redhat users.
+
+6
+00:00:20,280 --> 00:00:20,730
+Yum.
+
+7
+00:00:21,300 --> 00:00:26,520
+But these are two separate playbooks and you will have to use the right playbook for the respective
+
+8
+00:00:26,520 --> 00:00:27,240
+servers.
+
+9
+00:00:28,630 --> 00:00:34,900
+I want to create a single playbook that works for both of these operating systems for all hosts.
+
+10
+00:00:35,020 --> 00:00:40,450
+So based on the operating system flavor, my playbook must run the appropriate task.
+
+11
+00:00:40,810 --> 00:00:44,380
+And that's where a conditional statement comes in handy.
+
+12
+00:00:45,100 --> 00:00:50,800
+I could use the when conditional statement to specify a condition for each task.
+
+13
+00:00:51,340 --> 00:00:55,000
+Only if the condition is true, that task is run.
+
+14
+00:00:55,770 --> 00:00:57,270
+So what is a condition?
+
+15
+00:00:57,690 --> 00:01:06,450
+It could be any check that we perform, such as checking in if the OS family is debian or red hat ansible
+
+16
+00:01:06,450 --> 00:01:12,780
+underscore os and a score family is a built in variable that ansible populates with the flavor of operating
+
+17
+00:01:12,780 --> 00:01:13,470
+system.
+
+18
+00:01:14,120 --> 00:01:19,610
+Make sure to use double equals sign when checking equality in conditional statement.
+
+19
+00:01:20,400 --> 00:01:24,540
+You may use an ore operator to specify either of two conditions.
+
+20
+00:01:24,810 --> 00:01:33,540
+Use the Yum module to install package if the OS family is Red Hat or Susie or an and operator.
+
+21
+00:01:33,540 --> 00:01:36,600
+So it must satisfy both conditions.
+
+22
+00:01:36,630 --> 00:01:45,930
+In this case we use the apt module only if the OS family is Debian and the version is 16.04.
+
+23
+00:01:46,980 --> 00:01:49,730
+You may use conditionals in a loop as well.
+
+24
+00:01:49,740 --> 00:01:55,680
+Say, for example, instead of a single package, we have a list of packages that needs to be installed.
+
+25
+00:01:56,130 --> 00:01:59,730
+We have an array named packages that has to list.
+
+26
+00:02:00,210 --> 00:02:06,570
+Each item in the list has the name of the package to be installed as well as a property called required.
+
+27
+00:02:07,270 --> 00:02:12,040
+Install the packages only if the required property is set to true.
+
+28
+00:02:13,070 --> 00:02:18,590
+First, we specify the loop directive to execute the install task in a loop.
+
+29
+00:02:18,830 --> 00:02:26,900
+The name of the package to be installed is now item name and this will install all three packages specified.
+
+30
+00:02:27,650 --> 00:02:29,120
+To visualize this better.
+
+31
+00:02:29,120 --> 00:02:36,020
+If you kind of expand the loop, you will see that the loop is in fact three different tasks, one for
+
+32
+00:02:36,020 --> 00:02:37,040
+each package.
+
+33
+00:02:37,520 --> 00:02:44,510
+Each task has the variable on it called item, and the item has the respective package details.
+
+34
+00:02:45,180 --> 00:02:53,160
+So if I wanted to write a conditional for each of the item, I would say when item dot required equals
+
+35
+00:02:53,160 --> 00:02:53,760
+true.
+
+36
+00:02:54,710 --> 00:03:00,650
+And so back in my main playbook, that's what I would put in when item required equals true.
+
+37
+00:03:00,650 --> 00:03:03,890
+And that's how you use conditionals in loops.
+
+38
+00:03:04,400 --> 00:03:06,530
+Let's look at one final example.
+
+39
+00:03:06,710 --> 00:03:13,010
+To use conditionals with the output of a previous task, we have a requirement to develop a playbook
+
+40
+00:03:13,010 --> 00:03:16,790
+to check the status of a service and email if it's done.
+
+41
+00:03:17,560 --> 00:03:19,150
+So there are two tasks.
+
+42
+00:03:19,150 --> 00:03:24,190
+The first task checks the status of a service, and the second task sends an email.
+
+43
+00:03:25,460 --> 00:03:31,330
+We have learned previously that to record the output of one task, we could use the Registered directive.
+
+44
+00:03:31,340 --> 00:03:34,910
+So we say register the output to the result variable.
+
+45
+00:03:35,330 --> 00:03:42,200
+And then in the second task we use the when conditional on that result variable to say check if result
+
+46
+00:03:42,200 --> 00:03:45,140
+dot std out has down in it.
+
+47
+00:03:46,410 --> 00:03:51,570
+The find method looks for a string within a variable and returns its position.
+
+48
+00:03:51,960 --> 00:03:54,870
+If it's not found, it returns minus one.
+
+49
+00:03:55,140 --> 00:04:02,070
+So our condition would be if it's not minus one, meaning that the output does not contain the word
+
+50
+00:04:02,070 --> 00:04:02,730
+down.
+
+51
+00:04:02,850 --> 00:04:04,050
+Send an email.
+
+52
+00:04:05,150 --> 00:04:06,810
+Well, that's it for now.
+
+53
+00:04:06,830 --> 00:04:11,630
+Head over to the coding challenges and practice working with conditionals.
+

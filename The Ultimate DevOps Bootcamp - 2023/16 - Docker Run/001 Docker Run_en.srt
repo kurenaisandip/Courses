@@ -1,0 +1,444 @@
+1
+00:00:04,680 --> 00:00:08,280
+We will now look at some of the other Docker run commands.
+
+2
+00:00:08,640 --> 00:00:12,810
+At the end of this lecture, you will go through a hands on quiz where you will practice working with
+
+3
+00:00:12,810 --> 00:00:13,710
+these commands.
+
+4
+00:00:14,250 --> 00:00:20,910
+We learned that we could use the Docker run Redis command to run a container running a ready service.
+
+5
+00:00:20,910 --> 00:00:26,970
+In this case, the latest version of Redis, which happens to be 5.0.5 as of today.
+
+6
+00:00:27,570 --> 00:00:33,090
+But what if we want to run another version of readers, like, for example, an older version, say,
+
+7
+00:00:33,090 --> 00:00:34,140
+4.0?
+
+8
+00:00:34,500 --> 00:00:38,160
+Then you specify the version separated by a colon.
+
+9
+00:00:38,610 --> 00:00:40,710
+This is called a tag.
+
+10
+00:00:41,770 --> 00:00:47,620
+In that case, Docker pulls an image of the 4.0 version of Redis and runs that.
+
+11
+00:00:48,880 --> 00:00:55,930
+Also notice that if you don't specify any tag, as in the first command, Docker will consider the default
+
+12
+00:00:55,930 --> 00:00:57,670
+tag to be latest.
+
+13
+00:00:58,300 --> 00:01:04,989
+Latest is a tag associated to the latest version of that software, which is governed by the authors
+
+14
+00:01:04,989 --> 00:01:06,040
+of that software.
+
+15
+00:01:07,050 --> 00:01:12,840
+So as a user, how do you find information about these versions and what is the latest?
+
+16
+00:01:14,050 --> 00:01:15,910
+At Docker Hub dot com.
+
+17
+00:01:16,030 --> 00:01:21,280
+Look up an image and you will find all the supported tags in its description.
+
+18
+00:01:21,700 --> 00:01:28,270
+Each version of the software can have multiple short and long tags associated with it as seen here.
+
+19
+00:01:29,310 --> 00:01:34,650
+In this case, the version 5.0.5 also has the latest tag on it.
+
+20
+00:01:36,590 --> 00:01:38,390
+Let's now look at inputs.
+
+21
+00:01:39,200 --> 00:01:43,730
+I have a simple prompt application that when run asks for my name.
+
+22
+00:01:44,390 --> 00:01:47,480
+And on entering my name Prince, a welcome message.
+
+23
+00:01:48,280 --> 00:01:54,370
+If I were to dockery's this application and run it as a Docker container like this, it wouldn't wait
+
+24
+00:01:54,370 --> 00:01:55,360
+for the prompt.
+
+25
+00:01:55,780 --> 00:02:00,280
+It just prints whatever the application is supposed to print on standard out.
+
+26
+00:02:01,220 --> 00:02:08,330
+That is because by default the Docker container does not listen to a standard input, even though you're
+
+27
+00:02:08,330 --> 00:02:10,100
+attached to its console.
+
+28
+00:02:10,340 --> 00:02:12,950
+It is not able to read any input from you.
+
+29
+00:02:13,370 --> 00:02:16,160
+It doesn't have a terminal to read inputs from.
+
+30
+00:02:16,280 --> 00:02:18,890
+It runs in a non-interactive mode.
+
+31
+00:02:19,790 --> 00:02:26,750
+If you'd like to provide your input, you must map the standard input of your host to the Docker container
+
+32
+00:02:26,750 --> 00:02:28,760
+using the dash parameter.
+
+33
+00:02:28,790 --> 00:02:35,810
+The dash parameter is for interactive mode and when I input my name, it prints the expected output.
+
+34
+00:02:36,480 --> 00:02:39,000
+But there is something still missing from this.
+
+35
+00:02:39,760 --> 00:02:40,570
+The prompt.
+
+36
+00:02:41,460 --> 00:02:42,930
+When we run the app.
+
+37
+00:02:43,470 --> 00:02:46,110
+At first it asks us for our name.
+
+38
+00:02:46,790 --> 00:02:52,700
+But when Dark arised, that prompt is missing, even though it seems to have accepted my input.
+
+39
+00:02:53,210 --> 00:03:00,710
+That is because the application prompt on the terminal and we have not attached to the containers terminal.
+
+40
+00:03:01,400 --> 00:03:04,430
+For this use the dash TX option as well.
+
+41
+00:03:04,550 --> 00:03:08,120
+The Dash TX stands for a pseudo terminal.
+
+42
+00:03:09,340 --> 00:03:15,910
+So with the combination of AI and RT, we're now attached to the terminal as well as in an interactive
+
+43
+00:03:15,910 --> 00:03:17,890
+mode on the container.
+
+44
+00:03:18,220 --> 00:03:22,420
+We will now look at port mapping or port publishing on containers.
+
+45
+00:03:22,870 --> 00:03:28,210
+Let's go back to the example where we run a simple web application in a Docker container on my Docker
+
+46
+00:03:28,210 --> 00:03:28,840
+host.
+
+47
+00:03:29,440 --> 00:03:35,350
+Remember the underlying host where Docker is installed is called Docker Host or Docker Engine.
+
+48
+00:03:35,800 --> 00:03:42,130
+When we run a containerized web application, it runs and we are able to see that the server is running.
+
+49
+00:03:42,130 --> 00:03:44,950
+But how does a user access my application?
+
+50
+00:03:45,490 --> 00:03:50,080
+As you can see, my application is listening on Port 5000.
+
+51
+00:03:50,200 --> 00:03:54,250
+So I could access my application by using port 5000.
+
+52
+00:03:54,610 --> 00:03:58,690
+But what IP do I use to access it from a web browser?
+
+53
+00:03:59,140 --> 00:04:00,890
+There are two options available.
+
+54
+00:04:00,910 --> 00:04:04,010
+One is to use the IP of the Docker container.
+
+55
+00:04:04,030 --> 00:04:07,460
+Every Docker container gets an IP assigned by default.
+
+56
+00:04:07,480 --> 00:04:11,410
+In this case it is one 72.17 0.2.
+
+57
+00:04:11,800 --> 00:04:17,649
+But remember that this is an internal IP and is only accessible within the Docker host.
+
+58
+00:04:17,920 --> 00:04:25,180
+So if you open a browser from within the Docker host, you can go to HTTP colon forward slash forward
+
+59
+00:04:25,180 --> 00:04:33,010
+slash one 72.17 .0.1 colon 5000 to access the IP address.
+
+60
+00:04:34,290 --> 00:04:40,950
+But since this is an internal IP, users outside of the Docker host cannot access it using this IP.
+
+61
+00:04:41,430 --> 00:04:46,230
+For this we could use the IP of the Docker host, which is one 92.1.
+
+62
+00:04:46,230 --> 00:04:47,910
+68 .1.5.
+
+63
+00:04:48,650 --> 00:04:55,790
+But for that to work, you must have mapped the port inside the Docker container to a free port on the
+
+64
+00:04:55,790 --> 00:04:56,780
+Docker host.
+
+65
+00:04:56,870 --> 00:05:03,080
+For example, if I want the users to access my application through Port 80 on my Docker host, I could
+
+66
+00:05:03,080 --> 00:05:11,900
+map port 80 of local host to port 5000 on the Docker container using the dash p parameter in my run
+
+67
+00:05:11,900 --> 00:05:13,130
+command like this.
+
+68
+00:05:14,760 --> 00:05:24,840
+And so the user can access my application by going to the URL HTTP colon slash slash one 92.1 60 8.1.5.
+
+69
+00:05:24,840 --> 00:05:26,040
+Colon 80.
+
+70
+00:05:27,300 --> 00:05:34,560
+And all traffic on port 80 on my dock or host will get routed to port 5000 inside the Docker container.
+
+71
+00:05:36,060 --> 00:05:41,970
+This way you can run multiple instances of your application and map them to different ports on the dock
+
+72
+00:05:41,970 --> 00:05:42,720
+or host.
+
+73
+00:05:43,430 --> 00:05:47,230
+Or on instances of different applications on different ports.
+
+74
+00:05:47,240 --> 00:05:53,810
+For example, in this case I'm running an instance of MySQL that runs a database on my host and listens
+
+75
+00:05:53,810 --> 00:06:01,760
+on the default MySQL port, which happens to be 3306 or another instance of my SQL on another port.
+
+76
+00:06:01,820 --> 00:06:03,410
+8306.
+
+77
+00:06:03,740 --> 00:06:09,320
+So you can run as many applications like this and map them to as many ports as you want.
+
+78
+00:06:09,620 --> 00:06:14,330
+And of course you cannot map to the same port on the Docker host more than once.
+
+79
+00:06:16,070 --> 00:06:21,530
+We will discuss more about port mapping and networking of containers in the network lecture later on.
+
+80
+00:06:22,190 --> 00:06:26,630
+Let's now look at how data is persisted in a Docker container.
+
+81
+00:06:27,380 --> 00:06:30,890
+For example, let's say you were to run a MySQL container.
+
+82
+00:06:31,130 --> 00:06:39,560
+When databases and tables are created, the data files are stored in location for lib MySQL inside the
+
+83
+00:06:39,560 --> 00:06:40,580
+Docker container.
+
+84
+00:06:40,910 --> 00:06:47,750
+Remember, the Docker container has its own isolated file system and any changes to any files happen
+
+85
+00:06:47,750 --> 00:06:49,040
+within the container.
+
+86
+00:06:49,990 --> 00:06:53,380
+Let's assume you dump a lot of data into the database.
+
+87
+00:06:53,770 --> 00:06:57,940
+What happens if you were to delete the MySQL container and remove it?
+
+88
+00:06:58,850 --> 00:07:05,780
+As soon as you do that, the container, along with all the data inside, it gets blown away, meaning
+
+89
+00:07:05,780 --> 00:07:07,610
+all your data is gone.
+
+90
+00:07:07,910 --> 00:07:13,970
+If you would like to persist data, you would want to map a directory outside the container on the dock
+
+91
+00:07:13,970 --> 00:07:17,120
+or host to a directory inside the container.
+
+92
+00:07:17,330 --> 00:07:28,070
+In this case, I create a directory called slash opt slash data dir and map that to var lib my SQL inside
+
+93
+00:07:28,070 --> 00:07:34,010
+the docker container using the dash v option and specifying the directory on the Docker host followed
+
+94
+00:07:34,010 --> 00:07:37,820
+by a colon and the directory inside the Docker container.
+
+95
+00:07:38,740 --> 00:07:45,430
+This way, when Docker container runs, it will implicitly mount the external directory to a folder
+
+96
+00:07:45,430 --> 00:07:47,380
+inside the Docker container.
+
+97
+00:07:47,410 --> 00:07:55,990
+This way all your data will now be stored in the external volume at slash slash data directory and thus
+
+98
+00:07:55,990 --> 00:07:59,290
+will remain even if you delete the Docker container.
+
+99
+00:08:00,480 --> 00:08:06,840
+The Docker command is good enough to get basic details about containers like their names and IDs.
+
+100
+00:08:06,840 --> 00:08:12,750
+But if you would like to see additional details about a specific container, use the Docker, inspect
+
+101
+00:08:12,750 --> 00:08:15,540
+command and provide the container name or ID.
+
+102
+00:08:16,410 --> 00:08:23,310
+It returns all details of a container in a JSON format, such as the state mounts, configuration data,
+
+103
+00:08:23,310 --> 00:08:25,080
+network settings, etc..
+
+104
+00:08:25,380 --> 00:08:29,610
+Remember to use it when you are required to find details on a container.
+
+105
+00:08:30,060 --> 00:08:34,669
+And finally, how do we see the logs of a container we ran in the background?
+
+106
+00:08:34,679 --> 00:08:40,980
+For example, I ran my simple web application using the dash D parameter and it ran the container in
+
+107
+00:08:40,980 --> 00:08:42,240
+a detached mode.
+
+108
+00:08:42,630 --> 00:08:48,510
+How do I view the logs, which happens to be the contents written to the standard out of that container?
+
+109
+00:08:49,080 --> 00:08:54,600
+Use the Docker logs command and specify the container ID or name like this.
+
+110
+00:08:55,920 --> 00:08:57,720
+Well, that's it for this lecture.
+
+111
+00:08:57,750 --> 00:09:01,620
+Head over to the challenges and practice working with doctor commands.
+

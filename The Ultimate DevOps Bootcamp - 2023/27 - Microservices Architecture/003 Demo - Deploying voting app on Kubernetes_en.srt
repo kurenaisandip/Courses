@@ -1,0 +1,1024 @@
+1
+00:00:00,510 --> 00:00:06,300
+In this demo, we're going to deploy the voting application on our mini cube cluster.
+
+2
+00:00:06,660 --> 00:00:10,860
+So here I have created a new project folder called Voting App.
+
+3
+00:00:10,890 --> 00:00:17,430
+So the first thing that we are going to do is to create the pod definition files for each component
+
+4
+00:00:17,430 --> 00:00:18,780
+within the application.
+
+5
+00:00:19,230 --> 00:00:21,270
+So let's begin with the voting app itself.
+
+6
+00:00:21,270 --> 00:00:27,960
+So we will name this pod definition file as voting app pod YAML.
+
+7
+00:00:28,830 --> 00:00:31,860
+And let us build this pod from scratch.
+
+8
+00:00:31,860 --> 00:00:38,130
+So we will begin with the API version and set it to v one and the kind will be pod.
+
+9
+00:00:40,180 --> 00:00:45,670
+The metadata section would have the name which will be voting App dashboard.
+
+10
+00:00:47,130 --> 00:00:49,590
+And let's add a couple of labels.
+
+11
+00:00:49,620 --> 00:00:55,380
+The first label would be the name, which can be the same as the name of the pod, which is Wooding
+
+12
+00:00:55,980 --> 00:00:56,630
+Pod.
+
+13
+00:00:56,760 --> 00:00:59,520
+And the second label will be.
+
+14
+00:01:00,630 --> 00:01:04,620
+The name of the application, which is the demo voting app.
+
+15
+00:01:04,860 --> 00:01:08,950
+So we will kind of use that label for all the components part of this application stack.
+
+16
+00:01:08,970 --> 00:01:15,450
+That way we can group the components of a single application together by assigning the same kind of
+
+17
+00:01:15,450 --> 00:01:16,620
+label to all of them.
+
+18
+00:01:17,360 --> 00:01:23,120
+But they would still be a different label for each component to differentiate from each other.
+
+19
+00:01:23,450 --> 00:01:25,940
+So let's add the spec section.
+
+20
+00:01:25,940 --> 00:01:30,920
+And here the first thing that we're going to add is the name of the container.
+
+21
+00:01:31,070 --> 00:01:35,030
+So we'll use Voting App as a name of the container and the image.
+
+22
+00:01:35,030 --> 00:01:41,900
+We will make use of the custom image that we have built from the Docker samples voting app get Repository
+
+23
+00:01:42,020 --> 00:01:43,340
+page, which is here.
+
+24
+00:01:43,340 --> 00:01:48,890
+So we will use the custom images that we built under the Code Cloud Docker Hub Repository.
+
+25
+00:01:49,010 --> 00:01:54,560
+The name of the image here is called Cloud Sample Voting App underscore Vote.
+
+26
+00:01:59,210 --> 00:02:01,550
+With a tag of V one.
+
+27
+00:02:03,060 --> 00:02:09,030
+Now we will also specify the port for this loading application as a container port property.
+
+28
+00:02:09,030 --> 00:02:14,040
+So this should be the port on which the application listens for this voting app.
+
+29
+00:02:14,040 --> 00:02:17,250
+And we know that it's port 80, so we will set it to port 80.
+
+30
+00:02:18,090 --> 00:02:21,630
+Next, let's create the port definition file for the result app.
+
+31
+00:02:21,630 --> 00:02:26,220
+So again, I'm going to create a new file here called a Result app Port.
+
+32
+00:02:26,220 --> 00:02:34,170
+And because this is a pod definition file, like like before, we can simply copy the template from
+
+33
+00:02:34,170 --> 00:02:36,630
+the awarding app file we just created.
+
+34
+00:02:36,630 --> 00:02:41,730
+And then we will just make changes to the name and labels and the image.
+
+35
+00:02:41,730 --> 00:02:49,950
+So let us change the name to result app port and we will make the same change to the label and then
+
+36
+00:02:51,000 --> 00:02:55,050
+the app label will remain the same as all of these are part of the same app.
+
+37
+00:02:55,050 --> 00:03:00,660
+And again, let's make the change to the container name to result app.
+
+38
+00:03:00,660 --> 00:03:07,640
+And here the image will also be changed to code cloud slash example boarding app underscore result and
+
+39
+00:03:07,650 --> 00:03:13,320
+with the same tag of V one and the result application is also exposed on the container port 18.
+
+40
+00:03:13,320 --> 00:03:15,840
+So we will leave that as is.
+
+41
+00:03:16,500 --> 00:03:17,400
+Next.
+
+42
+00:03:17,400 --> 00:03:20,180
+Let's create the port definition file for the reddest port.
+
+43
+00:03:20,190 --> 00:03:25,320
+So I'm going to name the port definition file as this dashboard YAML.
+
+44
+00:03:26,710 --> 00:03:30,370
+And again, I'm going to make use of the previous part as the template.
+
+45
+00:03:31,330 --> 00:03:33,580
+And we will change the name of the pod.
+
+46
+00:03:38,020 --> 00:03:42,790
+So we'll change it to this part and we will use the same as the label.
+
+47
+00:03:44,070 --> 00:03:48,960
+And let's name the container as readies and the image should be also be read this.
+
+48
+00:03:54,120 --> 00:04:00,720
+And the container port for it is we will change it from port 80 to 6 379 because this is the default
+
+49
+00:04:00,720 --> 00:04:02,670
+port for the reader's image.
+
+50
+00:04:03,410 --> 00:04:05,060
+So let's save this.
+
+51
+00:04:05,060 --> 00:04:06,860
+And now let's create another pod.
+
+52
+00:04:06,890 --> 00:04:08,810
+Now, this time for our database.
+
+53
+00:04:09,050 --> 00:04:12,410
+We'll name it Postgres dashboard yaml.
+
+54
+00:04:14,050 --> 00:04:19,240
+And as before, we're going to copy paste one of the port definition files here and we'll make changes
+
+55
+00:04:19,240 --> 00:04:19,990
+to the name.
+
+56
+00:04:23,540 --> 00:04:27,740
+So this one will be Postgres Dashboard and the same for the label.
+
+57
+00:04:34,350 --> 00:04:38,550
+Now the name of the container would be Postgres and the image.
+
+58
+00:04:38,970 --> 00:04:45,240
+We can also use the post image itself without any tag, which means that it will make use of the latest
+
+59
+00:04:45,420 --> 00:04:46,470
+postgres image.
+
+60
+00:04:46,620 --> 00:04:54,720
+The container port for PostgreSQL database is 5432 by default, so we will add that in.
+
+61
+00:04:54,720 --> 00:04:57,990
+And we also have to add a couple of other environment variables here.
+
+62
+00:04:57,990 --> 00:05:03,390
+So this is to make sure that we specify the post class username and password for the database.
+
+63
+00:05:04,510 --> 00:05:10,630
+So as we saw in the previous lecture, the source code of the worker and the result board has the password
+
+64
+00:05:10,630 --> 00:05:14,260
+for the PostgreSQL database hardcoded in them.
+
+65
+00:05:14,260 --> 00:05:20,350
+So we must specify the initial password to be set for the database here as environment variables.
+
+66
+00:05:21,210 --> 00:05:21,810
+Now.
+
+67
+00:05:22,830 --> 00:05:31,620
+A better way to do this would be to use secrets or some kind of vault to passing these credentials and
+
+68
+00:05:31,620 --> 00:05:36,630
+not have these credentials in a plain text format in a file.
+
+69
+00:05:36,630 --> 00:05:38,700
+But those are out of scope.
+
+70
+00:05:39,120 --> 00:05:45,450
+For this course, we discuss about these concepts in much detail in our advanced courses on Kubernetes,
+
+71
+00:05:45,450 --> 00:05:53,670
+the CTA, and the courses we discuss about environment variables, services and secrets and other concepts.
+
+72
+00:05:53,820 --> 00:05:59,400
+So for this example to work, we have to make sure that we specify these two environment variables in
+
+73
+00:05:59,400 --> 00:06:01,800
+the Postgres code definition file.
+
+74
+00:06:01,800 --> 00:06:09,870
+So for this we will make use of an E and V section, which is a list of dictionaries, and we will have
+
+75
+00:06:09,870 --> 00:06:13,770
+the environment, variable name and value entered in them.
+
+76
+00:06:13,770 --> 00:06:18,210
+So it must be postgres underscore user for the username.
+
+77
+00:06:20,710 --> 00:06:25,990
+And Postgres underscore password and as a password all in caps.
+
+78
+00:06:26,020 --> 00:06:30,610
+Now the value for both would just be postgres for now.
+
+79
+00:06:31,790 --> 00:06:37,520
+And again, just to reiterate, we are adding these values because the work report and the result board
+
+80
+00:06:37,610 --> 00:06:40,370
+uses these credentials while connecting to the database.
+
+81
+00:06:40,370 --> 00:06:44,420
+And if you don't configure this, the worker will not be able to connect to the database.
+
+82
+00:06:44,420 --> 00:06:50,240
+And as a result, the total voting count may not add up.
+
+83
+00:06:51,140 --> 00:06:58,100
+So in case you run into issues with the vote count, not updating, are not able to view the results,
+
+84
+00:06:58,100 --> 00:07:01,700
+then this is probably an area that you can check.
+
+85
+00:07:02,390 --> 00:07:10,250
+So now we have created for pod the postgres pod, the is port, the two front end application ports,
+
+86
+00:07:10,460 --> 00:07:12,050
+the result app and the voting app.
+
+87
+00:07:12,080 --> 00:07:14,510
+The last one is the worker pod.
+
+88
+00:07:14,720 --> 00:07:18,740
+So let's create a new file for the worker pod worker product YAML.
+
+89
+00:07:18,740 --> 00:07:21,350
+And I'm going to copy paste the definition file.
+
+90
+00:07:28,620 --> 00:07:31,750
+So in here, let's make changes to the name.
+
+91
+00:07:31,770 --> 00:07:34,590
+So let's change the name to worker pod.
+
+92
+00:07:35,190 --> 00:07:36,720
+And the same for labels.
+
+93
+00:07:36,960 --> 00:07:39,780
+And the name of the container will be Worker app.
+
+94
+00:07:39,780 --> 00:07:43,980
+And the image is worker instead of what?
+
+95
+00:07:48,830 --> 00:07:55,610
+And one important change here is that we must remove the ports section because, as we discussed, the
+
+96
+00:07:55,610 --> 00:08:01,100
+worker app has no services listening, so no port definition is required.
+
+97
+00:08:01,400 --> 00:08:05,870
+So as a result, we can delete this entire section over here.
+
+98
+00:08:07,110 --> 00:08:12,390
+So we now have five port definition files for all our microservices.
+
+99
+00:08:12,420 --> 00:08:18,630
+Next, we will create services to expose these pods except for the for the worker.
+
+100
+00:08:18,630 --> 00:08:20,010
+So let's get that going.
+
+101
+00:08:20,730 --> 00:08:24,450
+Let's start by creating the service definition files.
+
+102
+00:08:25,320 --> 00:08:29,050
+So let's start with one of the internal services which is ready.
+
+103
+00:08:29,070 --> 00:08:33,240
+So we'll call the file as redis service yaml.
+
+104
+00:08:35,669 --> 00:08:40,770
+So we will start with the API version, which is we want and the kind is service.
+
+105
+00:08:43,590 --> 00:08:45,600
+And let's add the metadata.
+
+106
+00:08:47,100 --> 00:08:51,090
+And the name of the service we will use as readies itself.
+
+107
+00:08:52,400 --> 00:08:57,170
+So remember that this is important and we'll add a couple of labels.
+
+108
+00:08:57,680 --> 00:09:00,680
+The name would be set to read this debt service.
+
+109
+00:09:00,680 --> 00:09:06,560
+And the second one is the the one we have been using for all the other objects, which is demo voting
+
+110
+00:09:06,560 --> 00:09:06,980
+app.
+
+111
+00:09:07,580 --> 00:09:14,150
+Now, next, we will add the specs section and within this we will add the ports.
+
+112
+00:09:14,630 --> 00:09:21,440
+So for Redis, we know that the port to be used is six three, seven, nine and we'll also add the target
+
+113
+00:09:21,440 --> 00:09:24,920
+port, which is also going to be six three, seven, nine.
+
+114
+00:09:25,160 --> 00:09:30,260
+Now, we don't need to specify anything else like a node port because this is going to be an internal
+
+115
+00:09:30,260 --> 00:09:30,920
+service.
+
+116
+00:09:31,400 --> 00:09:33,950
+Now let us add the selector.
+
+117
+00:09:34,130 --> 00:09:40,260
+So in order to link the service to the port, we must specify the same labels configured for the port.
+
+118
+00:09:40,280 --> 00:09:45,980
+So let's copy the labels from the port definition file and we'll paste it under the selector section.
+
+119
+00:09:49,190 --> 00:09:54,050
+Now, since this is an internal service, we're not going to expose it outside on the network.
+
+120
+00:09:54,050 --> 00:09:55,570
+So that should be good.
+
+121
+00:09:55,580 --> 00:09:57,260
+So this file is now complete.
+
+122
+00:09:58,130 --> 00:09:58,880
+So let's save it.
+
+123
+00:09:58,880 --> 00:10:02,660
+And next we will proceed with the creation of the post press service.
+
+124
+00:10:02,660 --> 00:10:05,870
+So now let us create the post service file.
+
+125
+00:10:06,050 --> 00:10:08,540
+We'll follow the same approach as before.
+
+126
+00:10:08,540 --> 00:10:12,290
+We'll name this as post press service yaml.
+
+127
+00:10:12,410 --> 00:10:17,810
+And the easiest way to create a service now is to just copy the contents of the ready service file and
+
+128
+00:10:17,810 --> 00:10:18,740
+paste it here.
+
+129
+00:10:18,770 --> 00:10:20,840
+So again, we will make the appropriate chain.
+
+130
+00:10:20,840 --> 00:10:26,910
+So if you remember the architecture from the lecture, the name of the post database must be DB.
+
+131
+00:10:26,930 --> 00:10:31,720
+So this is because the worker app expects the name of the Postgres database to be DB.
+
+132
+00:10:31,730 --> 00:10:36,280
+So if you name it anything else, you'll find that the connection will fail.
+
+133
+00:10:36,290 --> 00:10:39,470
+So we'll now change the labels.
+
+134
+00:10:40,340 --> 00:10:43,760
+These labels could really be anything, so it doesn't really matter.
+
+135
+00:10:44,090 --> 00:10:49,700
+Let's name it as Postgres service and we can even name it as DB service.
+
+136
+00:10:50,700 --> 00:10:56,940
+And let's change the port to five, four, three, two, because that's the port in which the post gross
+
+137
+00:10:56,970 --> 00:10:57,870
+database runs.
+
+138
+00:10:57,870 --> 00:11:01,630
+And again, this will be five, four, three, five, four, three, two.
+
+139
+00:11:01,650 --> 00:11:05,220
+And let's make sure that we copy the labels from the port definition file.
+
+140
+00:11:05,220 --> 00:11:09,720
+So here we will copy the name label, which is set to post Chris Pod.
+
+141
+00:11:10,320 --> 00:11:16,080
+So let's delete the order selectors and the labels and then replace it with the new one.
+
+142
+00:11:16,440 --> 00:11:20,730
+So now we're done with the two internal services.
+
+143
+00:11:20,940 --> 00:11:26,280
+Let's now proceed to creating the external facing services, which is the voting service and the result
+
+144
+00:11:26,280 --> 00:11:26,970
+service.
+
+145
+00:11:27,510 --> 00:11:30,200
+So let's start with the Voting App Service.
+
+146
+00:11:30,210 --> 00:11:35,670
+Let's create a new file called Voting App Service YAML, and we will copy the contents of the other
+
+147
+00:11:35,670 --> 00:11:37,470
+file and then paste it here.
+
+148
+00:11:45,190 --> 00:11:47,350
+Again, let's change the name to voting service.
+
+149
+00:11:47,350 --> 00:11:49,330
+Let's change the label as well.
+
+150
+00:11:49,330 --> 00:11:53,740
+And we we know that this is a front end application which runs on Port 80.
+
+151
+00:11:53,740 --> 00:11:59,760
+So let's set that port number as the service port and as the target port.
+
+152
+00:12:02,550 --> 00:12:08,700
+And as before, we'll copy the labels from the definition file.
+
+153
+00:12:15,130 --> 00:12:19,660
+So the next step would be to create the final service, which is the result service.
+
+154
+00:12:19,660 --> 00:12:27,310
+So let's call the file as a result app dash service, YAML and let's copy the voting app service definition
+
+155
+00:12:27,310 --> 00:12:28,690
+file into here.
+
+156
+00:12:31,230 --> 00:12:36,120
+And then again we change the name to result and everything else is the same.
+
+157
+00:12:36,120 --> 00:12:42,130
+And we will update the selector section with the labels of the pod.
+
+158
+00:12:42,150 --> 00:12:44,130
+The result at pod.
+
+159
+00:12:45,320 --> 00:12:49,550
+We actually created them as internal services like the others.
+
+160
+00:12:49,760 --> 00:12:56,300
+Now we have created the voting app and result app service as internal services like like the others,
+
+161
+00:12:56,300 --> 00:13:01,670
+but they are supposed to be externally accessible, so we must set their type to node port.
+
+162
+00:13:01,820 --> 00:13:07,280
+So since we have not specified any type, it would be considered as cluster IP.
+
+163
+00:13:07,430 --> 00:13:10,160
+So let's do that now and each service.
+
+164
+00:13:11,160 --> 00:13:20,160
+Requires will set the type to node port, and each service also requires an additional port specification
+
+165
+00:13:20,280 --> 00:13:26,280
+for the node port and we will set that to 30,000 for for the voting app.
+
+166
+00:13:27,790 --> 00:13:31,900
+Okay, Now we will go and update the same on the result service.
+
+167
+00:13:31,900 --> 00:13:42,370
+So we will set the type to node port and we will add a node port port number of 30,005 for the result.
+
+168
+00:13:42,370 --> 00:13:43,210
+App service.
+
+169
+00:13:45,630 --> 00:13:51,030
+Okay, So we are done with all the all the files and we have completed the creation of all the part
+
+170
+00:13:51,030 --> 00:13:53,670
+and service YAML definition files.
+
+171
+00:13:53,910 --> 00:14:01,020
+And we will now proceed with the creation of these objects and we will then try to access the application
+
+172
+00:14:01,020 --> 00:14:02,130
+on the web browser.
+
+173
+00:14:02,920 --> 00:14:09,790
+So we will switch to the terminal of our system and we are in the voting app directory and which is
+
+174
+00:14:09,790 --> 00:14:12,820
+where we created all the port and service definition files.
+
+175
+00:14:12,850 --> 00:14:15,480
+So now we can start creating these objects.
+
+176
+00:14:15,490 --> 00:14:21,250
+So first let's check if there are any pod or deployments or services running on the server.
+
+177
+00:14:21,460 --> 00:14:27,310
+So when we see we see that there are there's nothing except for the default Kubernetes service.
+
+178
+00:14:27,550 --> 00:14:29,570
+There is there's nothing else running.
+
+179
+00:14:29,620 --> 00:14:34,900
+So let's start with the pod and the service for the voting application.
+
+180
+00:14:35,290 --> 00:14:41,290
+So we'll start with one by one and we'll test and make sure that they're working as expected, and then
+
+181
+00:14:41,290 --> 00:14:43,570
+we'll proceed further.
+
+182
+00:14:43,690 --> 00:14:50,290
+So to create the pod, we will use the create command and specify the pod definition file.
+
+183
+00:14:50,560 --> 00:14:55,840
+And similarly, let's create the service using the service definition file for voting app.
+
+184
+00:14:57,010 --> 00:15:00,130
+So let us now inspect the status of the pod and the service.
+
+185
+00:15:00,130 --> 00:15:07,080
+So if we want to see the pod and the service in a single command, we can run the cube will get pods
+
+186
+00:15:07,090 --> 00:15:12,760
+command and specify the service as CVC and separated by a comma.
+
+187
+00:15:12,760 --> 00:15:20,680
+And so it will list both the objects so we can see that the service for the boarding app is created
+
+188
+00:15:20,680 --> 00:15:26,530
+and it is of type node port and the pod is also created and it is in a running state.
+
+189
+00:15:27,270 --> 00:15:32,170
+Now, before we proceed further, let's test to see if that bit is working.
+
+190
+00:15:32,430 --> 00:15:39,900
+So what we could do is simply access the voting App service using a URL which could be formed by the
+
+191
+00:15:40,470 --> 00:15:41,980
+IP of the mini cube node.
+
+192
+00:15:42,010 --> 00:15:48,390
+So if you know the IP, you could just use the port number, which is 30,000 and zero for the port number
+
+193
+00:15:48,390 --> 00:15:51,060
+of the service and view it in a browser.
+
+194
+00:15:51,270 --> 00:15:58,050
+Or if you're not sure about the IP, you could run the command mini cube service and specify the name
+
+195
+00:15:58,050 --> 00:16:04,530
+of the service with the URL option and it'll give you the URL that you can use.
+
+196
+00:16:04,530 --> 00:16:10,980
+So we'll copy the URL and we will try to access this in our local browser on my system.
+
+197
+00:16:11,190 --> 00:16:14,610
+So here I'm at the local browser and I'm going to try and access this.
+
+198
+00:16:14,610 --> 00:16:18,390
+And as you can see, we are now able to load the voting application.
+
+199
+00:16:18,390 --> 00:16:21,990
+So that's that's one step which is complete.
+
+200
+00:16:22,110 --> 00:16:27,000
+Now let's not try and cast any vote for now as we don't have the databases ready.
+
+201
+00:16:27,420 --> 00:16:31,500
+Now let's go ahead and create the remaining objects, the ports and services.
+
+202
+00:16:31,500 --> 00:16:32,600
+So back to the terminal.
+
+203
+00:16:32,610 --> 00:16:37,670
+The next port and service that we created is the reddest port.
+
+204
+00:16:37,680 --> 00:16:43,590
+So we run the cube, create command with the reddest port definition file and then the service file.
+
+205
+00:16:45,070 --> 00:16:49,540
+And as before we run, the car will get parts and service command.
+
+206
+00:16:49,540 --> 00:16:53,380
+And as you can see, the red is part and service are created.
+
+207
+00:16:53,710 --> 00:16:57,940
+The service is now the cluster IP because this is an internal service.
+
+208
+00:16:58,120 --> 00:17:01,450
+And let's create the post gross database now.
+
+209
+00:17:03,020 --> 00:17:07,970
+We'll create the Postgres database with the post definition file.
+
+210
+00:17:10,300 --> 00:17:14,109
+And as well as the service definition file for creating the service.
+
+211
+00:17:14,770 --> 00:17:21,130
+Again, let's check the status and we can see that the Postgres pod is in a running state and similar
+
+212
+00:17:21,130 --> 00:17:22,480
+to the ready service.
+
+213
+00:17:22,690 --> 00:17:31,180
+And we can see also that the Postgres service is up as well with its name set to DB.
+
+214
+00:17:32,280 --> 00:17:32,710
+All right.
+
+215
+00:17:32,710 --> 00:17:38,860
+So now that both are readies and Postgres ports and services are up and running, we can now create
+
+216
+00:17:38,860 --> 00:17:40,400
+the worker pod.
+
+217
+00:17:40,420 --> 00:17:46,330
+And to do this, we will use the create command with the worker pod definition file.
+
+218
+00:17:50,180 --> 00:17:53,900
+So let's check the status of the pod.
+
+219
+00:17:53,900 --> 00:17:57,920
+And I can see that the worker pod is also now in a running state.
+
+220
+00:17:59,210 --> 00:18:02,960
+Now finally, let us create the pod and service for our result application.
+
+221
+00:18:02,960 --> 00:18:05,510
+So let's do the same thing as before.
+
+222
+00:18:05,750 --> 00:18:15,560
+Keep run the cube kernel, create a result app command and let us run the Create the result app service
+
+223
+00:18:15,560 --> 00:18:16,400
+as well.
+
+224
+00:18:17,550 --> 00:18:22,130
+Okay, so now let's check the status of all the parts and services.
+
+225
+00:18:22,140 --> 00:18:29,200
+And now you can see that all of our five pots are up and running, and we can see that we have two node
+
+226
+00:18:29,310 --> 00:18:34,590
+port services, one for our cell service and one for our voting service.
+
+227
+00:18:35,250 --> 00:18:40,560
+The other two services that we created are the Redis and database service, which are internal only.
+
+228
+00:18:41,160 --> 00:18:44,250
+So we've already accessed the voting application.
+
+229
+00:18:44,430 --> 00:18:48,720
+Let us also generate the URL for our results service.
+
+230
+00:18:49,170 --> 00:18:51,870
+So for that, I'm going to use the same command as before.
+
+231
+00:18:52,020 --> 00:18:59,220
+The minute Cube Service Voting Service Command will give us the URL to access our voting app and let
+
+232
+00:18:59,220 --> 00:19:05,070
+us change the name here to get the the URL of the result app.
+
+233
+00:19:05,370 --> 00:19:07,140
+So we now have both the URLs.
+
+234
+00:19:07,380 --> 00:19:14,010
+So let's go back to our web page, and here we have the voting application, which is running on Port
+
+235
+00:19:14,010 --> 00:19:15,360
+30,004.
+
+236
+00:19:16,110 --> 00:19:20,160
+Let's copy and paste the new URL.
+
+237
+00:19:24,030 --> 00:19:27,510
+So this is going to be 30,005.
+
+238
+00:19:27,900 --> 00:19:31,770
+So let's try and cast a vote here.
+
+239
+00:19:31,770 --> 00:19:35,310
+So I'm going to click on the dogs as selection.
+
+240
+00:19:35,550 --> 00:19:40,800
+And here you can see that there is a checkmark against the vote that we selected, which indicates that
+
+241
+00:19:40,800 --> 00:19:42,750
+our vote has been recorded.
+
+242
+00:19:42,960 --> 00:19:47,370
+Now, as in, it has been saved in the reddest database.
+
+243
+00:19:47,730 --> 00:19:54,180
+And you can also see that below that there's this particular web page is being processed by the voting
+
+244
+00:19:54,180 --> 00:19:55,020
+app Pod.
+
+245
+00:19:55,500 --> 00:20:03,780
+Now, if you go to the results page, you can see that the the dog's application has 100% of votes because
+
+246
+00:20:03,780 --> 00:20:06,990
+in this case, we just have one vote and that was for dogs.
+
+247
+00:20:07,290 --> 00:20:10,380
+And I can also change the vote if I want.
+
+248
+00:20:10,380 --> 00:20:17,190
+So I could go back and click on Cat and I can see that the result has changed to cats.
+
+249
+00:20:17,640 --> 00:20:18,930
+So that's our demo.
+
+250
+00:20:19,380 --> 00:20:25,560
+We have successfully deployed a multi tier application on our Kubernetes cluster and we have confirmed
+
+251
+00:20:25,560 --> 00:20:27,120
+that it's working right.
+
+252
+00:20:27,390 --> 00:20:33,300
+So the data actually goes through from one end all the way through, through the database, through
+
+253
+00:20:33,300 --> 00:20:39,210
+the worker pod to the PostgreSQL database and up to the result pod.
+
+254
+00:20:39,240 --> 00:20:41,970
+So it's working as expected.
+
+255
+00:20:42,240 --> 00:20:43,560
+Well, that's it for now.
+
+256
+00:20:43,560 --> 00:20:45,570
+And I will see you in the next one.
+

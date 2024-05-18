@@ -1,0 +1,320 @@
+1
+00:00:00,360 --> 00:00:04,620
+In this lecture, we will see the purpose of using State in TerraForm.
+
+2
+00:00:05,430 --> 00:00:10,530
+We already saw how TerraForm used the state file to map the resource configuration to the real world
+
+3
+00:00:10,530 --> 00:00:11,490
+infrastructure.
+
+4
+00:00:12,330 --> 00:00:17,790
+This mapping allows TerraForm to create execution plans when a drift is identified between the resource
+
+5
+00:00:17,790 --> 00:00:19,860
+configuration files and the state.
+
+6
+00:00:20,670 --> 00:00:25,980
+Hence, a state file can be considered to be a blueprint of all the resources that are for managers
+
+7
+00:00:25,980 --> 00:00:27,660
+out there in the real world.
+
+8
+00:00:28,750 --> 00:00:34,870
+When TerraForm creates a resource, it records its identity in the state, be it the local file resource
+
+9
+00:00:34,870 --> 00:00:40,270
+that creates a file in the machine, a logical resource such as the random pet, which just throws out
+
+10
+00:00:40,270 --> 00:00:43,420
+the random pet name or resources in the cloud.
+
+11
+00:00:43,870 --> 00:00:49,480
+Each resource created and managed by TerraForm would have a unique ID which is used to identify the
+
+12
+00:00:49,480 --> 00:00:51,070
+resources in the real world.
+
+13
+00:00:52,360 --> 00:00:57,700
+Besides the mapping between resources and the configuration and the real world, the state file also
+
+14
+00:00:57,700 --> 00:01:01,000
+tracks metadata details such as resource dependencies.
+
+15
+00:01:02,140 --> 00:01:08,350
+Earlier, we learned that from supposed two types of dependencies the implicit and the explicit.
+
+16
+00:01:08,950 --> 00:01:14,620
+If we inspect the example configuration file, we can see that we have three resources to provision
+
+17
+00:01:14,620 --> 00:01:15,210
+here.
+
+18
+00:01:15,220 --> 00:01:19,570
+The local file resource called PET depends on the random pet resource.
+
+19
+00:01:19,780 --> 00:01:25,150
+This is evident from the content argument in the local file resource block that uses a reference to
+
+20
+00:01:25,150 --> 00:01:26,560
+the random pet resource.
+
+21
+00:01:27,380 --> 00:01:33,470
+The local file resource called CAT is unrelated to the other and hence it can be created in parallel
+
+22
+00:01:33,470 --> 00:01:34,940
+with the random pet resource.
+
+23
+00:01:36,230 --> 00:01:41,870
+When we apply this configuration, the random pet resource called My Pet and the local file called Cat
+
+24
+00:01:41,870 --> 00:01:48,680
+can be created first at the same time, but the local file resource called PET can only be created after
+
+25
+00:01:48,680 --> 00:01:50,750
+the random pet resources created.
+
+26
+00:01:51,730 --> 00:01:57,160
+We can see that the local file with the name Cat and the random pet resource with the name My Pet are
+
+27
+00:01:57,160 --> 00:01:59,140
+the first resources to be created.
+
+28
+00:02:00,170 --> 00:02:05,300
+Once that is done, only then is the local file resource called Pet created.
+
+29
+00:02:05,960 --> 00:02:09,440
+Until now, we do not rely on State for the provisioning.
+
+30
+00:02:09,590 --> 00:02:16,280
+But what if we decide to delete the random pet resource and the dependent local file from the configuration?
+
+31
+00:02:17,610 --> 00:02:21,430
+Let us now look at what happens when we remove resources from the file.
+
+32
+00:02:21,450 --> 00:02:26,430
+For example, we remove the local file and the random pet resource from the file.
+
+33
+00:02:27,000 --> 00:02:32,160
+If we were to apply the configuration now, TerraForm knows that it has to delete these resources.
+
+34
+00:02:32,340 --> 00:02:35,400
+However, in which order does it delete it?
+
+35
+00:02:35,760 --> 00:02:39,660
+Should it delete the random pet resource first or the local file?
+
+36
+00:02:40,230 --> 00:02:45,540
+The information about the resource dependency is no longer available in the configuration file as we
+
+37
+00:02:45,540 --> 00:02:47,100
+have removed those lines from it.
+
+38
+00:02:48,400 --> 00:02:54,910
+This is where their form relies on the state and the fact that it tracks metadata within the state file.
+
+39
+00:02:54,910 --> 00:03:00,790
+We can clearly see that the local file resource called PET has a dependency on the random pet resource,
+
+40
+00:03:01,270 --> 00:03:06,130
+since these two resources have now been removed from the configuration, TerraForm now knows that it
+
+41
+00:03:06,130 --> 00:03:09,670
+should delete the local file first, followed by the random resource.
+
+42
+00:03:11,050 --> 00:03:14,350
+One other benefit of using state is performance.
+
+43
+00:03:14,710 --> 00:03:20,260
+When dealing with a handful number of resources, it may be feasible for TerraForm to reconcile state
+
+44
+00:03:20,260 --> 00:03:25,180
+with the real world infrastructure after every single TerraForm command such as plan or apply.
+
+45
+00:03:25,540 --> 00:03:30,370
+But in the real world, TerraForm would manage hundreds and thousands of such resources.
+
+46
+00:03:30,550 --> 00:03:35,380
+And when these resources are distributed to multiple providers, and especially those that are on the
+
+47
+00:03:35,380 --> 00:03:40,270
+cloud, it is not feasible for TerraForm to reconcile state for every TerraForm operation.
+
+48
+00:03:40,720 --> 00:03:45,970
+This is because it would take several seconds to several minutes in some cases for TerraForm to fetch
+
+49
+00:03:45,970 --> 00:03:49,930
+details about every single resource from all the providers which are configured.
+
+50
+00:03:50,950 --> 00:03:52,420
+For larger infrastructures.
+
+51
+00:03:52,420 --> 00:03:54,250
+This may prove to be too slow.
+
+52
+00:03:54,700 --> 00:04:00,340
+In such cases that are from state can be used as the record of truth without having to reconcile.
+
+53
+00:04:00,700 --> 00:04:03,370
+This would improve the performance significantly.
+
+54
+00:04:04,280 --> 00:04:10,300
+There are forms towards a cache of attribute values for all resources in the state, and we can specifically
+
+55
+00:04:10,300 --> 00:04:15,730
+make terraform to refer to the state file alone while running commands and bypass having to refresh
+
+56
+00:04:15,730 --> 00:04:16,899
+state every time.
+
+57
+00:04:17,440 --> 00:04:19,899
+To do this, we can make use of the dash.
+
+58
+00:04:19,899 --> 00:04:25,150
+Refresh is equal to false flag with all the TerraForm commands that make use of state.
+
+59
+00:04:26,430 --> 00:04:31,230
+When we run the plan with this flag, you can see that our form does not refresh state.
+
+60
+00:04:31,290 --> 00:04:33,990
+Instead, it relies on the cached attributes.
+
+61
+00:04:33,990 --> 00:04:38,010
+And in this example, the content which has changed in the configuration file.
+
+62
+00:04:38,730 --> 00:04:42,810
+And as a result, the execution plan plots a resource replacement.
+
+63
+00:04:44,160 --> 00:04:49,470
+The final benefit of state that we are going to look at is collaboration when working as a team.
+
+64
+00:04:50,240 --> 00:04:54,950
+As we have seen in the previous lectures, data from state file is stored in the same configuration
+
+65
+00:04:54,950 --> 00:04:58,220
+directory in a file called TerraForm State.
+
+66
+00:04:58,790 --> 00:05:04,310
+In a normal scenario, this means that the state file resides in the folder or a directory in the end
+
+67
+00:05:04,340 --> 00:05:05,420
+users laptop.
+
+68
+00:05:06,110 --> 00:05:11,420
+This is all right when starting off with TerraForm Learning and implementing small projects individually.
+
+69
+00:05:11,450 --> 00:05:15,020
+However, this is far from ideal when working as a team.
+
+70
+00:05:15,720 --> 00:05:21,450
+Every user in the team should always have the latest state data before running TerraForm and make sure
+
+71
+00:05:21,450 --> 00:05:24,450
+that nobody else runs their form at the same time.
+
+72
+00:05:25,210 --> 00:05:29,590
+Failure to do so can result in unpredictable errors as a consequence.
+
+73
+00:05:30,420 --> 00:05:36,570
+In such a scenario, it is highly recommended to save the State Farm State file in a remote data store
+
+74
+00:05:36,570 --> 00:05:38,970
+rather than to rely on a local copy.
+
+75
+00:05:39,360 --> 00:05:43,590
+This allows the state to be shared between all members of the team securely.
+
+76
+00:05:44,040 --> 00:05:50,640
+Examples of remote state stores are Amazon Web Services, three Service Hashicorp Console and TerraForm
+
+77
+00:05:50,640 --> 00:05:51,210
+Cloud.
+
+78
+00:05:51,420 --> 00:05:55,740
+We will learn more about remote state stores in much more detail in a later section.
+
+79
+00:05:55,920 --> 00:05:59,460
+We will also learn about TerraForm Cloud in a separate section of its own.
+
+80
+00:06:00,790 --> 00:06:05,350
+Now let's head over to the hands on labs and explore working with TerraForm State.
+

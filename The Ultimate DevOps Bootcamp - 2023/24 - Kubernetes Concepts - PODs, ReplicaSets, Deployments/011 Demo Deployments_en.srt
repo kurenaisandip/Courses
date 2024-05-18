@@ -1,0 +1,204 @@
+1
+00:00:00,580 --> 00:00:03,700
+In this demo, we're going to create a deployment.
+
+2
+00:00:04,059 --> 00:00:11,980
+So let us create a new folder called Deployments within our project directory and within the deployment
+
+3
+00:00:11,980 --> 00:00:17,860
+directory, I'm going to create a new file called called Deployment YAML.
+
+4
+00:00:20,110 --> 00:00:26,200
+And we're going to make use of the definition file that we created earlier for the replica sets because
+
+5
+00:00:26,200 --> 00:00:28,510
+it's quite similar to that of the deployment.
+
+6
+00:00:28,510 --> 00:00:34,090
+And to make this easier, we're just going to open the replica set definition file on the right.
+
+7
+00:00:34,660 --> 00:00:38,020
+So I'm going to use the split editor function here.
+
+8
+00:00:38,500 --> 00:00:43,990
+So on the left we have the deployment YAML file that we're going to create now, and on the right we
+
+9
+00:00:43,990 --> 00:00:47,260
+have the replica set YAML file that we created earlier.
+
+10
+00:00:49,010 --> 00:00:52,130
+So as before, we will start off with the API version.
+
+11
+00:00:52,130 --> 00:00:57,740
+And it is and it is also going to be API v one the same as replica set.
+
+12
+00:00:58,880 --> 00:01:01,460
+And I'm going to use the kind as deployment.
+
+13
+00:01:02,000 --> 00:01:04,430
+So let me select that from here.
+
+14
+00:01:04,879 --> 00:01:12,920
+And then the metadata, I'm going to enter it here as well, and that will have the name and labels.
+
+15
+00:01:12,920 --> 00:01:20,630
+And we're going to use the name as my app dash deployment.
+
+16
+00:01:21,750 --> 00:01:26,040
+And I will add a couple of labels as well.
+
+17
+00:01:28,870 --> 00:01:38,320
+The labels will be a front end to your front end and maybe another one called Engine X.
+
+18
+00:01:40,150 --> 00:01:46,540
+Now the spec section is very similar to that of the replica sets, so I'm just going to copy this entire
+
+19
+00:01:46,540 --> 00:01:52,150
+section here for the specs for the specs section and I'm just going to paste it here.
+
+20
+00:01:52,600 --> 00:01:55,930
+So that should be good enough for us to start the deployment.
+
+21
+00:01:55,930 --> 00:02:01,450
+And I'm going to change just I'm just going to reduce the number of replicas to three.
+
+22
+00:02:02,410 --> 00:02:07,750
+So let's go back to our terminal and if we check the root of our product directory, we see the new
+
+23
+00:02:07,750 --> 00:02:10,389
+directory that we created called deployments.
+
+24
+00:02:10,389 --> 00:02:18,850
+And I'm going to create this deployment using the create command along with the dash F deployment YAML
+
+25
+00:02:18,850 --> 00:02:19,510
+file.
+
+26
+00:02:19,780 --> 00:02:23,230
+And as you can see, the deployment has been created.
+
+27
+00:02:25,590 --> 00:02:26,610
+So let's run the cube.
+
+28
+00:02:27,150 --> 00:02:28,680
+Get deployments, Command.
+
+29
+00:02:31,380 --> 00:02:37,680
+And I can see that we have one deployment which is created and it has three out of three ready pods
+
+30
+00:02:37,680 --> 00:02:40,040
+and available are three as well.
+
+31
+00:02:40,050 --> 00:02:43,470
+So if you want to check the pod, we can run.
+
+32
+00:02:43,470 --> 00:02:48,870
+The cube cutter will get Pods command and I can see that we have three pods which are in the running
+
+33
+00:02:48,870 --> 00:02:51,990
+state which were created a few moments ago.
+
+34
+00:02:54,730 --> 00:02:57,020
+Now let us run a cuddle.
+
+35
+00:02:57,190 --> 00:03:03,340
+Describe deployment command and the name of the deployment is my app Dash deployment.
+
+36
+00:03:04,300 --> 00:03:07,960
+And here we can see a lot of similar information.
+
+37
+00:03:08,440 --> 00:03:18,220
+So the name of the pod, the label of the deployment itself and the the front end label that we set.
+
+38
+00:03:19,300 --> 00:03:25,480
+And we see the selector that we use the same as that of the replica set, which is equal to my app.
+
+39
+00:03:25,810 --> 00:03:31,060
+And it has three desired and three available pods and which are in a running state.
+
+40
+00:03:31,270 --> 00:03:33,940
+And here's the pod section.
+
+41
+00:03:34,660 --> 00:03:36,370
+The label of the pod is my app.
+
+42
+00:03:36,370 --> 00:03:41,440
+And here's the container details with the image set to engine X.
+
+43
+00:03:42,070 --> 00:03:48,700
+If you scroll to the bottom, you'll see that it also has an event section and it just shows the deployment
+
+44
+00:03:48,700 --> 00:03:57,250
+controller and message, which is that the replica set for this deployment has been scaled to three.
+
+45
+00:03:58,210 --> 00:04:05,410
+And now before we move on, let's run the get all command, which shows all the objects which is created
+
+46
+00:04:05,410 --> 00:04:06,100
+in the cluster.
+
+47
+00:04:06,100 --> 00:04:11,170
+So you can see that we have one deployment, which is the deployment that we created, and there is
+
+48
+00:04:11,170 --> 00:04:18,230
+a replica set which is created for that specific deployment called my app Dash replica set.
+
+49
+00:04:18,250 --> 00:04:23,020
+And then we have the three pods which have been created using that replica set.
+
+50
+00:04:23,920 --> 00:04:25,750
+Well, that's it for now.
+
+51
+00:04:25,930 --> 00:04:29,020
+Head over to the labs and try this out for yourselves.
+

@@ -1,0 +1,560 @@
+1
+00:00:04,620 --> 00:00:09,210
+Hello and welcome to this lecture and we are learning advanced Docker concepts.
+
+2
+00:00:09,510 --> 00:00:14,370
+In this lecture we're going to talk about Docker storage drivers and file systems.
+
+3
+00:00:14,820 --> 00:00:21,720
+We're going to see where and how Docker stores data and how it manages file systems of the containers.
+
+4
+00:00:22,860 --> 00:00:27,510
+Let us start with how Dockers stores data on the local file system.
+
+5
+00:00:28,230 --> 00:00:36,420
+When you install Docker on a system, it creates this folder structure at where lib Docker you have
+
+6
+00:00:36,420 --> 00:00:42,180
+multiple folders under it called FS containers, image volumes, etc..
+
+7
+00:00:42,510 --> 00:00:46,340
+This is where Docker stores all its data by default.
+
+8
+00:00:46,350 --> 00:00:52,650
+When I say data, I mean files related to images and containers running on the Docker host.
+
+9
+00:00:52,950 --> 00:00:59,400
+For example, all files related to containers are stored under the containers folder, and the files
+
+10
+00:00:59,400 --> 00:01:02,790
+related to images are stored under the image folder.
+
+11
+00:01:03,180 --> 00:01:07,650
+Any volumes created by the Docker containers are created under the volumes folder.
+
+12
+00:01:08,130 --> 00:01:09,930
+Well, don't worry about that for now.
+
+13
+00:01:09,930 --> 00:01:12,180
+We will come back to that in a bit.
+
+14
+00:01:12,420 --> 00:01:18,720
+For now, let's just understand where Docker stores its files and in what format.
+
+15
+00:01:19,810 --> 00:01:24,430
+So how exactly does Dockers store the files of an image and a container?
+
+16
+00:01:24,700 --> 00:01:29,470
+To understand that, we need to understand Dockers layered architecture.
+
+17
+00:01:29,950 --> 00:01:36,940
+Let's quickly recap something we learned When Docker builds images, it builds these in a layered architecture.
+
+18
+00:01:37,390 --> 00:01:44,560
+Each line of instruction in the Docker file creates a new layer in the Docker image with just the changes
+
+19
+00:01:44,560 --> 00:01:45,970
+from the previous layer.
+
+20
+00:01:46,030 --> 00:01:52,810
+For example, the first layer is a base Ubuntu operating system, followed by the second instruction
+
+21
+00:01:52,810 --> 00:01:57,580
+that creates a second layer which installs all the empty packages.
+
+22
+00:01:57,580 --> 00:02:04,120
+And then the third instruction creates a third layer, which with the python packages followed by the
+
+23
+00:02:04,120 --> 00:02:06,940
+fourth layer that copies the source code over.
+
+24
+00:02:06,940 --> 00:02:12,160
+And then finally the fifth layer that updates the entry point of the image.
+
+25
+00:02:13,880 --> 00:02:21,320
+Since each layer only stores the changes from the previous layer, it is reflected in the size as well.
+
+26
+00:02:21,530 --> 00:02:27,260
+If you look at the base window image, it is around 120 megabytes in size.
+
+27
+00:02:27,290 --> 00:02:33,830
+The apt packages that I installed is around 300 MB B and then the remaining layers are small.
+
+28
+00:02:34,790 --> 00:02:38,960
+To understand the advantages of this layered architecture.
+
+29
+00:02:38,960 --> 00:02:41,600
+Let's consider a second application.
+
+30
+00:02:42,260 --> 00:02:48,950
+This application has a different docker file, but it's very similar to our first application as in
+
+31
+00:02:48,950 --> 00:02:57,080
+it uses the same base image as Ubuntu uses the same python and flask dependencies, but uses a different
+
+32
+00:02:57,080 --> 00:03:03,170
+source code to create a different application and so a different entry point as well.
+
+33
+00:03:03,380 --> 00:03:08,300
+When I run the Docker build command to build a new image for this application.
+
+34
+00:03:08,300 --> 00:03:13,070
+Since the first three layers of both the applications are the same.
+
+35
+00:03:13,070 --> 00:03:17,000
+Docker is not going to build the first three layers.
+
+36
+00:03:17,120 --> 00:03:25,130
+Instead it reuses the same three layers it built for the first application from the cache and only creates
+
+37
+00:03:25,130 --> 00:03:29,930
+the last two layers with the new sources and the new entry point.
+
+38
+00:03:30,550 --> 00:03:36,460
+This way, Docker builds images faster and efficiently, saves disk space.
+
+39
+00:03:36,820 --> 00:03:41,050
+This is also applicable if you were to update your application code.
+
+40
+00:03:41,530 --> 00:03:46,090
+Whenever you update your application code such as the API.
+
+41
+00:03:46,090 --> 00:03:53,650
+In this case, Docker simply reuses all the previous layers from cache and quickly rebuilds the application
+
+42
+00:03:53,650 --> 00:04:01,930
+image by updating the latest source code, thus saving us a lot of time during rebuilds and updates.
+
+43
+00:04:03,880 --> 00:04:08,260
+Let's re-arrange the layers bottom up so we can understand it better.
+
+44
+00:04:08,590 --> 00:04:15,820
+At the bottom we have the base Ubuntu layer, then the packages, then the dependencies, and then the
+
+45
+00:04:15,820 --> 00:04:19,240
+source code of the application and then the entry point.
+
+46
+00:04:20,540 --> 00:04:27,620
+All of these layers are created when we run the Docker build command to form the final Docker image.
+
+47
+00:04:28,010 --> 00:04:31,580
+So all of these are the Docker image layers.
+
+48
+00:04:31,910 --> 00:04:37,910
+Once the build is complete, you cannot modify the contents of these layers and so they are read only
+
+49
+00:04:37,910 --> 00:04:41,840
+and you can only modify them by initiating a new build.
+
+50
+00:04:42,490 --> 00:04:49,570
+When you run a container based off of this image using the Docker run command, Docker creates a container
+
+51
+00:04:49,570 --> 00:04:55,420
+based off of these layers and creates a new writable layer on top of the image layer.
+
+52
+00:04:55,810 --> 00:05:03,340
+The writable layer is used to store data created by the container such as log files written by the applications,
+
+53
+00:05:03,340 --> 00:05:10,420
+any temporary files generated by the container or just any file modified by the user on that container.
+
+54
+00:05:11,110 --> 00:05:15,980
+The life of this layer, though, is only as long as the container is alive.
+
+55
+00:05:16,000 --> 00:05:22,330
+When the container is destroyed, this layer and all of the changes stored in it are also destroyed.
+
+56
+00:05:22,900 --> 00:05:29,350
+Remember that the same image layer is shared by all containers created using this image.
+
+57
+00:05:30,840 --> 00:05:38,790
+If I were to log in to the newly created container and say, create a new file called temp txt, it
+
+58
+00:05:38,790 --> 00:05:43,020
+will create that file in the container layer which is read and write.
+
+59
+00:05:43,500 --> 00:05:50,280
+We just said that the files in the image layer are read only, meaning you cannot edit anything in those
+
+60
+00:05:50,280 --> 00:05:50,970
+layers.
+
+61
+00:05:51,480 --> 00:05:54,150
+Let's take an example of our application code.
+
+62
+00:05:54,300 --> 00:05:57,060
+Since we bake our code into the image.
+
+63
+00:05:57,060 --> 00:06:03,310
+The code is part of the image layer and as such is read only after running a container.
+
+64
+00:06:03,330 --> 00:06:07,950
+What if I wish to modify the source code to say test a change?
+
+65
+00:06:08,580 --> 00:06:14,850
+Remember the same image layer may be shared between multiple containers created from this image.
+
+66
+00:06:15,180 --> 00:06:19,800
+So does it mean that I cannot modify this file inside the container?
+
+67
+00:06:20,050 --> 00:06:27,810
+No, I can still modify this file, but before I save the modified file, docker automatically creates
+
+68
+00:06:27,810 --> 00:06:33,420
+a copy of the file in the read write layer, and I will then be modifying a different version of the
+
+69
+00:06:33,420 --> 00:06:35,670
+file in the read write layer.
+
+70
+00:06:36,150 --> 00:06:41,880
+All future modifications will be done on this copy of the file in the read write layer.
+
+71
+00:06:41,910 --> 00:06:44,640
+This is called copy on write mechanism.
+
+72
+00:06:44,970 --> 00:06:51,420
+The image layer being read only just means that the files in these layers will not be modified in the
+
+73
+00:06:51,420 --> 00:06:52,560
+image itself.
+
+74
+00:06:52,560 --> 00:07:00,090
+So the image will remain the same all the time until you rebuild the image using the Docker build command.
+
+75
+00:07:01,380 --> 00:07:03,930
+What happens when we get rid of the container?
+
+76
+00:07:04,320 --> 00:07:09,300
+All of the data that was stored in the container layer also gets deleted.
+
+77
+00:07:09,840 --> 00:07:16,320
+The change we made to the API and the new temp file we created will also get removed.
+
+78
+00:07:17,360 --> 00:07:19,930
+So what if we wish to persist this data?
+
+79
+00:07:19,940 --> 00:07:25,940
+For example, if we were working with a database and we would like to preserve the data created by the
+
+80
+00:07:25,940 --> 00:07:30,290
+container, we could add a persistent volume to the container.
+
+81
+00:07:30,950 --> 00:07:31,730
+To do this.
+
+82
+00:07:31,730 --> 00:07:35,990
+First, create a volume using the Docker volume, create command.
+
+83
+00:07:36,350 --> 00:07:43,430
+So when I run the Docker volume, create data, underscore volume command, it creates a folder called
+
+84
+00:07:43,430 --> 00:07:49,640
+data underscore volume under the VAR lib Docker volumes directory.
+
+85
+00:07:50,570 --> 00:07:56,720
+Then when I run the Docker container using the Docker run command, I could mount this volume inside
+
+86
+00:07:56,720 --> 00:08:01,700
+the Docker containers read write layer using the Dash V option like this.
+
+87
+00:08:02,030 --> 00:08:09,500
+So I would do a Docker run Dash V, then specify my newly created volume name followed by a colon and
+
+88
+00:08:09,500 --> 00:08:15,530
+the location inside my container, which is the default location where my SQL stores data.
+
+89
+00:08:15,530 --> 00:08:21,260
+And that is where lib my SQL and then the image name my SQL.
+
+90
+00:08:22,260 --> 00:08:29,760
+This will create a new container and mount the data volume we created into our lib MySQL folder inside
+
+91
+00:08:29,760 --> 00:08:30,660
+the container.
+
+92
+00:08:30,660 --> 00:08:37,679
+So all data written by the database is in fact stored on the volume created on the Docker host.
+
+93
+00:08:38,340 --> 00:08:42,990
+Even if the container is destroyed, the data is still active.
+
+94
+00:08:43,289 --> 00:08:45,690
+Now, what if you didn't run the Docker volume?
+
+95
+00:08:45,690 --> 00:08:49,620
+Create command to create the volume before the Docker run command?
+
+96
+00:08:49,800 --> 00:08:57,510
+For example, if I run the Docker run command to create a new instance of MySQL container with the volume
+
+97
+00:08:57,510 --> 00:09:04,740
+data, underscore volume two, which I have not created yet, Docker will automatically create a volume
+
+98
+00:09:04,740 --> 00:09:09,510
+named data, underscore volume two and mounted to the container.
+
+99
+00:09:09,900 --> 00:09:16,890
+You should be able to see all these volumes if you list the contents of the WAAS lib Docker volumes
+
+100
+00:09:16,890 --> 00:09:17,580
+folder.
+
+101
+00:09:18,710 --> 00:09:26,390
+This is called volume mounting as we are mounting a volume created by Docker under the var lib Docker
+
+102
+00:09:26,390 --> 00:09:27,560
+volumes folder.
+
+103
+00:09:27,950 --> 00:09:32,000
+But what if we had our data already at another location?
+
+104
+00:09:32,000 --> 00:09:39,380
+For example, let's say we have some external storage on the Docker host at forward slash data and we
+
+105
+00:09:39,380 --> 00:09:46,610
+would like to store database data on that volume and not in the default where Docker volumes folder.
+
+106
+00:09:47,090 --> 00:09:53,750
+In that case we would run a container using the command Docker run Dash V, but in this case we will
+
+107
+00:09:53,750 --> 00:10:00,260
+provide the complete path to the folder we would like to mount that is forward slash data, forward
+
+108
+00:10:00,260 --> 00:10:01,640
+slash MySQL.
+
+109
+00:10:01,640 --> 00:10:06,710
+And so it will create a container and mount the folder to the container.
+
+110
+00:10:07,410 --> 00:10:09,500
+This is called bind mounting.
+
+111
+00:10:09,510 --> 00:10:13,360
+So there are two types of mounts, a volume mounting and a bind.
+
+112
+00:10:13,380 --> 00:10:21,090
+Mount volume mount mounts a volume from the volumes directory and bind Mount mounts a directory from
+
+113
+00:10:21,090 --> 00:10:23,400
+any location on the Docker host.
+
+114
+00:10:24,760 --> 00:10:27,820
+One final point to note before I let you go.
+
+115
+00:10:28,120 --> 00:10:31,030
+Using the Dash V is an old style.
+
+116
+00:10:31,120 --> 00:10:34,600
+The new way is to use dash mount option.
+
+117
+00:10:34,780 --> 00:10:41,920
+The dash dash mount is the preferred way as it is more verbose, so you have to specify each parameter
+
+118
+00:10:41,920 --> 00:10:44,380
+in a key equals value format.
+
+119
+00:10:44,590 --> 00:10:51,130
+For example, the previous command can be written with the dash mount option as this using the type
+
+120
+00:10:51,130 --> 00:10:53,230
+source and target options.
+
+121
+00:10:53,500 --> 00:10:55,800
+The type in this case is bind.
+
+122
+00:10:55,810 --> 00:11:02,170
+The source is the location on my host and target is the location on my container.
+
+123
+00:11:04,970 --> 00:11:08,630
+So who is responsible for doing all of these operations?
+
+124
+00:11:08,900 --> 00:11:15,440
+Maintaining the layered architecture, creating a writable layer, moving files across layers to enable
+
+125
+00:11:15,470 --> 00:11:17,140
+copy and write, etc..
+
+126
+00:11:17,150 --> 00:11:18,800
+It's the storage drivers.
+
+127
+00:11:18,800 --> 00:11:23,350
+So Docker uses storage drivers to enable layered architecture.
+
+128
+00:11:23,360 --> 00:11:33,170
+Some of the common storage drivers are a UFS beta of FFS ZFS device mapper overlay and overlay to.
+
+129
+00:11:33,930 --> 00:11:40,170
+The selection of the storage driver depends on the underlying OS being used, for example, with Ubuntu.
+
+130
+00:11:40,200 --> 00:11:46,380
+The default storage driver is a UFS, whereas this storage driver is not available on other operating
+
+131
+00:11:46,380 --> 00:11:48,870
+systems like Fedora or CentOS.
+
+132
+00:11:49,080 --> 00:11:53,040
+In that case, device mapper may be a better option.
+
+133
+00:11:53,680 --> 00:11:59,830
+Docker will choose the best storage driver available automatically based on the operating system.
+
+134
+00:12:00,220 --> 00:12:06,430
+The different storage drivers also provide different performance and stability characteristics.
+
+135
+00:12:06,640 --> 00:12:12,370
+So you may want to choose one that fits the needs of your application and your organization.
+
+136
+00:12:12,490 --> 00:12:18,520
+If you would like to read more on any of these storage drivers, please refer to the links in the attached
+
+137
+00:12:18,520 --> 00:12:19,600
+documentation.
+
+138
+00:12:20,260 --> 00:12:20,890
+For now.
+
+139
+00:12:20,890 --> 00:12:24,580
+That is all from the darker architecture concepts.
+
+140
+00:12:24,820 --> 00:12:26,680
+See you in the next lecture.
+

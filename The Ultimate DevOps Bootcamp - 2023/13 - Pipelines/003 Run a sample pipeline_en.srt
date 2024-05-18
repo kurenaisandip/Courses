@@ -1,0 +1,500 @@
+1
+00:00:02,940 --> 00:00:08,070
+Before we build out our pipeline, like our actual one that's going to go ahead and push out our go
+
+2
+00:00:08,070 --> 00:00:09,600
+app and build it and all that good stuff.
+
+3
+00:00:09,600 --> 00:00:13,380
+I do want to just show you how to set up a sample pipeline.
+
+4
+00:00:13,380 --> 00:00:19,290
+I think that this definitely helps if you understand the process and just do a sample versus going full
+
+5
+00:00:19,290 --> 00:00:23,730
+fledged 100% into a brand new pipeline that you're not really aware of.
+
+6
+00:00:23,730 --> 00:00:29,580
+So what I want to do is let's just go ahead and just set up what a pipeline typically looks like.
+
+7
+00:00:29,820 --> 00:00:34,770
+So I'm in the dashboard here for Jenkins, and what I'm going to do is I'm going to click on new item
+
+8
+00:00:35,280 --> 00:00:36,450
+and I'm going to give this a name.
+
+9
+00:00:36,450 --> 00:00:38,240
+I'm just going to call it test for.
+
+10
+00:00:38,250 --> 00:00:42,570
+Then at this point, I have a few different options here and let's kind of look at these and see what
+
+11
+00:00:42,570 --> 00:00:43,590
+these actually mean.
+
+12
+00:00:43,590 --> 00:00:50,670
+So first is a freestyle project and this is a central feature of Jenkins, so it will build the project,
+
+13
+00:00:50,670 --> 00:00:56,340
+it'll combine any scheme, any build system, and it could even be used for something other than building
+
+14
+00:00:56,340 --> 00:00:57,060
+software.
+
+15
+00:00:57,180 --> 00:00:59,490
+He doesn't have to be an application.
+
+16
+00:01:00,550 --> 00:01:05,260
+Now pipeline, which is probably what we'll be living in, more or less.
+
+17
+00:01:05,290 --> 00:01:07,000
+This is actually to create a pipeline.
+
+18
+00:01:08,200 --> 00:01:09,490
+And we're going to see that in just a second.
+
+19
+00:01:09,490 --> 00:01:10,630
+That's the one we're going to use.
+
+20
+00:01:10,660 --> 00:01:18,550
+Then we have a multi configuration project, which is great if you need a large number of Jenkins configurations,
+
+21
+00:01:18,550 --> 00:01:23,770
+if you're setting up on multiple environments, for example, this might even be good for multi stage
+
+22
+00:01:23,770 --> 00:01:24,490
+pipelines.
+
+23
+00:01:24,490 --> 00:01:31,780
+So let's say you got a dev on stage and maybe your dev stage, you're deploying it to some really cheap
+
+24
+00:01:31,780 --> 00:01:36,520
+environment and then your UAT stage, you're deploying it to more of what it's going to look like in
+
+25
+00:01:36,520 --> 00:01:37,300
+production.
+
+26
+00:01:38,800 --> 00:01:44,170
+Next you have a folder option and this creates a container and then stores nested items inside of it.
+
+27
+00:01:44,650 --> 00:01:51,400
+And it's great if you want to group different projects together, filter those, all of that good stuff.
+
+28
+00:01:51,760 --> 00:01:57,510
+Next you have Multi branch Pipeline, which we're going to see a little bit in this section as well.
+
+29
+00:01:57,550 --> 00:02:03,850
+And what that does is it sets up a pipeline project for different repository, so like different GitHub
+
+30
+00:02:03,850 --> 00:02:05,590
+repositories and stuff like that.
+
+31
+00:02:06,010 --> 00:02:11,110
+And then you have an organization folder and that just creates a multi branch project for all of your
+
+32
+00:02:11,110 --> 00:02:12,970
+different sub folders that are available.
+
+33
+00:02:13,420 --> 00:02:16,360
+So let's go ahead and choose Pipeline.
+
+34
+00:02:16,360 --> 00:02:17,860
+We'll click okay here.
+
+35
+00:02:19,520 --> 00:02:22,700
+Okay, so now we have a bunch of different options.
+
+36
+00:02:22,700 --> 00:02:24,530
+Let's just go ahead and go over these options.
+
+37
+00:02:24,890 --> 00:02:28,670
+So all these times here, you could just see if I click on them, it just goes down.
+
+38
+00:02:28,670 --> 00:02:32,090
+So what I'm going to do is I'm just going to start at the top and we'll work our way down here.
+
+39
+00:02:32,480 --> 00:02:37,310
+So first things first, we have a description and we can give this description here, for example.
+
+40
+00:02:39,660 --> 00:02:46,290
+Deploy our sample pipeline to test out Jenkins.
+
+41
+00:02:46,290 --> 00:02:50,970
+And this could be really anything you want, but obviously you want the description to make sense to
+
+42
+00:02:50,970 --> 00:02:51,720
+what you're doing.
+
+43
+00:02:53,080 --> 00:02:55,350
+So now we have a few different options here.
+
+44
+00:02:55,360 --> 00:02:57,850
+First, discard old builds.
+
+45
+00:02:58,030 --> 00:03:02,290
+What that really means is it's not going to hold on to the build for like a year, for example.
+
+46
+00:03:02,290 --> 00:03:06,340
+There's really no reason for that unless you absolutely need it.
+
+47
+00:03:06,340 --> 00:03:09,280
+I typically say to hold on to builds for like.
+
+48
+00:03:10,280 --> 00:03:11,600
+You know, a few weeks.
+
+49
+00:03:11,600 --> 00:03:13,220
+I think that makes the most sense.
+
+50
+00:03:13,220 --> 00:03:17,420
+But really, other than that, you're never going to actually come and look at them unless you're troubleshooting
+
+51
+00:03:17,420 --> 00:03:17,690
+something.
+
+52
+00:03:17,690 --> 00:03:20,330
+But if you're troubleshooting something, you're looking at the bills anyways.
+
+53
+00:03:21,270 --> 00:03:28,450
+And then we have another option to not allow concurrent builds, which means builds wouldn't be able
+
+54
+00:03:28,450 --> 00:03:29,990
+to run at the same time.
+
+55
+00:03:30,010 --> 00:03:36,520
+Now, this option doesn't make sense really, because depending on how large your environment is, you're
+
+56
+00:03:36,520 --> 00:03:38,620
+probably going to have multiple teams using Jenkins.
+
+57
+00:03:38,630 --> 00:03:43,570
+And because of that, you're definitely going to want to be able to build multiple times or at the same
+
+58
+00:03:43,570 --> 00:03:44,380
+time, rather.
+
+59
+00:03:45,610 --> 00:03:51,570
+The next option here is do not allow the pipeline to resume if the controller restarts.
+
+60
+00:03:51,580 --> 00:03:59,020
+So if the controller like the Jenkins server restarts, this is saying don't resume the pipeline that
+
+61
+00:03:59,020 --> 00:04:00,970
+was running while the restart occurred.
+
+62
+00:04:01,780 --> 00:04:08,530
+Next you have GitHub project here, which if you click on that, it allows you to put in the project
+
+63
+00:04:08,530 --> 00:04:15,010
+URL, pipeline speed, durability override preserve stashes from completed builds.
+
+64
+00:04:15,010 --> 00:04:20,410
+This project is parameterized, so it allows you to prompt users for one or more inputs.
+
+65
+00:04:20,950 --> 00:04:25,630
+Think of it like if you have to pass in a variable or something like that, this is a great way to do
+
+66
+00:04:25,630 --> 00:04:26,140
+that.
+
+67
+00:04:27,060 --> 00:04:29,170
+And then throttle builds.
+
+68
+00:04:29,190 --> 00:04:34,860
+And what this does is this for enforces a minimum time between builds based on the desired rate.
+
+69
+00:04:34,890 --> 00:04:35,820
+So this is really good.
+
+70
+00:04:35,820 --> 00:04:40,590
+If you have some slow systems, for example, or you're maybe working on scaling out at the moment,
+
+71
+00:04:40,590 --> 00:04:43,740
+but you don't exactly like have that set up just yet.
+
+72
+00:04:43,860 --> 00:04:45,450
+This would be good for that.
+
+73
+00:04:45,570 --> 00:04:47,820
+It just kind of just slows down the workload.
+
+74
+00:04:47,820 --> 00:04:53,610
+But the good thing is this is not the same as do not allow concurrent builds the throttle build.
+
+75
+00:04:53,610 --> 00:04:58,440
+It'll allow concurrent build so you can run as many as you want, but it'll just kind of slow it down
+
+76
+00:04:58,440 --> 00:04:59,180
+a little bit.
+
+77
+00:04:59,190 --> 00:05:04,080
+And again, this is good if you don't have the proper resource or the proper build agents to be able
+
+78
+00:05:04,080 --> 00:05:06,930
+to run all of your builds whenever you feel like it.
+
+79
+00:05:08,880 --> 00:05:14,490
+He next scrolling down, we have a few build triggers, so build after the other projects are built.
+
+80
+00:05:14,500 --> 00:05:16,240
+This is kind of like throttling.
+
+81
+00:05:16,270 --> 00:05:20,110
+Throttling builds almost build periodically.
+
+82
+00:05:20,730 --> 00:05:22,830
+Which is like a cron job almost.
+
+83
+00:05:23,220 --> 00:05:26,850
+So, like, you know, run my build every day at 2 a.m., for example.
+
+84
+00:05:28,340 --> 00:05:31,910
+GitHub hook trigger for get SQM polling.
+
+85
+00:05:32,630 --> 00:05:34,530
+Which is just a GitHub push hook.
+
+86
+00:05:35,990 --> 00:05:41,150
+Pull scheme, disable this project so if you don't want it to run at all.
+
+87
+00:05:41,360 --> 00:05:42,800
+Quiet period.
+
+88
+00:05:42,830 --> 00:05:48,680
+So what this means is the builds will be triggered, but it will be added to a queue and then trigger
+
+89
+00:05:48,680 --> 00:05:50,360
+builds remotely.
+
+90
+00:05:51,940 --> 00:05:56,320
+If you want to be able to trigger this from a predefined URL from another location.
+
+91
+00:05:57,760 --> 00:06:03,930
+He then we have some advanced project options, which it's actually nothing in here by default, really,
+
+92
+00:06:03,940 --> 00:06:05,230
+it's just the display name.
+
+93
+00:06:05,500 --> 00:06:09,190
+And then you have the actual pipeline.
+
+94
+00:06:09,190 --> 00:06:12,990
+So for example, we can click on Hello World and it'll go out.
+
+95
+00:06:13,030 --> 00:06:21,610
+Hello World, There is a GitHub plus Maven example here and then there is a scripted pipeline example.
+
+96
+00:06:21,610 --> 00:06:24,580
+This is actually pretty interesting, this build stage here.
+
+97
+00:06:24,580 --> 00:06:26,950
+It's actually just running a whole bunch of batch code.
+
+98
+00:06:29,110 --> 00:06:30,670
+So we'll just go ahead and we'll choose.
+
+99
+00:06:30,670 --> 00:06:31,350
+Hello world.
+
+100
+00:06:31,360 --> 00:06:37,660
+Let's keep it real basic for our first one and then use groovy sandbox.
+
+101
+00:06:38,020 --> 00:06:45,100
+And if you're not familiar with Groovy, essentially what it is is kind of like a scripting language,
+
+102
+00:06:45,100 --> 00:06:46,810
+like a programming language almost.
+
+103
+00:06:47,050 --> 00:06:50,470
+I think it actually defines itself as a programming language.
+
+104
+00:06:50,470 --> 00:06:56,260
+So if we just go back here, we can see Groovy is a very powerful language which offers the ability
+
+105
+00:06:56,260 --> 00:06:58,980
+to do practically anything Java can do.
+
+106
+00:06:58,990 --> 00:07:03,580
+So kind of think about it like an extension of Java almost.
+
+107
+00:07:03,580 --> 00:07:10,210
+But if you want to dive into Groovy a little bit more, definitely recommend this page right here.
+
+108
+00:07:12,640 --> 00:07:16,480
+But really think about it like a Java extender almost for Jenkins.
+
+109
+00:07:17,080 --> 00:07:19,210
+So now I'm going to click Save.
+
+110
+00:07:20,220 --> 00:07:25,560
+And then we are at the point where we can build our code if we want to.
+
+111
+00:07:25,740 --> 00:07:29,010
+So what I can do is I can click build now.
+
+112
+00:07:30,190 --> 00:07:32,320
+And then it says build scheduled.
+
+113
+00:07:34,390 --> 00:07:42,100
+So as we can see here, the build ran successfully and ran for about a second here and we can see that
+
+114
+00:07:42,100 --> 00:07:44,980
+the build was hello, That was the stage view.
+
+115
+00:07:45,010 --> 00:07:48,430
+Now let's say we want to change something up a little bit here.
+
+116
+00:07:48,670 --> 00:07:55,810
+If I go to configure, I'm now back at that location where I had all these options and if I scroll down
+
+117
+00:07:55,810 --> 00:07:59,410
+here, I can go to stage and maybe we want to name this Dev.
+
+118
+00:07:59,920 --> 00:08:01,490
+Let's go ahead and let's save that.
+
+119
+00:08:01,510 --> 00:08:02,920
+Let's do build now.
+
+120
+00:08:03,790 --> 00:08:07,330
+And then as you can see, the build now ran again.
+
+121
+00:08:07,330 --> 00:08:08,620
+But the stage is different.
+
+122
+00:08:08,620 --> 00:08:09,600
+It's called dev.
+
+123
+00:08:09,610 --> 00:08:13,300
+And then we can see here, Ock, our stage name has changed.
+
+124
+00:08:14,210 --> 00:08:16,330
+Well, that's it for this lecture.
+
+125
+00:08:16,340 --> 00:08:17,750
+We'll see you in the next.
+

@@ -1,0 +1,200 @@
+1
+00:00:01,080 --> 00:00:04,920
+So far, we've simply added and committed all our changes.
+
+2
+00:00:05,160 --> 00:00:10,260
+However, we've actually committed those changes to something called a branch.
+
+3
+00:00:10,830 --> 00:00:15,060
+As mentioned before, this branch is called master by default.
+
+4
+00:00:15,920 --> 00:00:21,410
+Now, let's say that a new developer joins the project and wants to add a new story.
+
+5
+00:00:21,710 --> 00:00:28,100
+We don't want developers to directly make changes to our production code, but instead give them a separate
+
+6
+00:00:28,100 --> 00:00:32,390
+version where they can change code and commit to until their work is done.
+
+7
+00:00:33,050 --> 00:00:41,090
+In the meantime, we can keep on working on our own branch only after their entire work is done and
+
+8
+00:00:41,090 --> 00:00:41,870
+tested.
+
+9
+00:00:41,900 --> 00:00:44,960
+We want to get the new code into the production code.
+
+10
+00:00:45,530 --> 00:00:51,530
+What we're actually saying here is that we don't want to always work on the master branch but keep our
+
+11
+00:00:51,530 --> 00:00:54,080
+project versioned using branches.
+
+12
+00:00:54,470 --> 00:00:58,490
+A branch is basically a pointer to the last commit.
+
+13
+00:00:59,570 --> 00:01:06,380
+If you're working on a new feature, you might work on a branch called feature forward slash sign up.
+
+14
+00:01:06,560 --> 00:01:10,600
+And only once that feature has been finished and entirely tested.
+
+15
+00:01:10,610 --> 00:01:13,790
+We want to get all those changes into the master branch.
+
+16
+00:01:14,900 --> 00:01:17,750
+First, let's create a new branch.
+
+17
+00:01:20,540 --> 00:01:22,580
+We can do so by running the JIT.
+
+18
+00:01:22,580 --> 00:01:26,210
+Check out Dash B Command with a name of the branch.
+
+19
+00:01:26,540 --> 00:01:35,180
+Say that the developer is called Sarah and we just create a Sarah branch to see a list of all our branches
+
+20
+00:01:35,180 --> 00:01:36,960
+and the branch that we're currently on.
+
+21
+00:01:36,980 --> 00:01:39,560
+We execute the Git branch command.
+
+22
+00:01:40,990 --> 00:01:45,160
+Currently we have two branches, Master and Sara.
+
+23
+00:01:45,850 --> 00:01:49,180
+In total we've made one commit initial commit.
+
+24
+00:01:49,600 --> 00:01:52,000
+They both point to that commit.
+
+25
+00:01:54,400 --> 00:02:00,220
+As stated before, branches are actually nothing more than pointers to a certain commit.
+
+26
+00:02:02,090 --> 00:02:07,850
+Now, let's say that Sarah adds a new story and commits this to the Sarah branch.
+
+27
+00:02:09,380 --> 00:02:14,090
+This commit gets added to the Sarah branch, but not to the master branch.
+
+28
+00:02:14,270 --> 00:02:18,770
+The master branch is now one commit behind the Sarah branch.
+
+29
+00:02:20,210 --> 00:02:24,440
+Let's say that the team is growing and you just hired a new developer.
+
+30
+00:02:24,740 --> 00:02:26,980
+This developer called Max.
+
+31
+00:02:26,990 --> 00:02:33,680
+Once you write the third story, Max is currently still checked out on the master branch.
+
+32
+00:02:33,680 --> 00:02:39,740
+But to keep things clean, Max also creates his own branch called Max.
+
+33
+00:02:41,400 --> 00:02:46,170
+Max writes the third story and commits this to his Max branch.
+
+34
+00:02:46,980 --> 00:02:50,710
+The Sara and Master branch don't have this change yet.
+
+35
+00:02:50,730 --> 00:02:53,430
+Only Max Branch has this change.
+
+36
+00:02:55,930 --> 00:03:01,720
+Here are some useful commands that you can use when you're working with branches in order to create
+
+37
+00:03:01,720 --> 00:03:03,020
+a new branch.
+
+38
+00:03:03,040 --> 00:03:07,450
+You can run the get branch command with the name of the new branch.
+
+39
+00:03:08,140 --> 00:03:13,900
+You can switch branches with the git checkout command followed by the name of the branch to which you
+
+40
+00:03:13,900 --> 00:03:19,870
+want to switch to create a new branch and immediately switch to this new branch.
+
+41
+00:03:19,900 --> 00:03:22,750
+You can run the Git checkout B command.
+
+42
+00:03:23,540 --> 00:03:30,890
+This command combines the git branch and get checkout commands together and to delete a branch run the
+
+43
+00:03:30,890 --> 00:03:31,730
+git branch.
+
+44
+00:03:31,760 --> 00:03:39,950
+Dash d command The dash d flag stands for delete and to list all the branches that you currently have.
+
+45
+00:03:39,980 --> 00:03:42,320
+You can run the git branch command.
+
+46
+00:03:43,750 --> 00:03:48,100
+Now that we've talked about branches, it's important to know what a head is.
+
+47
+00:03:48,490 --> 00:03:51,880
+You might see the reference to head in quite a few places.
+
+48
+00:03:52,630 --> 00:03:56,200
+A head is where you are right now in the git repository.
+
+49
+00:03:56,650 --> 00:04:00,460
+The head points to the last commit in the branch that you're currently on.
+
+50
+00:04:00,850 --> 00:04:04,420
+When you switch branches, the head moves with you.
+

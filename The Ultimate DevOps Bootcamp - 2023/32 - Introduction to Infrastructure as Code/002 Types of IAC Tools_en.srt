@@ -1,0 +1,284 @@
+1
+00:00:00,880 --> 00:00:07,090
+In this lecture, we will get introduced to infrastructure as code, which is commonly known as IAC.
+
+2
+00:00:07,750 --> 00:00:11,620
+We will also take a look at commonly used IAC tools.
+
+3
+00:00:13,550 --> 00:00:19,520
+So earlier we discussed about provisioning by making use of the management console of various cloud
+
+4
+00:00:19,520 --> 00:00:20,390
+providers.
+
+5
+00:00:21,020 --> 00:00:26,300
+The better way to provision cloud infrastructure is to codify the entire provisioning process.
+
+6
+00:00:27,020 --> 00:00:33,680
+This way we can write an execute code to define provision, configure, update and eventually destroy
+
+7
+00:00:33,680 --> 00:00:35,090
+infrastructure resources.
+
+8
+00:00:36,040 --> 00:00:40,000
+This is called as infrastructure as a code or IAC.
+
+9
+00:00:40,910 --> 00:00:47,300
+With infrastructure as code, you can manage nearly any infrastructure component as code such as databases,
+
+10
+00:00:47,300 --> 00:00:51,170
+networks, storage, or even application configuration.
+
+11
+00:00:52,920 --> 00:00:55,110
+The code you see here is a shell script.
+
+12
+00:00:55,140 --> 00:00:57,810
+However, it is not easy to manage it.
+
+13
+00:00:58,320 --> 00:01:02,070
+It requires programming or development skills to build and maintain.
+
+14
+00:01:03,190 --> 00:01:07,690
+There's a lot of logic that you will need to code and it is not easily reusable.
+
+15
+00:01:08,230 --> 00:01:11,170
+And that's where tools like TerraForm and Ansible help.
+
+16
+00:01:11,170 --> 00:01:15,100
+That code that is easy to learn is human readable and maintain.
+
+17
+00:01:15,970 --> 00:01:21,250
+A large shell script can now be converted into a simple TerraForm configuration file like this.
+
+18
+00:01:22,890 --> 00:01:28,140
+With infrastructure as code, we can define infrastructure resources using simple, human readable,
+
+19
+00:01:28,140 --> 00:01:29,490
+high level language.
+
+20
+00:01:30,150 --> 00:01:36,390
+Here is another example where we will be making use of Ansible to provision three AWS EC two instances
+
+21
+00:01:36,390 --> 00:01:38,760
+making use of a specific army.
+
+22
+00:01:39,760 --> 00:01:45,310
+Although Ansible and perform are easy tools, they have some key differences in what they are trying
+
+23
+00:01:45,310 --> 00:01:49,570
+to achieve and as a result they have some very different use cases.
+
+24
+00:01:50,640 --> 00:01:52,620
+You will see these differences next.
+
+25
+00:01:53,870 --> 00:01:55,430
+There are several different tools.
+
+26
+00:01:55,430 --> 00:02:02,660
+Part of the infrastructure as code family, Ansible, TerraForm, puppet, cloud formation, Packer,
+
+27
+00:02:02,660 --> 00:02:05,570
+salt stack, Vagrant, Docker, etc..
+
+28
+00:02:06,350 --> 00:02:11,840
+Although you can possibly make use of any of these tools to design similar solutions, they have all
+
+29
+00:02:11,840 --> 00:02:14,660
+been created to address a very specific goal.
+
+30
+00:02:16,030 --> 00:02:20,110
+With that in mind, I can be broadly classified into three types.
+
+31
+00:02:21,350 --> 00:02:26,690
+Configuration management Ansible puppet salt stack fall into this category.
+
+32
+00:02:27,550 --> 00:02:33,250
+Tools used for server templating, Docker Packer and Vagrant fall into this category.
+
+33
+00:02:33,640 --> 00:02:38,650
+And finally, we have infrastructure provisioning tools such as TerraForm and Cloud formation.
+
+34
+00:02:40,100 --> 00:02:42,440
+Let's look at these in a bit more detail.
+
+35
+00:02:44,060 --> 00:02:49,430
+The first type of IAC tool that we are going to take a look at is configuration management tools.
+
+36
+00:02:50,270 --> 00:02:54,470
+These include tools like Ansible, Chef, Puppet and Salt Stack.
+
+37
+00:02:55,660 --> 00:03:01,270
+And these are commonly used to install and manage software on existing infrastructure resources such
+
+38
+00:03:01,270 --> 00:03:04,600
+as servers, databases, networking devices, etc..
+
+39
+00:03:05,670 --> 00:03:11,430
+Unlike the ad hoc shell scripts that we saw earlier, configuration management tools maintain a consistent
+
+40
+00:03:11,430 --> 00:03:17,010
+and standard structure of code, and this makes it easier to manage and update it as needed.
+
+41
+00:03:18,250 --> 00:03:22,120
+They're also designed to run on multiple remote resources at once.
+
+42
+00:03:23,010 --> 00:03:27,570
+An Ansible playbook or a rule can be checked into a version control repository.
+
+43
+00:03:27,900 --> 00:03:31,440
+This allows us to reuse and distribute it as needed.
+
+44
+00:03:32,710 --> 00:03:38,950
+However, perhaps the most important feature of a configuration management tool is that they are important.
+
+45
+00:03:39,490 --> 00:03:45,610
+This means that you can run the code multiple times and every time you run it, it will only make changes
+
+46
+00:03:45,610 --> 00:03:48,940
+that are necessary to bring the environment into a defined state.
+
+47
+00:03:50,090 --> 00:03:55,430
+It would leave anything already in place as it is without us having to write any additional code.
+
+48
+00:03:56,830 --> 00:03:59,650
+Next, let's look at server templating tools.
+
+49
+00:04:00,250 --> 00:04:05,920
+These are tools like Docker, Vagrant and Packer from Hashicorp that can be used to create a custom
+
+50
+00:04:05,920 --> 00:04:08,260
+image of a virtual machine or a container.
+
+51
+00:04:09,230 --> 00:04:14,210
+These images already contain all the required software and dependencies installed on them.
+
+52
+00:04:14,480 --> 00:04:20,120
+And for the most part, this eliminates the need of installing software after a VM or a container is
+
+53
+00:04:20,120 --> 00:04:20,750
+deployed.
+
+54
+00:04:21,690 --> 00:04:28,230
+The most common examples for server templated images are VM images such as those that are offered on
+
+55
+00:04:28,230 --> 00:04:28,980
+OS boxes.
+
+56
+00:04:28,980 --> 00:04:29,790
+Dot org.
+
+57
+00:04:30,270 --> 00:04:36,300
+Custom images in Amazon, AWS and Docker images on Docker Hub and other container registries.
+
+58
+00:04:37,610 --> 00:04:43,130
+Server Templating tools also promote immutable infrastructure, unlike configuration management tools.
+
+59
+00:04:44,150 --> 00:04:49,580
+This means that once the VM or a container is deployed, it is designed to remain unchanged.
+
+60
+00:04:49,970 --> 00:04:55,250
+If there are changes to be made to the image instead of updating the running instance, like in the
+
+61
+00:04:55,250 --> 00:05:01,160
+case of configuration management tools such as Ansible, we update the image and then redeploy a new
+
+62
+00:05:01,160 --> 00:05:03,140
+instance using the updated image.
+
+63
+00:05:04,210 --> 00:05:09,430
+We have a section on immutable infrastructure later in this course where we look at it in much more
+
+64
+00:05:09,430 --> 00:05:10,060
+detail.
+
+65
+00:05:11,670 --> 00:05:17,430
+The last type of IAC tool which is specifically of interest for this course is provisioning tools.
+
+66
+00:05:18,490 --> 00:05:23,470
+These tools are used to provision infrastructure components using a simple declarative code.
+
+67
+00:05:24,700 --> 00:05:30,940
+These infrastructure components can range from servers such as virtual machines, databases, VPC,
+
+68
+00:05:30,970 --> 00:05:37,270
+subnets, security groups, storage, and just about any service based on the provider we choose.
+
+69
+00:05:38,380 --> 00:05:44,830
+While cloud formation is specifically used to deploy services in AWS, TerraForm is vendor agnostic
+
+70
+00:05:44,830 --> 00:05:48,640
+and supports provider plugins for almost all major cloud providers.
+
+71
+00:05:49,430 --> 00:05:53,960
+In the upcoming lecture, we will see how TerraForm helps in provisioning infrastructure.
+

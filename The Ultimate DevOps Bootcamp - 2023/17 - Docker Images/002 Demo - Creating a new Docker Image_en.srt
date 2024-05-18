@@ -1,0 +1,904 @@
+1
+00:00:00,990 --> 00:00:02,550
+Hello and welcome to this demo.
+
+2
+00:00:02,550 --> 00:00:10,500
+And this demo, I'd like to show how to create our own Docker image for an application that we have.
+
+3
+00:00:10,530 --> 00:00:15,930
+So first I'm going to explain a little bit about my application.
+
+4
+00:00:15,930 --> 00:00:20,400
+So I have a simple web application which is based on Python Flask.
+
+5
+00:00:20,520 --> 00:00:21,840
+It's on my GitHub page.
+
+6
+00:00:21,840 --> 00:00:29,010
+It's a really, really simple application that just, you know, gives prints a message onto the screen.
+
+7
+00:00:29,010 --> 00:00:32,580
+So how do you actually deploy this application?
+
+8
+00:00:33,120 --> 00:00:35,010
+So there are some dependencies.
+
+9
+00:00:35,010 --> 00:00:41,820
+First, for example, there are some Python dependencies and then and then you install the web application
+
+10
+00:00:41,820 --> 00:00:48,510
+dependencies like flask and the flask, MySQL, Python dependencies, and then you basically run your
+
+11
+00:00:48,510 --> 00:00:50,430
+application using the flask command.
+
+12
+00:00:51,150 --> 00:00:57,540
+And finally, just go to the once it's up and running, go to the website, go to the browser and access
+
+13
+00:00:57,540 --> 00:01:03,540
+the IP of the host where it's running on and go to the 5000 port and you'll see a welcome message.
+
+14
+00:01:03,540 --> 00:01:05,459
+So it's, it's a simple application.
+
+15
+00:01:05,459 --> 00:01:09,030
+If you if you ask how are you, it's going to come back saying, I'm good.
+
+16
+00:01:09,030 --> 00:01:09,960
+How about you?
+
+17
+00:01:10,860 --> 00:01:13,110
+I'm going to show the code.
+
+18
+00:01:13,290 --> 00:01:17,190
+It's just one single API file.
+
+19
+00:01:17,190 --> 00:01:23,460
+And if you look at this file, all you have is a simple route, which is the default route that returns
+
+20
+00:01:23,460 --> 00:01:26,670
+welcome message and then another URL.
+
+21
+00:01:27,270 --> 00:01:29,550
+How are you that returns another message?
+
+22
+00:01:29,550 --> 00:01:32,700
+So it's a really simple web application.
+
+23
+00:01:32,700 --> 00:01:36,900
+So first I'm just going to show how to deploy it manually.
+
+24
+00:01:36,900 --> 00:01:44,520
+So what I would like to do is I don't want to install anything on my Docker host, just so I don't want
+
+25
+00:01:44,520 --> 00:01:45,930
+I just want to keep it clean.
+
+26
+00:01:45,930 --> 00:01:50,730
+I don't want to install some dependencies now and then remove it later.
+
+27
+00:01:50,730 --> 00:01:58,020
+So since I have Docker already, the easiest way to go about this is to start with some kind of a base
+
+28
+00:01:58,020 --> 00:01:58,710
+operating system.
+
+29
+00:01:59,490 --> 00:02:04,650
+So I'd like to start with a base operating system like Ubuntu since I already have it.
+
+30
+00:02:04,920 --> 00:02:08,880
+The image pulled so I could run a docker run ubuntu.
+
+31
+00:02:08,880 --> 00:02:13,800
+But what I want to do is I want it to stay alive and I want to work on it.
+
+32
+00:02:14,130 --> 00:02:15,960
+Work on that particular container.
+
+33
+00:02:15,960 --> 00:02:18,420
+So I'm going to append a bash command.
+
+34
+00:02:18,420 --> 00:02:25,890
+So it runs the bash bash command when it starts the container and I'm going to map the standard input
+
+35
+00:02:25,890 --> 00:02:29,430
+using the dash parameter and the terminal using the T.
+
+36
+00:02:29,460 --> 00:02:37,770
+So this way as soon as the Ubuntu image starts and it runs the bash command and it takes or it attaches
+
+37
+00:02:37,770 --> 00:02:41,580
+my input and terminal to that particular container.
+
+38
+00:02:41,820 --> 00:02:47,820
+So that basically runs the command, runs the container and connects me onto that particular container,
+
+39
+00:02:47,820 --> 00:02:49,290
+which is all I want for now.
+
+40
+00:02:49,290 --> 00:02:54,120
+And as soon as I exit the container the, the image is going to stop.
+
+41
+00:02:54,120 --> 00:02:58,410
+So this is all I want for now just to play around and test my application.
+
+42
+00:02:58,410 --> 00:03:04,230
+So I have my one two image running and what I'm going to do is I'm going to follow instructions in my
+
+43
+00:03:04,230 --> 00:03:06,660
+in setting up my simple web application.
+
+44
+00:03:06,660 --> 00:03:09,450
+So the first thing to do is install Python.
+
+45
+00:03:09,450 --> 00:03:15,210
+So I'm not going to install the remaining dependencies there, I'm just going to install Python.
+
+46
+00:03:15,450 --> 00:03:17,970
+So I'm going to run apt get install python.
+
+47
+00:03:18,690 --> 00:03:20,790
+It cannot locate the package python.
+
+48
+00:03:20,790 --> 00:03:22,830
+That's because we have to run.
+
+49
+00:03:22,830 --> 00:03:26,790
+We have it run the apt get update to update the package index.
+
+50
+00:03:33,930 --> 00:03:40,500
+So I've run that and now I'm going to run and try and install Python.
+
+51
+00:03:49,490 --> 00:03:56,810
+Okay, so it's installed python, and if I run Python command, I can see that Python 2.7 is installed,
+
+52
+00:03:56,810 --> 00:03:57,770
+which is good.
+
+53
+00:03:59,390 --> 00:04:01,070
+So I'm good with that.
+
+54
+00:04:01,950 --> 00:04:04,320
+So the next step is to install flask.
+
+55
+00:04:04,320 --> 00:04:10,440
+So I'm going to use PIP install flask so PIP is not found, so I need to install PIP first.
+
+56
+00:04:10,440 --> 00:04:16,709
+So I'm going to do apt get install python pip.
+
+57
+00:04:22,079 --> 00:04:29,220
+Okay, so Pip is installed and I'm now going to install the flask dependency from my web application
+
+58
+00:04:29,220 --> 00:04:30,180
+using PIP.
+
+59
+00:04:31,790 --> 00:04:32,060
+Okay.
+
+60
+00:04:32,060 --> 00:04:34,910
+So that's that's installed and it's successful.
+
+61
+00:04:34,910 --> 00:04:43,370
+So I can now run my web server using the flask Flask run command, but for that I need the source code,
+
+62
+00:04:43,370 --> 00:04:44,360
+of course.
+
+63
+00:04:44,360 --> 00:04:54,380
+So I go to my source code and all I'm going to do is I'm just going to copy the source code of the application
+
+64
+00:04:54,380 --> 00:04:55,880
+and create it here.
+
+65
+00:04:55,880 --> 00:05:04,760
+So I'm going to put the source code in for Slash opt for slash API, and I'm going to paste the source
+
+66
+00:05:04,760 --> 00:05:05,660
+code there.
+
+67
+00:05:05,870 --> 00:05:07,640
+I'm going to follow the instructions.
+
+68
+00:05:09,540 --> 00:05:14,630
+Here to run the application, which is this.
+
+69
+00:05:14,640 --> 00:05:16,020
+I'm just going to copy that.
+
+70
+00:05:18,940 --> 00:05:19,540
+You're on it.
+
+71
+00:05:22,120 --> 00:05:24,540
+Okay, so it's inside OPPT folder.
+
+72
+00:05:24,580 --> 00:05:28,750
+So I'm going to go there and I'm going to run that again.
+
+73
+00:05:28,750 --> 00:05:33,790
+So as you can see, my my Flask application is currently running.
+
+74
+00:05:34,030 --> 00:05:36,820
+Now how do I access my web server?
+
+75
+00:05:37,180 --> 00:05:42,250
+So if you remember when I ran the Docker container using the Docker run command, I haven't actually
+
+76
+00:05:42,250 --> 00:05:45,780
+mapped a port to my Docker host.
+
+77
+00:05:45,820 --> 00:05:53,140
+And so the only way to access my application is to go in to the host and access it from a web browser
+
+78
+00:05:53,140 --> 00:05:54,430
+inside my host.
+
+79
+00:05:54,460 --> 00:06:04,840
+So I'm going to go here and I'm going to go into the one 7217 .0.2 IP, and I'm going to access the
+
+80
+00:06:04,840 --> 00:06:10,240
+port 5000 because it's 5000 on which my web server is listening.
+
+81
+00:06:12,110 --> 00:06:16,760
+And when I run that, I can actually see the welcome message come right here and you can actually see
+
+82
+00:06:16,760 --> 00:06:19,040
+some output here as well.
+
+83
+00:06:19,190 --> 00:06:21,680
+Another URL that we talked about was how we're used.
+
+84
+00:06:21,710 --> 00:06:24,340
+I'm just going to say, how are you in the URL?
+
+85
+00:06:24,410 --> 00:06:26,450
+And it's come back with the message.
+
+86
+00:06:26,450 --> 00:06:26,840
+I'm good.
+
+87
+00:06:26,840 --> 00:06:27,440
+How about you?
+
+88
+00:06:27,440 --> 00:06:28,010
+So.
+
+89
+00:06:28,210 --> 00:06:29,180
+So that's working.
+
+90
+00:06:29,180 --> 00:06:30,470
+So my application is working.
+
+91
+00:06:30,470 --> 00:06:33,140
+So this is how I set up my simple web application.
+
+92
+00:06:33,290 --> 00:06:34,190
+Now, how do I do?
+
+93
+00:06:34,190 --> 00:06:35,090
+Authorize it?
+
+94
+00:06:36,230 --> 00:06:37,270
+Let's go back.
+
+95
+00:06:37,280 --> 00:06:38,570
+I'm going to quit the application.
+
+96
+00:06:38,570 --> 00:06:42,770
+I'm going to I've actually got the instructions ready.
+
+97
+00:06:42,770 --> 00:06:51,050
+So the first thing to do is whatever you need to containerized first, go over the basic install step.
+
+98
+00:06:51,050 --> 00:06:55,340
+So try to do it once manually and then note down the steps required.
+
+99
+00:06:55,340 --> 00:07:01,190
+So what I'm going to do is I'm going to open a notepad and write down the steps that I followed.
+
+100
+00:07:01,280 --> 00:07:06,680
+For example, the first thing that I did is apt get update So I'm just going to run the history command
+
+101
+00:07:06,680 --> 00:07:13,730
+and pull down all the instructions from that and then I run the apt get install python.
+
+102
+00:07:16,060 --> 00:07:17,140
+And then.
+
+103
+00:07:19,960 --> 00:07:27,070
+I ran PIPP install flask, but I had to have python pip for that, so I'm going to copy Pip from here.
+
+104
+00:07:28,620 --> 00:07:30,660
+So this is going to be my next command.
+
+105
+00:07:33,340 --> 00:07:36,250
+And then followed by PIP install flask.
+
+106
+00:07:38,310 --> 00:07:43,470
+And then I created my app application file at App Pie.
+
+107
+00:07:44,400 --> 00:07:54,660
+So I'm just going to write it down here, create or copy application code to Output API.
+
+108
+00:07:55,200 --> 00:07:59,700
+And then finally I run my flask application.
+
+109
+00:08:00,500 --> 00:08:01,700
+Using this command.
+
+110
+00:08:03,950 --> 00:08:08,430
+And this should actually be opt AP vi.
+
+111
+00:08:09,410 --> 00:08:17,720
+So this is all that I need to install and set up and run my application on a new host on a on a on an
+
+112
+00:08:17,720 --> 00:08:19,480
+Ubuntu host.
+
+113
+00:08:19,490 --> 00:08:21,020
+So I have the instructions ready.
+
+114
+00:08:21,020 --> 00:08:27,260
+So what I'm going to do is I'm going to exit out of this container and back to my Docker container.
+
+115
+00:08:27,800 --> 00:08:32,390
+I'm going to run Docker PS and I see there are no containers running.
+
+116
+00:08:33,140 --> 00:08:37,700
+So as we saw in the lecture, the first thing to do is to create a docker file.
+
+117
+00:08:37,700 --> 00:08:44,870
+So I'm just before that, I'm going to create a directory called my custom app.
+
+118
+00:08:46,310 --> 00:08:49,310
+All right, I'll say my simple web app.
+
+119
+00:08:50,450 --> 00:08:56,630
+And I'll create all the files, all the all the Docker files inside this particular directory.
+
+120
+00:08:57,950 --> 00:09:01,340
+So the first thing that I need to create is a docker file.
+
+121
+00:09:01,340 --> 00:09:03,410
+So I call it Docker file.
+
+122
+00:09:04,010 --> 00:09:08,720
+And what I did here is if I look at my instructions.
+
+123
+00:09:11,240 --> 00:09:17,810
+The first thing is before I run the update command as we saw in the instructions in the lecture.
+
+124
+00:09:18,290 --> 00:09:20,810
+The first instruction should always be from.
+
+125
+00:09:20,810 --> 00:09:23,930
+So I'm going to start from an Ubuntu based operating system.
+
+126
+00:09:25,520 --> 00:09:28,520
+So I have the instructions here and I might have my Docker file here.
+
+127
+00:09:28,520 --> 00:09:35,180
+So I'm going to start with Ubuntu and then I'm going to install, I'm going to run the apt get update
+
+128
+00:09:35,180 --> 00:09:38,090
+command, apt get update.
+
+129
+00:09:38,370 --> 00:09:42,920
+Then I'm going to run apt get install dash.
+
+130
+00:09:42,990 --> 00:09:45,200
+Why that's why is required.
+
+131
+00:09:45,200 --> 00:09:49,280
+So it doesn't actually wait there waiting for your prompt.
+
+132
+00:09:50,230 --> 00:09:53,020
+Um, and then I could do both in this command.
+
+133
+00:09:53,020 --> 00:09:57,100
+I could install Python and Python pip in the same command.
+
+134
+00:09:57,840 --> 00:10:03,360
+And then I need to run the flask installing the flask dependency.
+
+135
+00:10:03,360 --> 00:10:04,170
+So I do.
+
+136
+00:10:04,860 --> 00:10:07,440
+PIPP install flask.
+
+137
+00:10:08,670 --> 00:10:15,660
+And then this is where I need to copy my source code of the application from my local directory to the
+
+138
+00:10:15,660 --> 00:10:16,500
+Docker container.
+
+139
+00:10:16,500 --> 00:10:22,870
+So I use the copy instruction and then I say copy app dot py.
+
+140
+00:10:22,890 --> 00:10:29,040
+So this, this would mean I, this is assuming that I have my API in my local directory, which I don't
+
+141
+00:10:29,040 --> 00:10:34,820
+have for now, but as soon as I finish creating the docker file, that's what I would do next.
+
+142
+00:10:34,830 --> 00:10:43,260
+So I have my API and then I want it to be copied to opt API inside the Docker container.
+
+143
+00:10:44,130 --> 00:10:50,810
+And then finally the application, the code to run the application that would go in entry point.
+
+144
+00:10:50,820 --> 00:10:55,470
+So it's the entry point is I just copy.
+
+145
+00:10:57,430 --> 00:10:59,320
+The command to run my application.
+
+146
+00:11:00,620 --> 00:11:02,140
+So that's basically it.
+
+147
+00:11:03,550 --> 00:11:09,760
+And before I run, try to build it, I need my application code in the same directory.
+
+148
+00:11:09,760 --> 00:11:16,150
+So I'm going to create an AB dot P here and copy the application source code.
+
+149
+00:11:24,830 --> 00:11:26,000
+So I'm all set.
+
+150
+00:11:26,240 --> 00:11:30,860
+I could now run the Docker build commands, so I do a Docker build.
+
+151
+00:11:33,260 --> 00:11:37,460
+Dot and it's going to start building the image.
+
+152
+00:11:37,460 --> 00:11:38,930
+So I already have Ubuntu.
+
+153
+00:11:38,930 --> 00:11:45,620
+So the step one out of six was completed immediately because it didn't have to go out and pull the image.
+
+154
+00:11:45,650 --> 00:11:51,300
+Step two is running apt get update and that's you can see the output of that particular step right here.
+
+155
+00:11:51,320 --> 00:11:57,470
+Similarly, you will be able to see output of all the instructions on the screen.
+
+156
+00:12:03,470 --> 00:12:07,100
+Okay, so it's finished building my image.
+
+157
+00:12:07,100 --> 00:12:10,480
+And as you can see, all the steps are complete.
+
+158
+00:12:10,490 --> 00:12:13,340
+Step five out of six, six out of six is complete.
+
+159
+00:12:13,340 --> 00:12:17,900
+And finally, it's successfully built my image.
+
+160
+00:12:18,080 --> 00:12:24,530
+So if you look at the command, I haven't actually specified a name for the image, so I'm just going
+
+161
+00:12:24,530 --> 00:12:27,110
+to run it again and I'm going to give a tag.
+
+162
+00:12:27,560 --> 00:12:31,910
+I'm going to say my symbol web app.
+
+163
+00:12:32,150 --> 00:12:38,960
+And now, since it's already built, it's just going to go through that real quick because it doesn't
+
+164
+00:12:38,960 --> 00:12:41,840
+have to rebuild the whole image.
+
+165
+00:12:41,840 --> 00:12:50,150
+Again, as we discussed in the lecture, whenever Docker builds an image, it builds and caches each
+
+166
+00:12:50,150 --> 00:12:50,750
+layer.
+
+167
+00:12:50,750 --> 00:12:54,110
+So all the layers are cached and I don't really have to.
+
+168
+00:12:54,290 --> 00:13:00,470
+Even if I rebuild the image without any changes, it's just going to build real quick and it's not actually
+
+169
+00:13:00,470 --> 00:13:02,870
+going to go through the whole build process.
+
+170
+00:13:03,290 --> 00:13:06,620
+So now I have my new image.
+
+171
+00:13:06,620 --> 00:13:17,180
+So if I run, if I just clear my screen and run a Docker image, sorry, Docker Docker images.
+
+172
+00:13:17,890 --> 00:13:21,310
+I can see my new image right here.
+
+173
+00:13:21,610 --> 00:13:28,660
+And so what I'm going to do is I'm just going to run that by running the Docker run and providing my
+
+174
+00:13:28,660 --> 00:13:29,680
+symbol web app.
+
+175
+00:13:31,090 --> 00:13:34,990
+And as you can see, it started and it's listening on 5000.
+
+176
+00:13:35,020 --> 00:13:39,970
+So if I go inside my host
+
+177
+00:13:43,420 --> 00:13:54,250
+and if I go to that particular URL, I should be able to see that it's listening and it's working.
+
+178
+00:13:57,470 --> 00:13:58,550
+Okay, so that's good.
+
+179
+00:13:58,550 --> 00:14:03,500
+And I could also map it, map a port and access it from my Docker host.
+
+180
+00:14:07,100 --> 00:14:11,550
+So I have my simple web app image.
+
+181
+00:14:11,570 --> 00:14:17,500
+Now how do I push it to the Docker hub and make it available to the public?
+
+182
+00:14:17,510 --> 00:14:25,700
+So once I have my application ready, I could push it to the Docker hub by running the Docker push command.
+
+183
+00:14:26,010 --> 00:14:31,910
+Now, before that, you should have tagged your application with your repositories.
+
+184
+00:14:31,910 --> 00:14:37,640
+So if you do a Docker, push my simple web app.
+
+185
+00:14:40,840 --> 00:14:45,400
+Um, it says requested access to the resource is denied.
+
+186
+00:14:46,480 --> 00:14:53,410
+The reason is, by default, if you didn't specify an organization in your name is going to try and
+
+187
+00:14:53,410 --> 00:15:00,970
+push it to the default organization, which is called Library or the default account, which is the
+
+188
+00:15:00,970 --> 00:15:06,400
+library, and not everybody has the permission to push it to that account.
+
+189
+00:15:06,400 --> 00:15:08,680
+That's only for default.
+
+190
+00:15:08,680 --> 00:15:15,780
+Docker supported official repositories, so you can only push to repositories under your own account.
+
+191
+00:15:15,790 --> 00:15:23,680
+So first what we need to do is we need to build the image and tag it with our not just the name directly,
+
+192
+00:15:23,680 --> 00:15:25,750
+but you need to tag it with your account name.
+
+193
+00:15:25,750 --> 00:15:32,170
+So you're going to do a Docker build once again and in this time you're going to tag it with your account
+
+194
+00:15:32,170 --> 00:15:32,380
+name.
+
+195
+00:15:32,380 --> 00:15:39,160
+In this case, my name is Mom Shad, and you're going to tag it with your application name.
+
+196
+00:15:41,000 --> 00:15:41,160
+Okay.
+
+197
+00:15:41,400 --> 00:15:48,450
+So if we if I do a Docker images, I can see that that I've created a new image and then now I do a
+
+198
+00:15:48,450 --> 00:15:52,470
+Docker push and provide that repository.
+
+199
+00:15:52,470 --> 00:15:54,000
+Name the image name.
+
+200
+00:15:57,140 --> 00:15:59,210
+It says request access requested.
+
+201
+00:15:59,210 --> 00:16:01,910
+Access to the resource is denied if you haven't logged in.
+
+202
+00:16:01,910 --> 00:16:04,940
+So there's a prerequisite which is to log in.
+
+203
+00:16:04,940 --> 00:16:09,710
+So you do a Docker login first, provide your user account.
+
+204
+00:16:09,710 --> 00:16:13,820
+So my user account is this and I'm going to type in my password.
+
+205
+00:16:15,510 --> 00:16:16,680
+And log in succeeded.
+
+206
+00:16:17,070 --> 00:16:18,030
+So that's good.
+
+207
+00:16:18,030 --> 00:16:20,700
+Now, if I run the push command again.
+
+208
+00:16:22,610 --> 00:16:27,200
+It will push my image to the darker hub.
+
+209
+00:16:30,300 --> 00:16:34,730
+Okay, so my application is now pushed to the Docker hub.
+
+210
+00:16:34,740 --> 00:16:36,360
+So if I go to.
+
+211
+00:16:37,570 --> 00:16:38,860
+And Docker hub.
+
+212
+00:16:39,850 --> 00:16:46,240
+And if I go to my dashboard, if I'm logged in with the user, I will now be able to see my application
+
+213
+00:16:46,240 --> 00:16:47,070
+right there.
+
+214
+00:16:47,080 --> 00:16:53,290
+So if I look at at the bottom, I see my symbol web app, and if you go inside it, you should be able
+
+215
+00:16:53,290 --> 00:16:59,510
+to see and you have the command here on how to pull and run this particular application.
+
+216
+00:16:59,530 --> 00:17:00,400
+That's about it.
+
+217
+00:17:00,400 --> 00:17:02,380
+That's available now on public.
+
+218
+00:17:02,380 --> 00:17:06,190
+And if you actually want to make it private, you can actually do that.
+
+219
+00:17:06,369 --> 00:17:13,810
+But with your free account on Docker Hub, you can only have one of private repositories.
+
+220
+00:17:16,339 --> 00:17:22,550
+Okay, So once it's there, any user anywhere in the world can actually pull down your image and your
+
+221
+00:17:22,550 --> 00:17:29,060
+container and run your application with a simple Docker run command.
+
+222
+00:17:30,140 --> 00:17:32,150
+So that's about it.
+
+223
+00:17:32,300 --> 00:17:36,280
+In this demo, we looked at how to create our own simple Docker image.
+
+224
+00:17:36,290 --> 00:17:44,150
+So go ahead and practice for yourself, create your own images, containerized your applications and
+
+225
+00:17:44,150 --> 00:17:45,980
+push them to Docker Hub.
+
+226
+00:17:46,100 --> 00:17:52,250
+Thank you very much for your time and we will meet in the next lecture.
+

@@ -1,0 +1,376 @@
+1
+00:00:04,980 --> 00:00:06,930
+Hello and welcome to this lecture.
+
+2
+00:00:07,200 --> 00:00:13,740
+In this lecture we will talk about creating a pod using a YAML based configuration file.
+
+3
+00:00:15,280 --> 00:00:19,360
+In the previous lecture we learned about YAML files in general.
+
+4
+00:00:19,510 --> 00:00:24,250
+Now we will learn how to develop YAML files specifically for Kubernetes.
+
+5
+00:00:24,730 --> 00:00:32,350
+Kubernetes uses YAML files as inputs for the creation of objects such as pods, replicas, deployments,
+
+6
+00:00:32,350 --> 00:00:33,940
+services, etc..
+
+7
+00:00:34,700 --> 00:00:37,120
+All of these follow a similar structure.
+
+8
+00:00:37,130 --> 00:00:42,020
+A Kubernetes definition file always contains four top level fields.
+
+9
+00:00:42,410 --> 00:00:46,700
+The API version kind, metadata and spec.
+
+10
+00:00:47,090 --> 00:00:50,870
+These are the top level or root level properties.
+
+11
+00:00:51,380 --> 00:00:56,990
+These are also required fields, so you must have them in your configuration file.
+
+12
+00:00:57,290 --> 00:00:59,330
+Let us look at each one of them.
+
+13
+00:00:59,360 --> 00:01:01,980
+The first one is the API version.
+
+14
+00:01:02,000 --> 00:01:07,100
+This is the version of the Kubernetes API we are using to create the object.
+
+15
+00:01:07,520 --> 00:01:12,800
+Depending on what we are trying to create, we must use the right API version.
+
+16
+00:01:13,160 --> 00:01:19,040
+For now, since we are working on part, we will set the API version as v one.
+
+17
+00:01:19,260 --> 00:01:27,590
+Few other possible values for this field are apps forward slash v one beta extensions, slash v, one
+
+18
+00:01:27,590 --> 00:01:28,820
+beta, etc..
+
+19
+00:01:28,910 --> 00:01:32,180
+We will see what these are for later in this course.
+
+20
+00:01:33,020 --> 00:01:39,350
+Next is the kind the kind refers to the type of object we are trying to create, which in this case
+
+21
+00:01:39,350 --> 00:01:40,940
+happens to be a pod.
+
+22
+00:01:41,210 --> 00:01:43,170
+So we will set it as pod.
+
+23
+00:01:43,190 --> 00:01:50,150
+Some other possible values here could be replica set or deployment or service, which is what you see
+
+24
+00:01:50,150 --> 00:01:52,580
+in the kind field in the table on the right.
+
+25
+00:01:53,420 --> 00:01:55,520
+The next is metadata.
+
+26
+00:01:56,360 --> 00:02:02,540
+The metadata is data about the object, like its name, labels, etc..
+
+27
+00:02:03,350 --> 00:02:10,910
+As you can see, unlike the first two where you have specified a string value, this is in the form
+
+28
+00:02:10,910 --> 00:02:12,230
+of a dictionary.
+
+29
+00:02:13,140 --> 00:02:17,940
+So everything under metadata is intended to the right a little bit.
+
+30
+00:02:17,940 --> 00:02:22,140
+And so names and labels are children of metadata.
+
+31
+00:02:22,860 --> 00:02:29,460
+The number of spaces before the two properties, name and labels doesn't matter, but they should be
+
+32
+00:02:29,460 --> 00:02:31,700
+the same as they are siblings.
+
+33
+00:02:31,710 --> 00:02:40,050
+In this case, labels has more spaces on the left than name, and so it is now a child of the name property
+
+34
+00:02:40,050 --> 00:02:42,780
+instead of a sibling, which is incorrect.
+
+35
+00:02:43,750 --> 00:02:51,070
+Also, the two properties must have more spaces than its parent, which is metadata, so that it's intended
+
+36
+00:02:51,070 --> 00:02:52,600
+to write a little bit.
+
+37
+00:02:52,840 --> 00:02:59,470
+In this case, all three of them have the same number of spaces before them, and so they are all siblings,
+
+38
+00:02:59,470 --> 00:03:00,730
+which is not correct.
+
+39
+00:03:01,920 --> 00:03:03,090
+Under metadata.
+
+40
+00:03:03,090 --> 00:03:05,220
+The name is a string value.
+
+41
+00:03:05,220 --> 00:03:06,700
+So you can name your pod.
+
+42
+00:03:06,720 --> 00:03:08,340
+My app pod.
+
+43
+00:03:09,360 --> 00:03:12,000
+And the labels is a dictionary.
+
+44
+00:03:12,000 --> 00:03:16,260
+So labels is a dictionary within the metadata dictionary.
+
+45
+00:03:17,050 --> 00:03:19,810
+And it can have any key and value pairs.
+
+46
+00:03:19,810 --> 00:03:20,630
+As you wish.
+
+47
+00:03:20,650 --> 00:03:25,870
+For now, I have added a label app with the value my app.
+
+48
+00:03:26,470 --> 00:03:32,440
+Similarly, you could add other labels as you see fit, which will help you identify these objects at
+
+49
+00:03:32,440 --> 00:03:33,790
+a later point in time.
+
+50
+00:03:34,240 --> 00:03:40,390
+Say for example, there are hundreds of pods running a front end application and hundreds of pods running
+
+51
+00:03:40,390 --> 00:03:42,820
+a back end application or a database.
+
+52
+00:03:43,450 --> 00:03:48,130
+It will be difficult for you to group these pods once they are deployed.
+
+53
+00:03:48,490 --> 00:03:55,150
+If you label them now as front end backend or database, you will be able to filter the pods based on
+
+54
+00:03:55,150 --> 00:03:57,640
+this label at a later point in time.
+
+55
+00:03:58,240 --> 00:04:05,560
+It's important to note that under metadata you can only specify name or labels or anything else that
+
+56
+00:04:05,560 --> 00:04:08,650
+Kubernetes expects to be under metadata.
+
+57
+00:04:08,680 --> 00:04:11,880
+You cannot add any other property as you wish.
+
+58
+00:04:11,890 --> 00:04:12,730
+Under this.
+
+59
+00:04:13,000 --> 00:04:19,000
+However, under labels, you can have any kind of key or value pairs as you see fit.
+
+60
+00:04:19,300 --> 00:04:24,280
+So it's important to understand what each of these parameters expect.
+
+61
+00:04:24,640 --> 00:04:30,460
+So far we have only mentioned the type and name of the object we need to create, which happens to be
+
+62
+00:04:30,460 --> 00:04:33,370
+a pod with a name, my app pod.
+
+63
+00:04:33,370 --> 00:04:38,500
+But we haven't really specified the container or image we need in the pod.
+
+64
+00:04:38,980 --> 00:04:45,670
+The last section in the configuration file is the specification section, which is written as spec.
+
+65
+00:04:46,300 --> 00:04:52,210
+Depending on the object we are going to create, this is where we would provide additional information
+
+66
+00:04:52,210 --> 00:04:54,730
+to Kubernetes pertaining to that object.
+
+67
+00:04:55,210 --> 00:04:57,880
+This is going to be different for different objects.
+
+68
+00:04:57,880 --> 00:05:04,600
+So it's important to understand or refer to the documentation section to get the right format for each.
+
+69
+00:05:05,500 --> 00:05:10,690
+Since we are only creating a pod with a single container in it, it is easy.
+
+70
+00:05:12,210 --> 00:05:16,890
+Spec is a dictionary, so add a property under it called containers.
+
+71
+00:05:18,160 --> 00:05:21,050
+Containers is a list or an array.
+
+72
+00:05:21,070 --> 00:05:27,490
+The reason this property is a list is because the ports can have multiple containers within them, as
+
+73
+00:05:27,490 --> 00:05:29,380
+we learned in the lecture earlier.
+
+74
+00:05:29,890 --> 00:05:35,980
+In this case, though, we will only add a single item in the list since we plan to have only a single
+
+75
+00:05:35,980 --> 00:05:37,600
+container in the pod.
+
+76
+00:05:38,110 --> 00:05:43,990
+The dash right before the name indicates that this is the first item in the list.
+
+77
+00:05:44,530 --> 00:05:46,750
+The item in the list is a dictionary.
+
+78
+00:05:46,750 --> 00:05:48,980
+So add a name and image property.
+
+79
+00:05:49,000 --> 00:05:55,780
+The value for image is n, GI and X, which is the name of the Docker image in the Docker repository.
+
+80
+00:05:56,820 --> 00:06:03,870
+Once the file is created, run the command cube CTL create dash f followed by the file name, which
+
+81
+00:06:03,870 --> 00:06:07,830
+is port definition yaml and Kubernetes creates the pod.
+
+82
+00:06:08,980 --> 00:06:17,260
+So to summarize, remember the four top level properties API version kind, metadata and spec.
+
+83
+00:06:17,560 --> 00:06:22,930
+Then start by adding values to those depending on the object you are going to create.
+
+84
+00:06:24,040 --> 00:06:25,540
+Once we create the pod.
+
+85
+00:06:25,540 --> 00:06:26,710
+How do you see it?
+
+86
+00:06:26,920 --> 00:06:31,690
+Use the cube CTL Get Pods Command to see a list of pods available.
+
+87
+00:06:31,690 --> 00:06:36,440
+In this case, it's just one to see detailed information about the pod.
+
+88
+00:06:36,460 --> 00:06:37,510
+Run the cubes.
+
+89
+00:06:37,510 --> 00:06:39,820
+It'll describe pod command.
+
+90
+00:06:40,090 --> 00:06:44,010
+This will tell you information about the pod when it was created.
+
+91
+00:06:44,020 --> 00:06:49,750
+What labels are assigned to it, what Docker containers are part of it, and the events associated with
+
+92
+00:06:49,750 --> 00:06:50,590
+that pod.
+
+93
+00:06:52,170 --> 00:06:53,430
+That's it for this lecture.
+
+94
+00:06:53,430 --> 00:06:57,210
+We will now head over to a demo and I will see you in the next lecture.
+

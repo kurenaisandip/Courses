@@ -1,0 +1,76 @@
+1
+00:00:02,580 --> 00:00:07,270
+In this section, we're going to talk about what it looks like to install Jenkins.
+
+2
+00:00:07,290 --> 00:00:13,710
+Now, you're going to be pretty pleasantly surprised that it doesn't take all that much to get Jenkins
+
+3
+00:00:13,710 --> 00:00:14,490
+up and running.
+
+4
+00:00:14,520 --> 00:00:17,860
+It's a few lines on the terminal.
+
+5
+00:00:17,880 --> 00:00:21,030
+Open up a port and that's pretty much it.
+
+6
+00:00:21,180 --> 00:00:26,520
+So our environment is we're going to be installing Jenkins on a boon to 20.4.
+
+7
+00:00:26,550 --> 00:00:30,450
+Now I will be running that virtual machine inside of Azure.
+
+8
+00:00:30,480 --> 00:00:31,530
+Don't worry.
+
+9
+00:00:31,530 --> 00:00:32,990
+You don't need Azure.
+
+10
+00:00:33,000 --> 00:00:40,020
+You could use AWS, you could use GCP, you could use a virtual machine running locally on your desktop
+
+11
+00:00:40,020 --> 00:00:41,100
+or your laptop.
+
+12
+00:00:41,130 --> 00:00:42,600
+It totally doesn't matter.
+
+13
+00:00:42,600 --> 00:00:45,900
+I'm just running it in Azure because it's easy.
+
+14
+00:00:46,590 --> 00:00:52,980
+So we're going to install Jenkins fully on a boon to and we're going to install all of the dependencies
+
+15
+00:00:52,980 --> 00:00:55,440
+that are needed to get Jenkins up and running.
+
+16
+00:00:55,440 --> 00:01:00,840
+And then once we do that, we'll be able to log into the Jenkins portal, see all the visuals and start
+
+17
+00:01:00,840 --> 00:01:03,600
+to play around and get on our journey.
+
+18
+00:01:04,890 --> 00:01:07,040
+Well, that's it for this lecture.
+
+19
+00:01:07,050 --> 00:01:08,490
+We'll see you in the next.
+

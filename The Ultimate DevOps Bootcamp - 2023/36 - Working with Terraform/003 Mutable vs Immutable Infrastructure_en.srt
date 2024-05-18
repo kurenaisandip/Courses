@@ -1,0 +1,296 @@
+1
+00:00:00,560 --> 00:00:06,710
+In this section, we will learn about the difference between mutable and immutable infrastructure.
+
+2
+00:00:08,020 --> 00:00:14,950
+In one of the previous lectures, we saw that Venter from updates a resource such as updating the permissions
+
+3
+00:00:14,950 --> 00:00:16,149
+of a local file.
+
+4
+00:00:16,329 --> 00:00:20,440
+It first destroys it and then recreates it with the new permission.
+
+5
+00:00:21,040 --> 00:00:23,230
+So why does TerraForm do that?
+
+6
+00:00:24,010 --> 00:00:27,670
+To understand this, let us make use of a simple example.
+
+7
+00:00:28,520 --> 00:00:34,490
+Consider an application server running engine X with division of 1.17.
+
+8
+00:00:35,290 --> 00:00:41,980
+When a new version of Engine X is released, we upgrade the software running on this web server first
+
+9
+00:00:41,980 --> 00:00:49,390
+from 1.17 to 1.18, and eventually when a new version 1.19 is released.
+
+10
+00:00:49,420 --> 00:00:53,470
+We upgraded the same way from 1.18 to 1.19.
+
+11
+00:00:54,410 --> 00:00:57,290
+This can be done using a number of different ways.
+
+12
+00:00:57,440 --> 00:01:04,519
+One simple approach is to download the desired version of Engine X and then use it to manually upgrade
+
+13
+00:01:04,519 --> 00:01:07,820
+the software on the web server during a maintenance window.
+
+14
+00:01:08,390 --> 00:01:14,660
+Of course, we can also make use of tools such as ad hoc scripts or configuration management tools such
+
+15
+00:01:14,660 --> 00:01:16,490
+as Ansible to achieve this.
+
+16
+00:01:17,730 --> 00:01:19,160
+For high availability.
+
+17
+00:01:19,170 --> 00:01:24,930
+Instead of relying on one web server, we can have a pool of these web servers all running the same
+
+18
+00:01:24,930 --> 00:01:26,280
+software and code.
+
+19
+00:01:27,470 --> 00:01:33,440
+We would have to use the same software upgrade lifecycle for each of these servers using the same approach
+
+20
+00:01:33,440 --> 00:01:35,570
+that we used for the first web server.
+
+21
+00:01:36,450 --> 00:01:40,020
+This type of update is known as in place update.
+
+22
+00:01:40,440 --> 00:01:45,960
+And this is because the underlying infrastructure remains the same, but the software and the configuration
+
+23
+00:01:45,960 --> 00:01:48,810
+on these servers are changed as part of the update.
+
+24
+00:01:49,740 --> 00:01:53,520
+And this here is an example of a mutable infrastructure.
+
+25
+00:01:54,680 --> 00:02:01,130
+Updating software on a system can be a complex task, and in almost all cases there are bound to be
+
+26
+00:02:01,130 --> 00:02:06,290
+a set of dependencies that have to be met before an upgrade can be carried out successfully.
+
+27
+00:02:06,980 --> 00:02:13,400
+Let us assume that Web server one and two have every dependency met while we try to upgrade the version
+
+28
+00:02:13,400 --> 00:02:15,680
+from 1.18 to 1.19.
+
+29
+00:02:16,550 --> 00:02:20,780
+And as a result, these two servers are upgraded without any issues.
+
+30
+00:02:21,600 --> 00:02:24,330
+Web server three, on the other hand, does not.
+
+31
+00:02:25,040 --> 00:02:31,400
+The upgrade fields on Web server three because it has a few dependencies that are not met and as a result
+
+32
+00:02:31,400 --> 00:02:33,980
+it remains at version 1.18.
+
+33
+00:02:35,290 --> 00:02:41,110
+The failure in upgrade could be because of a number of reasons, such as network issues impacting the
+
+34
+00:02:41,110 --> 00:02:47,320
+connectivity to the software repository file system, full or different version of operating system
+
+35
+00:02:47,320 --> 00:02:50,230
+running on web server three as compared to the other two.
+
+36
+00:02:50,620 --> 00:02:56,710
+However, the important thing here to note is that we now have a pool of three web servers in which
+
+37
+00:02:56,710 --> 00:03:01,210
+one of these servers is running a different version of software as compared to the rest.
+
+38
+00:03:02,340 --> 00:03:06,890
+Over time with multiple updates and changes to this pool of servers.
+
+39
+00:03:06,900 --> 00:03:14,280
+It is a possibility that each of these servers vary from one another, may be in software configuration
+
+40
+00:03:14,280 --> 00:03:15,960
+or operating system, etc..
+
+41
+00:03:16,690 --> 00:03:19,270
+This is known as a configuration drift.
+
+42
+00:03:20,670 --> 00:03:27,150
+For example, after a few update windows over three Web servers could look like this Web server one
+
+43
+00:03:27,150 --> 00:03:33,540
+and two have Engine X version of 1.19 and Web server three has a version of 1.18.
+
+44
+00:03:34,520 --> 00:03:40,070
+And all three Web servers may also be running slightly different versions of operating system on them.
+
+45
+00:03:40,810 --> 00:03:46,600
+This configuration drift can leave the infrastructure in a complex state, making it difficult to plan
+
+46
+00:03:46,600 --> 00:03:48,760
+and carry out subsequent updates.
+
+47
+00:03:49,210 --> 00:03:54,970
+Troubleshooting issues would also be a difficult task as each server would behave slightly differently
+
+48
+00:03:54,970 --> 00:03:57,040
+from the other because of this configuration.
+
+49
+00:03:57,040 --> 00:03:57,460
+Drift.
+
+50
+00:03:58,740 --> 00:04:04,260
+Instead of updating the software versions on the web servers, we can spin up new web servers with the
+
+51
+00:04:04,260 --> 00:04:08,550
+updated software version and then delete the old web server.
+
+52
+00:04:09,380 --> 00:04:17,660
+So when we want to update engine X 1.1721.18, a new server is provisioned with 1.18 version of Engine
+
+53
+00:04:17,660 --> 00:04:18,110
+X.
+
+54
+00:04:18,500 --> 00:04:22,430
+If the update goes through, then the old web server is deleted.
+
+55
+00:04:22,610 --> 00:04:25,520
+This is known as immutable infrastructure.
+
+56
+00:04:25,910 --> 00:04:30,640
+Immutable means unchanged or something that you cannot change as a consequence.
+
+57
+00:04:30,650 --> 00:04:36,080
+With immutable infrastructure, we cannot carry out in place updates of the resources anymore.
+
+58
+00:04:36,810 --> 00:04:41,400
+This doesn't mean that updating Web servers this way will not lead to failures.
+
+59
+00:04:42,510 --> 00:04:48,330
+If the upgrade fails for any reason, the old web server will be left intact and the failed server will
+
+60
+00:04:48,330 --> 00:04:49,080
+be removed.
+
+61
+00:04:50,530 --> 00:04:56,710
+As a result, we do not leave much room for configuration drift to occur between our servers, ensuring
+
+62
+00:04:56,710 --> 00:04:59,650
+that it is left in a simple, easy to understand state.
+
+63
+00:05:00,840 --> 00:05:06,150
+And since we are working with infrastructure as a code, immutability makes it easier to version the
+
+64
+00:05:06,150 --> 00:05:10,140
+infrastructure and to roll back and roll forward between versions.
+
+65
+00:05:11,630 --> 00:05:15,470
+Therefore as an infrastructure provisioning tool uses this approach.
+
+66
+00:05:16,600 --> 00:05:22,450
+Going back to our example, updating the resource block for our local file resource and changing the
+
+67
+00:05:22,450 --> 00:05:29,350
+permission from seven seven 7 to 7 zero zero will result in the original file to be deleted and a new
+
+68
+00:05:29,350 --> 00:05:31,930
+file to be created with the updated permission.
+
+69
+00:05:32,440 --> 00:05:38,230
+By default, TerraForm destroys the resource first before creating a new one in its place.
+
+70
+00:05:38,650 --> 00:05:45,340
+But what if we want the resource to be created first before the old one is deleted or to ignore deletion
+
+71
+00:05:45,340 --> 00:05:46,150
+completely?
+
+72
+00:05:47,070 --> 00:05:48,240
+How do we do that?
+
+73
+00:05:48,810 --> 00:05:55,110
+This can be done by making use of lifecycle rules in our resource block, and we'll see how to do that
+
+74
+00:05:55,110 --> 00:05:55,740
+next.
+

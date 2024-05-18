@@ -1,0 +1,180 @@
+1
+00:00:02,180 --> 00:00:07,340
+In this lecture, we will see how to make use of variables in TerraForm.
+
+2
+00:00:08,340 --> 00:00:11,940
+We have used several arguments in our form block so far.
+
+3
+00:00:12,420 --> 00:00:19,020
+For the local file, we have a file, name and content, and for the random pet resource, we have used
+
+4
+00:00:19,020 --> 00:00:22,860
+the prefix separator and length as the arguments.
+
+5
+00:00:23,880 --> 00:00:29,040
+Since these values are directly defined within the main configuration files, they are considered to
+
+6
+00:00:29,040 --> 00:00:30,780
+be hardcoded values.
+
+7
+00:00:31,530 --> 00:00:34,230
+Hard coding values is not a good idea.
+
+8
+00:00:34,830 --> 00:00:41,460
+For one, this limits the reusability of the code, which defeats the purpose of using IAC.
+
+9
+00:00:42,610 --> 00:00:48,520
+We want to make sure that the same code can be used again and again to deploy resources based on a set
+
+10
+00:00:48,520 --> 00:00:52,630
+of input variables that can be provided during the execution.
+
+11
+00:00:53,660 --> 00:00:56,720
+And that is where input variables come into the picture.
+
+12
+00:00:57,530 --> 00:01:04,550
+Just as in any general purpose programming language such as Bash, scripting or PowerShell, we can
+
+13
+00:01:04,550 --> 00:01:09,120
+make use of input variables in TerraForm to assign variables.
+
+14
+00:01:09,140 --> 00:01:16,040
+Let us create a new configuration file called Variables DF and define the values like this.
+
+15
+00:01:17,300 --> 00:01:25,900
+The variables file, just like the main file consists of blocks and arguments to create a variable,
+
+16
+00:01:25,910 --> 00:01:28,490
+use the keyword called variable.
+
+17
+00:01:29,090 --> 00:01:31,490
+This is followed by the variable name.
+
+18
+00:01:32,280 --> 00:01:38,820
+This can be named anything but as a standard, use an appropriate name such as the argument name for
+
+19
+00:01:38,820 --> 00:01:40,440
+which we are using the variable.
+
+20
+00:01:40,800 --> 00:01:44,880
+Within this block we can provide a default value for the variable.
+
+21
+00:01:45,450 --> 00:01:51,660
+This is an optional parameter, but it is a quick and simple way to assign values to the variables.
+
+22
+00:01:52,140 --> 00:01:55,890
+We will see the other methods to do so in a later lecture.
+
+23
+00:01:56,590 --> 00:01:57,340
+Great.
+
+24
+00:01:57,610 --> 00:02:04,210
+Now we have our variable configuration file, but how do we use it within the main file?
+
+25
+00:02:05,420 --> 00:02:12,830
+To do this, we can replace the argument values with the variable names prefix with a war like this.
+
+26
+00:02:13,530 --> 00:02:19,500
+When using variables, you do not have to enclose the values inside double quotes as you would when
+
+27
+00:02:19,500 --> 00:02:21,180
+providing actual values.
+
+28
+00:02:22,590 --> 00:02:26,790
+And using the same execution flow that we have seen many times by now.
+
+29
+00:02:27,150 --> 00:02:32,010
+We can create the resources using TerraForm Plan, followed by the TerraForm apply.
+
+30
+00:02:32,520 --> 00:02:35,760
+The resources have now been created as expected.
+
+31
+00:02:37,000 --> 00:02:43,720
+Now, if you want to make an update to the resources by making changes to the existing arguments, we
+
+32
+00:02:43,720 --> 00:02:47,050
+can do that by just updating the variables file.
+
+33
+00:02:47,680 --> 00:02:50,230
+The main ATF need not be modified.
+
+34
+00:02:51,010 --> 00:02:57,610
+For example, let us update the local file resource to create the file at the same location, but with
+
+35
+00:02:57,610 --> 00:02:59,590
+an updated content that reads.
+
+36
+00:02:59,620 --> 00:03:02,620
+My favorite pet is Mrs. Whiskers.
+
+37
+00:03:03,680 --> 00:03:08,240
+And for the random pet resource, let's change the length of the pet name to two.
+
+38
+00:03:09,070 --> 00:03:11,110
+We can do that like this.
+
+39
+00:03:12,360 --> 00:03:17,400
+As expected, when we run TerraForm Apply, it will recreate the resources.
+
+40
+00:03:17,880 --> 00:03:23,460
+The content of the file has been changed and the pet name now has two words following the prefix.
+
+41
+00:03:24,910 --> 00:03:31,150
+Before we conclude this lecture, here is an example of what our configuration files would look like
+
+42
+00:03:31,150 --> 00:03:32,450
+when creating an easy to.
+
+43
+00:03:32,470 --> 00:03:36,610
+Instance in a case with TerraForm while making use of input variables.
+
+44
+00:03:37,210 --> 00:03:42,700
+Don't worry if the resource block and the arguments are unfamiliar, we have a separate lecture where
+
+45
+00:03:42,700 --> 00:03:46,420
+we will be making use of resources later in the course.
+

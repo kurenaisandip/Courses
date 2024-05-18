@@ -1,0 +1,164 @@
+1
+00:00:02,500 --> 00:00:06,760
+JIT is an open source distributed version control system.
+
+2
+00:00:06,939 --> 00:00:10,300
+That itself might not make a lot of sense to you right now.
+
+3
+00:00:10,300 --> 00:00:12,970
+So let's break it down into some smaller parts.
+
+4
+00:00:13,420 --> 00:00:19,180
+Let's say you're working on building a website and after a while you decide that the website is ready
+
+5
+00:00:19,180 --> 00:00:20,170
+to be deployed.
+
+6
+00:00:20,560 --> 00:00:27,370
+Your deployed website is now available on your domain and anyone on the Internet can visit it on your
+
+7
+00:00:27,370 --> 00:00:28,240
+own computer.
+
+8
+00:00:28,240 --> 00:00:31,540
+You have a local version of that deployed website.
+
+9
+00:00:32,229 --> 00:00:35,470
+After a while you want to make some updates to the website.
+
+10
+00:00:36,040 --> 00:00:41,170
+You change the background image and add a better subtitle to the landing page.
+
+11
+00:00:41,410 --> 00:00:43,630
+It's not ready to be deployed yet, though.
+
+12
+00:00:43,630 --> 00:00:48,610
+It's just some draft changes that still needs some other things before you actually want to deploy the
+
+13
+00:00:48,610 --> 00:00:49,750
+updated version.
+
+14
+00:00:50,320 --> 00:00:57,010
+Suddenly your friend texted you saying that he spotted a typo on your website in the navigation bar.
+
+15
+00:00:57,040 --> 00:01:00,490
+The about button is spelled with two BS instead of one.
+
+16
+00:01:00,970 --> 00:01:05,980
+You quickly want to change it to make sure that there are no typos on the deployed website.
+
+17
+00:01:06,880 --> 00:01:08,410
+But wait a second.
+
+18
+00:01:08,410 --> 00:01:14,650
+We change the background image and edit a subtitle which we don't want to deploy yet, so we can't update
+
+19
+00:01:14,650 --> 00:01:20,470
+the contents of the deployed website without overriding all the changes that we've just made locally.
+
+20
+00:01:22,330 --> 00:01:24,790
+In this case, Git can help you out.
+
+21
+00:01:25,300 --> 00:01:27,130
+Git is a content tracker.
+
+22
+00:01:27,130 --> 00:01:32,530
+It stores all our code changes and it's also a distributed version control system.
+
+23
+00:01:33,160 --> 00:01:39,280
+A version control system basically means that we can go back in time and work with a different version
+
+24
+00:01:39,280 --> 00:01:45,220
+of our code base since git stored at all and work with branches which will be covered later on.
+
+25
+00:01:45,760 --> 00:01:52,690
+Distributive means that it has a remote repository which is stored in a server and a local repository
+
+26
+00:01:52,690 --> 00:01:56,660
+which is stored on the computer of every developer working on the project.
+
+27
+00:01:56,680 --> 00:02:01,090
+So every developer has access to the full copy of the code base.
+
+28
+00:02:02,420 --> 00:02:04,670
+Git is a version control system.
+
+29
+00:02:04,670 --> 00:02:09,289
+We can basically go back in time without losing any new changes.
+
+30
+00:02:09,560 --> 00:02:13,790
+When we've made changes, we can save the current state of the website.
+
+31
+00:02:14,000 --> 00:02:20,750
+This way you always have all your versions stored, which makes it super easy to go back in time.
+
+32
+00:02:22,220 --> 00:02:28,360
+You have access to your entire project's history, the changes you made, who made the changes?
+
+33
+00:02:28,370 --> 00:02:33,200
+If you're working on a project with multiple team members and when it was made.
+
+34
+00:02:34,370 --> 00:02:38,120
+Get can help us out to fix the button bag for the deployed website.
+
+35
+00:02:38,300 --> 00:02:44,420
+Currently we have two versions of the website, the deployed landing page, and the updated landing
+
+36
+00:02:44,420 --> 00:02:49,220
+page that contains our local changes to the background, image and subtitle.
+
+37
+00:02:49,250 --> 00:02:53,840
+We want to go back in time to the state of the website when we deployed it.
+
+38
+00:02:54,480 --> 00:03:00,530
+With Git, we can go back in time to that state of the deployed website without losing our new changes.
+
+39
+00:03:00,540 --> 00:03:05,670
+We can quickly fix the button typo on a deployed website without losing any of our work.
+
+40
+00:03:06,540 --> 00:03:13,080
+After fixing the button and deploying the updated website, we can easily switch back to keep on working
+
+41
+00:03:13,080 --> 00:03:15,570
+on our new local changes.
+

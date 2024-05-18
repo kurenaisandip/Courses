@@ -1,0 +1,568 @@
+1
+00:00:00,360 --> 00:00:03,810
+We will now look at building a Java application.
+
+2
+00:00:04,910 --> 00:00:08,660
+In this lecture, we'll talk about building a Java application.
+
+3
+00:00:08,660 --> 00:00:12,290
+So let's start with a build process in its simplest form.
+
+4
+00:00:12,440 --> 00:00:15,220
+So here's a sample Java application.
+
+5
+00:00:15,230 --> 00:00:20,030
+The application source code is first developed, then it is compiled and then run.
+
+6
+00:00:20,030 --> 00:00:22,760
+So here we have a simple code in the file.
+
+7
+00:00:22,760 --> 00:00:28,550
+My class Java, which is then compiled using the Java Sea Command by specifying the name of the code
+
+8
+00:00:28,550 --> 00:00:29,120
+file.
+
+9
+00:00:29,240 --> 00:00:33,390
+This creates a new file, which is then which is the compiled version.
+
+10
+00:00:33,470 --> 00:00:38,000
+We then run the application by running the compiled file using the Java loader.
+
+11
+00:00:38,510 --> 00:00:45,290
+But note that you do not specify the class extension when running the application using the Java Command.
+
+12
+00:00:45,680 --> 00:00:52,520
+What you're specifying here is essentially the class name, which happens to be my class if you look
+
+13
+00:00:52,520 --> 00:00:54,260
+here at the top.
+
+14
+00:00:56,280 --> 00:01:04,739
+So our objective is to convert the human readable code into machine code, as in Python.
+
+15
+00:01:04,739 --> 00:01:12,930
+The source code is first compiled from a human readable form into a byte code, except that here we
+
+16
+00:01:12,930 --> 00:01:16,170
+compile it manually using the Java Sea Command.
+
+17
+00:01:17,060 --> 00:01:22,190
+The bytecode is then run inside of Java virtual machines known as VMS.
+
+18
+00:01:22,280 --> 00:01:27,110
+Again, these are not the same VMs that we refer to in the infrastructure space.
+
+19
+00:01:27,140 --> 00:01:31,550
+These are Java virtual computing environments that exist within the system.
+
+20
+00:01:31,820 --> 00:01:38,120
+So this allows us to develop Java applications once and run them anywhere.
+
+21
+00:01:38,980 --> 00:01:42,280
+Anywhere where there is a supported gvm available.
+
+22
+00:01:42,400 --> 00:01:45,400
+So this truly makes Java Cross platform.
+
+23
+00:01:45,400 --> 00:01:51,100
+You can develop your code once and compile it and then run it anywhere on any operating system.
+
+24
+00:01:52,840 --> 00:01:55,510
+So that was compiling just one file.
+
+25
+00:01:55,720 --> 00:01:58,930
+But a typical application may have many such files.
+
+26
+00:01:58,930 --> 00:02:04,720
+They may be dependent on each other or may have dependencies on external libraries To distribute the
+
+27
+00:02:04,720 --> 00:02:08,560
+application to end users, we need to package it up.
+
+28
+00:02:08,560 --> 00:02:12,370
+And that's where an archive like JAR can help.
+
+29
+00:02:12,760 --> 00:02:22,060
+JAR stands for Java Archive and it helps compress and combine multiple Java class files and dependent
+
+30
+00:02:22,060 --> 00:02:26,320
+libraries and assets into a single distributable package.
+
+31
+00:02:26,440 --> 00:02:33,520
+If, in case of a web application, there may be other files such as static files and images that may
+
+32
+00:02:33,520 --> 00:02:35,200
+be part of the application.
+
+33
+00:02:35,680 --> 00:02:43,000
+In that case, all files are packaged into a VAR file, which stands for Web Archive.
+
+34
+00:02:43,640 --> 00:02:50,510
+So to create an archive, use the JAR Command and specify the name of the output file, in this case
+
+35
+00:02:50,510 --> 00:02:56,210
+my app jar, and then passing the list of files that need to be part of the archive.
+
+36
+00:02:56,450 --> 00:03:00,560
+Running this command generates the my AB jar output file.
+
+37
+00:03:00,800 --> 00:03:07,730
+When this file is created, it automatically generates a manifest file within the package at path meta
+
+38
+00:03:07,730 --> 00:03:10,450
+inf slash manifest mf.
+
+39
+00:03:10,790 --> 00:03:17,240
+This file contains information about the files packaged in the jar file and any other metadata regarding
+
+40
+00:03:17,240 --> 00:03:18,170
+the application.
+
+41
+00:03:18,530 --> 00:03:22,630
+One such information is the entry point of our application.
+
+42
+00:03:22,640 --> 00:03:29,810
+So of the many Java classes that that you see here, which one is the starting point or entry point
+
+43
+00:03:29,810 --> 00:03:33,820
+when someone tries to run this packaged version of the application.
+
+44
+00:03:33,830 --> 00:03:40,490
+So that needs to be specified as a main class property within this manifest file.
+
+45
+00:03:41,570 --> 00:03:48,890
+Once built and distributed, the application can be run on any system with the Java runtime environment
+
+46
+00:03:48,890 --> 00:03:51,120
+installed using the Java Command.
+
+47
+00:03:51,140 --> 00:03:58,280
+But if if you're running a jar file, then you use the Java option like this before specifying the file
+
+48
+00:03:58,280 --> 00:03:58,760
+name.
+
+49
+00:04:00,640 --> 00:04:02,950
+Now another thing is documentation.
+
+50
+00:04:02,950 --> 00:04:09,070
+So our code also needs to be documented so that others can easily read and understand the various functionalities.
+
+51
+00:04:09,080 --> 00:04:15,730
+And for that we use the Java doc utility running the Java Doc command and specifying the source code
+
+52
+00:04:15,730 --> 00:04:21,220
+as input can help us generate documentation that would look like this.
+
+53
+00:04:21,220 --> 00:04:29,080
+So it's an HTML version of the documentation of the code that other developers can easily browse through
+
+54
+00:04:29,080 --> 00:04:29,800
+and read.
+
+55
+00:04:32,160 --> 00:04:40,620
+So we have seen developing source code, compiling the code into byte codes and then packaging it into
+
+56
+00:04:40,620 --> 00:04:44,900
+jar files and then generating documentation on that.
+
+57
+00:04:44,910 --> 00:04:49,980
+So these are kind of the steps that form a build process.
+
+58
+00:04:50,010 --> 00:04:56,700
+Of course, it usually includes many other steps, such as tests and vulnerability scans and code signing,
+
+59
+00:04:56,700 --> 00:05:00,780
+etc. But for our purpose, we will keep it simple.
+
+60
+00:05:01,470 --> 00:05:07,830
+So we have accomplished these tasks using the tools part of the Java development kit directly, like
+
+61
+00:05:07,830 --> 00:05:11,490
+the Java Sea Command, the JAR Command and the Java Dock Command.
+
+62
+00:05:11,970 --> 00:05:19,410
+So these build processes can get really huge and complex when large applications and hundreds of developers
+
+63
+00:05:19,410 --> 00:05:22,710
+are working on the same application at the same time.
+
+64
+00:05:22,710 --> 00:05:28,170
+So there are different developers pushing in code updates to code at the same time and then builds are
+
+65
+00:05:28,170 --> 00:05:29,010
+kicking off.
+
+66
+00:05:29,040 --> 00:05:36,060
+We'll need to compile all those different source codes together into classes and then need to package
+
+67
+00:05:36,060 --> 00:05:39,720
+them together and as well as generate documentation, etc..
+
+68
+00:05:40,080 --> 00:05:45,240
+So this, this can get really complex when there are when there are so many developers and when the
+
+69
+00:05:45,240 --> 00:05:47,280
+application is really complex.
+
+70
+00:05:47,790 --> 00:05:52,770
+So that's where build tools can help you automate much of these processes.
+
+71
+00:05:52,770 --> 00:06:01,950
+Some of the popular build tools for Java or MAVEN, GRADLE and, and these tools use configuration files
+
+72
+00:06:01,950 --> 00:06:09,390
+where you can specify the steps that you want your the build tool to automate, such as the steps in
+
+73
+00:06:09,390 --> 00:06:10,590
+your build process.
+
+74
+00:06:10,710 --> 00:06:17,760
+And these tools automatically execute these steps in that particular order that you have defined.
+
+75
+00:06:18,670 --> 00:06:21,110
+So let's see an example with Ant.
+
+76
+00:06:21,130 --> 00:06:21,590
+Right.
+
+77
+00:06:21,640 --> 00:06:27,640
+So we will see an example of a building, an application, and then automating that with Ant.
+
+78
+00:06:27,760 --> 00:06:32,350
+So on the left here you see are the steps that we executed manually so far.
+
+79
+00:06:32,350 --> 00:06:34,960
+So these are the same commands that we discussed.
+
+80
+00:06:35,110 --> 00:06:42,460
+Now these can be converted into an ant build configuration file, which is in an XML format, and it
+
+81
+00:06:42,460 --> 00:06:43,420
+looks like this.
+
+82
+00:06:43,930 --> 00:06:50,080
+So each section of this XML file has a target action specified to perform a task.
+
+83
+00:06:50,350 --> 00:06:57,160
+The first section for compiling the second section is for generating documentation.
+
+84
+00:06:57,550 --> 00:07:01,330
+The third section is for creating a deployable jar file.
+
+85
+00:07:02,060 --> 00:07:08,540
+So once the build configuration file is created, we run the build using the command line utility.
+
+86
+00:07:08,570 --> 00:07:14,630
+This will result in running all the three specified actions, one after the other, and generating the
+
+87
+00:07:14,630 --> 00:07:20,000
+outputs such as the documentation files and jar files as required.
+
+88
+00:07:20,930 --> 00:07:26,480
+So if you look at each of these in the compiled section, we're specifying what the source directory
+
+89
+00:07:26,480 --> 00:07:26,690
+is.
+
+90
+00:07:26,690 --> 00:07:30,230
+So this is where all of our source code is, right?
+
+91
+00:07:30,380 --> 00:07:37,610
+The human readable format of the source code and after compilation, the class files are put into this
+
+92
+00:07:37,610 --> 00:07:38,570
+destination directory.
+
+93
+00:07:38,570 --> 00:07:41,840
+So this is the path where class files are in the next step.
+
+94
+00:07:41,840 --> 00:07:44,230
+This is for generating documentation.
+
+95
+00:07:44,240 --> 00:07:49,910
+Here again, we specify the the source code, and here you can have different filters where you can
+
+96
+00:07:50,090 --> 00:07:52,970
+filter specific files out.
+
+97
+00:07:53,240 --> 00:07:59,000
+And then here you have a destination directory where the generated source code will be stored.
+
+98
+00:07:59,000 --> 00:08:04,130
+So all the HTML files, the the documentation in the HTML format will go into this.
+
+99
+00:08:04,250 --> 00:08:09,620
+Similarly, at the end, the packaging section here, the name of the section is JAR.
+
+100
+00:08:09,620 --> 00:08:11,750
+So these names could really be anything.
+
+101
+00:08:11,900 --> 00:08:14,660
+This is what you will be calling here.
+
+102
+00:08:14,660 --> 00:08:20,570
+And this is the base directory where the builds are build files are, which is basically the class file.
+
+103
+00:08:20,570 --> 00:08:24,500
+So a jar requires the different class files the path to that.
+
+104
+00:08:24,500 --> 00:08:25,940
+So that's this what's here.
+
+105
+00:08:25,940 --> 00:08:28,220
+And the destination file is my class jar.
+
+106
+00:08:28,220 --> 00:08:31,790
+So that's going to be the final packaged output, right?
+
+107
+00:08:32,700 --> 00:08:39,659
+And then here you can see the main section is the main is where the program starts and you're saying
+
+108
+00:08:39,659 --> 00:08:41,909
+the dependencies are compiled and docs.
+
+109
+00:08:41,909 --> 00:08:44,460
+So each or each one is a dependency.
+
+110
+00:08:44,460 --> 00:08:50,280
+So if you simply run and it just runs all those commands, all those, all these steps one after the
+
+111
+00:08:50,280 --> 00:08:50,760
+other.
+
+112
+00:08:52,360 --> 00:08:58,420
+So in case you only want to run specific sections, not all of them, for example, in this case I just
+
+113
+00:08:58,420 --> 00:09:01,990
+want to run, compile and jar and skip the documentation section.
+
+114
+00:09:01,990 --> 00:09:07,330
+Then I can specify the name of the target actions here in the command like this.
+
+115
+00:09:09,220 --> 00:09:15,370
+Okay, so that's a high level overview of build tools, and we cannot get into more details about each
+
+116
+00:09:15,370 --> 00:09:17,920
+of these tools because that's going to take a long time.
+
+117
+00:09:18,010 --> 00:09:20,890
+But they all kind of work the same way.
+
+118
+00:09:21,590 --> 00:09:28,970
+For example, if you browse around GitHub and look for where is that Java applications, you'll see
+
+119
+00:09:28,970 --> 00:09:30,410
+different configuration files.
+
+120
+00:09:30,410 --> 00:09:33,920
+So all Java applications come with one of these configuration files.
+
+121
+00:09:33,920 --> 00:09:37,310
+In case of Maven, you have the Palm XML file where you have.
+
+122
+00:09:38,290 --> 00:09:47,060
+The build instructions configured, and these repositories also have the instructions to run that build.
+
+123
+00:09:47,080 --> 00:09:51,820
+For example here this is MAVEN running with a clean and install.
+
+124
+00:09:52,390 --> 00:09:59,590
+Similarly, here's an example of GRADLE, another project that uses Gradle build, and here you have
+
+125
+00:09:59,590 --> 00:10:03,160
+the configuration Gradle Gradle configuration.
+
+126
+00:10:03,160 --> 00:10:07,900
+And here's the command that's used to build the application and then run the application.
+
+127
+00:10:07,900 --> 00:10:15,700
+So these build tools make it very easy for others to easily build and run applications so you don't
+
+128
+00:10:15,700 --> 00:10:18,070
+really have to follow hundreds of steps.
+
+129
+00:10:18,400 --> 00:10:20,290
+It kind of automates all of those.
+
+130
+00:10:21,880 --> 00:10:25,420
+So that's it for now in this section.
+
+131
+00:10:25,540 --> 00:10:28,930
+That's all what we're going to discuss about Java and build processes.
+
+132
+00:10:28,930 --> 00:10:35,140
+So now you know the basics of how to go about building and running a Java program, you know, what
+
+133
+00:10:35,230 --> 00:10:38,640
+Java runtime environment is and what a Java development kit is.
+
+134
+00:10:38,650 --> 00:10:43,990
+You know what it means when someone says compile a program and you know what it means when you're asked
+
+135
+00:10:43,990 --> 00:10:49,720
+to package a Java application into your files and when someone says, you know, we use and for builds
+
+136
+00:10:49,720 --> 00:10:53,440
+or Gradle or Maven, you know exactly what they're talking about.
+
+137
+00:10:53,860 --> 00:11:00,290
+When you go through a DevOps course and you're shown automating a build process with pipelines or container
+
+138
+00:11:00,340 --> 00:11:06,430
+using an application with Docker, you will now know what those commands mean, what they're the commands
+
+139
+00:11:06,430 --> 00:11:11,800
+that they're automating right in the pipeline, and you'll know what you're trying to do.
+
+140
+00:11:11,800 --> 00:11:15,550
+So that's the goal of this lecture and this section.
+
+141
+00:11:16,120 --> 00:11:21,070
+It was great having you here and I will see you in the next lecture after the labs.
+
+142
+00:11:21,070 --> 00:11:25,900
+So head over to the labs and practice working with builds in Java.
+

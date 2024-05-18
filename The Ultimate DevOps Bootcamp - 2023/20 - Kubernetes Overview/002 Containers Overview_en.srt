@@ -1,0 +1,660 @@
+1
+00:00:05,700 --> 00:00:09,390
+Hello and welcome to this lecture on Kubernetes Overview.
+
+2
+00:00:09,810 --> 00:00:13,830
+In this lecture, we will go through an overview of Kubernetes.
+
+3
+00:00:14,790 --> 00:00:21,720
+Kubernetes, also known as K eight, was built by Google based on their experience running containers
+
+4
+00:00:21,720 --> 00:00:22,800
+in production.
+
+5
+00:00:23,570 --> 00:00:30,380
+It is now an open source project and is arguably one of the best and most popular container orchestration
+
+6
+00:00:30,380 --> 00:00:32,030
+technologies out there.
+
+7
+00:00:32,740 --> 00:00:37,090
+In this lecture, we will try to understand Kubernetes at a high level.
+
+8
+00:00:38,060 --> 00:00:45,080
+To understand Kubernetes, we must first understand two things container and orchestration.
+
+9
+00:00:45,410 --> 00:00:51,850
+Once we get familiarized with both of these terms, we would be in a position to understand what Kubernetes
+
+10
+00:00:51,880 --> 00:00:53,420
+is capable of.
+
+11
+00:00:54,110 --> 00:00:57,590
+We will start by looking at each of these next.
+
+12
+00:01:00,510 --> 00:01:05,220
+We're now going to look at what containers are specifically.
+
+13
+00:01:05,220 --> 00:01:09,240
+We will look at the most popular container technology out there.
+
+14
+00:01:09,240 --> 00:01:10,620
+That is Docker.
+
+15
+00:01:11,010 --> 00:01:17,370
+If you are familiar with Docker already, feel free to skip this lecture and move over to the next.
+
+16
+00:01:20,340 --> 00:01:23,400
+Hello and welcome to this lecture on Docker Overview.
+
+17
+00:01:23,430 --> 00:01:24,210
+My name is Mom.
+
+18
+00:01:24,690 --> 00:01:27,780
+I'm Beth and we are learning Docker fundamentals.
+
+19
+00:01:28,170 --> 00:01:33,990
+In this lecture we're going to look at a high level overview on why you need Docker and what it can
+
+20
+00:01:33,990 --> 00:01:34,920
+do for you.
+
+21
+00:01:35,970 --> 00:01:39,390
+Let me start by sharing how I got introduced to Docker.
+
+22
+00:01:39,390 --> 00:01:44,970
+In one of my previous projects, I had this requirement to set up an end to end stack, including various
+
+23
+00:01:44,970 --> 00:01:51,840
+different technologies, like a web server using Node.js, a database such as MongoDB and messaging
+
+24
+00:01:51,840 --> 00:01:55,800
+system like Redis and an orchestration tool like Ansible.
+
+25
+00:01:55,830 --> 00:02:00,810
+We had a lot of issues developing this application with all these different components.
+
+26
+00:02:00,810 --> 00:02:04,650
+First, their compatibility with the underlying operating system.
+
+27
+00:02:04,650 --> 00:02:09,780
+We had to ensure that all these different services were compatible with the version of the operating
+
+28
+00:02:09,780 --> 00:02:11,610
+system we were planning to use.
+
+29
+00:02:11,640 --> 00:02:17,610
+There have been times when certain version of these services were not compatible with the OS and we
+
+30
+00:02:17,760 --> 00:02:23,290
+had to go back and look for another OS that was compatible with all these different services.
+
+31
+00:02:23,340 --> 00:02:29,310
+Secondly, we had to check the compatibility between these services and the libraries and dependencies
+
+32
+00:02:29,310 --> 00:02:30,450
+on the OS.
+
+33
+00:02:30,480 --> 00:02:36,660
+We've had issues where one service requires one version of a dependent library, whereas another service
+
+34
+00:02:36,660 --> 00:02:38,340
+required another version.
+
+35
+00:02:38,730 --> 00:02:42,110
+The architecture of our application changed over time.
+
+36
+00:02:42,120 --> 00:02:48,840
+We've had to upgrade to newer versions of these components or change the database, etc. And every time
+
+37
+00:02:48,840 --> 00:02:55,320
+something changed, we had to go through the same process of checking compatibility between these various
+
+38
+00:02:55,320 --> 00:02:58,440
+components and the underlying infrastructure.
+
+39
+00:02:58,800 --> 00:03:05,250
+This compatibility matrix issue is usually referred to as the matrix from hell.
+
+40
+00:03:07,120 --> 00:03:07,840
+Next.
+
+41
+00:03:07,840 --> 00:03:14,110
+Every time we had a new developer on board, we found it really difficult to set up a new environment.
+
+42
+00:03:14,140 --> 00:03:20,350
+The new developers had to follow a large set of instructions and run hundreds of commands to finally
+
+43
+00:03:20,350 --> 00:03:21,820
+set up their environments.
+
+44
+00:03:21,850 --> 00:03:27,280
+They had to make sure they were using the right operating system, the right versions of each of these
+
+45
+00:03:27,280 --> 00:03:32,320
+components, and each developer had to set all that up by himself each time.
+
+46
+00:03:32,860 --> 00:03:37,110
+We also had different development test and production environments.
+
+47
+00:03:37,120 --> 00:03:43,060
+One developer may be comfortable using one OS and the others may be using another one.
+
+48
+00:03:43,060 --> 00:03:49,330
+And so we couldn't guarantee that the application that we were building would run the same way in different
+
+49
+00:03:49,330 --> 00:03:50,380
+environments.
+
+50
+00:03:50,530 --> 00:03:58,000
+And so all of this made our life in developing, building and shipping the application really difficult.
+
+51
+00:04:00,490 --> 00:04:06,160
+So I needed something that could help us with the compatibility issue, something that will allow us
+
+52
+00:04:06,160 --> 00:04:12,820
+to modify or change these components without affecting the other components and even modify the underlying
+
+53
+00:04:12,820 --> 00:04:14,890
+operating system as required.
+
+54
+00:04:15,100 --> 00:04:17,800
+And that search landed me on Docker.
+
+55
+00:04:17,800 --> 00:04:24,730
+With Docker, I was able to run each component in a separate container with its own libraries and its
+
+56
+00:04:24,730 --> 00:04:31,780
+own dependencies, all on the same VM and the OS, but within separate environments or containers.
+
+57
+00:04:31,780 --> 00:04:38,230
+We just had to build the Docker configuration once and all our developers could now get started with
+
+58
+00:04:38,230 --> 00:04:44,640
+a simple Docker run command irrespective of what the underlying operating system they run.
+
+59
+00:04:44,650 --> 00:04:49,660
+All they needed to do was to make sure they had Docker installed on their systems.
+
+60
+00:04:54,030 --> 00:04:56,010
+So what are containers?
+
+61
+00:04:56,040 --> 00:05:03,210
+Containers are completely isolated environments, as in they can have their own processes or services,
+
+62
+00:05:03,210 --> 00:05:07,920
+their own networking interfaces, their own mounts, just like virtual machines.
+
+63
+00:05:07,920 --> 00:05:11,820
+Except they're all shared the same operating system kernel.
+
+64
+00:05:11,910 --> 00:05:14,340
+We will look at what that means in a bit.
+
+65
+00:05:14,430 --> 00:05:20,520
+But it's also important to note that containers are not new with Docker Containers have existed for
+
+66
+00:05:20,520 --> 00:05:27,840
+about ten years now, and some of the different types of containers are lxi lcs, d, lxi fs, etc.
+
+67
+00:05:28,080 --> 00:05:30,960
+Docker utilizes lcs containers.
+
+68
+00:05:30,960 --> 00:05:36,570
+Setting up these container environments is hard as they are very low level, and that is where Docker
+
+69
+00:05:36,570 --> 00:05:43,680
+offers a high level tool with several powerful functions, making it really easy for end users like
+
+70
+00:05:43,680 --> 00:05:44,220
+us.
+
+71
+00:05:45,640 --> 00:05:52,180
+To understand how Docker works, let us revisit some basic concepts of operating systems first.
+
+72
+00:05:52,450 --> 00:05:59,950
+If you look at operating systems like Ubuntu, Fedora, Suzy or Sand OS, they all consist of two things
+
+73
+00:06:00,370 --> 00:06:03,420
+and OS kernel and a set of software.
+
+74
+00:06:03,430 --> 00:06:09,550
+The operating system kernel is responsible for interacting with the underlying hardware, while the
+
+75
+00:06:09,550 --> 00:06:12,160
+OS kernel remains the same, which is Linux.
+
+76
+00:06:12,160 --> 00:06:17,470
+In this case, it's the software above it that makes these operating systems different.
+
+77
+00:06:17,500 --> 00:06:24,610
+This software may consist of a different user interface drivers, compilers, file managers, developer
+
+78
+00:06:24,610 --> 00:06:32,500
+tools, etc. So you have a common Linux kernel shared across all operating systems and some custom software
+
+79
+00:06:32,500 --> 00:06:35,590
+that differentiates operating systems from each other.
+
+80
+00:06:39,280 --> 00:06:43,960
+We said earlier that Docker containers share the underlying kernel.
+
+81
+00:06:44,080 --> 00:06:45,760
+What does that actually mean?
+
+82
+00:06:45,760 --> 00:06:47,170
+Sharing the kernel.
+
+83
+00:06:47,350 --> 00:06:52,180
+Let's say we have a system with an Ubuntu OS with docker installed on it.
+
+84
+00:06:52,210 --> 00:06:58,990
+Docker can run any flavor of OS on top of it as long as they are all based on the same kernel in this
+
+85
+00:06:58,990 --> 00:07:00,130
+case Linux.
+
+86
+00:07:00,220 --> 00:07:06,580
+If the underlying operating system is ubuntu, Docker can run a container based on another distribution
+
+87
+00:07:06,580 --> 00:07:10,390
+like debian, fedora susi or st os.
+
+88
+00:07:10,630 --> 00:07:16,900
+Each docker container only has the additional software that we just talked about in the previous slide
+
+89
+00:07:16,900 --> 00:07:19,740
+that makes these operating systems different.
+
+90
+00:07:19,750 --> 00:07:26,200
+And Docker utilizes the underlying kernel of Docker host, which works with all the operating systems
+
+91
+00:07:26,200 --> 00:07:26,860
+above.
+
+92
+00:07:27,130 --> 00:07:32,530
+So what is an OS that does not share the same kernel as these windows?
+
+93
+00:07:32,530 --> 00:07:39,490
+And so you won't be able to run a Windows based container on a Docker host with Linux OS on it.
+
+94
+00:07:39,520 --> 00:07:43,360
+For that you would require Docker on a Windows server.
+
+95
+00:07:44,110 --> 00:07:51,130
+You might ask, isn't that a disadvantage then not being able to run another kernel on the OS?
+
+96
+00:07:51,250 --> 00:07:58,780
+The answer is no, because unlike hypervisors, Docker is not meant to virtualize and run different
+
+97
+00:07:58,780 --> 00:08:02,110
+operating systems and kernels on the same hardware.
+
+98
+00:08:02,140 --> 00:08:09,130
+The main purpose of Docker is to containerized applications and to ship them and run them.
+
+99
+00:08:12,120 --> 00:08:17,850
+So that brings us to the differences between virtual machines and containers, something that we tend
+
+100
+00:08:17,850 --> 00:08:21,510
+to do, especially those from a virtualization background.
+
+101
+00:08:21,930 --> 00:08:28,280
+As you can see on the right, in case of Docker, we have the underlying hardware infrastructure.
+
+102
+00:08:28,290 --> 00:08:32,580
+Then the operating system and Docker installed on the OS.
+
+103
+00:08:32,610 --> 00:08:38,490
+Docker can then manage the containers that run with libraries and dependencies alone.
+
+104
+00:08:38,640 --> 00:08:44,850
+In case of a virtual machine, we have the OS on the underlying hardware, then the hypervisor like
+
+105
+00:08:44,970 --> 00:08:49,530
+ESX or virtualization of some kind, and then the virtual machines.
+
+106
+00:08:49,650 --> 00:08:56,400
+As you can see, each virtual machine has its own operating system inside it, then the dependencies
+
+107
+00:08:56,400 --> 00:08:57,960
+and then the application.
+
+108
+00:08:58,200 --> 00:09:04,980
+This overhead costs us higher utilization of underlying resources as there are multiple virtual operating
+
+109
+00:09:04,980 --> 00:09:06,840
+systems and kernels running.
+
+110
+00:09:06,930 --> 00:09:14,280
+The virtual machines also consume higher disk space as each VM is heavy and is usually in gigabytes
+
+111
+00:09:14,280 --> 00:09:19,980
+in size, whereas Docker containers are lightweight and are usually in megabytes in size.
+
+112
+00:09:20,370 --> 00:09:27,000
+This allows Docker containers to boot up faster, usually in a matter of seconds, whereas virtual machines,
+
+113
+00:09:27,000 --> 00:09:32,580
+as we know, takes minutes to boot up as it needs to boot up the entire operating system.
+
+114
+00:09:33,550 --> 00:09:40,150
+It is also important to note that Docker has less isolation as more resources are shared between containers
+
+115
+00:09:40,150 --> 00:09:44,710
+like the kernel, whereas VMs have complete isolation from each other.
+
+116
+00:09:44,830 --> 00:09:51,280
+Since VMs don't rely on the underlying operating system or kernel, you can have different types of
+
+117
+00:09:51,280 --> 00:09:57,760
+operating systems such as Linux based or Windows based on the same hypervisor, whereas it is not possible
+
+118
+00:09:57,760 --> 00:09:59,350
+on a single docker host.
+
+119
+00:09:59,350 --> 00:10:02,260
+So these are some differences between the two.
+
+120
+00:10:04,440 --> 00:10:05,790
+So how is it done?
+
+121
+00:10:06,120 --> 00:10:13,380
+There are a lot of containerized versions of applications readily available as of today, so most organizations
+
+122
+00:10:13,380 --> 00:10:20,640
+have their products containerized and available in a public docker registry called Docker Hub or Docker
+
+123
+00:10:20,640 --> 00:10:21,150
+Store.
+
+124
+00:10:21,180 --> 00:10:29,160
+Already, for example, you can find images of most common operating systems, databases and other services
+
+125
+00:10:29,160 --> 00:10:30,030
+and tools.
+
+126
+00:10:30,210 --> 00:10:37,290
+Once you identify the images you need and you install Docker on your host, bringing up an application
+
+127
+00:10:37,290 --> 00:10:43,110
+stack is as easy as running a Docker run command with the name of the image.
+
+128
+00:10:43,320 --> 00:10:49,980
+In this case, running a Docker run Ansible command will run an instance of Ansible on the Docker host.
+
+129
+00:10:50,070 --> 00:10:56,520
+Similarly, run an instance of MongoDB, Redis and Node.js using the Docker run command.
+
+130
+00:10:57,180 --> 00:11:02,310
+When you run Node.js, just point to the location of the code repository on the host.
+
+131
+00:11:02,430 --> 00:11:08,670
+If you need to run multiple instances of the web servers, simply add as many instances as you need
+
+132
+00:11:08,670 --> 00:11:15,720
+and configure a load balancer of some kind in the front in case one of the instances was to fail, simply
+
+133
+00:11:15,720 --> 00:11:18,810
+destroy that instance and launch a new instance.
+
+134
+00:11:19,500 --> 00:11:25,350
+There are other solutions available for handling such cases that we will look at later during this course.
+
+135
+00:11:26,690 --> 00:11:29,650
+We've been talking about images and containers.
+
+136
+00:11:29,660 --> 00:11:32,270
+Let's understand the difference between the two.
+
+137
+00:11:32,630 --> 00:11:38,900
+An image is a package or a template, just like a VMM template that you might have worked with in the
+
+138
+00:11:38,900 --> 00:11:40,430
+virtualization world.
+
+139
+00:11:40,640 --> 00:11:44,000
+It is used to create one or more containers.
+
+140
+00:11:44,390 --> 00:11:51,110
+Containers are running instances of images that are isolated and have their own environments and set
+
+141
+00:11:51,110 --> 00:11:52,400
+of processes.
+
+142
+00:11:52,760 --> 00:11:57,020
+As we have seen before, a lot of products have been described already.
+
+143
+00:11:57,020 --> 00:12:02,510
+In case you cannot find what you're looking for, you could create an image yourself and push it to
+
+144
+00:12:02,510 --> 00:12:06,620
+the Docker Hub repository, making it available for the public.
+
+145
+00:12:11,060 --> 00:12:16,640
+If you look at it, traditionally developers developed applications.
+
+146
+00:12:17,590 --> 00:12:23,680
+Then they hand it over to ops team to deploy and manage it in production environments.
+
+147
+00:12:24,300 --> 00:12:30,750
+They do that by providing a set of instructions, such as information about how the host must be set
+
+148
+00:12:30,750 --> 00:12:36,360
+up, what prerequisites are to be installed on the host, and how the dependencies are to be configured,
+
+149
+00:12:36,360 --> 00:12:37,140
+etc..
+
+150
+00:12:37,170 --> 00:12:41,100
+The ops team uses this guide to set up the application.
+
+151
+00:12:42,120 --> 00:12:48,210
+Since the ops team did not develop the application on their own, they struggle with setting it up.
+
+152
+00:12:48,450 --> 00:12:49,800
+When they hit an issue.
+
+153
+00:12:49,830 --> 00:12:52,700
+They work with the developers to resolve it.
+
+154
+00:12:52,710 --> 00:12:59,400
+With Docker, a major portion of work involved in setting up the infrastructure is now in the hands
+
+155
+00:12:59,400 --> 00:13:02,570
+of the developers in the form of a Docker file.
+
+156
+00:13:02,580 --> 00:13:08,880
+The guide that the developers built previously to set up the infrastructure can now easily be put together
+
+157
+00:13:08,880 --> 00:13:13,680
+into a Docker file to create an image for the applications.
+
+158
+00:13:13,890 --> 00:13:20,720
+This image can now run on any container platform and is guaranteed to run the same way everywhere.
+
+159
+00:13:20,730 --> 00:13:26,030
+So the ops team now can simply use the image to deploy the application.
+
+160
+00:13:26,040 --> 00:13:32,940
+Since the image was already working when the developer built it and operations are not modifying it,
+
+161
+00:13:32,940 --> 00:13:37,230
+it continues to work the same way when deployed in production.
+
+162
+00:13:39,000 --> 00:13:45,180
+To learn more about containers, check out my other courses Docker for the Absolute Beginners and Docker
+
+163
+00:13:45,180 --> 00:13:50,280
+Swarm, where you can learn and practice Docker commands and create Docker files.
+
+164
+00:13:50,640 --> 00:13:54,280
+That's the end of this lecture on containers and Docker.
+
+165
+00:13:54,300 --> 00:13:56,280
+See you in the next lecture.
+

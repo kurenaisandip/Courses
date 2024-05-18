@@ -1,0 +1,36 @@
+1
+00:00:00,990 --> 00:00:03,930
+First, let's get installed in our computers.
+
+2
+00:00:04,080 --> 00:00:09,750
+You can easily find the install scripts for your specific machine on the website that's listed in the
+
+3
+00:00:09,750 --> 00:00:11,190
+description of this course.
+
+4
+00:00:13,680 --> 00:00:16,740
+Another way of installing git is by using Homebrew.
+
+5
+00:00:16,860 --> 00:00:20,880
+In that case we simply have to type brew install git.
+
+6
+00:00:23,940 --> 00:00:26,280
+To check whether JIT has been installed correctly.
+
+7
+00:00:26,280 --> 00:00:31,470
+We can check the current version of Git on our machine by typing git version.
+
+8
+00:00:31,830 --> 00:00:35,850
+If you see a version you have successfully installed, git on your computer.
+
+9
+00:00:36,390 --> 00:00:39,870
+Now let's see what git is all about and how it can help us.
+

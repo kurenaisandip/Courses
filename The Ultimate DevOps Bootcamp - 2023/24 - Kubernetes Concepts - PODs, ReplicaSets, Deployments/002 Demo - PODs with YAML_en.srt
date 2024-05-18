@@ -1,0 +1,312 @@
+1
+00:00:00,210 --> 00:00:03,930
+In this demo, we're going to create a pod again.
+
+2
+00:00:03,930 --> 00:00:10,860
+But this time, instead of making use of the color run command, we are going to create it using a YAML
+
+3
+00:00:10,860 --> 00:00:12,060
+definition file.
+
+4
+00:00:12,330 --> 00:00:17,700
+So our goal is to create a YAML file with the pod specifications in it.
+
+5
+00:00:18,060 --> 00:00:20,550
+Now there are many ways to do it.
+
+6
+00:00:20,550 --> 00:00:24,420
+You could just create one in any text editor.
+
+7
+00:00:24,960 --> 00:00:31,200
+So if you're on windows you could just use notepad or if you're on Linux as I am just using native editor
+
+8
+00:00:31,200 --> 00:00:39,990
+like VI or Vim, an editor with support for YAML, language would be very helpful in getting the syntax
+
+9
+00:00:39,990 --> 00:00:40,380
+right.
+
+10
+00:00:40,380 --> 00:00:48,330
+So instead of notepad at all, a tool like notepad plus plus in Windows or vim in Linux would be better.
+
+11
+00:00:48,510 --> 00:00:56,550
+Now I'll talk more about tips and tricks and other tools and IDs that can help with this more in the
+
+12
+00:00:56,550 --> 00:00:57,780
+upcoming lectures.
+
+13
+00:00:58,000 --> 00:01:07,260
+And for now, let's take with the very basic form of creating a YAML file using v editor on my Linux
+
+14
+00:01:07,260 --> 00:01:07,620
+system.
+
+15
+00:01:07,620 --> 00:01:14,340
+So here I am on my Linux terminal and I'm going to make use of whim text base editor to create this
+
+16
+00:01:14,340 --> 00:01:15,760
+pod definition file.
+
+17
+00:01:15,780 --> 00:01:22,830
+So the name of the file I'm going to call as pod YAML and as seen in the lecture, we will start off
+
+18
+00:01:22,830 --> 00:01:30,270
+with the four root level elements or the root level properties that we that we saw, which are API version
+
+19
+00:01:30,270 --> 00:01:32,610
+kind, metadata and spec.
+
+20
+00:01:33,600 --> 00:01:38,910
+So we know that the value for API version for a pod is V one.
+
+21
+00:01:39,330 --> 00:01:45,380
+The kind is pod with a capital P, so it is case sensitive.
+
+22
+00:01:45,390 --> 00:01:47,640
+So that's important.
+
+23
+00:01:47,790 --> 00:01:53,040
+And metadata is a dictionary and it can have values where we define the name of the pod.
+
+24
+00:01:53,070 --> 00:02:01,530
+So I'm going to use name as an X and we can have additional labels that we can specify under it.
+
+25
+00:02:01,560 --> 00:02:08,259
+So labels again is also a dictionary and it can have as many labels as you want under it.
+
+26
+00:02:08,280 --> 00:02:14,100
+So we can specify a label which is a key value pair such as an app and engine X.
+
+27
+00:02:14,340 --> 00:02:21,080
+And we can also add more labels like tier and set it to front end.
+
+28
+00:02:21,120 --> 00:02:24,300
+Anything that can help us group this particular pod.
+
+29
+00:02:25,170 --> 00:02:27,780
+Next, we have to define the spec.
+
+30
+00:02:27,780 --> 00:02:32,730
+So spec is also a dictionary and it has an object called containers.
+
+31
+00:02:32,940 --> 00:02:38,840
+So before we move on to that, we have to make sure that we get the indentation right.
+
+32
+00:02:38,850 --> 00:02:46,560
+For example, the app and tier are children of the labels property, so it has to be in the same kind
+
+33
+00:02:46,560 --> 00:02:47,940
+of vertical line here.
+
+34
+00:02:47,940 --> 00:02:53,640
+And similarly under metadata, you have name and labels which are the children of metadata.
+
+35
+00:02:53,640 --> 00:02:58,260
+So they both have to be within the same vertical line.
+
+36
+00:02:58,560 --> 00:03:01,250
+So you have to make sure that the spacing is correct.
+
+37
+00:03:01,260 --> 00:03:08,190
+Typically it would be two spaces or a tab, but it is recommended not to use tabs.
+
+38
+00:03:08,190 --> 00:03:13,170
+So always stick to two spaces and and stick to that throughout.
+
+39
+00:03:13,170 --> 00:03:17,220
+So the next thing that we're going to configure is the container.
+
+40
+00:03:17,220 --> 00:03:20,010
+So a container is a list of objects.
+
+41
+00:03:20,400 --> 00:03:26,760
+Now we first give it a name and note that this is the name of the container within the pod, and there
+
+42
+00:03:26,760 --> 00:03:30,690
+could be multiple containers and each can have a different name.
+
+43
+00:03:30,690 --> 00:03:36,390
+So one container could be named app and another container could be named helper.
+
+44
+00:03:36,540 --> 00:03:38,820
+Any name that makes sense to you.
+
+45
+00:03:39,240 --> 00:03:42,600
+We're going to use the same name as that of the container image.
+
+46
+00:03:42,600 --> 00:03:45,180
+So we will just name it Engine X.
+
+47
+00:03:46,930 --> 00:03:52,640
+And the second object that we're going to add here is the image name, which is the Docker hub image.
+
+48
+00:03:52,660 --> 00:03:55,300
+Name of the container that we're going to create.
+
+49
+00:03:55,720 --> 00:04:02,950
+So the image name is again, Engine X, and if you're using other registries than Docker Hub, then
+
+50
+00:04:02,950 --> 00:04:08,020
+make sure to specify the full path to that image repository here.
+
+51
+00:04:08,590 --> 00:04:13,060
+Now remember that we can add additional containers to the port as well.
+
+52
+00:04:13,060 --> 00:04:19,959
+So if you have to do that, we have to declare the secondary element to the list, which would be the
+
+53
+00:04:19,959 --> 00:04:21,430
+second object in the list.
+
+54
+00:04:21,730 --> 00:04:27,850
+So here I can, for example, add a busy box container using the busy box image, and that would be
+
+55
+00:04:27,850 --> 00:04:29,320
+the second element of the array.
+
+56
+00:04:30,860 --> 00:04:34,880
+So in this case, we're going to stick to one single container.
+
+57
+00:04:34,880 --> 00:04:37,280
+So I'm going to just delete that.
+
+58
+00:04:40,310 --> 00:04:47,900
+And I'm now going to hit escape colon WQ to save this file and we will just use the CAT command to make
+
+59
+00:04:47,900 --> 00:04:52,220
+sure that the file was created with the expected contents.
+
+60
+00:04:52,580 --> 00:04:54,650
+So make sure the format is correct.
+
+61
+00:04:55,040 --> 00:05:01,490
+So the name and labels are children of metadata, and you can see that they are on the same kind of
+
+62
+00:05:01,490 --> 00:05:02,510
+vertical line.
+
+63
+00:05:02,720 --> 00:05:09,050
+And similarly, labels have two children, which are the two labels app and Tier and Speck has a list,
+
+64
+00:05:09,800 --> 00:05:15,290
+and we are defining it as a list with a hyphen followed by the objects.
+
+65
+00:05:18,190 --> 00:05:23,770
+So we can make use of the card, create command or the cattle apply command.
+
+66
+00:05:23,770 --> 00:05:27,700
+So the create and apply command kind of works the same.
+
+67
+00:05:28,570 --> 00:05:33,250
+If you're creating a new object, right, you can either use, create or you can use apply.
+
+68
+00:05:33,640 --> 00:05:34,630
+It doesn't matter.
+
+69
+00:05:35,650 --> 00:05:40,000
+And we pass in the file name using the F option.
+
+70
+00:05:40,000 --> 00:05:43,600
+And here we can see that the pod has been created.
+
+71
+00:05:43,600 --> 00:05:46,060
+So let's check the status real quick.
+
+72
+00:05:47,120 --> 00:05:50,120
+And you can see that it's in container creating state.
+
+73
+00:05:50,450 --> 00:05:53,270
+And then when we check again, we see that it's in the running state.
+
+74
+00:05:53,480 --> 00:05:59,090
+And as before, if you want to get more details about the port, you can always run the described command
+
+75
+00:05:59,090 --> 00:06:01,730
+and specify the name of the port.
+
+76
+00:06:01,730 --> 00:06:06,200
+And you should get a much more in depth information about the port.
+
+77
+00:06:06,770 --> 00:06:08,270
+So that's it for this demo.
+
+78
+00:06:08,300 --> 00:06:17,000
+In the next section, we will learn some tips and tricks of developing YAML files easily using IDs.
+

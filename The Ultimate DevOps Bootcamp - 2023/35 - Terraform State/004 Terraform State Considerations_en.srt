@@ -1,0 +1,132 @@
+1
+00:00:01,430 --> 00:00:05,720
+In the previous lectures, we learned about TerraForm State and its benefits.
+
+2
+00:00:06,840 --> 00:00:12,510
+TerraForm State is the single source of truth for form to understand what is deployed in the real world.
+
+3
+00:00:13,020 --> 00:00:18,390
+However, there are a few things to keep note of when working with State, and we will learn about them
+
+4
+00:00:18,390 --> 00:00:19,470
+in this lecture.
+
+5
+00:00:20,450 --> 00:00:23,180
+State is a non optional feature in TerraForm.
+
+6
+00:00:23,480 --> 00:00:26,060
+However, there are a few considerations.
+
+7
+00:00:26,990 --> 00:00:32,259
+First one is that the state file contains sensitive information within it.
+
+8
+00:00:32,270 --> 00:00:35,570
+It contains every little detail about our infrastructure.
+
+9
+00:00:36,760 --> 00:00:42,790
+Here is an example snippet of a state file for an eight two instance, which is essentially a virtual
+
+10
+00:00:42,790 --> 00:00:44,680
+machine on the cloud.
+
+11
+00:00:45,480 --> 00:00:50,910
+The state file consists of all the attributes for virtual machine that is provisioned, such as the
+
+12
+00:00:50,910 --> 00:00:58,050
+allocated CPUs, the memory operating system, or the image used type and size of disks, etc..
+
+13
+00:00:58,900 --> 00:01:05,410
+It also stores information such as the IP address allocated to the VM and the SSH key pair used, etc..
+
+14
+00:01:06,380 --> 00:01:08,450
+For resources such as databases.
+
+15
+00:01:08,450 --> 00:01:13,250
+The state may also store initial passwords when using local state.
+
+16
+00:01:13,250 --> 00:01:16,040
+The state is stored in plain text JSON files.
+
+17
+00:01:16,280 --> 00:01:21,320
+And as you can see, this information can be classified as sensitive information.
+
+18
+00:01:22,160 --> 00:01:26,900
+And as a result, we need to make sure that the state file is always stored in a secure storage.
+
+19
+00:01:28,160 --> 00:01:34,580
+So we have two kinds of files in our configuration directory data from state file that stores state
+
+20
+00:01:34,580 --> 00:01:40,610
+of the infrastructure and the TerraForm configuration files that we use to provision and manage infrastructure.
+
+21
+00:01:41,450 --> 00:01:47,450
+When working as a team, it is considered a best practice to store it from configuration files and distributed
+
+22
+00:01:47,450 --> 00:01:51,560
+version control systems such as GitHub, GitLab or Bitbucket.
+
+23
+00:01:52,100 --> 00:01:57,350
+However, owing to the sensitive nature of the state file, it is not recommended to store them in git
+
+24
+00:01:57,350 --> 00:01:58,340
+repositories.
+
+25
+00:01:58,730 --> 00:02:05,570
+Instead, store the state in remote backend systems such as CSS three, Google Cloud Storage, Azure
+
+26
+00:02:05,570 --> 00:02:07,820
+Storage, TerraForm Cloud, etc..
+
+27
+00:02:08,820 --> 00:02:13,290
+We will see how to work with remote state backends in a dedicated section of its own.
+
+28
+00:02:13,290 --> 00:02:17,160
+But for now, it's important to make a note of these considerations.
+
+29
+00:02:18,240 --> 00:02:23,400
+TerraForm State is a JSON data structure that is meant for internal use within TerraForm.
+
+30
+00:02:23,910 --> 00:02:27,600
+We should never manually attempt to edit the state files ourselves.
+
+31
+00:02:28,020 --> 00:02:33,510
+However, there would be situations where we may want to make changes to the state file, and in such
+
+32
+00:02:33,510 --> 00:02:36,420
+cases we should rely on TerraForm State commands.
+
+33
+00:02:36,780 --> 00:02:39,630
+We will cover these in a later section of the course.
+

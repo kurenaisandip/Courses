@@ -1,0 +1,668 @@
+1
+00:00:00,150 --> 00:00:05,820
+In this section, we will talk about setting up a lab for beginning your studies on DevOps and cloud
+
+2
+00:00:05,820 --> 00:00:06,780
+technologies.
+
+3
+00:00:07,320 --> 00:00:13,500
+At Code Cloud we have embedded labs for our courses and we provide you a readily available environment
+
+4
+00:00:13,500 --> 00:00:14,400
+to work on.
+
+5
+00:00:14,550 --> 00:00:20,430
+But at times you may want to set up your own personal learning environment, an environment where your
+
+6
+00:00:20,430 --> 00:00:25,860
+changes are persistent and an environment where you can develop your own custom solutions.
+
+7
+00:00:26,220 --> 00:00:31,680
+And this section will help you create your own lab as well as troubleshoot and maintain it, which is
+
+8
+00:00:31,680 --> 00:00:34,080
+something that most students struggle with.
+
+9
+00:00:34,750 --> 00:00:40,900
+We will discuss the different options available to set up a lab environment such as laptops or cloud.
+
+10
+00:00:40,990 --> 00:00:45,760
+We will discuss using VirtualBox as a solution to set up labs on your laptop.
+
+11
+00:00:45,790 --> 00:00:50,140
+We will discuss how to deploy multiple VMs in a virtual box environment.
+
+12
+00:00:50,170 --> 00:00:55,720
+We will discuss networking in VirtualBox, which is one of the topics that a lot of our students have
+
+13
+00:00:55,720 --> 00:01:01,390
+trouble with, such as getting the VMs to talk to each other, accessing the Internet from the from
+
+14
+00:01:01,390 --> 00:01:04,629
+the VMs setting to to the VMs, etc..
+
+15
+00:01:04,629 --> 00:01:10,990
+We will also discuss how to take snapshots to save the state of VMs and restore those snapshots.
+
+16
+00:01:11,110 --> 00:01:16,030
+We will then discuss how to automate the deployment of VMs using Vagrant.
+
+17
+00:01:16,330 --> 00:01:23,080
+A background is a really neat tool that can help you set up a local lab environment very easily and
+
+18
+00:01:23,080 --> 00:01:23,440
+it is.
+
+19
+00:01:23,440 --> 00:01:25,930
+I highly recommend you to learn that.
+
+20
+00:01:26,080 --> 00:01:32,620
+And finally, we will also look at some options available on the cloud to set up your own lab environment.
+
+21
+00:01:32,620 --> 00:01:33,970
+You have two options.
+
+22
+00:01:33,970 --> 00:01:37,610
+One is your laptop, either office or home.
+
+23
+00:01:37,630 --> 00:01:43,630
+The second is on the cloud, a private cloud within your organization or a public cloud provider like
+
+24
+00:01:43,630 --> 00:01:45,790
+Google or Azure.
+
+25
+00:01:46,000 --> 00:01:52,420
+There are many cloud providers that offer free tier where you can create VMs and use them for free.
+
+26
+00:01:52,510 --> 00:01:54,820
+We will talk about some of those later.
+
+27
+00:01:55,300 --> 00:02:00,030
+For now, let's start with a lab setup on a home, laptop or desktop environment.
+
+28
+00:02:00,040 --> 00:02:02,740
+This could also be an office laptop.
+
+29
+00:02:02,860 --> 00:02:08,020
+I personally prefer a home laptop as I can do anything with it as I want.
+
+30
+00:02:08,050 --> 00:02:14,050
+I don't need to take approvals or erase requests to open up firewalls or get permission to install software
+
+31
+00:02:14,050 --> 00:02:14,590
+on it.
+
+32
+00:02:14,830 --> 00:02:17,830
+I want to be independent and do whatever I want to do.
+
+33
+00:02:17,830 --> 00:02:24,880
+So you need such an environment to play around with and to break and and then fix it back together and
+
+34
+00:02:24,880 --> 00:02:28,480
+basically do anything that you want to do with it.
+
+35
+00:02:29,490 --> 00:02:35,070
+So what is a home lab environment and what are the kind of things that you will be needing it for while
+
+36
+00:02:35,070 --> 00:02:41,220
+going through DevOps Cloud or I.T automation courses, you will often come across a set of tools that
+
+37
+00:02:41,220 --> 00:02:47,850
+you will need to work with tools such as Git for source code management, Build tools like Jenkins for
+
+38
+00:02:47,850 --> 00:02:52,910
+running builds programming language frameworks like Java, Python or Node.js.
+
+39
+00:02:52,920 --> 00:02:59,460
+There dependent libraries and packages web servers like Apache web server, engine X Tomcat servers
+
+40
+00:02:59,460 --> 00:03:08,220
+or databases like MySQL, MongoDB, etc. or containerization tools like Docker or Kubernetes and automation
+
+41
+00:03:08,220 --> 00:03:16,950
+tools like Ansible, Chef or Puppet, as well as cloud management tools like Cloud SDK or Cloud Command
+
+42
+00:03:16,950 --> 00:03:24,210
+line tools and even different operating systems, even such as Ubuntu, CentOS, Fedora, etc..
+
+43
+00:03:24,820 --> 00:03:31,980
+Now you can install all of these directly on your laptop and play around with them, but at some point
+
+44
+00:03:31,980 --> 00:03:37,740
+it's going to start impacting the performance of your laptop and you might run into compatibility related
+
+45
+00:03:37,740 --> 00:03:38,260
+issues.
+
+46
+00:03:38,280 --> 00:03:45,150
+Different applications may have a requirement for different versions of these softwares and then you
+
+47
+00:03:45,150 --> 00:03:51,900
+will try to uninstall and reinstall them and soon you'll see yourself in an installation and cleanup
+
+48
+00:03:51,900 --> 00:03:54,210
+loop, trying to get it all working.
+
+49
+00:03:54,570 --> 00:04:00,810
+And soon you will end up reimaging your laptop and losing all your configurations and all of the personalization
+
+50
+00:04:00,810 --> 00:04:02,400
+that you did to your laptop.
+
+51
+00:04:02,880 --> 00:04:11,580
+So one way to combat that is to do everything that you need to do within a virtual machine on your laptop.
+
+52
+00:04:13,370 --> 00:04:19,100
+So this way, if things go south, you can simply delete your virtual machine and provision a new one
+
+53
+00:04:19,100 --> 00:04:23,330
+or take a backup of your virtual machine and restore state from backup.
+
+54
+00:04:23,780 --> 00:04:26,690
+We will discuss how to do that later in this section.
+
+55
+00:04:26,720 --> 00:04:32,210
+This also allows you to try different things in different virtual machines and have different operating
+
+56
+00:04:32,210 --> 00:04:34,670
+systems on different virtual machines.
+
+57
+00:04:34,730 --> 00:04:40,820
+Irrespective of what OS you are on, say you are on a mac or windows, you can have one VM with Ubuntu
+
+58
+00:04:40,820 --> 00:04:42,150
+and other with CentOS.
+
+59
+00:04:42,170 --> 00:04:48,980
+You can run Windows or Linux on Mac or a Windows server on Linux or a Linux on a Windows or Mac, etc.
+
+60
+00:04:49,130 --> 00:04:55,040
+and you can have as many systems as you want as long as you have sufficient hardware resources.
+
+61
+00:04:55,580 --> 00:05:01,130
+Now, of course, all of all of these tools that are listed here, some of them definitely need to be
+
+62
+00:05:01,130 --> 00:05:08,900
+on your laptop, such as Git or the a few other popular tools that you would use on a day to day basis
+
+63
+00:05:08,900 --> 00:05:10,440
+for development purposes.
+
+64
+00:05:10,460 --> 00:05:17,630
+But what I'm referring to here are more of the tools like programming language frameworks or build tools
+
+65
+00:05:17,630 --> 00:05:20,750
+or a web servers or databases, etc..
+
+66
+00:05:21,590 --> 00:05:27,320
+So what is a software that can help you create these virtual machines, these virtual machines into
+
+67
+00:05:27,320 --> 00:05:33,770
+which you can, you know, those which we can play around with or install applications on.
+
+68
+00:05:34,220 --> 00:05:38,090
+It's called as a virtualization software or hypervisors.
+
+69
+00:05:38,120 --> 00:05:44,180
+Now, you might have heard about VMware ESX servers or Windows Hyper-V servers that can create virtual
+
+70
+00:05:44,180 --> 00:05:44,930
+machines.
+
+71
+00:05:45,260 --> 00:05:48,560
+These are known as Type one hypervisors.
+
+72
+00:05:48,680 --> 00:05:55,610
+They're installed directly on bare metal, such as a laptop or server, and then the VMs are created
+
+73
+00:05:55,610 --> 00:05:56,450
+on that.
+
+74
+00:05:56,630 --> 00:06:02,030
+Now these are used in enterprises and production environments where you need to create and manage large
+
+75
+00:06:02,030 --> 00:06:03,430
+number of virtual machines.
+
+76
+00:06:03,440 --> 00:06:08,060
+And as such, these hypervisors have high resource requirements.
+
+77
+00:06:08,090 --> 00:06:13,790
+They also need to be installed and configured directly on the laptop and they are expensive as well.
+
+78
+00:06:14,000 --> 00:06:20,330
+A lot of people do use this for home labs, especially if they have systems with high resources.
+
+79
+00:06:20,600 --> 00:06:23,760
+But that's not what we want here for our purpose.
+
+80
+00:06:23,780 --> 00:06:28,970
+There are other solutions available that better suit our needs and are easy to manage.
+
+81
+00:06:29,910 --> 00:06:32,180
+And those are type two hypervisors.
+
+82
+00:06:32,220 --> 00:06:37,500
+They're hypervisors that runs on an existing operating system.
+
+83
+00:06:37,530 --> 00:06:41,190
+Examples are Oracle, VirtualBox and VMware Workstation.
+
+84
+00:06:41,580 --> 00:06:48,720
+These allow you to easily get started with virtual machines on your laptops without having to install
+
+85
+00:06:48,720 --> 00:06:51,660
+any other operating system or re image your laptop.
+
+86
+00:06:51,960 --> 00:07:00,190
+So going forward, when we say host operating system, we are referring to the main OS on our laptop.
+
+87
+00:07:00,210 --> 00:07:05,670
+And when we talk about guest operating systems, we are referring to the VMs that are created on the
+
+88
+00:07:05,670 --> 00:07:08,160
+hypervisors which are on the operating system.
+
+89
+00:07:09,150 --> 00:07:15,050
+And so these are our topic of interest Oracle, VirtualBox and VMware Workstation.
+
+90
+00:07:15,060 --> 00:07:18,180
+Both of these are very easy to get started with.
+
+91
+00:07:18,180 --> 00:07:20,820
+Just download and install and off you go.
+
+92
+00:07:21,990 --> 00:07:23,730
+But which one?
+
+93
+00:07:23,730 --> 00:07:24,750
+Among the two?
+
+94
+00:07:24,990 --> 00:07:28,380
+Oracle VirtualBox is a free and open source tool.
+
+95
+00:07:28,380 --> 00:07:35,370
+It can be installed and used to create virtual machines on Windows, Linux or Mac exactly the same way
+
+96
+00:07:35,370 --> 00:07:39,210
+it supports backup and recovery with snapshots and clone features.
+
+97
+00:07:39,210 --> 00:07:45,330
+It lets you run multiple VMs together and also helps you create separate networks within your laptop
+
+98
+00:07:45,480 --> 00:07:47,310
+for different groups of VMs.
+
+99
+00:07:47,840 --> 00:07:52,360
+VMware Workstation is, on the other hand, is not a free software.
+
+100
+00:07:52,380 --> 00:08:00,060
+It can only be installed on Windows or Linux and not Mac, and it supports advanced features like snapshots
+
+101
+00:08:00,060 --> 00:08:00,900
+and clones.
+
+102
+00:08:01,050 --> 00:08:08,100
+There is a free version of VMware Workstation known as VMware Player that's available for Windows and
+
+103
+00:08:08,190 --> 00:08:11,820
+Linux and VMware Fusion, which is available for Mac.
+
+104
+00:08:11,940 --> 00:08:18,960
+However, these do not have many features that VMware Workstation or VirtualBox support, such as running
+
+105
+00:08:18,960 --> 00:08:25,560
+multiple VMs at the same time or taking snapshots or performing advanced networking configurations.
+
+106
+00:08:25,860 --> 00:08:33,179
+So if you ask me, considering the cost benefits and the features, Oracle VirtualBox is my choice for
+
+107
+00:08:33,179 --> 00:08:35,309
+a home lab environment.
+
+108
+00:08:36,830 --> 00:08:41,690
+So Oracle VirtualBox is supported on Windows, Linux, Mac or Solaris platforms.
+
+109
+00:08:41,720 --> 00:08:47,300
+Visit this link to go to the download page and download the package for your operating system and this
+
+110
+00:08:47,300 --> 00:08:53,310
+link gives you the list of supported operating system versions with respect to resource requirements.
+
+111
+00:08:53,330 --> 00:09:01,070
+Oracle VirtualBox can be installed on a system with an x 86 hardware with memory as small as 512 GB
+
+112
+00:09:01,070 --> 00:09:05,620
+and only consumes around 30 MVA of disk space for itself.
+
+113
+00:09:05,630 --> 00:09:11,870
+However, since virtual machines require resources, it's a good idea to have additional resources on
+
+114
+00:09:11,870 --> 00:09:14,660
+your host system a lot more actually.
+
+115
+00:09:14,660 --> 00:09:23,060
+So a dual core or quad core processor and a memory of at least four GB and disk space of at least 100
+
+116
+00:09:23,060 --> 00:09:31,430
+GB or more will help you set up one or two small VMs and you can be really smart in managing resources
+
+117
+00:09:31,430 --> 00:09:38,810
+by allocating VMs with only sufficient resources that that it requires and using lightweight OS images
+
+118
+00:09:38,810 --> 00:09:42,550
+instead of the full blown OS images.
+
+119
+00:09:42,560 --> 00:09:48,980
+So once it's installed, open up the VirtualBox tool by starting the executable, it should be available
+
+120
+00:09:48,980 --> 00:09:56,610
+in your application section or in your program section on Windows to create a new virtual machine.
+
+121
+00:09:56,630 --> 00:10:02,780
+Hit the new button at the top, then give your VM a name and specify the location where you want the
+
+122
+00:10:02,780 --> 00:10:04,640
+files of the VM to be created.
+
+123
+00:10:05,030 --> 00:10:11,330
+The VM itself and the disks of the VM are stored as a file on the host operating system.
+
+124
+00:10:11,780 --> 00:10:19,460
+Set the type of the OS to Linux and since the VM that I intend to create is a CentOS machine, I choose
+
+125
+00:10:19,460 --> 00:10:27,050
+RedHat 64 bit as my OS version because Central West is a community fork of Red Hat enterprise Linux,
+
+126
+00:10:27,050 --> 00:10:33,200
+so they are kind of the same except that Red Hat Enterprise Linux has a lot more advanced packages and
+
+127
+00:10:33,470 --> 00:10:36,560
+and built in features, but at the core they are the same.
+
+128
+00:10:36,770 --> 00:10:44,660
+So from the list of options available now you have Linux and Debian fedora, you don't see center OS,
+
+129
+00:10:44,660 --> 00:10:50,700
+but instead of that you can just select red hat and then you have others like open source, ubuntu etc..
+
+130
+00:10:50,720 --> 00:10:53,780
+The next step is assigning memory resources.
+
+131
+00:10:54,290 --> 00:10:57,200
+This may differ between different oss.
+
+132
+00:10:57,200 --> 00:11:00,800
+If your OS is lightweight, you may assign a smaller amount of memory.
+
+133
+00:11:01,250 --> 00:11:03,020
+One GB is usually good.
+
+134
+00:11:04,890 --> 00:11:07,590
+And next, we select the hard disk.
+
+135
+00:11:08,310 --> 00:11:12,990
+Here's where you can create and attach a new disk to the VM.
+
+136
+00:11:13,350 --> 00:11:17,630
+Now, a new disk means it's blank and does not have anything on it.
+
+137
+00:11:17,640 --> 00:11:20,040
+It doesn't even have an operating system on it.
+
+138
+00:11:20,520 --> 00:11:25,860
+Now, creating a new VM is like buying a new PC or a laptop.
+
+139
+00:11:26,340 --> 00:11:33,510
+Without an operating system, you decide what CPU memory and disk configurations are needed and then
+
+140
+00:11:33,510 --> 00:11:37,860
+you buy the laptop and get the disks.
+
+141
+00:11:38,670 --> 00:11:44,370
+Attach the disk to the machine and then the disk is a blank disk and there is no operating system on
+
+142
+00:11:44,370 --> 00:11:44,490
+it.
+
+143
+00:11:44,490 --> 00:11:48,810
+So you need to install an operating system using an OS CD.
+
+144
+00:11:48,960 --> 00:11:55,110
+So just like how you would install an OS on a laptop, you would need to install an OS on a virtual
+
+145
+00:11:55,110 --> 00:11:56,790
+machine created like this.
+
+146
+00:11:57,430 --> 00:11:59,560
+Now, that's one approach.
+
+147
+00:11:59,860 --> 00:12:01,270
+But there's a better way.
+
+148
+00:12:01,510 --> 00:12:06,320
+And what if the disk you attach already has an OS on it?
+
+149
+00:12:06,340 --> 00:12:08,860
+A pre configured pre built OS.
+
+150
+00:12:09,010 --> 00:12:16,030
+That way when the VMM is created, we attach the disk which has the OS on it and then when it boots
+
+151
+00:12:16,390 --> 00:12:17,460
+it's ready to go.
+
+152
+00:12:17,470 --> 00:12:20,260
+You don't have to manually install the OS.
+
+153
+00:12:20,590 --> 00:12:25,090
+So how do we create those disks and where do we get such disks from?
+
+154
+00:12:25,420 --> 00:12:32,530
+Well, it so happens that a large collection of such pre configured disks or images as it is called,
+
+155
+00:12:32,530 --> 00:12:38,380
+are available on the internet and one such website is OS boxes dot org.
+
+156
+00:12:38,620 --> 00:12:45,670
+They have a list of images for all kinds of operating systems like Ubuntu, Debian, CentOS, fedora,
+
+157
+00:12:45,670 --> 00:12:46,450
+etc..
+
+158
+00:12:47,690 --> 00:12:54,590
+Once an image is downloaded, use that as an existing virtual hard disk file while creating the VM.
+
+159
+00:12:55,790 --> 00:12:56,600
+And that's it.
+
+160
+00:12:56,810 --> 00:12:58,200
+The VMM is now created.
+
+161
+00:12:58,220 --> 00:13:04,460
+Now all you need to do is start the VMM by right clicking and selecting the normal start option from
+
+162
+00:13:04,460 --> 00:13:05,120
+the menu.
+
+163
+00:13:05,630 --> 00:13:10,730
+In the next lecture we will see the different ways of connecting to the VM and working with it.
+
+164
+00:13:11,150 --> 00:13:17,600
+And that's one area a lot of people have problems with, like how do you ssh into the VM, how do I
+
+165
+00:13:17,600 --> 00:13:23,440
+access a service hosted on the VM, etc. and that's what we will cover in the next lecture.
+
+166
+00:13:23,450 --> 00:13:24,260
+So.
+
+167
+00:13:25,220 --> 00:13:27,860
+Thanks for watching and I will see you the next video.
+

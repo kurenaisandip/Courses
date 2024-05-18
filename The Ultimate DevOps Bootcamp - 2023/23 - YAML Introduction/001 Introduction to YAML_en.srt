@@ -1,0 +1,380 @@
+1
+00:00:04,640 --> 00:00:06,580
+Hello and welcome to this lecture.
+
+2
+00:00:06,590 --> 00:00:10,370
+In this lecture we take a look at what YAML files are.
+
+3
+00:00:10,610 --> 00:00:16,340
+If you are familiar with yaml already, feel free to skip this section and head over to the next section.
+
+4
+00:00:16,460 --> 00:00:18,800
+If you have not worked with YAML in the past.
+
+5
+00:00:18,800 --> 00:00:24,950
+I would highly recommend going through this because the rest of the course depends entirely on YAML.
+
+6
+00:00:25,920 --> 00:00:32,220
+If you have worked with other data structure formats like XML or JSON, you should be able to easily
+
+7
+00:00:32,220 --> 00:00:33,030
+pick it up.
+
+8
+00:00:33,210 --> 00:00:37,980
+Don't worry, if you haven't worked on any of these, you should still be able to easily pick it up
+
+9
+00:00:37,980 --> 00:00:41,490
+going through the coding exercises that accompany this course.
+
+10
+00:00:43,640 --> 00:00:48,590
+A YAML file is used to represent data, in this case configuration data.
+
+11
+00:00:48,740 --> 00:00:53,890
+Here is a quick comparison of a sample data in three different formats.
+
+12
+00:00:53,900 --> 00:00:59,540
+The one on the left is XML, where we display a list of servers and their information.
+
+13
+00:01:00,280 --> 00:01:07,600
+The same data is represented in JSON format in the middle and finally in YAML format to the right.
+
+14
+00:01:08,050 --> 00:01:10,840
+Take a minute to compare the three formats.
+
+15
+00:01:20,200 --> 00:01:22,720
+Let's take a close look at YAML.
+
+16
+00:01:23,050 --> 00:01:30,040
+If you take the data in its simplest form, such as key value pair, this is how you would define it
+
+17
+00:01:30,040 --> 00:01:31,090
+in yaml.
+
+18
+00:01:31,270 --> 00:01:34,410
+Key and value separated by a colon.
+
+19
+00:01:34,420 --> 00:01:43,060
+The keys are fruit, vegetable, liquid and meat and the values are apple, carrot, water and chicken.
+
+20
+00:01:44,410 --> 00:01:50,890
+Remember, you must have a space followed by a colon differentiating the key and the value.
+
+21
+00:01:50,980 --> 00:01:54,310
+Let's take a look at how an array is represented.
+
+22
+00:01:54,820 --> 00:01:58,070
+We would like to list some fruits and vegetables.
+
+23
+00:01:58,090 --> 00:02:01,120
+We would say fruits followed by a colon.
+
+24
+00:02:01,150 --> 00:02:05,320
+On the next line, enter each item with a dash in the front.
+
+25
+00:02:05,440 --> 00:02:09,699
+The dash indicates that it's an element of an array.
+
+26
+00:02:10,710 --> 00:02:12,210
+How about a dictionary?
+
+27
+00:02:12,480 --> 00:02:17,280
+A dictionary is a set of properties grouped together under an item.
+
+28
+00:02:17,310 --> 00:02:22,110
+Here we try to represent nutrition information of two fruits.
+
+29
+00:02:22,350 --> 00:02:27,090
+The calories, fat and carbs are different for each fruit.
+
+30
+00:02:27,360 --> 00:02:30,510
+Notice the blank space before each item.
+
+31
+00:02:30,840 --> 00:02:37,860
+You must have equal number of blank spaces before the properties of a single item, so they are all
+
+32
+00:02:37,860 --> 00:02:39,420
+aligned together.
+
+33
+00:02:43,400 --> 00:02:46,580
+Let's take a closer look at spaces in YAML.
+
+34
+00:02:46,610 --> 00:02:51,410
+Here we have a dictionary representing the nutrition information of banana.
+
+35
+00:02:51,710 --> 00:02:56,000
+The total amount of calories, fat and carbs are shown.
+
+36
+00:02:56,880 --> 00:03:04,140
+Notice the number of spaces before each property that indicates these key value pairs fall within banana.
+
+37
+00:03:04,380 --> 00:03:08,700
+But what if we had extra spaces for fat and carbs?
+
+38
+00:03:09,570 --> 00:03:16,950
+Then they will fall under calories and thus become properties of calories, which doesn't make any sense.
+
+39
+00:03:17,250 --> 00:03:23,040
+This will result in a syntax error, which will tell you that mapping values are not allowed here because
+
+40
+00:03:23,040 --> 00:03:27,150
+calories already have a value set, which is 105.
+
+41
+00:03:27,300 --> 00:03:30,540
+You can either set a direct value or a hash map.
+
+42
+00:03:30,540 --> 00:03:32,160
+You cannot have both.
+
+43
+00:03:32,280 --> 00:03:39,600
+So the number of spaces before each property is key in YAML, you must ensure they are in the right
+
+44
+00:03:39,600 --> 00:03:42,600
+form to represent your data correctly.
+
+45
+00:03:46,170 --> 00:03:48,120
+Let's take it to another level.
+
+46
+00:03:48,270 --> 00:03:52,330
+You can have less containing dictionaries, containing less.
+
+47
+00:03:52,350 --> 00:03:58,610
+In this case, I have a list of fruits, and the elements of the list are banana and grape.
+
+48
+00:03:58,620 --> 00:04:04,020
+But each of these element are further dictionaries containing nutrition information.
+
+49
+00:04:07,560 --> 00:04:14,760
+A lot of students new to Yamal have reached out to me asking when to use a dictionary or a list.
+
+50
+00:04:15,340 --> 00:04:18,250
+So let me explain this a little bit better.
+
+51
+00:04:18,490 --> 00:04:26,110
+First of all, it is important to understand that all of what we discussed so far, such as XML, JSON
+
+52
+00:04:26,110 --> 00:04:29,260
+or YAML, are used to represent data.
+
+53
+00:04:29,350 --> 00:04:35,260
+It could be data about an organization and all of its employees and their personal details.
+
+54
+00:04:35,260 --> 00:04:40,020
+Or it could be data about a school and all of its students and their grades.
+
+55
+00:04:40,030 --> 00:04:47,490
+Or it could be data about an automobile manufacturing company and all of its cars and its details.
+
+56
+00:04:47,500 --> 00:04:49,150
+It could be anything.
+
+57
+00:04:49,540 --> 00:04:52,180
+Let's take an example of a car.
+
+58
+00:04:52,630 --> 00:05:00,220
+A car is a single object and it has properties such as color, model, transition and price.
+
+59
+00:05:00,580 --> 00:05:04,780
+To store different information or properties of a single object.
+
+60
+00:05:04,810 --> 00:05:09,250
+We use a dictionary in this simple dictionary.
+
+61
+00:05:09,250 --> 00:05:14,080
+I have properties of the car defined in a key value format.
+
+62
+00:05:14,560 --> 00:05:17,050
+This need not be as simple as this.
+
+63
+00:05:17,050 --> 00:05:23,620
+For example, in case we need to split the model further into model name and make here.
+
+64
+00:05:23,650 --> 00:05:28,700
+You could then represent this as a dictionary within another dictionary.
+
+65
+00:05:28,720 --> 00:05:37,570
+In this case, the single value of model is now replaced by a small dictionary with two properties name
+
+66
+00:05:37,570 --> 00:05:38,530
+and ear.
+
+67
+00:05:38,860 --> 00:05:42,970
+So this is a dictionary within another dictionary.
+
+68
+00:05:44,970 --> 00:05:48,640
+Let's say we would like to store the name of six cars.
+
+69
+00:05:48,660 --> 00:05:52,200
+The names are formed by the color and the model of the car.
+
+70
+00:05:52,590 --> 00:06:00,210
+To store this, we would use a list or an array as it is multiple items of the same type of object.
+
+71
+00:06:00,510 --> 00:06:06,630
+Since we are only storing the names, we have a symbol list of strings.
+
+72
+00:06:07,990 --> 00:06:12,270
+What if we would like to store all information about each car?
+
+73
+00:06:12,280 --> 00:06:18,250
+Everything that we listed before, such as the color model, transition and price?
+
+74
+00:06:18,700 --> 00:06:27,490
+We will then modify the array from a list of strings to a list of dictionaries, so we expand each item
+
+75
+00:06:27,490 --> 00:06:32,440
+in the array and replace the name with the dictionary we built earlier.
+
+76
+00:06:33,040 --> 00:06:41,590
+This way, we are able to represent all information about multiple cars in a single YAML file using
+
+77
+00:06:41,590 --> 00:06:43,660
+a list of dictionaries.
+
+78
+00:06:50,470 --> 00:06:56,830
+So that's the difference between dictionary list and list of dictionaries.
+
+79
+00:06:56,860 --> 00:07:02,050
+I hope you understood the difference between the three and when to use each of these.
+
+80
+00:07:04,510 --> 00:07:08,950
+Before we head over to exercises, let's take a look at some key nodes.
+
+81
+00:07:09,280 --> 00:07:14,570
+Dictionary is an unordered collection, whereas lists are ordered collection.
+
+82
+00:07:14,590 --> 00:07:16,120
+So what does that mean?
+
+83
+00:07:16,270 --> 00:07:20,950
+The two dictionaries that you see here have the same properties for Banana.
+
+84
+00:07:21,100 --> 00:07:26,740
+However, you can see that the order of properties fat and carbs do not match.
+
+85
+00:07:26,770 --> 00:07:30,220
+And the first dictionary fat is defined before carbs.
+
+86
+00:07:30,220 --> 00:07:34,360
+And in the second dictionary, carbs comes first, followed by fat.
+
+87
+00:07:34,450 --> 00:07:36,450
+But that doesn't really matter.
+
+88
+00:07:36,460 --> 00:07:42,460
+The properties can be defined in any order, but the two dictionaries will still be the same as long
+
+89
+00:07:42,460 --> 00:07:45,310
+as the values of each property match.
+
+90
+00:07:45,850 --> 00:07:48,850
+This is not the same for lists or arrays.
+
+91
+00:07:49,210 --> 00:07:53,500
+Arrays are ordered collection, so the order of items matter.
+
+92
+00:07:53,590 --> 00:08:00,400
+The two lists shown are not the same because apple and banana are at different positions.
+
+93
+00:08:00,640 --> 00:08:04,900
+This is something to keep in mind while working with data structures.
+
+94
+00:08:06,120 --> 00:08:13,560
+Also remember any line beginning with a hash is automatically ignored and considered as a comment.
+
+95
+00:08:18,040 --> 00:08:23,470
+We are now ready to head over to the coding exercises and have fun playing with YAML files.
+

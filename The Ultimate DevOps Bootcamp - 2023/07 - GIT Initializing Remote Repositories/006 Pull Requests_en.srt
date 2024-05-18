@@ -1,0 +1,112 @@
+1
+00:00:01,450 --> 00:00:08,350
+In the previous examples, we saw that we could merge branches directly into the master branch by first
+
+2
+00:00:08,350 --> 00:00:11,170
+checking out to master and then merging them.
+
+3
+00:00:11,680 --> 00:00:16,329
+When you're working with a team, however, you usually don't want to do this.
+
+4
+00:00:16,720 --> 00:00:20,830
+Instead, we can do all of this on a platform like GitHub.
+
+5
+00:00:22,210 --> 00:00:29,020
+In order to push the latest change to GitHub will push to the Origin Sierra branch by typing git push
+
+6
+00:00:29,020 --> 00:00:30,280
+origin Sierra.
+
+7
+00:00:31,580 --> 00:00:37,670
+After pushing to the Sarah branch and checking out the GitHub repo, you'll see a pop up that shows
+
+8
+00:00:37,670 --> 00:00:41,810
+that the master branch is now one commit behind the Sarah branch.
+
+9
+00:00:43,670 --> 00:00:50,000
+In order to merge Sara into master will have to open something called a pull request.
+
+10
+00:00:50,330 --> 00:00:56,510
+We can do that by clicking the pull request button in the top bar or the pull request button shown in
+
+11
+00:00:56,510 --> 00:00:57,500
+this pop up.
+
+12
+00:00:58,770 --> 00:01:04,319
+Once we've clicked on that button, you'll see the changes that were made to the Sarah branch compared
+
+13
+00:01:04,319 --> 00:01:08,310
+to the master branch and a button to create a pool request.
+
+14
+00:01:09,200 --> 00:01:12,500
+Let's create a pull request also called a PR.
+
+15
+00:01:15,220 --> 00:01:22,240
+We can add additional information about the changes that we've made, such as a title and a description,
+
+16
+00:01:22,240 --> 00:01:27,760
+maybe some important labels, or add specific reviewers for this pull request.
+
+17
+00:01:28,850 --> 00:01:34,550
+Now that the pool request has been opened, other team members can see the changes that you've made
+
+18
+00:01:34,550 --> 00:01:35,720
+and comment on them.
+
+19
+00:01:36,500 --> 00:01:42,620
+If everything has been approved, you can merge your changes into master by clicking the merge pull
+
+20
+00:01:42,620 --> 00:01:43,730
+request button.
+
+21
+00:01:44,540 --> 00:01:45,470
+Perfect.
+
+22
+00:01:45,470 --> 00:01:50,930
+Instead of checking out to master locally emerging it that way, we've just merged our changes into
+
+23
+00:01:50,930 --> 00:01:54,770
+master by creating a pull request emerging it on GitHub.
+
+24
+00:01:55,100 --> 00:02:02,990
+The origin Sara branch has now been merged into the Origin Master branch to make sure that not anyone
+
+25
+00:02:02,990 --> 00:02:05,700
+can just merge changes into the master branch.
+
+26
+00:02:05,720 --> 00:02:08,750
+You need to have the right privileges to do so.
+
+27
+00:02:09,169 --> 00:02:15,680
+This is the default if it's your own repo, but if you're working in a larger team, you may need to
+
+28
+00:02:15,680 --> 00:02:18,980
+ask other team members to merge the PR for you.
+

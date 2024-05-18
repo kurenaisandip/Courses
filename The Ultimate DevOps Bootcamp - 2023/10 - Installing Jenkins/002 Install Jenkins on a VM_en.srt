@@ -1,0 +1,432 @@
+1
+00:00:03,830 --> 00:00:09,230
+All right, everybody, let's go ahead and dive into what it's going to look like to install Jenkins
+
+2
+00:00:09,230 --> 00:00:09,900
+on a beam.
+
+3
+00:00:09,920 --> 00:00:15,560
+Now, we will be using a boon to and again, I'm going to be using Azure, But you could use anything
+
+4
+00:00:15,560 --> 00:00:18,020
+like you could use Hyper-V locally.
+
+5
+00:00:18,020 --> 00:00:24,230
+You could use an A boon to server ISO that you download from a website.
+
+6
+00:00:24,230 --> 00:00:25,940
+You could really use anything.
+
+7
+00:00:25,940 --> 00:00:29,900
+But for me it's just easier to just spin up a quick VM in Azure.
+
+8
+00:00:29,900 --> 00:00:31,610
+So that's what we're going to be doing today.
+
+9
+00:00:31,700 --> 00:00:38,240
+So first things first, I'm just going to go to virtual machines and I'm going to click Create Virtual
+
+10
+00:00:38,240 --> 00:00:38,780
+Machine.
+
+11
+00:00:38,780 --> 00:00:44,810
+Now you can skip this step if you want to, although it may actually be helpful for you to see the resources
+
+12
+00:00:44,810 --> 00:00:48,140
+that I'm using like RAM and CPU and stuff like that.
+
+13
+00:00:48,470 --> 00:00:53,620
+So I'm going to go ahead and I'm going to just choose my Code Cloud Resource group.
+
+14
+00:00:53,630 --> 00:00:59,090
+I'm going to give it a name, I'm going to go ahead and I'm going to choose a boon to 24.
+
+15
+00:01:01,580 --> 00:01:02,000
+And go ahead.
+
+16
+00:01:02,000 --> 00:01:04,340
+And I'm going to choose the size that I want.
+
+17
+00:01:04,340 --> 00:01:08,240
+So it's going to be one CPU and two gigs of memory.
+
+18
+00:01:08,750 --> 00:01:10,670
+Fairly small, fairly cheap.
+
+19
+00:01:11,300 --> 00:01:15,050
+Next, I'm going to go ahead and I'm going to set up a password here, and that's just going to be the
+
+20
+00:01:15,050 --> 00:01:17,510
+username and password to SSH into the server.
+
+21
+00:01:18,020 --> 00:01:20,570
+I'm going to allow Port 22 to be open.
+
+22
+00:01:20,600 --> 00:01:22,520
+Definitely don't do this in production.
+
+23
+00:01:22,520 --> 00:01:24,680
+I'm just doing this because it's a demo environment.
+
+24
+00:01:24,680 --> 00:01:29,990
+But really what this is saying is I'm going to be able to hit the server from any IP, no firewall rules
+
+25
+00:01:29,990 --> 00:01:31,730
+or security groups or anything or present.
+
+26
+00:01:33,440 --> 00:01:34,070
+For discs.
+
+27
+00:01:34,070 --> 00:01:36,230
+It's going to be a premium SSD.
+
+28
+00:01:36,530 --> 00:01:42,440
+I'm going to go ahead and put it into this code Cloud V Net and click next review.
+
+29
+00:01:42,620 --> 00:01:44,300
+I just had to redo the password there.
+
+30
+00:01:44,330 --> 00:01:47,510
+Now I can go ahead and create my VM.
+
+31
+00:01:47,630 --> 00:01:49,520
+So I'm going to go ahead and I'm going to create this VM.
+
+32
+00:01:49,520 --> 00:01:52,610
+And then once it's done, I'll go ahead and open it up in a terminal.
+
+33
+00:01:53,150 --> 00:02:00,920
+So I have my terminal here and what I'm going to do is I'm going to type SSH mike at IP address.
+
+34
+00:02:00,920 --> 00:02:04,640
+This is the public IP address of my virtual machine.
+
+35
+00:02:06,110 --> 00:02:07,550
+Let me go ahead and I'm going to click.
+
+36
+00:02:07,550 --> 00:02:08,720
+Yes.
+
+37
+00:02:09,080 --> 00:02:11,480
+I'm going to type in my password.
+
+38
+00:02:15,350 --> 00:02:15,650
+Okay.
+
+39
+00:02:15,650 --> 00:02:19,220
+And now we are officially inside of the server.
+
+40
+00:02:19,220 --> 00:02:20,960
+So I'm going go ahead and I'm going to clear this.
+
+41
+00:02:20,960 --> 00:02:24,780
+First thing that I'm going to do is run sudo apt update minus y.
+
+42
+00:02:24,800 --> 00:02:26,630
+This is just to update the server here.
+
+43
+00:02:28,720 --> 00:02:32,290
+And then next, I'm going to go ahead and I'm going to run my prerequisite.
+
+44
+00:02:32,290 --> 00:02:36,860
+Now, really, the only prerequisite that I need is to install Java.
+
+45
+00:02:36,880 --> 00:02:39,250
+So I'm going to go ahead and I'm going to install Java.
+
+46
+00:02:43,600 --> 00:02:49,270
+And now that our prerequisite is installed, we are ready to start installing Jenkins.
+
+47
+00:02:49,300 --> 00:02:55,570
+First things first, we're going to go ahead and we're going to add the repository key to the system.
+
+48
+00:02:56,790 --> 00:03:02,100
+Next, we're going to go ahead and we're going to append the package repository to the server source
+
+49
+00:03:02,100 --> 00:03:02,730
+list.
+
+50
+00:03:02,760 --> 00:03:09,060
+Essentially, what that means is we are taking the Jenkins repo and we're adding it to our aptitude
+
+51
+00:03:09,060 --> 00:03:10,050
+package manager.
+
+52
+00:03:11,070 --> 00:03:15,480
+Next, we're going to go ahead and we're going to run sudo apt update minus y.
+
+53
+00:03:15,480 --> 00:03:21,300
+And the reason why is because it's now embedding that jenkins repo or package inside of our package
+
+54
+00:03:21,300 --> 00:03:26,720
+manager and then we'll be ready to actually install Jenkins.
+
+55
+00:03:26,730 --> 00:03:28,590
+So let's go ahead and do that.
+
+56
+00:03:31,760 --> 00:03:36,150
+And just like that, Jenkins is installed very straightforward.
+
+57
+00:03:36,170 --> 00:03:41,210
+Now all we have to really do is start Jenkins and ensure that we can reach the server.
+
+58
+00:03:41,330 --> 00:03:46,310
+So let's go ahead and do that by running our start command.
+
+59
+00:03:47,570 --> 00:03:49,650
+You got to put the s in front of that.
+
+60
+00:03:49,650 --> 00:03:52,980
+And what this is going to do is it's going to actually start the service.
+
+61
+00:03:53,370 --> 00:03:58,020
+Next, we're going to go ahead and we're going to run system CTL status.
+
+62
+00:03:58,020 --> 00:04:02,940
+Jenkins We can see that it is, in fact active and running.
+
+63
+00:04:03,270 --> 00:04:06,300
+And then now we're going to go ahead and we're going to open up the firewall.
+
+64
+00:04:06,300 --> 00:04:12,420
+So what that's going to do is it's going to allow us to interact with Jenkins from the UI and it needs
+
+65
+00:04:12,420 --> 00:04:13,830
+port 80, 80 open.
+
+66
+00:04:13,830 --> 00:04:16,680
+So we're going to go ahead and we're going to allow that.
+
+67
+00:04:17,190 --> 00:04:21,390
+We can go ahead and we can run the firewall status here.
+
+68
+00:04:23,260 --> 00:04:27,610
+And we can see that it is in fact inactive, which is perfectly fine.
+
+69
+00:04:28,630 --> 00:04:31,540
+So next I'm going to go ahead and I'm going to hit exit there.
+
+70
+00:04:31,990 --> 00:04:34,090
+I'm going to copy this IP address.
+
+71
+00:04:34,390 --> 00:04:35,220
+And then I'm going to go ahead.
+
+72
+00:04:35,250 --> 00:04:37,090
+I'm going to open up our Web browser.
+
+73
+00:04:38,620 --> 00:04:40,210
+We're going to type this in.
+
+74
+00:04:40,660 --> 00:04:44,860
+And we should be able to access Jenkins.
+
+75
+00:04:44,860 --> 00:04:48,040
+And if we can, I'll tell you exactly why.
+
+76
+00:04:48,580 --> 00:04:55,600
+If we go to the Azure portal and we go to networking, the port may not be open.
+
+77
+00:04:55,840 --> 00:04:59,980
+So let's go ahead and add the source port range of any.
+
+78
+00:05:00,190 --> 00:05:01,510
+The destination is any.
+
+79
+00:05:01,510 --> 00:05:03,900
+The destination port range is four 8080.
+
+80
+00:05:04,940 --> 00:05:08,230
+Then we're going to go ahead and we're going to give this a name port 8080 there.
+
+81
+00:05:09,340 --> 00:05:11,530
+So now it's creating our security rule here.
+
+82
+00:05:11,530 --> 00:05:15,160
+That way we can access our server on Port 8080.
+
+83
+00:05:15,250 --> 00:05:19,390
+And now we are officially good to go here.
+
+84
+00:05:19,420 --> 00:05:25,180
+Now to actually unlock Jenkins, we have a password that we need to hit and that password is on our
+
+85
+00:05:25,180 --> 00:05:25,840
+server.
+
+86
+00:05:25,840 --> 00:05:31,270
+And the way that we do that is we run sudo cat var lib jenkins.
+
+87
+00:05:31,270 --> 00:05:34,900
+This is where our Jenkins application or package lives secrets.
+
+88
+00:05:34,900 --> 00:05:37,330
+And then there's an initial admin password.
+
+89
+00:05:38,300 --> 00:05:40,160
+That's going to be this password right here.
+
+90
+00:05:40,210 --> 00:05:41,750
+I'm going to go ahead and copy that.
+
+91
+00:05:43,010 --> 00:05:44,420
+Go back to Jenkins.
+
+92
+00:05:46,050 --> 00:05:47,430
+I run that.
+
+93
+00:05:49,120 --> 00:05:52,600
+And then as we can see, our server is officially up and running.
+
+94
+00:05:52,600 --> 00:05:57,340
+And what we can do is we can install the suggested plugins and we'll go ahead and we'll wait for this
+
+95
+00:05:57,340 --> 00:05:58,180
+to finish.
+
+96
+00:05:58,420 --> 00:06:02,050
+And then once it's finished, it'll come up to our Jenkins UI.
+
+97
+00:06:03,160 --> 00:06:05,880
+Now we're going to go ahead and we're going to create our first admin user.
+
+98
+00:06:05,890 --> 00:06:10,120
+So I'll just say, Mike, give it a password here.
+
+99
+00:06:13,640 --> 00:06:14,090
+Give it.
+
+100
+00:06:20,700 --> 00:06:22,050
+And full name.
+
+101
+00:06:25,360 --> 00:06:27,040
+We have our Jenkins Earl here.
+
+102
+00:06:27,040 --> 00:06:31,540
+Now, if we had a dense address, we could obviously pass that in here, but we don't at the moment.
+
+103
+00:06:31,540 --> 00:06:34,270
+So we'll just go ahead and we'll keep it as the IP address.
+
+104
+00:06:34,900 --> 00:06:38,440
+We'll go ahead and click, save and finish start using Jenkins.
+
+105
+00:06:40,580 --> 00:06:43,940
+And we are officially at the portal.
+
+106
+00:06:45,580 --> 00:06:46,420
+All right, everybody.
+
+107
+00:06:46,420 --> 00:06:47,880
+That's it for this lecture.
+
+108
+00:06:47,890 --> 00:06:51,160
+Head over to the labs and start practicing what you've just learned.
+

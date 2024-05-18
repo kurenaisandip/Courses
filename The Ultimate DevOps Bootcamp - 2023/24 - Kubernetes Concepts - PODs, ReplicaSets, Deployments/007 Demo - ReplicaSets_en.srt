@@ -1,0 +1,716 @@
+1
+00:00:00,420 --> 00:00:06,540
+In this demo, we are going to create a replica sets based on the pod definition file that we created
+
+2
+00:00:06,540 --> 00:00:07,140
+earlier.
+
+3
+00:00:07,440 --> 00:00:11,010
+So in the last demo we created a pod using YAML.
+
+4
+00:00:11,040 --> 00:00:16,890
+So here what I've done is I've created a directory called Pods under the Kubernetes for Beginners Directory,
+
+5
+00:00:17,520 --> 00:00:18,870
+which is my project directory.
+
+6
+00:00:18,870 --> 00:00:22,770
+And here are the two files that we created earlier for pods.
+
+7
+00:00:22,950 --> 00:00:27,270
+So now let us create a new directory for replica sets called replica sets.
+
+8
+00:00:27,270 --> 00:00:32,130
+And inside this directory let's create a new file called replica set YAML.
+
+9
+00:00:33,110 --> 00:00:35,420
+So let's start with the API version.
+
+10
+00:00:35,420 --> 00:00:41,630
+And if you remember from the lecture, the version four replica set should be apps slash V one.
+
+11
+00:00:41,930 --> 00:00:46,370
+And next we'll use kind and we'll use the suggestions available.
+
+12
+00:00:46,370 --> 00:00:49,460
+And here we are going to make use of replica sets.
+
+13
+00:00:50,180 --> 00:00:53,360
+The next root element is the same as that of the board.
+
+14
+00:00:53,360 --> 00:01:00,650
+So we are going to add metadata and the name of the replica set, which would be my dash, my app dash
+
+15
+00:01:00,650 --> 00:01:04,879
+replica set, and we'll assign a label for our replica set as well.
+
+16
+00:01:04,970 --> 00:01:07,910
+So the key would be app and the value will be my app.
+
+17
+00:01:08,510 --> 00:01:14,570
+Now I'm going to set the last the last property, which is the spec.
+
+18
+00:01:14,810 --> 00:01:22,940
+And as you can see for replica set, the Visual Studio code extension, the ML extension is automatically.
+
+19
+00:01:24,080 --> 00:01:28,910
+Understood that the object is a public asset and that it needs a selector.
+
+20
+00:01:28,910 --> 00:01:32,000
+So it has already created the selector field for us.
+
+21
+00:01:32,600 --> 00:01:34,040
+So we'll just have to fill it in.
+
+22
+00:01:34,040 --> 00:01:37,100
+So here we are and we have two possible options.
+
+23
+00:01:37,100 --> 00:01:40,250
+It can be match expressions or match label.
+
+24
+00:01:40,250 --> 00:01:42,470
+So let's use the match label option.
+
+25
+00:01:42,470 --> 00:01:48,890
+And here we're going to use the same label that we used for the pot, which will tie the pot to the
+
+26
+00:01:48,890 --> 00:01:49,760
+replica set.
+
+27
+00:01:49,970 --> 00:01:53,900
+So let us use the same label that we used before while creating pots.
+
+28
+00:01:53,900 --> 00:01:59,840
+So for this, let me first open the the engine X bar definition file on the right side of the screen
+
+29
+00:01:59,840 --> 00:02:02,750
+so you can just right click and open it on the right side.
+
+30
+00:02:03,320 --> 00:02:08,930
+The labels we used there where the E and V label, which is set to production.
+
+31
+00:02:08,930 --> 00:02:11,030
+So I'm just going to copy that over.
+
+32
+00:02:11,650 --> 00:02:13,920
+Now the next property is replicas.
+
+33
+00:02:13,930 --> 00:02:20,980
+So for this example, let's make use of three replicas and then the next mandatory value that we need
+
+34
+00:02:20,980 --> 00:02:22,960
+to add here is the template.
+
+35
+00:02:22,960 --> 00:02:30,580
+So for template, we can make use of the part definition file that we created earlier and copy the template.
+
+36
+00:02:30,580 --> 00:02:37,540
+So I'm just going to copy this whole section here from metadata and paste it under the template section.
+
+37
+00:02:38,020 --> 00:02:46,540
+So now as soon as we paste the the contents, we see that the indentation is all out of order.
+
+38
+00:02:46,540 --> 00:02:52,630
+So in order to fix this, one easy way to do it is to select the, the whole section that we just pasted
+
+39
+00:02:52,630 --> 00:03:06,610
+except for the first line and then press tab twice and then or until it fixes the, the, the indentation.
+
+40
+00:03:06,610 --> 00:03:07,090
+Right.
+
+41
+00:03:07,300 --> 00:03:13,390
+Now some editors are intelligent enough to automatically correct that for you.
+
+42
+00:03:13,570 --> 00:03:13,880
+Right.
+
+43
+00:03:13,900 --> 00:03:16,090
+However, this this one doesn't.
+
+44
+00:03:16,630 --> 00:03:20,440
+But I know that there is an extension available for this.
+
+45
+00:03:20,440 --> 00:03:23,290
+And so if you're interested in that, check it out.
+
+46
+00:03:23,590 --> 00:03:27,490
+I think it's called paste and indent or something like that.
+
+47
+00:03:28,510 --> 00:03:31,330
+So for now, we will just stick to the manual way of fixing it.
+
+48
+00:03:32,380 --> 00:03:37,470
+So now the the format is corrected and there are no more errors in the file.
+
+49
+00:03:37,480 --> 00:03:42,460
+So one thing to note here is the labels used for the pod and the labels used under the selector at the
+
+50
+00:03:42,460 --> 00:03:42,760
+top.
+
+51
+00:03:42,760 --> 00:03:44,740
+So they have to be the same, right?
+
+52
+00:03:44,740 --> 00:03:50,020
+The label used at the top of the replica set itself doesn't really matter.
+
+53
+00:03:50,320 --> 00:03:57,460
+The it is the the two labels that are set on the pod and then the one set on the selector that matters.
+
+54
+00:03:57,460 --> 00:03:59,740
+That's what ties them together.
+
+55
+00:03:59,740 --> 00:04:01,570
+So they have to be the same.
+
+56
+00:04:01,570 --> 00:04:07,210
+So say we changed the labels on the pod template or something else like app and set it to my app.
+
+57
+00:04:07,210 --> 00:04:11,650
+Then we must change it at the top as well to use the same right?
+
+58
+00:04:11,650 --> 00:04:14,800
+So now we're done with the file.
+
+59
+00:04:15,220 --> 00:04:21,130
+Okay, so now that we have the replica set definition file ready, let's go back to the terminal.
+
+60
+00:04:21,130 --> 00:04:26,200
+And here in the project root directory we see that we have the new directory called replica sets, and
+
+61
+00:04:26,200 --> 00:04:30,630
+underneath that there is the replica set YAML definition file that we just created.
+
+62
+00:04:30,640 --> 00:04:35,350
+So let's quickly check to make sure that the file has the contents we created.
+
+63
+00:04:35,350 --> 00:04:40,000
+So I'm just going to use cat to view the contents of the file.
+
+64
+00:04:40,000 --> 00:04:41,890
+So it does everything as expected.
+
+65
+00:04:42,750 --> 00:04:48,720
+So now let me clear the screen and we're going to create this replica set using the cube to create command
+
+66
+00:04:48,720 --> 00:04:50,310
+with the dash F option.
+
+67
+00:04:51,250 --> 00:04:56,620
+So as soon as the replica set is created, let's check the status using QB model.
+
+68
+00:04:56,800 --> 00:05:03,260
+Get replica set command and we notice that there is one replica set which is created already.
+
+69
+00:05:03,280 --> 00:05:09,280
+The desired number of replicas is equal to three and the current and ready number of replicas are three
+
+70
+00:05:09,280 --> 00:05:09,940
+as well.
+
+71
+00:05:09,940 --> 00:05:12,730
+And it was created about 8 seconds ago.
+
+72
+00:05:12,970 --> 00:05:18,400
+So we can further inspect the status of the pods by running the cube, get pods command.
+
+73
+00:05:18,400 --> 00:05:25,420
+And we notice here that we have three replicas or three pods for the replica set we created and all
+
+74
+00:05:25,420 --> 00:05:30,880
+of the pods have a unique name, but you will notice that the name of the pod begins with the name of
+
+75
+00:05:30,880 --> 00:05:34,480
+the replica set, which is my app replica set.
+
+76
+00:05:35,020 --> 00:05:41,530
+So that way you can look at the pod, any pod and you can identify that if it is a standalone pod or
+
+77
+00:05:41,530 --> 00:05:43,360
+a pod, that is part of a replica set.
+
+78
+00:05:44,000 --> 00:05:46,910
+Now all of them are in the running state.
+
+79
+00:05:47,450 --> 00:05:54,500
+So we said that a replica set ensures that a sufficient number of replicas or pods are available at
+
+80
+00:05:54,770 --> 00:05:55,850
+all times.
+
+81
+00:05:56,390 --> 00:06:00,560
+Now, let's see what happens if we were to delete one of these pods.
+
+82
+00:06:00,590 --> 00:06:03,890
+So let's go back and copy one of the pod names.
+
+83
+00:06:04,220 --> 00:06:11,360
+So in this case, I'm copying this one here that has a name that ends with eight and x x L, So I'm
+
+84
+00:06:11,360 --> 00:06:17,360
+going to use the delete pod command and I'm going to paste the pod name here.
+
+85
+00:06:17,890 --> 00:06:23,810
+Now, whenever you delete a pod, it takes a few seconds for the pod to fully terminate, so just give
+
+86
+00:06:23,810 --> 00:06:28,010
+it a few seconds for the pod to fully terminate.
+
+87
+00:06:28,490 --> 00:06:32,840
+So once we get the prompt back, let's check the status of the pods again.
+
+88
+00:06:33,230 --> 00:06:37,580
+But you'll notice that the replica set still has three pods running.
+
+89
+00:06:37,670 --> 00:06:42,500
+And you'll notice that one of the pod was just created.
+
+90
+00:06:42,500 --> 00:06:43,820
+15 seconds ago.
+
+91
+00:06:44,000 --> 00:06:50,690
+And you'll notice that the name of the older pod that that ended with the eight and ZL has been deleted.
+
+92
+00:06:50,690 --> 00:06:55,880
+And a new pod with the name with a different name has been created.
+
+93
+00:06:56,000 --> 00:07:02,930
+So that's the replica set, ensuring that sufficient number of pods are always available on the cluster.
+
+94
+00:07:03,320 --> 00:07:08,390
+Now if you run the cube candle, describe replica set command for the new replica set.
+
+95
+00:07:09,080 --> 00:07:13,310
+We will see that the desired number of replicas in history.
+
+96
+00:07:13,310 --> 00:07:16,080
+And here we see more information about the replica set.
+
+97
+00:07:16,100 --> 00:07:21,350
+Just like what we saw with the cube cattle describe pod command.
+
+98
+00:07:22,010 --> 00:07:28,460
+So here we see the name of the replica set, the selectors, the label for the replica set itself.
+
+99
+00:07:28,490 --> 00:07:33,830
+If you scroll down, you'll see the labels that the selector about makes use of, which is the labels
+
+100
+00:07:33,830 --> 00:07:34,690
+on the pod.
+
+101
+00:07:34,700 --> 00:07:37,970
+And we also see the engine x container definition.
+
+102
+00:07:38,270 --> 00:07:41,420
+And if you scroll down below, we see the events.
+
+103
+00:07:41,420 --> 00:07:47,510
+So initially when we created the replica set, it actually came up with three replicas, but then we
+
+104
+00:07:47,510 --> 00:07:53,450
+deleted one of the replicas and then it spun up one additional replica for it to maintain that desired
+
+105
+00:07:53,450 --> 00:07:54,110
+number.
+
+106
+00:07:54,500 --> 00:07:57,780
+And you see all of that in the history of events here.
+
+107
+00:07:57,800 --> 00:08:01,280
+So this is a handy tool and command.
+
+108
+00:08:01,280 --> 00:08:08,780
+If you'd like to inspect what happened to a replica set in case you're troubleshooting something or
+
+109
+00:08:08,780 --> 00:08:14,240
+you're just looking for more information on what's happening with the replica set, etc..
+
+110
+00:08:14,240 --> 00:08:23,330
+So so we said that a replica set ensures that a minimum number of replicas are available all the time.
+
+111
+00:08:23,480 --> 00:08:27,930
+But what if there are more number of replicas than what's required?
+
+112
+00:08:27,950 --> 00:08:30,870
+So let's try to let's try something else.
+
+113
+00:08:30,890 --> 00:08:37,640
+Let's try to create a new pod by making use of the the same label that the replica set select our users,
+
+114
+00:08:38,120 --> 00:08:41,299
+which is the app set to my app.
+
+115
+00:08:41,450 --> 00:08:44,300
+And to do this, let's go back to our pod definition file.
+
+116
+00:08:44,300 --> 00:08:52,010
+And so here I have the index.html file that we created and we'll notice that we have a pod template
+
+117
+00:08:52,010 --> 00:08:55,490
+which tries to create a pod by the name and next to.
+
+118
+00:08:55,730 --> 00:09:03,020
+But we also but we have now changed its label to the same label as the pod definition template used
+
+119
+00:09:03,020 --> 00:09:04,070
+in our replica set.
+
+120
+00:09:04,490 --> 00:09:12,660
+So now let's create the pod directly and not through the replica set, but just directly the pod like
+
+121
+00:09:12,800 --> 00:09:14,030
+as we have done before.
+
+122
+00:09:14,120 --> 00:09:21,830
+And we'll see what happens when we create a new pod outside of the replica set, but one that has the
+
+123
+00:09:21,830 --> 00:09:25,670
+same labels that the replica set select our users.
+
+124
+00:09:26,790 --> 00:09:33,660
+So before doing that, let me run the cube cuddle, get pods command and I see that there is only the
+
+125
+00:09:33,660 --> 00:09:36,540
+three parts that were created by the replica set.
+
+126
+00:09:36,540 --> 00:09:43,350
+And so now I'm going to use the cube cutter to create command and with the dash F option and I'll specify
+
+127
+00:09:43,350 --> 00:09:49,650
+the index.html file and you will see that the engine x-2 pod has been created.
+
+128
+00:09:50,190 --> 00:09:56,850
+But if I run the cube cattle get pods command now and we'll see that the status of that pod is in a
+
+129
+00:09:56,850 --> 00:09:57,840
+terminating state.
+
+130
+00:09:57,840 --> 00:10:03,090
+Already the replica set is terminating the new pod that we just created.
+
+131
+00:10:03,300 --> 00:10:08,760
+It's not allowing more pods with the same labels than the number of replicas configured on the replica
+
+132
+00:10:08,760 --> 00:10:09,270
+set.
+
+133
+00:10:09,780 --> 00:10:17,040
+So if we run the cube cattle describe command now we'll see that at the bottom under the events section
+
+134
+00:10:17,040 --> 00:10:25,110
+of the output of described command, the replica set controller deletes the new engine x-2 pod that
+
+135
+00:10:25,110 --> 00:10:25,950
+we just created.
+
+136
+00:10:26,130 --> 00:10:30,560
+So now if I go back and run the cube, we'll get pod command.
+
+137
+00:10:30,570 --> 00:10:36,660
+I see that it is under terminating state and soon it should go away from it from the list altogether.
+
+138
+00:10:40,500 --> 00:10:44,980
+Okay, so now let's see how to update a replica set.
+
+139
+00:10:45,000 --> 00:10:46,170
+So what?
+
+140
+00:10:46,200 --> 00:10:51,330
+What if we want to change the number of replicas to say, four instead of the current three?
+
+141
+00:10:51,510 --> 00:10:55,170
+Say, for instance, we are trying to scale up our application.
+
+142
+00:10:55,530 --> 00:11:01,340
+So for this we must edit the replica set definition file and update its replicas.
+
+143
+00:11:01,350 --> 00:11:02,340
+Count to four.
+
+144
+00:11:03,060 --> 00:11:10,080
+For this we will make use of a new command called cube edit replica set and we will provide the name
+
+145
+00:11:10,080 --> 00:11:13,680
+of the replica set which is my apt replica set.
+
+146
+00:11:13,890 --> 00:11:20,550
+And now when we run this command, we see that it opens up the running configuration of the replica
+
+147
+00:11:20,550 --> 00:11:23,490
+set in a text editor in a text format.
+
+148
+00:11:24,030 --> 00:11:26,070
+In this case, it opens up in vim.
+
+149
+00:11:26,220 --> 00:11:33,540
+So note that this is not the actual file that we used that we created at the beginning of this demo.
+
+150
+00:11:33,570 --> 00:11:41,130
+This is a temporary file that that's created by Kubernetes in memory to allow us to edit the configuration
+
+151
+00:11:41,130 --> 00:11:43,350
+of an existing object on Kubernetes.
+
+152
+00:11:43,590 --> 00:11:50,850
+And that's why you'll see a lot of additional fields in this file other than the details that you provided.
+
+153
+00:11:51,180 --> 00:11:57,690
+So changes made to this file are directly applied on the running configuration on the cluster as soon
+
+154
+00:11:57,690 --> 00:11:58,980
+as the file is saved.
+
+155
+00:11:59,100 --> 00:12:03,840
+So you must be very careful with the changes that you are making here.
+
+156
+00:12:04,290 --> 00:12:11,880
+So now if I scroll down all the way to the spec section, which is over here and we can see the running
+
+157
+00:12:11,880 --> 00:12:17,790
+configuration and the current number of replicas, which is set to three, I can change this to scale
+
+158
+00:12:17,790 --> 00:12:19,050
+it up by another part.
+
+159
+00:12:19,050 --> 00:12:20,970
+So four in this case.
+
+160
+00:12:21,360 --> 00:12:25,230
+And then I will save and exit from the editor.
+
+161
+00:12:25,320 --> 00:12:31,890
+Now it should now spin up a new pod in addition to the three that we already had to match the new number
+
+162
+00:12:31,890 --> 00:12:33,840
+of replicas that we specified.
+
+163
+00:12:34,420 --> 00:12:36,950
+So if you run the cube, get Pod's command.
+
+164
+00:12:36,970 --> 00:12:43,540
+Now we see that there is a new pod which was spun up 6 seconds ago, and we can use the same approach
+
+165
+00:12:43,540 --> 00:12:44,980
+to scale down as well.
+
+166
+00:12:46,060 --> 00:12:53,080
+And there's also a command available to scale the number of replicas without having to go in and edit
+
+167
+00:12:53,560 --> 00:12:59,110
+the definition file, and that is using the cube scale replica set command.
+
+168
+00:12:59,410 --> 00:13:06,340
+So we will provide the name of the replica set and we will set the number of replicas for it to scale
+
+169
+00:13:06,340 --> 00:13:07,330
+to two.
+
+170
+00:13:07,360 --> 00:13:11,680
+So you could specify a number which is greater or less than the current number of replicas.
+
+171
+00:13:12,010 --> 00:13:16,750
+And note taking note of the double dashes before the replicas option.
+
+172
+00:13:17,020 --> 00:13:20,710
+So if I run the cube code, we'll get Pod's command again.
+
+173
+00:13:20,710 --> 00:13:27,790
+We will see that the replica set is now scaling down to two replicas by terminating two of the pods.
+
+174
+00:13:29,060 --> 00:13:29,420
+Well.
+
+175
+00:13:29,420 --> 00:13:33,380
+So let's wait for these two replicas to be terminated.
+
+176
+00:13:35,160 --> 00:13:36,180
+And there you go.
+
+177
+00:13:36,210 --> 00:13:38,370
+And now we just have two parts.
+
+178
+00:13:38,700 --> 00:13:40,860
+Well, that's it for this demo.
+
+179
+00:13:41,160 --> 00:13:42,930
+I will see you in the next.
+

@@ -1,0 +1,144 @@
+1
+00:00:03,030 --> 00:00:08,640
+In this lecture, we will learn how to update and destroy infrastructure using TerraForm.
+
+2
+00:00:10,400 --> 00:00:13,820
+In the previous lecture, we saw how to create a local file.
+
+3
+00:00:14,360 --> 00:00:19,640
+Now let us see how we can update and destroy this resource using TerraForm.
+
+4
+00:00:20,550 --> 00:00:23,430
+First, let us try to update this resource.
+
+5
+00:00:24,230 --> 00:00:31,580
+Let us add in a file permission argument to update the permission of the file to 0700 instead of the
+
+6
+00:00:31,580 --> 00:00:34,250
+default value of 0777.
+
+7
+00:00:34,910 --> 00:00:39,500
+This will remove any permission for everyone else except the owner of the file.
+
+8
+00:00:40,070 --> 00:00:44,720
+Now, if we run TerraForm Plan, we will see an output like this.
+
+9
+00:00:45,900 --> 00:00:49,800
+From the output, we can see that the resource will be replaced.
+
+10
+00:00:50,790 --> 00:00:56,730
+The minus plus symbol in the beginning of the resource name in the plan implies that it will be deleted
+
+11
+00:00:56,730 --> 00:00:58,350
+and then recreated.
+
+12
+00:00:58,950 --> 00:01:05,519
+The line with the command that reads Forces replacement is responsible for the deletion and recreation.
+
+13
+00:01:05,519 --> 00:01:11,490
+And in this example, this is caused by the file permission argument that we added to the configuration
+
+14
+00:01:11,490 --> 00:01:12,060
+file.
+
+15
+00:01:13,590 --> 00:01:19,200
+Even though the change we made was trivial, TerraForm will delete the old file and then create a new
+
+16
+00:01:19,200 --> 00:01:21,270
+file with the updated permissions.
+
+17
+00:01:21,840 --> 00:01:25,770
+This type of infrastructure is called an immutable infrastructure.
+
+18
+00:01:26,130 --> 00:01:30,210
+We saw this briefly when we discussed the different types of ICC tools.
+
+19
+00:01:31,660 --> 00:01:36,940
+If you want to go ahead with the change, use beta form, apply command and then type.
+
+20
+00:01:36,940 --> 00:01:37,300
+Yes.
+
+21
+00:01:37,300 --> 00:01:38,380
+When prompted.
+
+22
+00:01:39,800 --> 00:01:44,990
+Upon confirmation the existing file is deleted and recreated with the new permissions.
+
+23
+00:01:46,440 --> 00:01:50,670
+To delete the infrastructure completely, run the TerraForm destroy command.
+
+24
+00:01:51,700 --> 00:01:54,430
+This command shows the execution plan as well.
+
+25
+00:01:54,430 --> 00:01:59,710
+And you can see the resource and all of its arguments have a minus symbol next to them.
+
+26
+00:02:00,340 --> 00:02:03,010
+This indicates that the resource will be destroyed.
+
+27
+00:02:03,750 --> 00:02:05,550
+To go ahead with the destroy.
+
+28
+00:02:05,580 --> 00:02:06,240
+Confirm?
+
+29
+00:02:06,240 --> 00:02:07,410
+Yes, in the prompt.
+
+30
+00:02:08,310 --> 00:02:12,270
+This will delete all the resources in the current configuration directory.
+
+31
+00:02:12,930 --> 00:02:16,800
+In this example, it deletes the file slash root slash pets.
+
+32
+00:02:16,800 --> 00:02:16,950
+Dot.
+
+33
+00:02:17,040 --> 00:02:17,880
+TXT.
+
+34
+00:02:19,250 --> 00:02:20,600
+That's it for this lecture.
+
+35
+00:02:20,630 --> 00:02:26,360
+Let's head over to the Hands-On Labs and practice updating and deleting infrastructure resources using
+
+36
+00:02:26,360 --> 00:02:27,050
+TerraForm.
+

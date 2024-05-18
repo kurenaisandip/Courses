@@ -1,0 +1,88 @@
+1
+00:00:03,620 --> 00:00:10,190
+Now that Jenkins is backed up, what if we want to actually restore Jenkins to this backup right here?
+
+2
+00:00:10,280 --> 00:00:12,110
+Well, let's go ahead and test that out.
+
+3
+00:00:12,650 --> 00:00:14,540
+So we're going to go to thin backup.
+
+4
+00:00:14,810 --> 00:00:17,000
+We're going to click on Restore.
+
+5
+00:00:17,580 --> 00:00:23,780
+And now, as you can see, I actually have an option right here, restore from this backup.
+
+6
+00:00:23,960 --> 00:00:27,350
+What I want to do really quick is I want to take another backup.
+
+7
+00:00:29,070 --> 00:00:31,410
+And then I'm going to go to settings really quick.
+
+8
+00:00:31,780 --> 00:00:37,050
+I'm going to scroll down and we're literally going to back up everything.
+
+9
+00:00:37,770 --> 00:00:38,070
+Oop.
+
+10
+00:00:40,180 --> 00:00:40,380
+Right.
+
+11
+00:00:40,420 --> 00:00:41,400
+I'm going to save that.
+
+12
+00:00:42,210 --> 00:00:43,620
+Then I'm going to click back up again.
+
+13
+00:00:46,290 --> 00:00:46,680
+Okay.
+
+14
+00:00:46,860 --> 00:00:53,430
+And then just to confirm, as we can see, we have our three backups now.
+
+15
+00:00:53,910 --> 00:01:00,270
+So if I click on Restore, I now have three different backups and it'll tell me in the time so I can
+
+16
+00:01:00,270 --> 00:01:03,390
+just restore from the latest here.
+
+17
+00:01:04,500 --> 00:01:06,240
+Go ahead and I'll click Restore.
+
+18
+00:01:08,600 --> 00:01:08,980
+Right.
+
+19
+00:01:08,990 --> 00:01:13,670
+And just like that, we are back up and running it really quick.
+
+20
+00:01:13,670 --> 00:01:18,110
+Obviously, there isn't a whole bunch of stuff going on on this server, so it didn't take too long.
+
+21
+00:01:18,110 --> 00:01:23,660
+But that's essentially how you can back up and restore on your Jenkins server.
+
+22
+00:01:24,320 --> 00:01:27,950
+Well, that's it for this lecture we'll see in the next.
+

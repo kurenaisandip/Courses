@@ -1,0 +1,92 @@
+1
+00:00:01,330 --> 00:00:05,890
+JIT has two repository types, local and remote.
+
+2
+00:00:06,100 --> 00:00:11,290
+The local repository is on your own machine, so you have direct access to it.
+
+3
+00:00:11,440 --> 00:00:17,230
+The remote repository is usually a centralized server and is entirely optional.
+
+4
+00:00:17,410 --> 00:00:21,910
+We can save the changes that we made locally on this remote server.
+
+5
+00:00:22,180 --> 00:00:27,970
+The remote repository is very useful when you want to have a backup of your data in case your computer
+
+6
+00:00:27,970 --> 00:00:30,400
+breaks or when you're working with a team.
+
+7
+00:00:31,420 --> 00:00:38,500
+Teammates can initialize their own local repository on their own computers and simply pull the data
+
+8
+00:00:38,500 --> 00:00:42,700
+from the remote repository in order to start working on your project.
+
+9
+00:00:44,370 --> 00:00:51,120
+When one of the team members has made some changes, they can push these changes to the remote repository
+
+10
+00:00:51,780 --> 00:00:55,440
+in order to keep your local and remote repository in sync.
+
+11
+00:00:55,470 --> 00:01:00,930
+You can then pool these changes from the remote repository into your local repository.
+
+12
+00:01:02,760 --> 00:01:06,540
+The local repository actually consists of three stages.
+
+13
+00:01:06,570 --> 00:01:09,840
+The working area are all your active changes.
+
+14
+00:01:09,840 --> 00:01:11,910
+Git doesn't know what to do with them yet.
+
+15
+00:01:11,910 --> 00:01:14,790
+It just knows that these files contain some updates.
+
+16
+00:01:15,240 --> 00:01:19,760
+The staging area contains new changes that will soon be committed.
+
+17
+00:01:19,770 --> 00:01:21,780
+And then there are the committed files.
+
+18
+00:01:22,980 --> 00:01:28,980
+Previously we looked at the use case of Git and we saw that people could add their change and save new
+
+19
+00:01:28,980 --> 00:01:31,410
+states of the project each time.
+
+20
+00:01:31,950 --> 00:01:35,280
+What we're actually looking at here are commits.
+
+21
+00:01:35,580 --> 00:01:41,310
+People can commit their changes in order to add version control to the project.
+
+22
+00:01:41,940 --> 00:01:47,670
+The files that should be included in the commit are first added to the staging area.
+
+23
+00:01:48,330 --> 00:01:52,950
+A commit gets created when a developer actually commits those files.
+

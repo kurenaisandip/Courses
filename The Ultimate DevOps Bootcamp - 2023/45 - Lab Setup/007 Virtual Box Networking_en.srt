@@ -1,0 +1,924 @@
+1
+00:00:00,720 --> 00:00:06,210
+In this lecture, we will look at the various networking options available within VirtualBox.
+
+2
+00:00:06,689 --> 00:00:12,360
+Some of the common issues that our students face with respect to VirtualBox is around networking.
+
+3
+00:00:12,390 --> 00:00:18,030
+A lot of our students struggle with understanding the different kinds of networks such as Nat Bridge
+
+4
+00:00:18,030 --> 00:00:22,890
+and host only and what they mean and what type of network to be used when.
+
+5
+00:00:23,010 --> 00:00:28,830
+Also, how do multiple VMs connect with each other and how to troubleshoot issues where you can't reach
+
+6
+00:00:28,830 --> 00:00:29,900
+the Internet.
+
+7
+00:00:29,910 --> 00:00:32,940
+And that's what we will discuss in this video.
+
+8
+00:00:33,870 --> 00:00:39,720
+So before getting into networking and VirtualBox, let us first revise some of the basic networking
+
+9
+00:00:39,720 --> 00:00:40,530
+concepts.
+
+10
+00:00:41,330 --> 00:00:47,480
+Now computer systems like our laptops or servers have different kinds of interfaces or adapters that
+
+11
+00:00:47,480 --> 00:00:53,270
+are used for connectivity, such as wired Ethernet interfaces to connect to a LAN network through a
+
+12
+00:00:53,270 --> 00:00:59,720
+hub or a switch using a cable and wireless interfaces to connect to the network through wi fi.
+
+13
+00:01:00,110 --> 00:01:06,440
+Now, irrespective of how they connect to a network, once they do, they get an IP address assigned
+
+14
+00:01:06,440 --> 00:01:09,040
+either manually or dynamically.
+
+15
+00:01:09,050 --> 00:01:15,610
+If there is a DHCP server in the environment, an IP address is assigned to an interface.
+
+16
+00:01:15,620 --> 00:01:21,750
+In this case, we have a laptop that's connected using an ethernet cable to a switch in our home.
+
+17
+00:01:21,770 --> 00:01:25,950
+Once the connection is established, our laptop gets an IP address.
+
+18
+00:01:25,970 --> 00:01:33,140
+When you run the IP address show command, you see the interface in p0s3 and it has the IP address.
+
+19
+00:01:33,140 --> 00:01:35,990
+One 92.1 60 8.1.5.
+
+20
+00:01:36,560 --> 00:01:41,510
+Now say you have another adapter, a wi fi adapter, and you attach that to the same network, but this
+
+21
+00:01:41,510 --> 00:01:43,280
+time through wi fi.
+
+22
+00:01:43,310 --> 00:01:48,890
+Then that interface gets another IP address assigned to it and can be seen in the output of the same
+
+23
+00:01:48,890 --> 00:01:49,550
+command.
+
+24
+00:01:50,460 --> 00:01:54,440
+The same laptop now has two separate IP addresses on the same network.
+
+25
+00:01:54,450 --> 00:02:00,930
+If any other host were to try to reach our laptop, they may do so using any of these IP addresses.
+
+26
+00:02:01,580 --> 00:02:08,120
+So what I'm trying to say is every system, every computer system has different interfaces and it can
+
+27
+00:02:08,120 --> 00:02:13,970
+have multiple such interfaces and adapters to connect to different networks.
+
+28
+00:02:13,970 --> 00:02:19,250
+So it could be the same network, which is which is as it is in this case, but it could be to connect
+
+29
+00:02:19,250 --> 00:02:20,420
+to different networks.
+
+30
+00:02:20,780 --> 00:02:26,270
+And some interfaces have internet connectivity depending on what network they are connected to and the
+
+31
+00:02:26,270 --> 00:02:27,800
+others do not.
+
+32
+00:02:30,330 --> 00:02:37,020
+Once a virtual machine is provisioned in VirtualBox, if you go to the settings of that VM and in the
+
+33
+00:02:37,020 --> 00:02:41,700
+network tab, you will see different networking options to start with.
+
+34
+00:02:41,730 --> 00:02:43,620
+There are four adapters.
+
+35
+00:02:43,650 --> 00:02:50,130
+This means that you can configure your VM to have up to four network connections.
+
+36
+00:02:50,310 --> 00:02:55,950
+Now how you configure those and what do you connect these adapters to is up to you.
+
+37
+00:02:56,160 --> 00:03:01,470
+By default, only the first adapter is enabled and it is attached to NAT.
+
+38
+00:03:01,710 --> 00:03:04,860
+As you can see, there are multiple options available here.
+
+39
+00:03:04,890 --> 00:03:09,450
+Nat bridge adapter host only adapter being some of them.
+
+40
+00:03:09,450 --> 00:03:12,900
+And we will see what these options are next.
+
+41
+00:03:13,630 --> 00:03:15,930
+So let's start with a simple example.
+
+42
+00:03:15,940 --> 00:03:22,870
+Say we have a physical system like our laptop or a PC and it's connected to the network with the address.
+
+43
+00:03:22,870 --> 00:03:25,630
+190 2.168.1.0.
+
+44
+00:03:25,900 --> 00:03:30,730
+So you set an IP for your PC to one 92.1.
+
+45
+00:03:30,730 --> 00:03:32,680
+68 .1. ten.
+
+46
+00:03:33,920 --> 00:03:35,900
+And we have virtual box on it.
+
+47
+00:03:35,900 --> 00:03:42,380
+Say, for example, A on VirtualBox, we have provisioned multiple virtual machines, so there are four
+
+48
+00:03:42,380 --> 00:03:43,940
+virtual machines provisioned.
+
+49
+00:03:44,090 --> 00:03:47,510
+Now, how do these VMs talk to each other?
+
+50
+00:03:47,750 --> 00:03:52,490
+How do they read systems outside of your PC?
+
+51
+00:03:52,760 --> 00:03:56,480
+Now, as of now, these virtual machines are simply created.
+
+52
+00:03:56,480 --> 00:03:59,840
+They don't have any network or any IP address assigned to them.
+
+53
+00:03:59,930 --> 00:04:06,020
+So if you log in to any of these VMs through their console and try to ping one another, it would fail.
+
+54
+00:04:06,230 --> 00:04:11,540
+It wouldn't be you wouldn't even know what the IP address is to do a ping in the first place.
+
+55
+00:04:12,410 --> 00:04:16,160
+So we create a private network within our PC.
+
+56
+00:04:16,370 --> 00:04:20,959
+It's called as a host only network and has an address.
+
+57
+00:04:20,959 --> 00:04:23,690
+190 2.168.5.0.
+
+58
+00:04:23,990 --> 00:04:29,330
+So we attach the virtual interfaces of the VMs to this network.
+
+59
+00:04:29,360 --> 00:04:34,160
+Now, I'll explain how we do that in a bit, but let me first cover the concepts.
+
+60
+00:04:35,710 --> 00:04:41,920
+So once you attach the interfaces or the virtual interfaces of the VMs to this network, they all get
+
+61
+00:04:41,920 --> 00:04:46,840
+an IP address in the one 92.1 68 five series in that range.
+
+62
+00:04:46,840 --> 00:04:50,050
+So one system gets 190 to 168 5.2.
+
+63
+00:04:50,350 --> 00:04:53,320
+Another one gets 5.3, 5.4 and 5.5.
+
+64
+00:04:54,810 --> 00:05:02,280
+Our PC is a part of the network, so a virtual interface is created on our PC and connected to the same
+
+65
+00:05:02,280 --> 00:05:03,000
+network.
+
+66
+00:05:03,660 --> 00:05:07,620
+And it gets an IP one 92.1 60 8.5.1.
+
+67
+00:05:07,950 --> 00:05:14,820
+So all the VMs and PC itself are now part of a virtual private host only network.
+
+68
+00:05:15,580 --> 00:05:21,640
+The reason it's called host only is because the connectivity is contained within this host.
+
+69
+00:05:21,970 --> 00:05:28,390
+All the VMs can reach each other, but they cannot reach the outside world, nor can anyone outside
+
+70
+00:05:28,390 --> 00:05:31,090
+this host reach these virtual machines.
+
+71
+00:05:31,210 --> 00:05:35,310
+They're all on a private, internal host only network.
+
+72
+00:05:35,320 --> 00:05:39,910
+So how do you create this host only network, and how do you attach VMs to this?
+
+73
+00:05:40,300 --> 00:05:43,210
+To create this host only network on VirtualBox.
+
+74
+00:05:43,690 --> 00:05:47,520
+On Mac, go to file and then host network manager.
+
+75
+00:05:47,530 --> 00:05:51,580
+You will have a similar option available for Windows and Linux as well.
+
+76
+00:05:51,580 --> 00:05:53,410
+So just find out where that is.
+
+77
+00:05:53,920 --> 00:05:56,860
+Once you go into the host network manager.
+
+78
+00:05:57,730 --> 00:06:02,680
+Inside the host network manager, create a new network by clicking on the create button.
+
+79
+00:06:02,710 --> 00:06:09,970
+This creates an internal virtual network in our laptop and creates an interface by the name V Box Net
+
+80
+00:06:09,970 --> 00:06:15,370
+zero and assigns our laptop the first IP address on this interface.
+
+81
+00:06:15,570 --> 00:06:22,120
+Now, if you run the F config command, you see the two IP addresses assigned to my laptop, the 1i21
+
+82
+00:06:22,120 --> 00:06:29,200
+68 1.10 on the internet adapter and 180 to 168 5.1 on the V box net zero adapter.
+
+83
+00:06:29,200 --> 00:06:33,760
+So that's the network, the first network created by VirtualBox.
+
+84
+00:06:34,870 --> 00:06:37,510
+And you can create multiple such host only networks.
+
+85
+00:06:38,550 --> 00:06:39,870
+With within Marshall Box.
+
+86
+00:06:40,050 --> 00:06:44,050
+So now that we have created the network to attach a VM to this network.
+
+87
+00:06:44,070 --> 00:06:50,670
+Go to the settings page of a VM and under network, select the adapter and select attach to host only
+
+88
+00:06:50,670 --> 00:06:54,690
+adapter and select the new network that we created.
+
+89
+00:06:54,810 --> 00:06:57,270
+So do that on each VM.
+
+90
+00:06:57,270 --> 00:07:06,360
+And since this host only network also has DHCP enabled, the VMS get an IP assigned automatically.
+
+91
+00:07:07,200 --> 00:07:07,500
+Okay.
+
+92
+00:07:07,500 --> 00:07:08,910
+So that was one scenario.
+
+93
+00:07:08,910 --> 00:07:10,440
+Let's look at another option.
+
+94
+00:07:10,440 --> 00:07:15,120
+So say we have another physical machine in the network.
+
+95
+00:07:15,920 --> 00:07:22,190
+So just building off of that previous example where we have on one side we have our host only network
+
+96
+00:07:22,190 --> 00:07:28,730
+and the and the VMs inside it, but we also have another host that's attached to this particular network
+
+97
+00:07:28,730 --> 00:07:36,980
+and it has an IP 192 168 1.11 The PC has some kind of service running on it, such as, let's say a
+
+98
+00:07:36,980 --> 00:07:45,740
+database instance, for example, and our VMs on the first PC would like to access this particular database.
+
+99
+00:07:45,980 --> 00:07:52,610
+Now, in the current setup with the host only network, the VMs are not going to be able to do that
+
+100
+00:07:53,030 --> 00:07:58,700
+is because they are on a host only network and they cannot really reach outside of that host.
+
+101
+00:07:59,060 --> 00:08:02,630
+So for this we introduce a NAT network.
+
+102
+00:08:02,630 --> 00:08:07,800
+So instead of creating a host only network, we create a NAT network.
+
+103
+00:08:07,820 --> 00:08:13,970
+The NAT network is similar to the host only network where, as in we create a private network within
+
+104
+00:08:13,970 --> 00:08:19,060
+the physical system and we attach all the VMs to it and they all get an IP address.
+
+105
+00:08:19,070 --> 00:08:23,180
+But this time these VMs can access the outside world.
+
+106
+00:08:23,360 --> 00:08:28,040
+The VMs can now access the database using its IP address.
+
+107
+00:08:28,280 --> 00:08:34,909
+Now, for every packet that is sent from the VM to the database, the NAT engine which sits on the on
+
+108
+00:08:34,909 --> 00:08:43,100
+our host is going to replace the source IP with its own IP address so that when the database receives
+
+109
+00:08:43,100 --> 00:08:47,540
+a request, it's going to think that it's all coming from the first PC.
+
+110
+00:08:47,570 --> 00:08:51,530
+It is unaware of the VMs that are present on the first PC.
+
+111
+00:08:51,710 --> 00:08:57,740
+So it processes the request and sends back the data to the first PC.
+
+112
+00:08:58,190 --> 00:09:04,730
+The NAT engine on receiving the response, intercepts the packet and changes the address back to the
+
+113
+00:09:04,730 --> 00:09:08,900
+original VMs IP and forwards it back to the VM.
+
+114
+00:09:09,890 --> 00:09:16,250
+So that's what's called address translation, and that's why network address translation, when a request
+
+115
+00:09:16,250 --> 00:09:23,750
+is sent, the net from address is actually translated to the host address and then the request goes.
+
+116
+00:09:23,750 --> 00:09:31,190
+And then when the response is received, the two address is changed back to the original address of
+
+117
+00:09:31,190 --> 00:09:33,740
+the VM that in fact send the request.
+
+118
+00:09:35,360 --> 00:09:39,800
+So with this setup, the VMs within can access the outside world.
+
+119
+00:09:39,800 --> 00:09:46,250
+But remember, the outside world is still unaware of the VMs that exist within the system.
+
+120
+00:09:46,490 --> 00:09:51,230
+So no systems from the outside world can access the VMs inside.
+
+121
+00:09:51,950 --> 00:09:53,330
+So how do you do that?
+
+122
+00:09:53,330 --> 00:09:54,980
+To create a net network.
+
+123
+00:09:55,010 --> 00:10:03,140
+Go to the virtual box preferences page and select network, and there you will find NAT Networks.
+
+124
+00:10:03,320 --> 00:10:07,220
+Click the plus button and create a new NAT network.
+
+125
+00:10:07,340 --> 00:10:15,740
+Once created to attach a VM to this NAT network, go to the VM settings and under network, attach the
+
+126
+00:10:15,740 --> 00:10:17,930
+adapter to NAT Network.
+
+127
+00:10:18,230 --> 00:10:20,600
+Now note that it is different from Nat.
+
+128
+00:10:21,290 --> 00:10:23,480
+So Nat and Nat Network are different.
+
+129
+00:10:23,570 --> 00:10:26,060
+And then select the name of the NAT network.
+
+130
+00:10:26,300 --> 00:10:27,320
+And that's all.
+
+131
+00:10:28,010 --> 00:10:31,100
+So what is Nat and Nat Network?
+
+132
+00:10:31,100 --> 00:10:35,270
+What is the difference between Nat and Network and Nat?
+
+133
+00:10:35,920 --> 00:10:39,700
+NAT is the default setting of a V on virtual box.
+
+134
+00:10:39,730 --> 00:10:47,050
+It works similar to NAT network as in the VMs can reach the external world and uses NAT network address
+
+135
+00:10:47,050 --> 00:10:52,420
+translation so that when records go out, they go out with the address of the host, and when responses
+
+136
+00:10:52,420 --> 00:10:57,350
+are received, the address is replaced by the virtual nat router within that VM.
+
+137
+00:10:57,370 --> 00:11:02,050
+However, you don't have that internal network here.
+
+138
+00:11:02,500 --> 00:11:06,310
+So as such, the VMs are not able to reach each other.
+
+139
+00:11:06,310 --> 00:11:13,180
+So each VM is isolated, They cannot talk to each other, but they can talk to external systems through
+
+140
+00:11:13,180 --> 00:11:13,920
+the host.
+
+141
+00:11:13,930 --> 00:11:20,590
+So in this case, each VM kind of gets its own nat router, whereas in the earlier case there was a
+
+142
+00:11:20,590 --> 00:11:25,710
+NAT network and there was a single nat router that there works for all VMs.
+
+143
+00:11:25,720 --> 00:11:29,530
+In this case, there's more isolation between the VMs within the host.
+
+144
+00:11:30,190 --> 00:11:31,750
+So that was about Matt.
+
+145
+00:11:32,170 --> 00:11:39,420
+Now let's look at another scenario where an external host requires access to the internal VMs.
+
+146
+00:11:39,430 --> 00:11:45,910
+So we've been talking about internal VMs trying to access external services, but now let's see what
+
+147
+00:11:45,910 --> 00:11:54,160
+happens if we want to external services or external VMs to access internal VMS services or services
+
+148
+00:11:54,160 --> 00:11:56,110
+running on these internal VMs.
+
+149
+00:11:56,560 --> 00:12:02,140
+So say for example, there is a web application running on one of these VMs and there are other systems
+
+150
+00:12:02,140 --> 00:12:10,480
+that are on our network such as laptops, and these laptops want to access the web server that's running
+
+151
+00:12:10,480 --> 00:12:12,820
+inside one of these VMs.
+
+152
+00:12:13,490 --> 00:12:18,600
+So let's look at another kind of network known as a bridge network.
+
+153
+00:12:18,620 --> 00:12:26,840
+The bridge network acts as an extension of the land network, so you don't really have to create a bridge
+
+154
+00:12:26,840 --> 00:12:32,870
+network like how we created the host only network or the net network before the bridge network is always
+
+155
+00:12:32,870 --> 00:12:35,330
+there, so you just have to connect to it.
+
+156
+00:12:35,330 --> 00:12:43,160
+So once the VMs connect to this network, this time they get an IP address in the same IP range as that
+
+157
+00:12:43,160 --> 00:12:46,100
+of the external land network.
+
+158
+00:12:47,050 --> 00:12:51,340
+So they are assigned IPS in the range 190 to 168 one series.
+
+159
+00:12:51,610 --> 00:12:57,650
+And it is as though they are all part of the same external network.
+
+160
+00:12:57,670 --> 00:13:02,790
+Any device on the network can see them as just another virtual machine on the network.
+
+161
+00:13:02,800 --> 00:13:08,770
+So even though they are within the the the first host there, in fact it is as if they are all part
+
+162
+00:13:08,770 --> 00:13:17,530
+of the same network because the host also gets an IP address in the range 190 to 168 1.10 and the VMs
+
+163
+00:13:17,530 --> 00:13:22,720
+within the host also get an IP address in the same range, 1.12, 1.13.
+
+164
+00:13:22,720 --> 00:13:25,420
+So it's as if they are all part of the same network.
+
+165
+00:13:25,420 --> 00:13:29,260
+But in fact these VMs are inside this host.
+
+166
+00:13:29,560 --> 00:13:35,770
+So since they are all part of the same network through the bridge network, these laptops can access
+
+167
+00:13:35,770 --> 00:13:39,550
+any services that are that are run on these VMs.
+
+168
+00:13:40,620 --> 00:13:43,320
+So that's about brain network.
+
+169
+00:13:44,090 --> 00:13:44,300
+Okay.
+
+170
+00:13:44,300 --> 00:13:48,800
+So we've talked about the three kinds of network host only and Nat and Bridge.
+
+171
+00:13:48,830 --> 00:13:52,940
+Let's now talk about Internet connectivity in each of these cases.
+
+172
+00:13:54,030 --> 00:14:01,110
+In case of a net setup, whether it's a NAT network or just NAT, we learned that internal VMs can reach
+
+173
+00:14:01,110 --> 00:14:04,200
+external network through network address translation.
+
+174
+00:14:04,200 --> 00:14:13,050
+So VMs configured with a NAT interface can reach Internet as long as the host VM has Internet connectivity.
+
+175
+00:14:13,290 --> 00:14:15,840
+You don't really need to do anything else.
+
+176
+00:14:16,380 --> 00:14:22,440
+The best option, as we know, is an extension of the external network, so it makes the VM as another
+
+177
+00:14:22,440 --> 00:14:23,640
+host on the network.
+
+178
+00:14:23,640 --> 00:14:29,130
+So just like all hosts on a network, the VM should be able to reach the internet easily.
+
+179
+00:14:29,130 --> 00:14:33,270
+So there's nothing really required over there too.
+
+180
+00:14:33,750 --> 00:14:39,810
+However, in case of a host only network, the VMs are on an internal private network.
+
+181
+00:14:39,840 --> 00:14:45,480
+All VMs attached to that internal network can see each other, but they can't connect to any systems
+
+182
+00:14:45,480 --> 00:14:47,250
+outside of the host machine.
+
+183
+00:14:47,400 --> 00:14:52,920
+The host machine is connected to two networks the internal host only network where the VMs are.
+
+184
+00:14:52,920 --> 00:14:58,620
+There and the external network that has Internet connectivity and that has connectivity to the rest
+
+185
+00:14:58,620 --> 00:14:59,700
+of the network.
+
+186
+00:15:00,120 --> 00:15:08,520
+So now we can enable the host machine to forward traffic from the internal network to the external network.
+
+187
+00:15:08,550 --> 00:15:13,230
+Now for this you must enable IP forwarding on the host VM.
+
+188
+00:15:13,530 --> 00:15:17,820
+So this is by default disabled on our laptops.
+
+189
+00:15:17,970 --> 00:15:20,640
+Most laptops have that that functionality.
+
+190
+00:15:20,640 --> 00:15:26,850
+So enabling the IP forwarding feature essentially makes our laptop a router.
+
+191
+00:15:26,940 --> 00:15:31,140
+So a router that can route traffic one from one network to another.
+
+192
+00:15:31,860 --> 00:15:35,370
+Now, if you think about it, you don't really have to do that.
+
+193
+00:15:35,700 --> 00:15:39,540
+If all you need is to establish Internet connectivity for the VMs.
+
+194
+00:15:39,750 --> 00:15:45,700
+There are other ways to do that, such as by adding an additional adapter to these VMs.
+
+195
+00:15:45,720 --> 00:15:50,910
+Because as we learned earlier, that there are each of these has four adapters, so you can configure
+
+196
+00:15:50,910 --> 00:15:53,930
+a second adapter and attach it to NAT.
+
+197
+00:15:53,940 --> 00:15:59,280
+And that way through those adapters, those VMs will have Internet connectivity.
+
+198
+00:15:59,790 --> 00:16:02,910
+So that's just another additional option.
+
+199
+00:16:03,300 --> 00:16:05,190
+So here's what I was talking about.
+
+200
+00:16:05,190 --> 00:16:10,440
+So earlier we said that their of each beam can have four adapter, so you can configure the second adapter
+
+201
+00:16:10,440 --> 00:16:11,790
+to be attached to that.
+
+202
+00:16:12,830 --> 00:16:19,340
+So now when you run into connectivity issues, you know where to look at and you know that you should
+
+203
+00:16:19,340 --> 00:16:23,420
+be looking at the number of interfaces that are configured on the VM.
+
+204
+00:16:23,570 --> 00:16:26,060
+Look at what type of network they are attached to.
+
+205
+00:16:26,240 --> 00:16:32,920
+Check if those interfaces have IP addresses assigned and you should be able to get a fair idea why you
+
+206
+00:16:32,920 --> 00:16:35,510
+weren't able to reach the Internet.
+
+207
+00:16:35,720 --> 00:16:40,820
+Now, before I let you go, one more thing that's worth mentioning is about port forwarding.
+
+208
+00:16:41,150 --> 00:16:47,840
+So a lecture about VirtualBox networking is incomplete without discussing about port forwarding.
+
+209
+00:16:48,230 --> 00:16:49,940
+So let's look at what that is.
+
+210
+00:16:51,570 --> 00:16:57,060
+Let's look at a simple scenario where we have a single VM configured with NAT.
+
+211
+00:16:57,210 --> 00:17:05,760
+The default option Port forwarding allows us to map a port on the host to a port on the guest.
+
+212
+00:17:06,440 --> 00:17:13,490
+For example, Port 80 on the host could be mapped to port 80 on the guest so that any traffic that comes
+
+213
+00:17:13,490 --> 00:17:18,619
+in on port 80 on the host is forwarded to port 80 on the guest.
+
+214
+00:17:19,480 --> 00:17:26,020
+Now maybe the guest is running a web server and it's since it's a not setup, as we discussed before,
+
+215
+00:17:26,050 --> 00:17:32,770
+external hosts can't reach the VM, so configuring a port forward can help the web server receive requests
+
+216
+00:17:32,770 --> 00:17:40,180
+from external hosts, even though it's in a setup because the port forwarding forwards traffic from
+
+217
+00:17:40,180 --> 00:17:42,910
+the port on the host to the port on the guest.
+
+218
+00:17:42,940 --> 00:17:45,250
+Now it need not be the same port either.
+
+219
+00:17:45,250 --> 00:17:49,930
+You can map port 8080 to port 5000 on the VM.
+
+220
+00:17:50,110 --> 00:17:57,250
+Earlier we discussed that to SSH into the VM, we assign an IP address and then use that IP address
+
+221
+00:17:57,250 --> 00:17:59,800
+to SSH from the host to the guest.
+
+222
+00:18:00,580 --> 00:18:09,550
+Another way to do that is if you don't know the IP address of the VM and you can map port 22 of the
+
+223
+00:18:09,550 --> 00:18:18,880
+guest, which is the port used to establish SSH connection to another port say 2222 on the host then
+
+224
+00:18:18,880 --> 00:18:27,280
+you can simply ssh to the loopback IP address of the host and port 2222 and that will in fact forward
+
+225
+00:18:27,280 --> 00:18:33,430
+those requests to port 22 on the VM and you should be able to switch into that.
+
+226
+00:18:33,580 --> 00:18:39,610
+So this way you can have multiple VMs and multiple different services running on them and you can map
+
+227
+00:18:39,610 --> 00:18:42,610
+those services to ports on the host.
+
+228
+00:18:43,630 --> 00:18:50,020
+Now this is done under the Veeam network settings and by going into the port forwarding options here,
+
+229
+00:18:50,020 --> 00:18:57,010
+you can see the different rules to map host port to guest port as well as specify the protocols that
+
+230
+00:18:57,010 --> 00:18:57,760
+are used.
+
+231
+00:18:58,180 --> 00:19:02,170
+Well, that's it for now and I'll see you in the next lecture.
+

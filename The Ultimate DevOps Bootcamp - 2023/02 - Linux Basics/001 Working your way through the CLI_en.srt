@@ -1,0 +1,616 @@
+1
+00:00:00,270 --> 00:00:04,620
+In this section, we'll go through some of the basics of Linux command line.
+
+2
+00:00:04,830 --> 00:00:11,310
+If you're already a Linux maestro, then feel free to skip this section or simply go through the labs
+
+3
+00:00:11,310 --> 00:00:15,690
+and try to complete the challenges and make sure you're comfortable with all of them.
+
+4
+00:00:18,490 --> 00:00:25,630
+While designing this course, we used Stack Overflow insights along with the data from surveys we conducted
+
+5
+00:00:25,630 --> 00:00:32,229
+from our student base and which you might have seen in our other courses to identify the most commonly
+
+6
+00:00:32,229 --> 00:00:36,940
+used and most demanding technologies that we will cover in this course.
+
+7
+00:00:36,970 --> 00:00:40,900
+That way we can make this course relevant to most of you.
+
+8
+00:00:41,260 --> 00:00:47,800
+So you'll see me referring to these often, and I hope learning the most loved and wanted technologies
+
+9
+00:00:47,800 --> 00:00:49,090
+will motivate you.
+
+10
+00:00:49,570 --> 00:00:56,380
+As for Stack Overflow insights, the most common and the most loved platform used for development work
+
+11
+00:00:56,380 --> 00:00:57,880
+happens to be Linux.
+
+12
+00:00:58,690 --> 00:01:05,080
+If you're from a Windows background, I'd highly recommend learning some Linux basics as most DevOps
+
+13
+00:01:05,080 --> 00:01:07,510
+tools have a requirement for Linux.
+
+14
+00:01:08,050 --> 00:01:15,130
+The reason I say that is because many of the new DevOps tools are developed and used in Linux environments
+
+15
+00:01:15,130 --> 00:01:18,430
+first before they are made available on Windows.
+
+16
+00:01:18,460 --> 00:01:25,300
+For example, Containerization tools like Docker was only available on Linux based systems for many
+
+17
+00:01:25,300 --> 00:01:29,080
+years before being supported on Windows platforms.
+
+18
+00:01:29,110 --> 00:01:35,710
+Similarly, automation tools like Ansible requires it to be installed in a Linux environment.
+
+19
+00:01:35,740 --> 00:01:40,810
+Even though Ansible can manage Windows systems as target machines.
+
+20
+00:01:40,930 --> 00:01:48,310
+A Linux system is required to be the Ansible controller in case of container orchestration tools like
+
+21
+00:01:48,310 --> 00:01:49,680
+Kubernetes Cluster.
+
+22
+00:01:49,690 --> 00:01:53,380
+The master nodes can only be Linux systems.
+
+23
+00:01:53,590 --> 00:02:00,040
+As the documentation says, there are no plans to have a Windows only Kubernetes cluster as of this
+
+24
+00:02:00,040 --> 00:02:00,760
+recording.
+
+25
+00:02:00,910 --> 00:02:07,270
+So when you go through our Kubernetes series of courses and setting up a Kubernetes cluster is all done
+
+26
+00:02:07,270 --> 00:02:08,180
+in Linux.
+
+27
+00:02:08,199 --> 00:02:10,710
+The same is true for certification exams.
+
+28
+00:02:10,720 --> 00:02:16,840
+The Kubernetes and Red Hat, Ansible certification exams are all to be done on Linux systems.
+
+29
+00:02:16,960 --> 00:02:23,650
+So if you plan to learn these technologies and get yourself certified, then it's important to have
+
+30
+00:02:23,650 --> 00:02:26,700
+knowledge of basic Linux operating system.
+
+31
+00:02:26,710 --> 00:02:33,850
+And if you've always thought Linux is not for you, you might want to go through our courses and think
+
+32
+00:02:33,850 --> 00:02:34,450
+again.
+
+33
+00:02:35,900 --> 00:02:42,110
+As part of this course, we cover basics of Linux OS such as how to work with the command line interface,
+
+34
+00:02:42,110 --> 00:02:45,080
+how to work with text editors like V Editor.
+
+35
+00:02:45,080 --> 00:02:48,560
+We discuss package management and services, etc..
+
+36
+00:02:49,290 --> 00:02:55,890
+There are different flavors of Linux such as Ubuntu, RedHat, Enterprise, Linux, CentOS, etc..
+
+37
+00:02:56,010 --> 00:03:03,240
+We conducted a survey of our students and a good percentage of them requested their preferred OS to
+
+38
+00:03:03,240 --> 00:03:08,040
+be CentOS followed by Ubuntu and Red Hat Enterprise Linux.
+
+39
+00:03:08,670 --> 00:03:16,230
+CentOS is a free community edition of Red Hat Enterprise Linux, so learning CentOS also helps you cover
+
+40
+00:03:16,230 --> 00:03:18,180
+the basics of RCL.
+
+41
+00:03:18,480 --> 00:03:24,810
+Learning Centers will also help you prepare for Linux certifications like Linux Essentials or Linux
+
+42
+00:03:24,810 --> 00:03:28,320
+Foundation's Certified Systems Administrator Certification.
+
+43
+00:03:28,810 --> 00:03:35,670
+Now, since you also cover basics of Red Hat Enterprise Linux by going through this, it also helps
+
+44
+00:03:35,670 --> 00:03:38,040
+you prepare for any Red Hat exams.
+
+45
+00:03:38,040 --> 00:03:45,120
+So you kind of cover two versions of operating systems, CentOS and a Red Hat Enterprise Linux in one
+
+46
+00:03:45,120 --> 00:03:45,630
+shot.
+
+47
+00:03:45,990 --> 00:03:52,140
+And that's why we decided that CentOS is going to be the OSS of our choice for this course.
+
+48
+00:03:53,220 --> 00:04:00,780
+Note that this course covers a variety of topics from Linux to applications to databases and web servers,
+
+49
+00:04:00,780 --> 00:04:06,390
+etc. And so this section is only meant to be a crash course in Linux.
+
+50
+00:04:06,480 --> 00:04:11,460
+If you'd like to learn more about Linux, then what is covered in this course?
+
+51
+00:04:11,640 --> 00:04:17,190
+I recommend going through the full fledged Linux basics course available at Code Cloud.
+
+52
+00:04:17,640 --> 00:04:20,779
+It's a completely new concept, a new way of learning.
+
+53
+00:04:20,790 --> 00:04:27,720
+It's in a story or a comic format and has a lot of lab exercises that you can practice with and I'm
+
+54
+00:04:27,720 --> 00:04:29,040
+sure you'll love it.
+
+55
+00:04:29,040 --> 00:04:32,190
+So check it out after you're done with this course.
+
+56
+00:04:33,490 --> 00:04:36,520
+So let us begin our Linux crash course.
+
+57
+00:04:36,520 --> 00:04:37,420
+In this section.
+
+58
+00:04:37,420 --> 00:04:40,940
+You're going to work with Linux systems in our lab.
+
+59
+00:04:40,960 --> 00:04:47,860
+This is so you get very familiar with the Linux CLI and some basic commands before you actually deploy
+
+60
+00:04:47,860 --> 00:04:49,540
+a Linux system by yourself.
+
+61
+00:04:49,990 --> 00:04:57,100
+The next section is about deploying a Linux system on your Linux laptop using tools like VirtualBox.
+
+62
+00:04:57,550 --> 00:05:02,830
+When you do that, the CLI and commands you'll learn in this section will be handy.
+
+63
+00:05:02,830 --> 00:05:06,940
+So I recommend not deploying your own Linux system for now.
+
+64
+00:05:06,940 --> 00:05:14,050
+Instead, just rely on our labs and get some good hands on practice and then in the next section deploy
+
+65
+00:05:14,050 --> 00:05:15,310
+your own VMs.
+
+66
+00:05:15,460 --> 00:05:19,720
+So we will start assuming Linux system has already been provisioned.
+
+67
+00:05:20,480 --> 00:05:21,890
+Let's start with Shell.
+
+68
+00:05:22,690 --> 00:05:26,740
+Linux systems have both CLI and die interfaces.
+
+69
+00:05:26,830 --> 00:05:33,730
+When you work with Linux, especially in I.T., you work with the CLI and you must get really comfortable
+
+70
+00:05:33,730 --> 00:05:40,510
+with it because most servers that you work with in your work environment won't really have a graphical
+
+71
+00:05:40,510 --> 00:05:41,620
+user interface.
+
+72
+00:05:41,620 --> 00:05:48,070
+So we will just focus on the command line, the text based command line interface that helps you run
+
+73
+00:05:48,070 --> 00:05:53,290
+commands to interact with the operating system is called the Linux shell.
+
+74
+00:05:53,740 --> 00:05:59,830
+If you have ever worked on a Linux system before, you might have noticed that sometimes the CLI interface
+
+75
+00:05:59,830 --> 00:06:05,080
+behaves differently, as in sometimes you press the backspace button to delete a command and it doesn't
+
+76
+00:06:05,080 --> 00:06:05,530
+work.
+
+77
+00:06:05,530 --> 00:06:09,910
+Or when you press the tab button to autocomplete, it doesn't autocomplete.
+
+78
+00:06:09,910 --> 00:06:16,570
+And that's because there are different kinds of shells such as The Bourne Shell, the C Shell, Z Shell,
+
+79
+00:06:16,570 --> 00:06:19,660
+born again Shell, which is known as Bash.
+
+80
+00:06:19,810 --> 00:06:22,980
+And each of these shells behave differently.
+
+81
+00:06:22,990 --> 00:06:28,450
+The older shell, which is the Bourne Shell, or simply known as Shell, had limitations in the way
+
+82
+00:06:28,450 --> 00:06:29,620
+we interact with it.
+
+83
+00:06:29,650 --> 00:06:36,370
+The newer Bash Shell supports many advanced features, such as arithmetic operations, conditionals,
+
+84
+00:06:36,370 --> 00:06:37,540
+arrays, etc..
+
+85
+00:06:38,410 --> 00:06:45,250
+You can see which shell you are on by printing the environment variable named Shell using the echo dot
+
+86
+00:06:45,400 --> 00:06:46,270
+shell command.
+
+87
+00:06:46,690 --> 00:06:53,080
+The echo command helps you print on the screen and the dollar symbol helps you specify an environment
+
+88
+00:06:53,080 --> 00:06:53,770
+variable.
+
+89
+00:06:55,370 --> 00:06:58,410
+Let's not get introduced to some basic Linux commands.
+
+90
+00:06:58,430 --> 00:07:03,890
+We will first look at the commands and you will then work on labs where you will use these commands.
+
+91
+00:07:05,070 --> 00:07:09,060
+Echo, as we just discussed, is the command used to print a line of text.
+
+92
+00:07:09,300 --> 00:07:14,340
+The word you enter after the echo command will be printed on your screen, as simple as that.
+
+93
+00:07:14,850 --> 00:07:19,950
+The echo command is usually used when you want to print out an environment variable as we just saw.
+
+94
+00:07:20,620 --> 00:07:23,260
+We will discuss about environment variables later.
+
+95
+00:07:23,500 --> 00:07:29,170
+The echo command is also used in scripts where you want to print out information onto screen.
+
+96
+00:07:29,680 --> 00:07:33,580
+The LS command is used to list all the contents of a directory.
+
+97
+00:07:33,610 --> 00:07:41,380
+Here we see that we have two files, files, txt and file two conf and a directory named my underscore
+
+98
+00:07:41,500 --> 00:07:42,670
+dir one.
+
+99
+00:07:43,330 --> 00:07:49,690
+The CD command stands for Change Directory and it is used to navigate to new directories in the system.
+
+100
+00:07:49,840 --> 00:07:57,850
+For example, to get into the my underscore da one directory run the command c d followed by the directory
+
+101
+00:07:57,850 --> 00:07:58,330
+name.
+
+102
+00:07:59,560 --> 00:08:05,710
+The P.W. de Command or the present working Directory Command is used to print the directory you are
+
+103
+00:08:05,710 --> 00:08:06,730
+currently in.
+
+104
+00:08:08,150 --> 00:08:11,090
+The McDeere or the make directory.
+
+105
+00:08:11,090 --> 00:08:13,760
+Command is used to create a new directory.
+
+106
+00:08:14,210 --> 00:08:19,010
+In this example, we've created a new directory called new underscore directory.
+
+107
+00:08:20,310 --> 00:08:24,940
+To run multiple commands, one after the other, separate them by semicolon.
+
+108
+00:08:24,960 --> 00:08:32,190
+In this case, it first changes into the new directory, then makes a directory by the name w w w and
+
+109
+00:08:32,190 --> 00:08:34,470
+then prints the current working directory.
+
+110
+00:08:34,770 --> 00:08:40,950
+Now, even though it's a single execution, remember there are three separate commands and executed
+
+111
+00:08:40,950 --> 00:08:42,419
+one after the other.
+
+112
+00:08:43,880 --> 00:08:47,060
+At times you might want to create a directory tree.
+
+113
+00:08:47,090 --> 00:08:55,280
+For example, we want to create a directory slash tmp slash azure slash India slash Bangalore.
+
+114
+00:08:55,760 --> 00:09:02,660
+One way to do that is to run the make directory command three times, specifying one directory each
+
+115
+00:09:02,660 --> 00:09:03,050
+time.
+
+116
+00:09:03,050 --> 00:09:10,310
+For example, first we create the first directory and then we create the India directory inside Asia
+
+117
+00:09:10,310 --> 00:09:13,850
+and then we create the Bangalore directory inside India.
+
+118
+00:09:15,540 --> 00:09:21,990
+A better way to do that would be to run a single command using the dash P option like this.
+
+119
+00:09:22,710 --> 00:09:28,920
+This way, it creates the entire directory tree in one shot and does not complain if a particular directory
+
+120
+00:09:28,920 --> 00:09:36,630
+is not available to remove a directory and all of its contents run the arm minus our command and specify
+
+121
+00:09:36,630 --> 00:09:37,740
+the directory name.
+
+122
+00:09:38,560 --> 00:09:42,310
+To copy one directory to another location, use the CP command.
+
+123
+00:09:42,310 --> 00:09:49,480
+But with the AR option, this copy is the directory and all of its contents from one location to another.
+
+124
+00:09:50,420 --> 00:09:56,300
+Let's see some commands to work with files to create a new file, run the touch command and provide
+
+125
+00:09:56,300 --> 00:09:57,080
+the file name.
+
+126
+00:09:57,080 --> 00:10:00,290
+This creates a new file, but with no contents.
+
+127
+00:10:00,560 --> 00:10:06,470
+To add some contents to the file, use the CAT command and the redirection symbol, which looks like
+
+128
+00:10:06,470 --> 00:10:09,080
+a forward arrow followed by the file name.
+
+129
+00:10:09,230 --> 00:10:14,450
+Once this command is issued, the prompt will wait for your user input.
+
+130
+00:10:14,450 --> 00:10:16,940
+You would be able to add lines of text.
+
+131
+00:10:17,510 --> 00:10:24,320
+Hit the return key to typing into a new line of text and press the control dx combination to exit out
+
+132
+00:10:24,320 --> 00:10:29,540
+of this prompt and save the data to the file to view the contents of a file.
+
+133
+00:10:29,540 --> 00:10:35,660
+Run the cat command followed by the file name this time without the redirection symbol.
+
+134
+00:10:36,520 --> 00:10:40,840
+These are some basic commands to work with files in the CLI.
+
+135
+00:10:41,580 --> 00:10:43,500
+For editing contents of a file.
+
+136
+00:10:43,500 --> 00:10:46,610
+You may need a text editor like VI or VIM.
+
+137
+00:10:46,620 --> 00:10:50,640
+We also take a look at the basics of VI editor later in this course.
+
+138
+00:10:50,970 --> 00:10:56,130
+Now, while working with DevOps tools, you'll often come across situations where you will have to modify
+
+139
+00:10:56,130 --> 00:10:57,990
+configuration files on Linux.
+
+140
+00:10:58,110 --> 00:11:00,600
+And these editors will come handy then.
+
+141
+00:11:00,900 --> 00:11:06,310
+But to get through this lecture and the following labs, you don't really need a text editor.
+
+142
+00:11:06,330 --> 00:11:14,520
+So let's continue to copy a file, use the CP command and specify the source file path and name and
+
+143
+00:11:14,520 --> 00:11:23,130
+the target path and name to move a file, which is similar to cutting and pasting a file to a different
+
+144
+00:11:23,130 --> 00:11:23,660
+location.
+
+145
+00:11:23,670 --> 00:11:28,860
+Use the MV command, specify the old name and the new path and the file name.
+
+146
+00:11:29,190 --> 00:11:37,110
+If the file is moved to the same path but with a different name, then it's essentially like renaming
+
+147
+00:11:37,110 --> 00:11:37,870
+the file.
+
+148
+00:11:37,890 --> 00:11:44,070
+So you're cutting the file, which has one name and then pasting it in the same directory with another
+
+149
+00:11:44,070 --> 00:11:44,400
+name.
+
+150
+00:11:44,400 --> 00:11:49,110
+So that kind of works like a rename and that is how you rename a file in Linux.
+
+151
+00:11:49,570 --> 00:11:51,600
+Now there's no separate command for that.
+
+152
+00:11:52,020 --> 00:11:56,340
+Run the command to remove or delete a file.
+
+153
+00:11:57,030 --> 00:11:59,010
+So that's about it for this section.
+
+154
+00:11:59,070 --> 00:12:03,870
+Head over to the labs and practice working with these basic Linux commands.
+

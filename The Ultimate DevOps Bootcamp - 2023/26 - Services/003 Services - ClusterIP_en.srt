@@ -1,0 +1,180 @@
+1
+00:00:05,620 --> 00:00:07,450
+Hello and welcome to this lecture.
+
+2
+00:00:07,450 --> 00:00:11,920
+In this lecture we will discuss about the Kubernetes service cluster IP.
+
+3
+00:00:13,010 --> 00:00:20,000
+A full stack Web application typically has different kinds of parts hosting different parts of an application.
+
+4
+00:00:20,330 --> 00:00:26,930
+You may have a number of pods running a front end web server, another set of pods running a backend
+
+5
+00:00:26,930 --> 00:00:33,620
+server, a set of pods running a key value store like Reddit, and another set of pods maybe running
+
+6
+00:00:33,620 --> 00:00:36,290
+a persistent database like MySQL.
+
+7
+00:00:37,150 --> 00:00:43,120
+The web front end server needs to communicate to the backend servers, and the backend servers need
+
+8
+00:00:43,120 --> 00:00:47,020
+to communicate to the database as well as the ready services, etc..
+
+9
+00:00:47,380 --> 00:00:55,690
+So what is the right way to establish connectivity between these services or tiers of my application?
+
+10
+00:00:56,080 --> 00:01:03,340
+The pods all have an IP address assigned to them as we can see on the screen, but these IPS, as we
+
+11
+00:01:03,340 --> 00:01:05,099
+know, are not static.
+
+12
+00:01:05,110 --> 00:01:10,210
+These pods can go down any time and new pods are created all the time.
+
+13
+00:01:10,210 --> 00:01:16,510
+And so you cannot rely on these IP addresses for internal communication between the application.
+
+14
+00:01:16,900 --> 00:01:25,810
+Also, what if the first front end port at 10 to 40 4.0.3 need to connect to a backend service?
+
+15
+00:01:25,960 --> 00:01:30,040
+Which of the three would it go to and who makes that decision?
+
+16
+00:01:30,430 --> 00:01:38,560
+A Kubernetes service can help us group the pods together and provide a single interface to access the
+
+17
+00:01:38,560 --> 00:01:39,910
+pods in a group.
+
+18
+00:01:40,640 --> 00:01:47,960
+For example, a service created for the back end part will help group all the back end parts together
+
+19
+00:01:47,960 --> 00:01:52,910
+and provide a single interface for other parts to access the service.
+
+20
+00:01:53,450 --> 00:01:58,520
+The requests are forwarded to one of the pods under the service randomly.
+
+21
+00:01:58,910 --> 00:02:05,540
+Similarly, create additional services for Redis and allow the back end parts to access the ready systems
+
+22
+00:02:05,540 --> 00:02:06,710
+through the service.
+
+23
+00:02:06,920 --> 00:02:15,140
+This enables us to easily and effectively deploy a microservices based application on Kubernetes cluster.
+
+24
+00:02:15,650 --> 00:02:23,210
+Each layer can now scale or move as required without impacting communication between the various services.
+
+25
+00:02:23,690 --> 00:02:30,530
+Each service gets an IP and name assigned to it inside the cluster, and that is the name that should
+
+26
+00:02:30,530 --> 00:02:34,130
+be used by other ports to access the service.
+
+27
+00:02:34,370 --> 00:02:38,390
+This type of service is known as cluster IP.
+
+28
+00:02:38,720 --> 00:02:43,520
+To create such a service as always, use a definition file in the service.
+
+29
+00:02:43,520 --> 00:02:49,940
+Definition file first used the default template which has API version kind, metadata and spec.
+
+30
+00:02:50,210 --> 00:02:56,210
+The API version is v one kind is service and we will give a name to our service.
+
+31
+00:02:56,210 --> 00:02:57,950
+We will call it backend.
+
+32
+00:02:58,520 --> 00:03:01,820
+Under specification we have type and ports.
+
+33
+00:03:01,820 --> 00:03:03,880
+The type is cluster IP.
+
+34
+00:03:03,890 --> 00:03:07,220
+In fact, cluster IP is the default type.
+
+35
+00:03:07,220 --> 00:03:13,610
+So even if you didn't specify it, it will automatically assume the type to be cluster IP.
+
+36
+00:03:14,360 --> 00:03:17,630
+Under ports we have a target port and port.
+
+37
+00:03:18,420 --> 00:03:25,740
+The target port is the port where the back end is exposed, which in this case is 80, and the port
+
+38
+00:03:25,740 --> 00:03:29,400
+is where the service is exposed, which is 80 as well.
+
+39
+00:03:29,970 --> 00:03:34,350
+To link the service to a set of ports we use selector.
+
+40
+00:03:34,560 --> 00:03:42,150
+We will refer to the port definition file and copy the labels from it and move it under selector and
+
+41
+00:03:42,150 --> 00:03:43,170
+that should be it.
+
+42
+00:03:43,320 --> 00:03:50,340
+We can now create the service using the cube control, create command, and then check its status using
+
+43
+00:03:50,340 --> 00:03:51,360
+the cube control.
+
+44
+00:03:51,360 --> 00:03:52,950
+Get services command.
+
+45
+00:03:53,370 --> 00:03:59,790
+The service can be accessed by other parts using the cluster IP or the service name.
+

@@ -1,0 +1,912 @@
+1
+00:00:00,180 --> 00:00:06,150
+When you talk about DevOps, you might hear the names of a number of tools such as Docker, Kubernetes,
+
+2
+00:00:06,150 --> 00:00:13,560
+Ansible, TerraForm, get GitHub, Jenkins, Prometheus, Griffen And it might be overwhelming the number
+
+3
+00:00:13,560 --> 00:00:15,510
+of tools and technologies that there are.
+
+4
+00:00:16,500 --> 00:00:22,620
+In this video, I'm going to try and demystify these tools by walking you through a story, a story
+
+5
+00:00:22,620 --> 00:00:27,750
+of how you start with a small application where you don't really need a large infrastructure.
+
+6
+00:00:27,750 --> 00:00:34,530
+But as you expand how each of these tools come in at different stages of your product to help with the
+
+7
+00:00:34,530 --> 00:00:36,360
+different challenges you face.
+
+8
+00:00:36,540 --> 00:00:42,960
+This is a very high level overview of how all of these tools fit in to your infrastructure as well as
+
+9
+00:00:42,960 --> 00:00:44,310
+your development workflows.
+
+10
+00:00:44,310 --> 00:00:49,620
+And I'm sure by the end of this video you will leave with a good understanding of where these fits.
+
+11
+00:00:51,420 --> 00:00:53,400
+So it all starts with an idea.
+
+12
+00:00:53,640 --> 00:00:54,720
+So that's you.
+
+13
+00:00:54,720 --> 00:00:58,760
+And you have this idea that you think is going to change the world.
+
+14
+00:00:58,770 --> 00:01:04,170
+So you're going to build a website that books tickets to Mars in advance so people don't have to pay
+
+15
+00:01:04,170 --> 00:01:06,720
+too much or wait in a queue in the future.
+
+16
+00:01:06,900 --> 00:01:08,160
+So what do you do?
+
+17
+00:01:08,250 --> 00:01:11,310
+As any other intelligent developer would do?
+
+18
+00:01:11,340 --> 00:01:13,740
+You start with the market research.
+
+19
+00:01:13,770 --> 00:01:15,480
+Oops, sorry, I got that wrong.
+
+20
+00:01:15,510 --> 00:01:18,240
+As any other intelligent developer would do.
+
+21
+00:01:18,270 --> 00:01:19,800
+You get coding.
+
+22
+00:01:20,440 --> 00:01:23,650
+You open your favorite Ed and start building your idea.
+
+23
+00:01:23,650 --> 00:01:29,800
+And hours later you have the first version of your product ready and it's time to share it with the
+
+24
+00:01:29,800 --> 00:01:30,400
+world.
+
+25
+00:01:30,700 --> 00:01:32,290
+Now, how would you do that?
+
+26
+00:01:32,620 --> 00:01:38,830
+This code is still running on your laptop and it's only accessible at HTTP localhost 8084 now.
+
+27
+00:01:38,860 --> 00:01:43,540
+Even if you find a way to share it with the world from your laptop, when you shut down your laptop,
+
+28
+00:01:43,540 --> 00:01:45,250
+no one would have access to it.
+
+29
+00:01:45,430 --> 00:01:50,260
+So you need to host your application on a system that is never turned off.
+
+30
+00:01:50,590 --> 00:01:56,500
+So you identify a server that is either a physical server in a data center or a virtual machine in a
+
+31
+00:01:56,500 --> 00:02:01,600
+data center or in the cloud, and you copy the code to it and you run it.
+
+32
+00:02:01,960 --> 00:02:06,160
+Now, you can't just run an application on a system by just copying code to it.
+
+33
+00:02:06,160 --> 00:02:09,830
+You need to have the system configured first to be able to run it.
+
+34
+00:02:09,850 --> 00:02:15,220
+For example, if the application was written in Python or Java or any other programming languages,
+
+35
+00:02:15,220 --> 00:02:20,470
+then you must have one of these programming languages or the runtimes in place on the server too.
+
+36
+00:02:20,500 --> 00:02:26,440
+If the application uses any libraries or packages, then you must have those exact version of libraries
+
+37
+00:02:26,440 --> 00:02:30,550
+and packages configured on the server too, in the exact same way.
+
+38
+00:02:30,910 --> 00:02:36,790
+Now you develop your application on your laptop so that that becomes your development environment and
+
+39
+00:02:36,790 --> 00:02:40,420
+the server you host, your application becomes your production environment.
+
+40
+00:02:40,720 --> 00:02:45,730
+Now, once all of that is set up, you now have your application running on the server.
+
+41
+00:02:45,760 --> 00:02:50,830
+The server has an IP, so it's now accessible at that IP address, but you don't want to have to share
+
+42
+00:02:50,830 --> 00:02:52,120
+an IP address to people.
+
+43
+00:02:52,120 --> 00:02:55,660
+So you purchase a domain name and map that to your server.
+
+44
+00:02:55,840 --> 00:02:58,210
+Now you have something to share to the world.
+
+45
+00:02:58,480 --> 00:03:02,050
+You're all set and you're now ready to share it with the world.
+
+46
+00:03:02,650 --> 00:03:08,560
+So you tweet it out, tagging a certain individual and that certain individual retweets it and off you
+
+47
+00:03:08,560 --> 00:03:09,100
+go.
+
+48
+00:03:09,130 --> 00:03:14,140
+Your website is now famous and you now have thousands of users visiting your site and booking their
+
+49
+00:03:14,140 --> 00:03:15,910
+future travel to the red planet.
+
+50
+00:03:16,420 --> 00:03:18,490
+Now let's look at our workflow as of now.
+
+51
+00:03:19,500 --> 00:03:24,270
+The current workflow involves the development phase where you write your code on your laptop.
+
+52
+00:03:24,270 --> 00:03:28,530
+This could be on your favorite text editor like voice code or PI charm.
+
+53
+00:03:28,890 --> 00:03:35,090
+Now the code in text format is not good enough to run to run it as an application by the end user.
+
+54
+00:03:35,100 --> 00:03:38,340
+It needs to be in an executable format.
+
+55
+00:03:38,340 --> 00:03:44,010
+If you're familiar with windows or binary file, if you're familiar with Linux and converting code from
+
+56
+00:03:44,010 --> 00:03:49,530
+a text format to a binary or executable format is known as building the code.
+
+57
+00:03:49,530 --> 00:03:55,860
+And there are tools available such as the Python setup tools or MAVEN or GRADLE for other platforms,
+
+58
+00:03:56,550 --> 00:04:01,830
+and you usually have a build script that invokes these tools to build the application.
+
+59
+00:04:01,860 --> 00:04:08,310
+Now, once built, the executable is moved to a production environment, in this case our server and
+
+60
+00:04:08,310 --> 00:04:12,780
+run in production, and that's referred to as the deploy stage.
+
+61
+00:04:12,900 --> 00:04:15,330
+A simple three step process.
+
+62
+00:04:15,330 --> 00:04:19,950
+So there are so many variations to this process and different ways and tools used to do this, but I'm
+
+63
+00:04:19,950 --> 00:04:21,930
+keeping it super high level for now.
+
+64
+00:04:22,600 --> 00:04:27,310
+Now you have users now visiting your website and users are requesting for more features.
+
+65
+00:04:27,310 --> 00:04:30,760
+So you bring in your friends along as additional developers.
+
+66
+00:04:30,760 --> 00:04:35,890
+And now everyone is working on their own development environments but on the same code base and they
+
+67
+00:04:35,890 --> 00:04:39,280
+all copied their code to a central hub whenever ready.
+
+68
+00:04:39,280 --> 00:04:44,170
+And now they're stepping on each other's toes and working on the same files at the same time and creating
+
+69
+00:04:44,170 --> 00:04:45,040
+conflicts.
+
+70
+00:04:45,040 --> 00:04:48,130
+And you need a solution that can help collaborate.
+
+71
+00:04:48,130 --> 00:04:50,310
+And that's where Git comes in.
+
+72
+00:04:50,320 --> 00:04:55,690
+Get helps all developers to work on the same application at the same time and collaborate efficiently.
+
+73
+00:04:55,720 --> 00:05:01,630
+Now everyone installs and configures Git on their machines and that's going to help in easily pulling
+
+74
+00:05:01,630 --> 00:05:05,540
+the latest git code from the central hub using the git pull command.
+
+75
+00:05:05,560 --> 00:05:09,520
+Add their own changes and push it back using the get push command.
+
+76
+00:05:09,520 --> 00:05:15,460
+And the central hub is a cloud based platform that serves as a central location for all code.
+
+77
+00:05:15,460 --> 00:05:22,900
+So git is the underlying technology and github is the publicly hosted git based central repository of
+
+78
+00:05:22,900 --> 00:05:30,430
+code where you can configure project organizations users and define different axes for different users.
+
+79
+00:05:30,430 --> 00:05:34,450
+And some other similar platforms are GitLab and Bitbucket.
+
+80
+00:05:35,600 --> 00:05:41,360
+So to summarize, Git is the command line tool or the underlying technology that enables versioning
+
+81
+00:05:41,360 --> 00:05:47,870
+of code and collaboration between multiple developers and GitHub is the git based, publicly accessible
+
+82
+00:05:47,870 --> 00:05:54,170
+repository of code where you push your code to and it has a web interface where you invite new developers,
+
+83
+00:05:54,170 --> 00:05:59,630
+manage your project, manage issues with your projects, add documentation to your code, etc..
+
+84
+00:06:01,230 --> 00:06:06,930
+So now with four developers and Git and GitHub in place, the development issues are sorted.
+
+85
+00:06:06,960 --> 00:06:12,480
+However, we still need to move code manually to the production environment every time something new
+
+86
+00:06:12,480 --> 00:06:13,240
+is ready.
+
+87
+00:06:13,260 --> 00:06:19,440
+So the previous workflow involved developing code in your development environment, then building the
+
+88
+00:06:19,440 --> 00:06:22,830
+code to an executable package and then deploying it to production.
+
+89
+00:06:22,860 --> 00:06:28,890
+However, now with multiple developers, the code needs to be built with the changes contributed by
+
+90
+00:06:28,890 --> 00:06:29,960
+all of the developers.
+
+91
+00:06:29,970 --> 00:06:35,700
+So building on the laptop itself no longer works as an individual laptop may not have all the latest
+
+92
+00:06:35,700 --> 00:06:36,180
+changes.
+
+93
+00:06:36,180 --> 00:06:42,420
+It makes sense to move the build operation to a dedicated build server that gets the latest version
+
+94
+00:06:42,420 --> 00:06:45,480
+of the code and builds it before moving into production.
+
+95
+00:06:45,690 --> 00:06:53,070
+So now pushing new builds to production is risky as it might have introduced new bugs or broken something
+
+96
+00:06:53,070 --> 00:06:54,120
+that worked before.
+
+97
+00:06:54,120 --> 00:06:57,240
+So we need to test it in a test environment to.
+
+98
+00:06:58,450 --> 00:07:00,610
+So here's how the workflow looks now.
+
+99
+00:07:00,640 --> 00:07:06,040
+Every developer develops code in their development environment, in their own laptops, and pushes it
+
+100
+00:07:06,040 --> 00:07:06,910
+to GitHub.
+
+101
+00:07:06,940 --> 00:07:13,780
+You then manually copy the code to your build server and then builds the code to an executable, then
+
+102
+00:07:13,780 --> 00:07:20,800
+manually copy the executable to the test server and then test the application to make sure that it works
+
+103
+00:07:20,800 --> 00:07:26,350
+as expected and that no new bugs are introduced and then manually copy the executable to production
+
+104
+00:07:26,350 --> 00:07:27,850
+environment and deploy it.
+
+105
+00:07:28,010 --> 00:07:35,590
+And because it's a manual job and requires a set of manual tasks, you decide to move all new code containing
+
+106
+00:07:35,590 --> 00:07:39,130
+new features to the production environment once a week.
+
+107
+00:07:39,790 --> 00:07:45,100
+However, that's not very well accepted by users or by your fellow developers, because some of the
+
+108
+00:07:45,100 --> 00:07:50,140
+minor features are ready and don't necessarily have to wait till the end of the week to be pushed to
+
+109
+00:07:50,140 --> 00:07:50,830
+production.
+
+110
+00:07:50,830 --> 00:07:56,350
+And the entire process of manual deployment itself takes a week to execute on its own when the code
+
+111
+00:07:56,350 --> 00:07:57,970
+base and features grow.
+
+112
+00:07:58,090 --> 00:08:04,360
+You want to be able to release features faster and more frequently with less manual effort, and that's
+
+113
+00:08:04,360 --> 00:08:06,430
+where the tools come in.
+
+114
+00:08:07,150 --> 00:08:07,780
+Now, c i, c.
+
+115
+00:08:07,780 --> 00:08:14,320
+D stands for continuous integration and continuous delivery or deployment and tools like Jenkins GitHub
+
+116
+00:08:14,320 --> 00:08:22,300
+actions or GitLab CIC D help you automate these manual tasks and build a pipeline with one of these
+
+117
+00:08:22,300 --> 00:08:23,640
+tools configured.
+
+118
+00:08:23,650 --> 00:08:30,820
+Every time code is pushed, it is automatically pulled from the GitHub repository to the build server
+
+119
+00:08:30,820 --> 00:08:40,030
+and then built and then the executable is automatically moved to the test server and tested and on successful
+
+120
+00:08:40,030 --> 00:08:45,820
+testing, it is automatically moved to the production server and deployed.
+
+121
+00:08:46,330 --> 00:08:52,510
+Now this allows changes, features and bug fixes to move faster through the pipeline and be deployed
+
+122
+00:08:52,510 --> 00:08:59,020
+more often with lesser manual effort, ultimately enabling you and your team to resolve issues quicker,
+
+123
+00:08:59,020 --> 00:09:03,100
+ship features faster and make your users more happier.
+
+124
+00:09:04,610 --> 00:09:11,120
+Now with Git GitHub and CI CD pipelines in place, we have enabled our team to make changes to our application
+
+125
+00:09:11,120 --> 00:09:14,330
+and get them to production servers seamlessly.
+
+126
+00:09:14,360 --> 00:09:17,270
+However, it's still not all that seamless.
+
+127
+00:09:17,510 --> 00:09:22,730
+Remember the dependencies and libraries that we talked about earlier, the ones that are required to
+
+128
+00:09:22,820 --> 00:09:29,090
+for the applications to run on any system, These dependencies need to be configured the exact same
+
+129
+00:09:29,090 --> 00:09:30,250
+way on the servers.
+
+130
+00:09:30,260 --> 00:09:35,750
+And this means that if a new package is required, this needs to be manually installed and configured
+
+131
+00:09:35,750 --> 00:09:38,320
+on all the servers that this code runs.
+
+132
+00:09:38,330 --> 00:09:41,240
+And this now is still a manual task.
+
+133
+00:09:41,420 --> 00:09:46,610
+If you miss out configuring one of these packages with the right version in the right way, it will
+
+134
+00:09:46,610 --> 00:09:52,190
+lead to the software not working and resulting in unexpected outcomes on different systems.
+
+135
+00:09:52,400 --> 00:09:54,230
+And that's where containers come in.
+
+136
+00:09:54,260 --> 00:10:00,920
+Containers help package the application and its dependencies into an image that can then be run on any
+
+137
+00:10:00,920 --> 00:10:03,050
+system without worrying about dependencies.
+
+138
+00:10:03,050 --> 00:10:09,470
+So now during the build, you build a container image with the application and its dependencies packaged
+
+139
+00:10:09,470 --> 00:10:15,650
+into it, and all other systems can now simply run a container from that image without worrying about
+
+140
+00:10:15,650 --> 00:10:19,460
+installing and configuring libraries and dependencies.
+
+141
+00:10:19,670 --> 00:10:24,900
+Now, one technology that enables working with containers is Docker with Docker.
+
+142
+00:10:24,920 --> 00:10:32,270
+The developer can create a Docker file which specifies what the dependencies are, and that Docker file
+
+143
+00:10:32,270 --> 00:10:35,240
+can be used during the build to build an image.
+
+144
+00:10:35,240 --> 00:10:41,630
+And that image can then be run on any server using a simple Docker run command.
+
+145
+00:10:45,560 --> 00:10:50,720
+Now the major functionality of a container is that it enables isolation between processes.
+
+146
+00:10:50,720 --> 00:10:56,720
+So each container is an isolated instance and this allows us to run multiple containers, each having
+
+147
+00:10:56,720 --> 00:11:00,050
+its own separate instance of the application on the same server.
+
+148
+00:11:01,410 --> 00:11:04,420
+Now let's focus on the production side of things on the production server.
+
+149
+00:11:04,440 --> 00:11:10,020
+Currently we have one server, but with our users increasing, we want to be able to add more servers
+
+150
+00:11:10,020 --> 00:11:12,540
+and run our application on all of them.
+
+151
+00:11:12,810 --> 00:11:17,430
+Now that we have containers, all we need to do is run containers on them.
+
+152
+00:11:17,430 --> 00:11:23,940
+But how do you do that the right way so that containers are spun up when the user is increased and destroyed
+
+153
+00:11:23,940 --> 00:11:25,350
+when load reduces?
+
+154
+00:11:25,350 --> 00:11:30,150
+How do you ensure if a container fails, it is automatically brought back up?
+
+155
+00:11:30,390 --> 00:11:34,020
+And that's where container orchestration platforms come in.
+
+156
+00:11:34,290 --> 00:11:40,770
+Kubernetes is a popular container orchestration platform that helps declare how containers should be
+
+157
+00:11:40,770 --> 00:11:46,350
+deployed and ensure that it is always run in the same way as declared.
+
+158
+00:11:46,890 --> 00:11:52,530
+It can help auto scale containers as well as the underlying infrastructure based on need and manage
+
+159
+00:11:52,530 --> 00:11:57,540
+resources on the underlying servers to ensure optimal resource utilization.
+
+160
+00:12:01,780 --> 00:12:05,880
+By now we have developers pushing code to a central GitHub repository.
+
+161
+00:12:05,890 --> 00:12:13,180
+The pipeline then pulls the code to the build server, builds it to Docker images, and then that image
+
+162
+00:12:13,180 --> 00:12:19,780
+is used to test the application in the test environment and finally deployed in a production environment
+
+163
+00:12:19,780 --> 00:12:21,640
+as containers by Kubernetes.
+
+164
+00:12:21,820 --> 00:12:25,540
+The underlying infrastructure is still one big challenge.
+
+165
+00:12:25,540 --> 00:12:32,350
+So every time a new server is to be provisioned, it needs to be set up in the exact same way as the
+
+166
+00:12:32,350 --> 00:12:33,670
+others in the cluster.
+
+167
+00:12:33,670 --> 00:12:36,010
+It needs to have the right resources assigned to it.
+
+168
+00:12:36,010 --> 00:12:37,930
+The right version of operating system.
+
+169
+00:12:37,930 --> 00:12:43,810
+Probably there is some storage attached to it and there may be some kernel settings or other software
+
+170
+00:12:43,810 --> 00:12:49,240
+that needs to be pre configured on it, such as the Docker runtime or the necessary Kubernetes packages.
+
+171
+00:12:49,240 --> 00:12:52,960
+And all of these need to have the exact same configuration.
+
+172
+00:12:52,960 --> 00:12:58,900
+So this is going to be one big challenge if you have to click through the cloud platform GOI each time
+
+173
+00:12:58,900 --> 00:13:00,280
+a server needs to be provisioned.
+
+174
+00:13:00,280 --> 00:13:06,070
+And this can take a lot of time and can lead to human errors in mis configuring infrastructure, resulting
+
+175
+00:13:06,070 --> 00:13:10,810
+in having to rebuild the entire server to automate the provisioning of these servers.
+
+176
+00:13:10,810 --> 00:13:12,910
+Tools like TerraForm can be used.
+
+177
+00:13:12,940 --> 00:13:18,400
+TerraForm automates the provisioning and configuration of servers irrespective of what cloud platforms
+
+178
+00:13:18,400 --> 00:13:23,740
+they are on, and it ensures that the servers configured are always in the same state.
+
+179
+00:13:24,580 --> 00:13:30,100
+If someone manually changes the configuration on these servers and not through TerraForm, it changes
+
+180
+00:13:30,100 --> 00:13:33,640
+it back to make sure that the state defined is preserved.
+
+181
+00:13:33,670 --> 00:13:38,830
+The state is defined by configuring a TerraForm manifest file that looks like this.
+
+182
+00:13:39,040 --> 00:13:43,600
+It's a snippet from a TerraForm manifest file that has a list of servers and their configuration.
+
+183
+00:13:43,750 --> 00:13:52,210
+So yes, it looks like code because it is code and that's why it's called as infrastructure as code.
+
+184
+00:13:52,240 --> 00:13:57,220
+All of the infrastructure configuration, including the virtual machines, the storage buckets, the
+
+185
+00:13:57,220 --> 00:14:03,000
+VPC, etc. is now stored in the form of code and is stored in source code repositories.
+
+186
+00:14:03,010 --> 00:14:07,000
+That way it can be considered at as any other code and be tracked.
+
+187
+00:14:07,030 --> 00:14:11,890
+If changes are needed, then make changes to the code and run the TerraForm.
+
+188
+00:14:11,890 --> 00:14:12,970
+Apply Command.
+
+189
+00:14:16,090 --> 00:14:21,100
+Now, once the servers are provisioned, the configuration of these servers can be automated by tools
+
+190
+00:14:21,100 --> 00:14:21,990
+like Ansible.
+
+191
+00:14:22,000 --> 00:14:28,300
+So while TerraForm is more of an infrastructure provisioning tool, Ansible is an automation tool that
+
+192
+00:14:28,300 --> 00:14:31,270
+helps configure these infrastructure once provisioned.
+
+193
+00:14:31,330 --> 00:14:35,380
+Note that there are many areas both TerraForm and Ansible overlap.
+
+194
+00:14:35,410 --> 00:14:40,420
+Both of these tools can provision infrastructure and automate software configuration on them, but each
+
+195
+00:14:40,420 --> 00:14:42,490
+has its own benefits in different areas.
+
+196
+00:14:42,490 --> 00:14:48,340
+So while TerraForm is used mostly for provisioning and provisioning infrastructure, Ansible is used
+
+197
+00:14:48,340 --> 00:14:54,340
+for post configuration activities such as installing the software and configuring them on those servers.
+
+198
+00:14:54,340 --> 00:14:58,240
+So similar to TerraForm, Ansible uses code to configure servers.
+
+199
+00:14:58,240 --> 00:15:04,330
+It's called Ansible playbooks and this code also goes to the source code repository on GitHub.
+
+200
+00:15:07,360 --> 00:15:09,190
+Now, provisioning is not all.
+
+201
+00:15:09,190 --> 00:15:11,400
+We now want to maintain it as well.
+
+202
+00:15:11,410 --> 00:15:15,010
+We want to be able to monitor these servers and take preventive measures.
+
+203
+00:15:15,010 --> 00:15:20,260
+We want to be able to see the CPU utilization on these servers, the memory consumption, monitor the
+
+204
+00:15:20,260 --> 00:15:26,590
+processes, identify what process is causing higher consumption, etc. and that's where tools like Prometheus
+
+205
+00:15:26,590 --> 00:15:27,190
+come in.
+
+206
+00:15:27,310 --> 00:15:33,190
+Prometheus collects information or metrics from the different servers and stores it centrally.
+
+207
+00:15:33,220 --> 00:15:38,380
+Now, not only do we want to collect metrics, we also want to be able to visualize them graphically.
+
+208
+00:15:38,380 --> 00:15:41,080
+And that's where tools like Gryphon comes in.
+
+209
+00:15:41,110 --> 00:15:48,070
+Gryphon helps make sense out of the data collected by Prometheus, by visualizing it into charts and
+
+210
+00:15:48,070 --> 00:15:48,820
+graphs.
+
+211
+00:15:50,550 --> 00:15:56,100
+Now all of that together help us go from an idea to building it.
+
+212
+00:15:56,130 --> 00:15:57,480
+Deploying it.
+
+213
+00:15:57,780 --> 00:16:00,180
+Getting it out to our users fast.
+
+214
+00:16:00,180 --> 00:16:06,720
+And it doesn't stop there getting feedback from our users, reviewing them, brainstorming and coming
+
+215
+00:16:06,720 --> 00:16:11,010
+up with new ideas and implementing those ideas is now a breeze.
+
+216
+00:16:11,010 --> 00:16:17,250
+So any code pushed now goes through the pipeline and we have that we have defined and it's automatically
+
+217
+00:16:17,250 --> 00:16:21,960
+built, tested and deployed sooner, resulting in multiple deploys to production every day.
+
+218
+00:16:21,960 --> 00:16:28,230
+And once deployed it is monitored and more feedback is retrieved from the user and this cycle repeats
+
+219
+00:16:28,230 --> 00:16:29,880
+onto infinity.
+
+220
+00:16:30,570 --> 00:16:32,740
+And that is what DevOps is.
+
+221
+00:16:32,760 --> 00:16:40,770
+DevOps is a combination of people, processes and tools that work together in going from an idea to
+
+222
+00:16:40,770 --> 00:16:44,760
+execution and delivering high quality software consistently.
+
+223
+00:16:44,910 --> 00:16:46,950
+Well, that's all for this video.
+
+224
+00:16:46,950 --> 00:16:52,470
+I hope you enjoyed this high level overview of the different tools and technologies, and if you like
+
+225
+00:16:52,470 --> 00:16:57,030
+the video, don't forget to subscribe to our channel and if you have any questions, feel free to leave
+
+226
+00:16:57,030 --> 00:16:58,240
+them in the comments below.
+
+227
+00:16:58,260 --> 00:16:59,250
+Until next time.
+
+228
+00:16:59,250 --> 00:16:59,910
+Goodbye.
+

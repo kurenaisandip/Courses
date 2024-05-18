@@ -1,0 +1,252 @@
+1
+00:00:04,880 --> 00:00:07,939
+We now look at networking in Docker.
+
+2
+00:00:08,240 --> 00:00:15,740
+When you install Docker, it creates three networks automatically bridge null and host.
+
+3
+00:00:16,160 --> 00:00:20,260
+Bridge is the default network a container gets attached to.
+
+4
+00:00:20,660 --> 00:00:27,170
+If you would like to associate the container with any other network, you specify the network information
+
+5
+00:00:27,170 --> 00:00:30,920
+using the network command line parameter like this.
+
+6
+00:00:32,090 --> 00:00:34,580
+We will now look at each of these networks.
+
+7
+00:00:35,630 --> 00:00:41,840
+The Bridge Network is a private internal network created by Docker on the host.
+
+8
+00:00:42,110 --> 00:00:48,890
+All containers attached to this network by default, and they get an internal IP address usually in
+
+9
+00:00:48,890 --> 00:00:49,460
+the range.
+
+10
+00:00:49,460 --> 00:00:51,680
+One 72.17 series.
+
+11
+00:00:52,460 --> 00:00:57,410
+The containers can access each other using this internal IP if required.
+
+12
+00:00:58,220 --> 00:01:05,510
+To access any of these containers from the outside world, map the ports of these containers to ports
+
+13
+00:01:05,510 --> 00:01:08,240
+on the Docker host, as we have seen before.
+
+14
+00:01:09,630 --> 00:01:15,720
+Another way to access the containers externally is to associate the container to the host network.
+
+15
+00:01:16,050 --> 00:01:21,240
+This takes out any network isolation between the Docker host and the Docker container.
+
+16
+00:01:21,240 --> 00:01:27,780
+Meaning if you were to run a web server on Port 5000 in a web app container, it is automatically as
+
+17
+00:01:27,780 --> 00:01:34,920
+accessible on the same port externally without requiring any port mapping as the web container uses
+
+18
+00:01:34,920 --> 00:01:36,360
+the host's network.
+
+19
+00:01:37,180 --> 00:01:44,260
+This would also mean that unlike before, you will now not be able to run multiple web containers on
+
+20
+00:01:44,260 --> 00:01:51,640
+the same host on the same port as the ports are now common to all containers in the host network.
+
+21
+00:01:53,170 --> 00:01:54,970
+With the non network.
+
+22
+00:01:54,970 --> 00:02:02,680
+The containers are not attached to any network and doesn't have any access to the external network or
+
+23
+00:02:02,680 --> 00:02:03,880
+other containers.
+
+24
+00:02:04,330 --> 00:02:07,390
+They run in an isolated network.
+
+25
+00:02:08,960 --> 00:02:16,010
+So we just saw the default burst network with the network ID one 72.70 .0.1.
+
+26
+00:02:16,250 --> 00:02:21,980
+So all containers associated to this default network will be able to communicate to each other.
+
+27
+00:02:22,340 --> 00:02:26,570
+But what if we wish to isolate the containers within the Docker host?
+
+28
+00:02:26,570 --> 00:02:33,590
+For example, the first two web containers on internal network 172 and the second two containers on
+
+29
+00:02:33,590 --> 00:02:37,100
+a different internal network like 182.
+
+30
+00:02:37,740 --> 00:02:42,660
+By default, Docker only creates one internal bridge network.
+
+31
+00:02:42,780 --> 00:02:49,800
+We could create our own internal network using the Command Docker network, create and specify the driver,
+
+32
+00:02:49,800 --> 00:02:55,500
+which is bridge in this case and the subnet for that network, followed by the custom isolated network
+
+33
+00:02:55,500 --> 00:02:56,970
+name run.
+
+34
+00:02:56,970 --> 00:03:00,690
+The Docker Network LS command to list all networks.
+
+35
+00:03:01,540 --> 00:03:06,970
+So how do we see the network settings and the IP address assigned to an existing container?
+
+36
+00:03:07,960 --> 00:03:13,900
+Run the Docker, inspect command with the ID or name of the container, and you will find a section
+
+37
+00:03:13,900 --> 00:03:15,340
+on network settings.
+
+38
+00:03:15,730 --> 00:03:22,540
+There you can see the type of network the container is attached to its internal IP address, MAC address
+
+39
+00:03:22,540 --> 00:03:23,830
+and other settings.
+
+40
+00:03:26,810 --> 00:03:29,950
+Containers can reach each other using their names.
+
+41
+00:03:29,960 --> 00:03:36,770
+For example, in this case I have a web server and a MySQL database container running on the same node.
+
+42
+00:03:37,130 --> 00:03:41,870
+How can I get my web server to access the database on the database container?
+
+43
+00:03:42,440 --> 00:03:48,680
+One thing I could do is to use the internal IP address assigned to the MySQL container, which in this
+
+44
+00:03:48,680 --> 00:03:52,070
+case is one 72.70 .0.3.
+
+45
+00:03:52,520 --> 00:03:58,940
+But that is not very ideal because it is not guaranteed that the container will get the same IP when
+
+46
+00:03:58,940 --> 00:04:00,350
+the system reboots.
+
+47
+00:04:01,280 --> 00:04:04,940
+The right way to do it is to use the container name.
+
+48
+00:04:05,360 --> 00:04:10,940
+All containers in a docker host can resolve each other with the name of the container.
+
+49
+00:04:11,240 --> 00:04:18,200
+Docker has a built in DNS server that helps the containers to resolve each other using the container
+
+50
+00:04:18,200 --> 00:04:18,740
+name.
+
+51
+00:04:19,420 --> 00:04:23,380
+Note that the built in DNS server always runs at address.
+
+52
+00:04:23,380 --> 00:04:26,050
+120 7.0.0. 11.
+
+53
+00:04:27,230 --> 00:04:30,350
+So how does Docker implement networking?
+
+54
+00:04:31,450 --> 00:04:33,430
+What's the technology behind it like?
+
+55
+00:04:33,430 --> 00:04:36,490
+How were the containers isolated within the host?
+
+56
+00:04:37,240 --> 00:04:44,230
+Docker uses network namespaces that creates a separate namespace for each container.
+
+57
+00:04:44,740 --> 00:04:49,840
+It then uses virtual ethernet pairs to connect containers together.
+
+58
+00:04:50,970 --> 00:04:53,940
+Well, that's all we can talk about it for now.
+
+59
+00:04:53,970 --> 00:05:01,260
+More about these are advanced concepts that we discussed in the advanced course on Docker, on Code
+
+60
+00:05:01,260 --> 00:05:01,860
+Cloud.
+
+61
+00:05:02,630 --> 00:05:05,640
+That's all for now from this lecture on networking.
+
+62
+00:05:05,660 --> 00:05:10,730
+Head over to the practice test and practice working with networking in Docker.
+
+63
+00:05:11,170 --> 00:05:13,400
+And we'll see you in the next lecture.
+

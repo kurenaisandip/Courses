@@ -1,0 +1,596 @@
+1
+00:00:05,860 --> 00:00:07,630
+The virtual machine is now powered off.
+
+2
+00:00:07,670 --> 00:00:10,150
+Will now right click on it and select clone.
+
+3
+00:00:10,660 --> 00:00:14,530
+And in the new Virtual Machine page, I'm going to give it a name.
+
+4
+00:00:14,530 --> 00:00:20,290
+So the first clone is going to be the Ansible master, so I'm going to name it as Ansible controller
+
+5
+00:00:20,710 --> 00:00:29,920
+and make sure that you check the reset Mac address option because I need a new MAC address for all my
+
+6
+00:00:29,920 --> 00:00:30,940
+virtual machines.
+
+7
+00:00:32,049 --> 00:00:36,670
+In the next page, I'm going to make sure I select a linked clone.
+
+8
+00:00:37,510 --> 00:00:41,340
+A linked clone will basically is space saving.
+
+9
+00:00:41,350 --> 00:00:48,100
+It does not consume the entire it does not clone the entire virtual machine, so it does not consume
+
+10
+00:00:48,400 --> 00:00:49,570
+that much space.
+
+11
+00:00:49,870 --> 00:00:55,510
+I'm now going to click on Clone to create a clone of of the virtual machine.
+
+12
+00:00:56,080 --> 00:01:01,210
+So I now have the Ansible controller and I'm going to create another clone for the Ansible target.
+
+13
+00:01:01,210 --> 00:01:04,930
+For the first Ansible target, I will name it as Ansible Target one.
+
+14
+00:01:05,110 --> 00:01:13,300
+I'll make sure I check the initialize Mac address option and I will select the linked clone.
+
+15
+00:01:13,300 --> 00:01:22,540
+So now I have a template, I have a master, I have a ansible controller and an ansible target.
+
+16
+00:01:23,530 --> 00:01:26,740
+I will now power up the Ansible controller and the ansible target.
+
+17
+00:01:33,760 --> 00:01:38,590
+Once they are powered on, I will log into it using the OS box's password.
+
+18
+00:01:40,680 --> 00:01:45,990
+I will open a terminal and run the config command to find out the IP address.
+
+19
+00:01:46,410 --> 00:01:51,930
+Now, the reason I find out the IP address and establish an SSH connection is that it is.
+
+20
+00:01:51,930 --> 00:01:58,830
+I find it very easy to work with these virtual machines over an SSH session rather than through this
+
+21
+00:01:58,830 --> 00:01:59,910
+terminal window.
+
+22
+00:02:00,390 --> 00:02:03,300
+That way I can easily copy and paste commands.
+
+23
+00:02:04,930 --> 00:02:05,170
+Okay.
+
+24
+00:02:05,170 --> 00:02:08,810
+I will now establish an SSH session to my ansible master.
+
+25
+00:02:08,830 --> 00:02:13,180
+The IP address is 1821681.113.
+
+26
+00:02:14,100 --> 00:02:15,930
+The username is always boxes.
+
+27
+00:02:16,710 --> 00:02:19,950
+This time I will name the session as Ansible dash controller.
+
+28
+00:02:24,870 --> 00:02:26,430
+Okay, so I'm logged in.
+
+29
+00:02:28,020 --> 00:02:30,390
+I will also establish a session.
+
+30
+00:02:31,060 --> 00:02:32,980
+To my target machine.
+
+31
+00:02:34,260 --> 00:02:37,530
+Which is at 192 168 1.114.
+
+32
+00:02:38,630 --> 00:02:40,670
+And I will name the session as.
+
+33
+00:02:41,510 --> 00:02:43,400
+Ansible target one.
+
+34
+00:02:47,380 --> 00:02:50,920
+Okay, so I now have a session to the controller and the target.
+
+35
+00:02:51,850 --> 00:02:54,500
+The next step is to rename the host.
+
+36
+00:02:54,520 --> 00:02:59,090
+As you can see, both my controller and Target are named as OS boxes.
+
+37
+00:02:59,110 --> 00:03:04,580
+I'd like to name the controller as controller and the target as target.
+
+38
+00:03:04,600 --> 00:03:11,320
+So the first step is to modify the slash ETSI slash hostname file.
+
+39
+00:03:11,710 --> 00:03:17,740
+If you look inside the file, it is currently always boxes, so I'm going to remove that and replace
+
+40
+00:03:17,740 --> 00:03:21,730
+it with the name that I want, which is Ansible controller.
+
+41
+00:03:22,540 --> 00:03:23,650
+Now going to save that.
+
+42
+00:03:23,650 --> 00:03:27,100
+And the other place to modify is the ETSI host's file.
+
+43
+00:03:27,640 --> 00:03:31,840
+So I'm going to edit the four slash ATC slash host file.
+
+44
+00:03:35,800 --> 00:03:39,730
+And I'll get rid of whatever is already there and replace it with the.
+
+45
+00:03:40,530 --> 00:03:41,510
+Name that I wanted.
+
+46
+00:03:41,920 --> 00:03:43,050
+Wanted to have.
+
+47
+00:03:44,380 --> 00:03:46,930
+I believe the local host part as it is.
+
+48
+00:03:47,980 --> 00:03:51,250
+And I can now restart my system.
+
+49
+00:03:55,700 --> 00:03:59,780
+I will repeat the same steps for the target one system.
+
+50
+00:04:00,460 --> 00:04:00,700
+Okay.
+
+51
+00:04:00,710 --> 00:04:02,480
+I will now restart my system.
+
+52
+00:04:12,550 --> 00:04:16,360
+I will now establish connectivity to my systems again.
+
+53
+00:04:18,060 --> 00:04:21,540
+And as you can see, the name is applied.
+
+54
+00:04:21,720 --> 00:04:24,060
+I can now see it as Ansible dash controller.
+
+55
+00:04:24,060 --> 00:04:28,500
+So the next step is to install Ansible on the Ansible controller.
+
+56
+00:04:28,800 --> 00:04:36,030
+If you go to the Ansible documentation site and look at the installation guide, you will see instructions
+
+57
+00:04:36,030 --> 00:04:39,000
+for installing Ansible on various operating systems.
+
+58
+00:04:39,600 --> 00:04:46,080
+If you look at the instructions under CentOS, you can see that it's as simple as running the command
+
+59
+00:04:46,770 --> 00:04:48,270
+install Ansible.
+
+60
+00:04:48,660 --> 00:04:50,400
+So I'm just going to copy that.
+
+61
+00:04:51,060 --> 00:04:58,350
+And execute that on my CentOS system and provide the confirmation to install the packages.
+
+62
+00:04:59,960 --> 00:05:00,220
+Okay.
+
+63
+00:05:00,230 --> 00:05:06,650
+Once completed, you can run the Ansible dash dash version command to confirm that Ansible is installed
+
+64
+00:05:06,800 --> 00:05:11,390
+and to confirm the version of the Ansible installed on the system.
+
+65
+00:05:13,170 --> 00:05:17,250
+So that concludes the Ansible installation part.
+
+66
+00:05:19,060 --> 00:05:27,220
+Then we will now perform a simple test to check the connectivity between Ansible and the target machine.
+
+67
+00:05:28,750 --> 00:05:29,770
+To check connectivity.
+
+68
+00:05:29,770 --> 00:05:33,160
+I will first run, try to SSH to the target server.
+
+69
+00:05:33,160 --> 00:05:36,880
+So the target server is at one 92.1 68 1.114.
+
+70
+00:05:36,880 --> 00:05:39,250
+So we'll try and ssh into it.
+
+71
+00:05:39,400 --> 00:05:45,130
+And as you can see, it first asked me to confirm the key fingerprint I'm going to hit.
+
+72
+00:05:45,130 --> 00:05:45,730
+Yes.
+
+73
+00:05:45,730 --> 00:05:50,950
+And I will provide the password for the target host and I'm logged in.
+
+74
+00:05:54,090 --> 00:05:55,950
+I will now exit out of the system.
+
+75
+00:05:58,340 --> 00:06:03,000
+Now to test the connectivity through Ansible, I'm going to create a test project.
+
+76
+00:06:03,020 --> 00:06:05,300
+I'll create a folder called Test Project.
+
+77
+00:06:05,480 --> 00:06:08,690
+Inside that folder I will create an inventory file.
+
+78
+00:06:09,440 --> 00:06:14,420
+The inventory file will have one entry for the target host, which is target one.
+
+79
+00:06:15,730 --> 00:06:20,320
+I will specify the IP address using the Ansible host attribute.
+
+80
+00:06:20,560 --> 00:06:23,200
+And the IP address is one 92.1.
+
+81
+00:06:23,200 --> 00:06:25,330
+68.1 .114.
+
+82
+00:06:26,400 --> 00:06:32,250
+And then I will specify the password used to connect to the target server which is ansible underscore,
+
+83
+00:06:32,250 --> 00:06:35,760
+ssh, underscore pass and OS boxes.
+
+84
+00:06:35,760 --> 00:06:36,660
+Dot org.
+
+85
+00:06:39,280 --> 00:06:45,760
+Okay, now I have my inventory file with the IP of my target server and the password.
+
+86
+00:06:48,100 --> 00:06:52,570
+I can now run the check by running the Ansible command.
+
+87
+00:06:52,570 --> 00:06:57,190
+That's Ansible and the name of my host, which is Target one.
+
+88
+00:06:57,190 --> 00:07:03,130
+And I will specify a module called Ping, which is used to run the paint test and my inventory file
+
+89
+00:07:03,130 --> 00:07:07,660
+with a dash ai parameter inventory txt.
+
+90
+00:07:07,930 --> 00:07:14,560
+When I hit enter, it will perform a pink test through Ansible and make sure that it can establish a
+
+91
+00:07:14,560 --> 00:07:17,140
+successful connectivity to my target machine.
+
+92
+00:07:17,140 --> 00:07:21,220
+In this case, it says its success and it comes back with a pong message.
+
+93
+00:07:21,700 --> 00:07:28,510
+And so that confirms that my Ansible controller can successfully communicate or connect to the target
+
+94
+00:07:28,510 --> 00:07:29,140
+machine.
+
+95
+00:07:29,320 --> 00:07:33,350
+Now we're going to duplicate what we did with Target one.
+
+96
+00:07:33,370 --> 00:07:36,460
+We'll create another clone called Target two.
+
+97
+00:07:37,870 --> 00:07:43,420
+Make sure we re initialize the MAC address and select linked clone as the option for clone type.
+
+98
+00:07:44,610 --> 00:07:47,520
+And then we will power on the target to machine.
+
+99
+00:07:48,990 --> 00:07:51,450
+Once it's powered on, we will log in to it.
+
+100
+00:07:53,840 --> 00:07:57,200
+Open a terminal and find the IP address of it.
+
+101
+00:07:57,990 --> 00:08:00,030
+In this case, it is one 92.1.
+
+102
+00:08:00,030 --> 00:08:02,190
+68.1 .115.
+
+103
+00:08:05,260 --> 00:08:09,520
+We will now establish a SSH connection to the system.
+
+104
+00:08:10,560 --> 00:08:12,180
+From my associates terminal.
+
+105
+00:08:13,270 --> 00:08:17,260
+And I will name the session as Ansible Target two.
+
+106
+00:08:17,500 --> 00:08:21,580
+I will now edit the hostname to target to.
+
+107
+00:08:22,680 --> 00:08:25,260
+We will shut it down and wait for it to come back up.
+
+108
+00:08:26,090 --> 00:08:32,390
+While we wait for it to come back up, we'll modify the inventory file to update it with information
+
+109
+00:08:32,390 --> 00:08:34,909
+about the target to system.
+
+110
+00:08:35,570 --> 00:08:43,400
+We'll add a new line for target to the ansible host would be one 92.1 68 1.115 and the password will
+
+111
+00:08:43,400 --> 00:08:44,150
+be the same.
+
+112
+00:08:44,480 --> 00:08:48,890
+I can now confirm that the target to system is back up.
+
+113
+00:08:49,310 --> 00:08:54,740
+I can now log in to it and confirm that the name is set to target two.
+
+114
+00:08:56,480 --> 00:09:02,210
+I will now try to do a pink test through Ansible for my target two server.
+
+115
+00:09:02,960 --> 00:09:05,640
+I will first test target one and it looks good.
+
+116
+00:09:05,760 --> 00:09:08,130
+I will now try a test for target two.
+
+117
+00:09:08,130 --> 00:09:10,430
+And as you can see, it's failed.
+
+118
+00:09:10,440 --> 00:09:13,380
+But we followed the same steps for both the servers.
+
+119
+00:09:13,380 --> 00:09:16,290
+We created the servers from the same clone.
+
+120
+00:09:16,290 --> 00:09:21,870
+We followed the same steps to set to identify IP address and set hostname.
+
+121
+00:09:21,870 --> 00:09:25,040
+It has failed for target two, but it's passed for target one.
+
+122
+00:09:25,050 --> 00:09:30,840
+If you read the error message, you can see that it's got something to do with the SSH login and in
+
+123
+00:09:30,900 --> 00:09:35,340
+the key it says please add this host fingerprint to your known host file.
+
+124
+00:09:35,340 --> 00:09:37,560
+But did we do that for the first host?
+
+125
+00:09:37,560 --> 00:09:45,180
+If you go back to the earlier session and look at it, you will see that we did a manual ssh from the
+
+126
+00:09:45,180 --> 00:09:48,960
+ansible controller system to the target one system.
+
+127
+00:09:48,960 --> 00:09:57,270
+And when we did that, we actually accepted the key fingerprint by confirming when we when we did the
+
+128
+00:09:57,270 --> 00:09:58,050
+SSH.
+
+129
+00:09:59,300 --> 00:10:05,510
+And so that added the key of target of the target server to the known host list on the Ansible controller
+
+130
+00:10:05,510 --> 00:10:06,170
+machine.
+
+131
+00:10:06,440 --> 00:10:13,610
+We didn't actually do that for the Target two server, so that is the reason the Ansible ping test failed.
+
+132
+00:10:13,640 --> 00:10:16,100
+Now there are two ways to fix that.
+
+133
+00:10:16,370 --> 00:10:23,900
+One is we do a manual ssh from the ansible controller machine to the target machine and then hit yes
+
+134
+00:10:23,900 --> 00:10:28,130
+when it asks us for the confirmation or two.
+
+135
+00:10:28,400 --> 00:10:35,750
+There is a way to disable this particular host key checking using the ansible configuration file, which
+
+136
+00:10:35,750 --> 00:10:37,520
+is not the recommended way.
+
+137
+00:10:38,420 --> 00:10:40,790
+However, we'll still take a look at it.
+
+138
+00:10:40,790 --> 00:10:48,530
+If you go to the ansible configuration file at ETSI, ansible, ansible, dot cfg and search for host
+
+139
+00:10:48,530 --> 00:10:50,270
+key in that file.
+
+140
+00:10:50,310 --> 00:10:57,080
+You'll find that there's an entry that says host key checking and by default it is enabled to disable
+
+141
+00:10:57,080 --> 00:10:57,360
+it.
+
+142
+00:10:57,380 --> 00:11:01,970
+You must uncomment that line and so set host key checking to false.
+
+143
+00:11:02,420 --> 00:11:04,700
+I've now done that and save the file.
+
+144
+00:11:05,330 --> 00:11:09,890
+And if I do a ping test now, I can see that it returns with a pong.
+
+145
+00:11:11,620 --> 00:11:16,030
+Now, this is not a recommended way in a production environment.
+
+146
+00:11:16,030 --> 00:11:21,990
+In a production environment, using passwords to establish connectivity between systems is not recommended.
+
+147
+00:11:22,000 --> 00:11:27,250
+So there's a better way to do that, and that is using SSH keys.
+
+148
+00:11:27,520 --> 00:11:28,340
+Thank you.
+
+149
+00:11:28,360 --> 00:11:29,950
+And that is all for this demo.
+

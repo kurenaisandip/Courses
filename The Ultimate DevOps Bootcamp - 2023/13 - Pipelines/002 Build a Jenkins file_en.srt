@@ -1,0 +1,304 @@
+1
+00:00:03,500 --> 00:00:09,140
+All right, everybody, now that we understand what Jenkins files are, let's actually dive into some
+
+2
+00:00:09,140 --> 00:00:12,280
+hands on goodness and start to play around with some Jenkins files.
+
+3
+00:00:12,290 --> 00:00:13,910
+So first things first.
+
+4
+00:00:13,910 --> 00:00:18,600
+If you want to create a Jenkins file, at least in V's code, it's pretty straightforward.
+
+5
+00:00:18,620 --> 00:00:23,480
+Just create a new file and literally just type Jenkins file.
+
+6
+00:00:23,480 --> 00:00:28,820
+And as you can see, V's code knows that this is a Jenkins file, which is awesome.
+
+7
+00:00:29,000 --> 00:00:30,680
+So let me go ahead and I'm going to delete that.
+
+8
+00:00:32,090 --> 00:00:36,080
+And then what we're going to do is we're going to look at three separate Jenkins files.
+
+9
+00:00:36,080 --> 00:00:38,600
+Now, we will not be deploying them right now.
+
+10
+00:00:38,600 --> 00:00:42,020
+I just want to show you the structure and the overall basics.
+
+11
+00:00:42,020 --> 00:00:46,760
+And then in the next few videos, we're going to actually look at deploying these Jenkins files.
+
+12
+00:00:47,090 --> 00:00:51,400
+So first things first, I'm going to click on the Jenkins file test.
+
+13
+00:00:51,410 --> 00:00:53,240
+I'm going to open up this Jenkins file.
+
+14
+00:00:53,270 --> 00:00:58,820
+Now, this is a very straightforward Helloworld Jenkins file.
+
+15
+00:00:58,850 --> 00:01:03,710
+As we can see, we're first set up with our pipeline structure.
+
+16
+00:01:03,920 --> 00:01:09,020
+And our pipeline structure has an opening bracket and it has a closing bracket.
+
+17
+00:01:09,440 --> 00:01:15,050
+And inside of that opening and closing bracket, like, for example, if I just take this out really
+
+18
+00:01:15,050 --> 00:01:19,430
+quick, we can see that I'm specifying the agent and the agent.
+
+19
+00:01:19,430 --> 00:01:22,490
+Again, we're going to talk about build agents in the next section.
+
+20
+00:01:22,490 --> 00:01:26,540
+But this could be anything, any type of system that's running Java.
+
+21
+00:01:26,930 --> 00:01:29,360
+I'm saying any here at this point.
+
+22
+00:01:30,170 --> 00:01:35,360
+And what that's going to do is it's actually going to run the current Jenkins server as the build agent.
+
+23
+00:01:37,100 --> 00:01:40,580
+Next, we have our stages that are set up now, our stage.
+
+24
+00:01:40,580 --> 00:01:43,540
+We could have any type of stage that we want.
+
+25
+00:01:43,550 --> 00:01:46,190
+Dev, UAT, prod, we can name it whatever we want.
+
+26
+00:01:46,220 --> 00:01:51,650
+If we want to be a little bit more flush with our names here, we can go out and we can name this dev
+
+27
+00:01:51,650 --> 00:01:56,020
+and then the dev stage is going to deploy some steps.
+
+28
+00:01:56,030 --> 00:02:03,500
+Now the steps are inside of these brackets here and what this step is doing, it's very straightforward.
+
+29
+00:02:03,500 --> 00:02:08,840
+It's running an echo, which just means it's just going to say something back to us, say something
+
+30
+00:02:08,840 --> 00:02:11,180
+to the terminal that's going to say Hello world.
+
+31
+00:02:11,510 --> 00:02:16,280
+And just like that, you could have your first pipeline set up very, very straightforward.
+
+32
+00:02:16,490 --> 00:02:20,540
+Next, let's break into something a little bit more complicated here.
+
+33
+00:02:20,720 --> 00:02:20,930
+Go ahead.
+
+34
+00:02:20,970 --> 00:02:27,410
+I'm going to close out of this Jenkins file and then I'm going to open up go app one stage, this directory
+
+35
+00:02:27,410 --> 00:02:27,920
+here.
+
+36
+00:02:27,960 --> 00:02:29,990
+Then I'm going to click on this Jenkins file.
+
+37
+00:02:30,020 --> 00:02:35,270
+Now, notice it's pretty much set up the same.
+
+38
+00:02:35,270 --> 00:02:37,670
+We have our pipeline structure.
+
+39
+00:02:37,880 --> 00:02:40,430
+We have our agent that we're calling upon.
+
+40
+00:02:40,760 --> 00:02:44,930
+We have our stages and then we have our step.
+
+41
+00:02:45,500 --> 00:02:48,920
+Now, here's the thing that's actually happening.
+
+42
+00:02:49,790 --> 00:02:52,750
+We're pulling code from GitHub now.
+
+43
+00:02:52,760 --> 00:03:03,110
+So now what this is doing is this is taking code from GitHub and it's building it for us inside of this
+
+44
+00:03:03,110 --> 00:03:03,820
+pipeline.
+
+45
+00:03:03,830 --> 00:03:09,770
+It's taking this code, it's pulling it from GitHub, and now we'll have that code readily available
+
+46
+00:03:09,770 --> 00:03:14,300
+to start working on to be able to do things like run tests, for example.
+
+47
+00:03:16,200 --> 00:03:22,110
+And then finally, if we just look into one more thing here, we looked at one stage, let's look at
+
+48
+00:03:22,110 --> 00:03:22,920
+multi stage.
+
+49
+00:03:22,920 --> 00:03:25,410
+Remember we talked about multi stage a little bit already.
+
+50
+00:03:25,530 --> 00:03:28,440
+So as you can see, again, same thing.
+
+51
+00:03:28,440 --> 00:03:36,360
+We have our pipeline structure set up where designing this to say use any agent and then we have two
+
+52
+00:03:36,360 --> 00:03:36,960
+stages.
+
+53
+00:03:36,960 --> 00:03:42,000
+Now this is where things are a little bit different inside of our stages.
+
+54
+00:03:42,000 --> 00:03:51,030
+BLOCK We have two stage keywords, and then within those two stage keywords, we have two different
+
+55
+00:03:51,030 --> 00:03:51,960
+stages.
+
+56
+00:03:51,960 --> 00:03:59,250
+We have one called dev on line five, and then we have one called UAT on line 12.
+
+57
+00:03:59,880 --> 00:04:06,930
+Now within each of those stages, within the dev stage and then within the UAT stage, we have steps.
+
+58
+00:04:07,700 --> 00:04:10,010
+And both of these steps are doing the same thing.
+
+59
+00:04:10,100 --> 00:04:14,780
+This isn't meant to be, you know, a crazy, hardcore advanced example here.
+
+60
+00:04:14,780 --> 00:04:18,800
+This is really just a show how a multi stage pipeline would work.
+
+61
+00:04:18,800 --> 00:04:23,660
+And realistically, this actually does make sense because remember, when you're running multi stage
+
+62
+00:04:23,660 --> 00:04:29,390
+pipelines, you're not necessarily looking to do different things at each stage.
+
+63
+00:04:29,390 --> 00:04:33,050
+You're really looking to do practically the same thing.
+
+64
+00:04:33,050 --> 00:04:37,970
+You want to be able to build the code and you want to be able to test the code and push that code out
+
+65
+00:04:37,970 --> 00:04:39,320
+and all of that good stuff.
+
+66
+00:04:39,320 --> 00:04:43,130
+So if you're looking to set up multi stage pipelines, this is the way that it would look.
+
+67
+00:04:43,130 --> 00:04:50,660
+You would have inside of your stages bracket, you would have two or three or however many stage keywords.
+
+68
+00:04:50,660 --> 00:04:54,970
+Within those stage keywords you would have what stage like Dev or UAT.
+
+69
+00:04:54,980 --> 00:04:57,490
+And then within there you would have your steps.
+
+70
+00:04:57,500 --> 00:05:02,870
+Now remember, just going back one more time, if you want one stage, this is what it looks like.
+
+71
+00:05:02,870 --> 00:05:08,210
+Again, you have your stages bracket, you have your stage keyword, but you're just setting up one
+
+72
+00:05:08,210 --> 00:05:09,140
+stage.
+
+73
+00:05:09,350 --> 00:05:14,180
+So with that, now let's head over to the Jenkins portal and we can actually start building out some
+
+74
+00:05:14,180 --> 00:05:14,720
+code.
+
+75
+00:05:15,820 --> 00:05:17,980
+Well, that's it for this lecture.
+
+76
+00:05:17,980 --> 00:05:19,450
+We'll see you in the next.
+

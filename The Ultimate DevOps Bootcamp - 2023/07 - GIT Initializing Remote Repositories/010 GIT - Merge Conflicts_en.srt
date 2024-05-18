@@ -1,0 +1,96 @@
+1
+00:00:01,230 --> 00:00:08,280
+In most cases get is smart enough to know how files should be modified when we're merging branches.
+
+2
+00:00:08,310 --> 00:00:11,070
+However, that's not always the case.
+
+3
+00:00:12,000 --> 00:00:15,660
+Imagine that Sarah started working on a fourth story.
+
+4
+00:00:17,180 --> 00:00:19,910
+But she didn't communicate this with Max.
+
+5
+00:00:19,910 --> 00:00:23,510
+So Max also started working on the fourth story.
+
+6
+00:00:25,690 --> 00:00:30,550
+Sarah was a bit quicker though, and Mercer changes back into Master.
+
+7
+00:00:31,390 --> 00:00:35,680
+Max now wants to go ahead and merge his change into Master as well.
+
+8
+00:00:36,730 --> 00:00:42,850
+But the master branch contains changes compared to the Max branch in a file that we're currently trying
+
+9
+00:00:42,850 --> 00:00:43,750
+to merge.
+
+10
+00:00:44,440 --> 00:00:51,820
+However, the file within Master says this is Sarah's version, whereas Max's version says this is Max's
+
+11
+00:00:51,820 --> 00:00:52,570
+version.
+
+12
+00:00:53,110 --> 00:01:00,310
+Get doesn't know which which version you want to keep and we just ended up in a merge conflict.
+
+13
+00:01:01,480 --> 00:01:05,140
+There are several ways to resolve those conflicts.
+
+14
+00:01:05,140 --> 00:01:13,870
+For example in get these or simply in the code editor during a conflict get add some extra characters
+
+15
+00:01:13,870 --> 00:01:14,470
+to the file.
+
+16
+00:01:14,470 --> 00:01:15,640
+That's conflicting.
+
+17
+00:01:16,390 --> 00:01:22,000
+Git shows the current context of the conflicting files as well as the contents that we're trying to
+
+18
+00:01:22,000 --> 00:01:22,720
+merge.
+
+19
+00:01:24,220 --> 00:01:30,190
+We can simply remove the lines that we don't want to keep and leave the lines that we do want to keep
+
+20
+00:01:30,190 --> 00:01:31,810
+and then save the file again.
+
+21
+00:01:33,220 --> 00:01:39,730
+During the conflict, we made some changes to the four storied TXT file which will have to add to get
+
+22
+00:01:39,730 --> 00:01:40,330
+again.
+
+23
+00:01:41,230 --> 00:01:46,360
+After adding it, we can finally merge the match branch without any conflicts.
+
+24
+00:01:46,900 --> 00:01:51,700
+Master now contains a combination of Max's and Sarah's changes.
+

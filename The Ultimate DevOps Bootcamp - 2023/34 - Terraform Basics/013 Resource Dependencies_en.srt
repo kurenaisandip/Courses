@@ -1,0 +1,104 @@
+1
+00:00:01,740 --> 00:00:07,020
+In this lecture, we will take a look at the different types of resource dependencies in TerraForm.
+
+2
+00:00:08,010 --> 00:00:14,430
+In the previous lecture, we saw how to link one resource to another using reference attributes by making
+
+3
+00:00:14,430 --> 00:00:17,040
+use of reference, expression and interpolation.
+
+4
+00:00:17,070 --> 00:00:23,220
+We were able to make use of the output of the random bit resource as an input for the local file resource.
+
+5
+00:00:23,880 --> 00:00:29,730
+Now, when TerraForm creates these resources, it knows about the dependency since the local file resource
+
+6
+00:00:29,730 --> 00:00:32,549
+depends on the output of the random pet resource.
+
+7
+00:00:33,380 --> 00:00:36,590
+As a result, it uses the following order to provision them.
+
+8
+00:00:36,860 --> 00:00:42,860
+First, TerraForm creates the random pet resource and then it creates the local file resource.
+
+9
+00:00:43,610 --> 00:00:49,550
+When resources are deleted, TerraForm deletes it in the reverse order the local file first and then
+
+10
+00:00:49,550 --> 00:00:50,510
+the random pet.
+
+11
+00:00:51,140 --> 00:00:54,290
+This type of dependency is called the implicit dependency.
+
+12
+00:00:54,590 --> 00:00:59,600
+Here we are not explicitly specifying which resource is dependent on which other resource.
+
+13
+00:01:00,080 --> 00:01:02,090
+TerraForm figures it out by itself.
+
+14
+00:01:02,720 --> 00:01:07,340
+However, there is another way to specify dependency within the configuration file.
+
+15
+00:01:07,970 --> 00:01:13,940
+For example, let us make use of the older configuration file without making use of the reference expression
+
+16
+00:01:13,940 --> 00:01:15,230
+for the file content.
+
+17
+00:01:16,020 --> 00:01:20,760
+If you still want to make sure that the local file resource is created after the random pet.
+
+18
+00:01:20,790 --> 00:01:24,840
+We can do this by using the depends on argument like this.
+
+19
+00:01:26,150 --> 00:01:31,760
+Here we have added a depends on argument inside the resource block for the local file, and we have
+
+20
+00:01:31,760 --> 00:01:36,320
+provided a list of dependencies that include the random pet resource called the My Pet.
+
+21
+00:01:36,770 --> 00:01:41,720
+This will ensure that the local file is only created after the random resources created.
+
+22
+00:01:42,610 --> 00:01:46,210
+This type of dependency is called an explicit dependency.
+
+23
+00:01:47,140 --> 00:01:54,030
+Explicitly specifying dependency is only necessary when a resource relies on some other resource indirectly,
+
+24
+00:01:54,040 --> 00:01:57,610
+and it does not make use of a reference expression as seen in this case.
+
+25
+00:01:58,440 --> 00:02:03,930
+In the later sections of this course, we will see how and when to use this in a real world use case.
+
+26
+00:02:04,660 --> 00:02:10,240
+Now let's head over to the hands on labs and explore working with resource dependencies in TerraForm.
+

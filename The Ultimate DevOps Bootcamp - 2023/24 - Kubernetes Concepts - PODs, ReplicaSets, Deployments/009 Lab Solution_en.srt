@@ -1,0 +1,1376 @@
+1
+00:00:00,240 --> 00:00:03,300
+Hello and welcome to this demo.
+
+2
+00:00:03,719 --> 00:00:09,360
+We are going through the Kubernetes certification course, and in this demo we will look at the solution
+
+3
+00:00:09,360 --> 00:00:13,770
+for the practice test on replica sets.
+
+4
+00:00:14,550 --> 00:00:21,840
+Now, this is a beginner's level test, so we will see how to solve the challenges.
+
+5
+00:00:22,320 --> 00:00:26,220
+So first, go to the link for taking the practice test.
+
+6
+00:00:26,550 --> 00:00:32,700
+When you're ready, click on start scenario and this is the terminal where you'll be working and click
+
+7
+00:00:32,700 --> 00:00:36,210
+on Quiz Portal to open up the portal.
+
+8
+00:00:37,230 --> 00:00:42,870
+So you have about an hour to go through about 15 questions.
+
+9
+00:00:43,080 --> 00:00:45,930
+Now, these are all very simple questions.
+
+10
+00:00:45,930 --> 00:00:53,280
+So to start with, we will go through some of the information gathering questions like read the environment,
+
+11
+00:00:53,280 --> 00:01:00,150
+understand, inspect the environment and understand the number of pods, replica sets that are available.
+
+12
+00:01:00,240 --> 00:01:04,950
+Look at the existing replica sets and try and figure out information from that.
+
+13
+00:01:05,370 --> 00:01:13,110
+Troubleshoot issues with replica sets and try and fix them as well as creating your own replica sets.
+
+14
+00:01:13,350 --> 00:01:14,610
+So let's get started.
+
+15
+00:01:15,660 --> 00:01:19,740
+So the first question is how many pods exist on the system?
+
+16
+00:01:20,310 --> 00:01:24,720
+And all operations are done in the current or the default namespace, so you don't have to change the
+
+17
+00:01:24,720 --> 00:01:25,400
+namespace.
+
+18
+00:01:25,410 --> 00:01:32,380
+So let's go back to the console and we'll try to figure out how many parts exist.
+
+19
+00:01:32,400 --> 00:01:38,190
+So I'm going to run Kube control, get parts command so there are no resources found.
+
+20
+00:01:38,190 --> 00:01:40,410
+So the answer is zero.
+
+21
+00:01:42,720 --> 00:01:46,350
+The next question is how many replica sets exist on the system?
+
+22
+00:01:46,860 --> 00:01:55,080
+So I'm going to run the cube control, get replica sets, command and so there are no resources found.
+
+23
+00:01:55,080 --> 00:01:57,360
+So there is the answer is zero.
+
+24
+00:01:59,910 --> 00:02:01,440
+Okay, So some changes were made.
+
+25
+00:02:01,560 --> 00:02:02,490
+So how about now?
+
+26
+00:02:02,490 --> 00:02:04,050
+How many replica sets do you see?
+
+27
+00:02:04,050 --> 00:02:06,720
+So let's go back and run the command again.
+
+28
+00:02:07,710 --> 00:02:11,470
+And we see that there is one replica set created.
+
+29
+00:02:11,490 --> 00:02:13,620
+So let's select one.
+
+30
+00:02:15,980 --> 00:02:19,520
+How many parts are desired in the new replica set.
+
+31
+00:02:20,000 --> 00:02:27,230
+So if you go back and look at the output of the command that we just ran, the desired column says four.
+
+32
+00:02:27,230 --> 00:02:32,140
+So that means that there are four parts desired for this replica set.
+
+33
+00:02:32,150 --> 00:02:33,770
+So the answer is four.
+
+34
+00:02:35,900 --> 00:02:39,890
+What is the image used to create the pods in the new replica set?
+
+35
+00:02:41,180 --> 00:02:47,360
+So there are a number of options given and we need to find out what the image is on the replica set
+
+36
+00:02:47,360 --> 00:02:48,860
+or on the parts.
+
+37
+00:02:49,040 --> 00:02:52,820
+So for this we can run the command cube control.
+
+38
+00:02:53,010 --> 00:02:56,510
+Describe replica set.
+
+39
+00:02:58,580 --> 00:03:03,620
+And it prints out the detailed information regarding the replica set.
+
+40
+00:03:04,490 --> 00:03:10,520
+If you look under containers, under the template, under containers, the busy box container, there's
+
+41
+00:03:10,520 --> 00:03:12,980
+only one container in each pod.
+
+42
+00:03:13,160 --> 00:03:17,480
+And the image used is busy box seven, seven, seven.
+
+43
+00:03:17,810 --> 00:03:18,590
+So that's.
+
+44
+00:03:18,590 --> 00:03:20,260
+That's the answer.
+
+45
+00:03:20,270 --> 00:03:20,960
+It's busy.
+
+46
+00:03:20,960 --> 00:03:22,850
+Box seven, seven, seven.
+
+47
+00:03:23,930 --> 00:03:26,990
+How many parts are ready in the new replica set?
+
+48
+00:03:27,410 --> 00:03:31,760
+So again, if you go back and look at the output of the command we ran earlier.
+
+49
+00:03:32,960 --> 00:03:35,780
+The ready column says zero.
+
+50
+00:03:35,780 --> 00:03:37,010
+So that's the answer.
+
+51
+00:03:37,010 --> 00:03:39,310
+None of the parts are ready.
+
+52
+00:03:39,320 --> 00:03:42,650
+So we could also run it again.
+
+53
+00:03:43,910 --> 00:03:46,840
+We could also run the command again just to see if it's updated.
+
+54
+00:03:46,850 --> 00:03:47,480
+Nope.
+
+55
+00:03:47,510 --> 00:03:50,060
+So the answer is still zero.
+
+56
+00:03:51,300 --> 00:03:53,100
+So let's go back and select zero.
+
+57
+00:03:54,450 --> 00:03:58,200
+So why do you think that the parts are not ready?
+
+58
+00:03:58,890 --> 00:04:02,070
+So let's go back and see.
+
+59
+00:04:02,160 --> 00:04:05,470
+Let's try and troubleshoot and see why it's not ready.
+
+60
+00:04:05,490 --> 00:04:10,650
+So if you go back and look into the output of the cube control, describe replica set command.
+
+61
+00:04:11,310 --> 00:04:20,529
+You can see that four parts or four replicas are desired and all four are in a waiting state.
+
+62
+00:04:20,550 --> 00:04:25,020
+None of them are succeeded or none of them are running.
+
+63
+00:04:25,500 --> 00:04:31,000
+If you look under the events here, you see that all four parts were created.
+
+64
+00:04:31,020 --> 00:04:32,450
+You do not see anything further.
+
+65
+00:04:32,460 --> 00:04:35,590
+So let's dig in and look at the state of the parts.
+
+66
+00:04:35,610 --> 00:04:38,100
+So I'm going to run the first.
+
+67
+00:04:38,100 --> 00:04:40,200
+Let me clear the screen.
+
+68
+00:04:43,760 --> 00:04:46,820
+I'm going to run the cube control, get Parts command.
+
+69
+00:04:47,150 --> 00:04:54,620
+And I see that there are four parts and they all have the name of the replica set as a prefix and the
+
+70
+00:04:54,620 --> 00:04:55,790
+status is image.
+
+71
+00:04:55,790 --> 00:04:56,840
+Pull back off.
+
+72
+00:04:57,020 --> 00:05:03,260
+Now, if you're not sure what that means, we can actually dig in further and look inside one of the
+
+73
+00:05:03,260 --> 00:05:03,990
+pod.
+
+74
+00:05:04,010 --> 00:05:09,860
+So, cube control, describe pod, and then I'm going to type in
+
+75
+00:05:12,860 --> 00:05:14,750
+the name of one of the pods.
+
+76
+00:05:15,770 --> 00:05:19,190
+New replica set six two and B two.
+
+77
+00:05:19,940 --> 00:05:27,470
+And now, if you look under the events, you see that you see this, the different events.
+
+78
+00:05:27,470 --> 00:05:29,560
+So it's trying to pull the image visible.
+
+79
+00:05:29,630 --> 00:05:34,610
+X seven, seven, seven failed to pull the image busy box seven, seven, seven.
+
+80
+00:05:34,910 --> 00:05:43,100
+And the error, the actual error towards the end is repository busy box 777 not found does not exist
+
+81
+00:05:43,100 --> 00:05:44,690
+or no pull access.
+
+82
+00:05:44,990 --> 00:05:52,520
+So that tells us that the repository, the image box 777 does not exist on Docker and that's the reason
+
+83
+00:05:52,520 --> 00:05:55,670
+why it's not able to pull the image.
+
+84
+00:05:55,670 --> 00:05:57,860
+That's the reason why the pods are not running.
+
+85
+00:05:58,160 --> 00:06:00,230
+So it's not the first one.
+
+86
+00:06:00,230 --> 00:06:04,250
+The second one that says the image box seven, seven, seven doesn't exist.
+
+87
+00:06:04,250 --> 00:06:06,860
+So that's the correct answer to this question.
+
+88
+00:06:08,950 --> 00:06:12,610
+Okay, next, delete any one of the four parts.
+
+89
+00:06:13,120 --> 00:06:16,480
+So let's go back to the terminal and.
+
+90
+00:06:17,910 --> 00:06:19,460
+Let's first cleared the screen.
+
+91
+00:06:19,760 --> 00:06:30,920
+We'll say cube control, get Parts Command, and we will run the cube control delete pod, and then
+
+92
+00:06:32,660 --> 00:06:35,810
+we'll use one of the pod names.
+
+93
+00:06:36,200 --> 00:06:38,750
+So we're going to try and delete the first pod.
+
+94
+00:06:41,350 --> 00:06:46,000
+We'll wait for the prompt to come back so the part is deleted.
+
+95
+00:06:46,870 --> 00:06:48,040
+Click done.
+
+96
+00:06:49,270 --> 00:06:51,430
+How many parts exist now?
+
+97
+00:06:51,430 --> 00:06:55,990
+So let's go back and run the Get Pods command again to see how many pods exist.
+
+98
+00:06:57,610 --> 00:07:00,280
+So we can see that there are still four pods.
+
+99
+00:07:00,280 --> 00:07:02,290
+One, two, three and four.
+
+100
+00:07:02,410 --> 00:07:03,340
+And earlier two.
+
+101
+00:07:03,340 --> 00:07:05,590
+There were four pods even though we deleted.
+
+102
+00:07:05,620 --> 00:07:07,750
+There are still four pods.
+
+103
+00:07:08,110 --> 00:07:09,640
+So the answer is four.
+
+104
+00:07:11,860 --> 00:07:15,370
+So why are there still four parts even after you deleted one?
+
+105
+00:07:16,090 --> 00:07:24,250
+So the answer is not because I didn't delete it properly, I did delete it and it did say that the part
+
+106
+00:07:24,250 --> 00:07:25,210
+is deleted.
+
+107
+00:07:26,320 --> 00:07:28,840
+You cannot delete a part from a replica set.
+
+108
+00:07:28,870 --> 00:07:34,570
+That's not true either because we were able to delete the part from the replica set.
+
+109
+00:07:35,230 --> 00:07:41,320
+The third one that says replica set ensures that desired number of parts always and exist.
+
+110
+00:07:41,320 --> 00:07:42,850
+So that's the right answer.
+
+111
+00:07:43,090 --> 00:07:50,740
+So the purpose of your replica set is to ensure that a given number of parts always exist.
+
+112
+00:07:50,740 --> 00:07:59,980
+So even if you manually delete any of these parts or if any of the parts were to get deleted or, you
+
+113
+00:07:59,980 --> 00:08:07,960
+know, due to a program being terminated or an error inside the image or the application and if the
+
+114
+00:08:07,960 --> 00:08:10,330
+part were to get deleted automatically.
+
+115
+00:08:10,450 --> 00:08:17,950
+Replica set will fire up a new part to ensure that the desired number of parts always exist.
+
+116
+00:08:18,250 --> 00:08:19,810
+So that's the right answer.
+
+117
+00:08:22,300 --> 00:08:30,970
+Now getting into a little bit of yaml file replica set configuration and troubleshooting create a replica
+
+118
+00:08:30,970 --> 00:08:33,580
+set using the replica set definition.
+
+119
+00:08:33,940 --> 00:08:36,370
+One yaml file located at root.
+
+120
+00:08:36,669 --> 00:08:42,640
+So let's look at so the current directory is root.
+
+121
+00:08:42,820 --> 00:08:45,370
+So let's list the files here.
+
+122
+00:08:45,610 --> 00:08:49,120
+So this is the file that the question is referring to.
+
+123
+00:08:49,150 --> 00:08:51,840
+Replica set definition dash one yaml.
+
+124
+00:08:52,180 --> 00:08:57,880
+So the task is to create the replica set using this definition file.
+
+125
+00:08:58,120 --> 00:09:00,820
+So we can take a look at the file real quick.
+
+126
+00:09:02,200 --> 00:09:04,870
+Replica set definition one point yaml.
+
+127
+00:09:05,770 --> 00:09:08,530
+And that's the.
+
+128
+00:09:08,530 --> 00:09:09,760
+That's the definition.
+
+129
+00:09:10,180 --> 00:09:16,120
+So let's just try try to let's first try to create the replica set.
+
+130
+00:09:17,110 --> 00:09:18,640
+Create minus F.
+
+131
+00:09:22,160 --> 00:09:24,640
+Public Asset Definition one point M0.
+
+132
+00:09:28,670 --> 00:09:30,230
+So that has failed.
+
+133
+00:09:30,620 --> 00:09:39,890
+It says unable to recognize replica set definition yaml file no matches for kind replica set in version
+
+134
+00:09:39,890 --> 00:09:40,640
+one.
+
+135
+00:09:41,030 --> 00:09:49,190
+Now the purpose of this exercise or these kinds of troubleshooting exercises is to make you comfortable
+
+136
+00:09:49,190 --> 00:09:52,370
+working with YAML files and definition files.
+
+137
+00:09:53,540 --> 00:09:59,240
+You will very often come across such errors in real life while working with Kubernetes.
+
+138
+00:09:59,450 --> 00:10:07,880
+Or if you're actually giving the binary certification exam, you'll come across a lot of such errors
+
+139
+00:10:07,880 --> 00:10:12,590
+and you need to know what these error messages mean.
+
+140
+00:10:13,070 --> 00:10:20,450
+You you must be able to look into the error messages, read them, understand them, and know exactly
+
+141
+00:10:20,450 --> 00:10:23,030
+what that means and how to fix it.
+
+142
+00:10:23,030 --> 00:10:26,150
+And that's the whole purpose of these kinds of exercises.
+
+143
+00:10:26,960 --> 00:10:33,860
+So if you look at the error message in this case, it says no matches for kind replica set in version
+
+144
+00:10:33,860 --> 00:10:34,790
+V one.
+
+145
+00:10:34,790 --> 00:10:40,940
+So it's actually talking about the first two lines in our replica set definition file.
+
+146
+00:10:40,970 --> 00:10:46,400
+This particular version which we one has no match for replica set.
+
+147
+00:10:46,400 --> 00:10:49,970
+So it's either a problem with this or a problem with this.
+
+148
+00:10:51,140 --> 00:10:58,580
+Sometimes when you give the case of this kind incorrectly, you will come across the same error message.
+
+149
+00:10:58,730 --> 00:11:00,110
+So you need to know.
+
+150
+00:11:00,380 --> 00:11:02,170
+You need to know what that is.
+
+151
+00:11:02,180 --> 00:11:06,110
+Now you don't have to memorize what what is here and what is here.
+
+152
+00:11:06,890 --> 00:11:10,970
+You can always refer to the documentation site in such cases.
+
+153
+00:11:11,150 --> 00:11:19,850
+So go to the Kubernetes documentation site at Kubernetes, dot slash docs and search for replica set.
+
+154
+00:11:20,630 --> 00:11:23,330
+So in the search bar.
+
+155
+00:11:23,750 --> 00:11:27,440
+And from the result, I usually go with the first.
+
+156
+00:11:28,810 --> 00:11:29,530
+Outcome.
+
+157
+00:11:29,920 --> 00:11:36,190
+And if you just scroll down here, you should be able to see a sample definition file.
+
+158
+00:11:36,460 --> 00:11:39,910
+What we are concerned about is the first two lines.
+
+159
+00:11:40,120 --> 00:11:45,400
+As you can see, it's not v one, it's APS v one and replica set is correct.
+
+160
+00:11:45,520 --> 00:11:47,090
+So this is the issue.
+
+161
+00:11:47,110 --> 00:11:49,990
+So let's go and change that.
+
+162
+00:11:52,810 --> 00:11:56,740
+So I'm going to update the hazard definition file.
+
+163
+00:11:57,910 --> 00:12:03,060
+And right here, I'm going to add the apps.
+
+164
+00:12:05,000 --> 00:12:09,550
+I will save the file and I will create it again.
+
+165
+00:12:10,180 --> 00:12:12,610
+So that's successful and the file is created.
+
+166
+00:12:13,360 --> 00:12:15,520
+Let's go back and check our work.
+
+167
+00:12:17,320 --> 00:12:18,580
+So that's successful.
+
+168
+00:12:19,030 --> 00:12:25,240
+The next task is to fix the issue in the replica set definition to YAML file and create a replica set
+
+169
+00:12:25,240 --> 00:12:26,110
+using that.
+
+170
+00:12:26,500 --> 00:12:29,620
+So let's try that right now.
+
+171
+00:12:31,390 --> 00:12:38,470
+I will directly try to create the replica set using the definition file.
+
+172
+00:12:38,860 --> 00:12:39,850
+That's cube control.
+
+173
+00:12:39,850 --> 00:12:45,820
+Create minus f replica set definition to yaml.
+
+174
+00:12:47,800 --> 00:12:59,200
+So this is failed again and it says this time that invalid value selector does not match template labels.
+
+175
+00:12:59,920 --> 00:13:02,710
+So let's take a look at the file.
+
+176
+00:13:03,480 --> 00:13:05,690
+I got set definition to YAML.
+
+177
+00:13:06,520 --> 00:13:09,640
+And if you look in here you see that?
+
+178
+00:13:10,210 --> 00:13:14,470
+So the error message is selector does not match template labels.
+
+179
+00:13:14,470 --> 00:13:17,950
+So the selector is this selector that is talking about.
+
+180
+00:13:17,950 --> 00:13:28,300
+So this has a selector with match labels of tier front front end and it is trying to match this with
+
+181
+00:13:28,300 --> 00:13:29,800
+the labels defined here.
+
+182
+00:13:30,380 --> 00:13:36,990
+And so the issue here is that this label to your front end does not match this label, which is tier,
+
+183
+00:13:36,990 --> 00:13:38,110
+tier and index.
+
+184
+00:13:38,320 --> 00:13:49,630
+So when the replica set is created, Kubernetes first tries to create a template, a pod, or the record
+
+185
+00:13:49,660 --> 00:13:53,920
+number of pods using this particular template.
+
+186
+00:13:53,920 --> 00:13:56,560
+And so everything under here is a pod definition.
+
+187
+00:13:56,770 --> 00:14:02,910
+Everything under template is a pod definition, and it tries to create that, and then it tries to create
+
+188
+00:14:02,920 --> 00:14:06,850
+a replica set and link the replica set with these pods.
+
+189
+00:14:06,850 --> 00:14:10,810
+And in order to do that, these two must match.
+
+190
+00:14:10,810 --> 00:14:15,160
+And that's why it's important that these two are the same.
+
+191
+00:14:16,060 --> 00:14:19,620
+Otherwise the replica set will not have any pods under it.
+
+192
+00:14:19,630 --> 00:14:25,120
+So this is what links the replica set and the parts to each other and they should always match.
+
+193
+00:14:25,120 --> 00:14:32,860
+And that's the check that is being performed here before even Kubernetes tries to create these objects.
+
+194
+00:14:33,190 --> 00:14:42,340
+So in this case, we either need to use front end in both in both places or use engine in both the places.
+
+195
+00:14:42,520 --> 00:14:45,130
+So it doesn't really matter what you use.
+
+196
+00:14:45,130 --> 00:14:52,080
+You just need to fix the error and get the replica set created.
+
+197
+00:14:52,090 --> 00:14:57,760
+So in this case, I'm just going to update the label here to match whatever is given up.
+
+198
+00:15:00,840 --> 00:15:01,410
+Okay.
+
+199
+00:15:03,960 --> 00:15:10,800
+I will now try to create the replica set again and it's successful.
+
+200
+00:15:11,250 --> 00:15:13,350
+I will go back and check.
+
+201
+00:15:16,280 --> 00:15:16,820
+Okay.
+
+202
+00:15:16,910 --> 00:15:25,010
+Now, while we are there, I just wanted to give a quick tip, especially for the certification.
+
+203
+00:15:25,250 --> 00:15:30,380
+So if you are attempting the certification, your work is not validated like.
+
+204
+00:15:30,380 --> 00:15:31,430
+Like this.
+
+205
+00:15:31,460 --> 00:15:37,770
+So in that case, you need to make sure that whatever you've done is working and is correct.
+
+206
+00:15:37,790 --> 00:15:44,900
+So, for example, if you are asked to create a replica set named replica set two with this particular
+
+207
+00:15:44,900 --> 00:15:56,690
+labels and this particular image for the pod, you need to do a quick check of your work to ensure that
+
+208
+00:15:56,690 --> 00:15:58,010
+you've done it correctly.
+
+209
+00:15:58,190 --> 00:16:02,270
+Even if you're successful in creating the replica set.
+
+210
+00:16:02,480 --> 00:16:05,690
+You must ensure that you used the right information.
+
+211
+00:16:05,690 --> 00:16:14,780
+So I believe exam evaluation is automated.
+
+212
+00:16:14,780 --> 00:16:18,620
+I don't know how, but it could be or it should be automated.
+
+213
+00:16:18,620 --> 00:16:29,210
+So if that is the case, then these whatever tasks you're asked to do may be checked automatically and
+
+214
+00:16:29,210 --> 00:16:30,920
+so it will have to match.
+
+215
+00:16:30,920 --> 00:16:31,370
+Exactly.
+
+216
+00:16:31,370 --> 00:16:37,910
+So if you're asked to use an X image, you have to use engine X image, and for that it's best you do
+
+217
+00:16:37,910 --> 00:16:41,390
+a quick check of your work after you do something.
+
+218
+00:16:41,390 --> 00:16:50,150
+So in this case, it's best you check your replica set by running a cube control, get RS command and
+
+219
+00:16:50,150 --> 00:16:56,450
+make sure that it's named as replica set dash two and also do a quick check like this.
+
+220
+00:16:56,480 --> 00:17:00,100
+Cube control describe RS.
+
+221
+00:17:00,440 --> 00:17:10,040
+It's a short for replica set and that'll come handy in the exam, especially when your time constraint.
+
+222
+00:17:11,599 --> 00:17:18,710
+And it's good to make sure that the image that was asked to use the labels that are asked use are the
+
+223
+00:17:18,710 --> 00:17:19,099
+same.
+
+224
+00:17:19,099 --> 00:17:21,589
+So that's a quick tip.
+
+225
+00:17:22,430 --> 00:17:32,150
+So the next task is to delete the two newly created replica sets so you could do a cube control delete.
+
+226
+00:17:32,150 --> 00:17:35,780
+And I'm going to use the short form for replica set going forward.
+
+227
+00:17:35,960 --> 00:17:43,010
+RS And then the replica set one replica set to.
+
+228
+00:17:45,460 --> 00:17:48,190
+Okay, so they are deleted.
+
+229
+00:17:48,580 --> 00:17:51,790
+Click on check That is successful.
+
+230
+00:17:52,000 --> 00:18:00,730
+Now the next task is to fix the original replica set new dash replica that's set to use the correct
+
+231
+00:18:00,730 --> 00:18:01,810
+busy box image.
+
+232
+00:18:01,810 --> 00:18:10,390
+So remember earlier we identified that the parts were not starting due to the image which was wrong,
+
+233
+00:18:10,390 --> 00:18:12,460
+which was busy bug seven, seven seven.
+
+234
+00:18:12,460 --> 00:18:15,520
+So it has to be updated to busy box.
+
+235
+00:18:16,210 --> 00:18:17,110
+Busy box.
+
+236
+00:18:17,560 --> 00:18:20,530
+So let's go and try to do that.
+
+237
+00:18:20,890 --> 00:18:28,270
+Now, whenever you're asked to update an existing object, you know, the first thing that comes to
+
+238
+00:18:28,270 --> 00:18:35,200
+your mind is probably to use the cube control edit replica, set command and then specify the name of
+
+239
+00:18:35,200 --> 00:18:38,500
+the replica set, which is new replica set.
+
+240
+00:18:39,220 --> 00:18:46,300
+And when you do this for most of the objects in Kubernetes, it opens up a definition file for that
+
+241
+00:18:46,300 --> 00:18:54,280
+object in a bi editor, and you can make changes to that object from here.
+
+242
+00:18:54,730 --> 00:18:59,740
+So in this case, I'm just going to make a change to the image name.
+
+243
+00:18:59,830 --> 00:19:01,840
+It's busy Box seven, seven, seven.
+
+244
+00:19:02,240 --> 00:19:07,510
+I'm going to get rid of the seven, seven, seven from here and then save the file.
+
+245
+00:19:09,070 --> 00:19:12,670
+So it says the replica set is now edited.
+
+246
+00:19:12,700 --> 00:19:15,070
+Now let us see the state of the replica set.
+
+247
+00:19:15,100 --> 00:19:18,040
+Keep control, get set.
+
+248
+00:19:18,940 --> 00:19:21,760
+And as you can see, it's still in the same state.
+
+249
+00:19:22,570 --> 00:19:27,430
+There are still only there are still no parts that are ready.
+
+250
+00:19:28,390 --> 00:19:34,840
+If you look at the state of the parts, you see that they're still in that error state.
+
+251
+00:19:35,620 --> 00:19:44,860
+And if you further look at the one of the parts in detail, let's say the first one.
+
+252
+00:19:50,950 --> 00:19:57,640
+You see that it's still in the image pull back off state and it's still using the old image, which
+
+253
+00:19:57,640 --> 00:20:03,160
+was busy box seven, seven, seven, but we actually updated the image name.
+
+254
+00:20:03,370 --> 00:20:06,570
+Now the reason for that is the replica set.
+
+255
+00:20:06,580 --> 00:20:16,510
+Even if you edit an existing replica set, it does not carry forward those changes to the existing part.
+
+256
+00:20:17,620 --> 00:20:24,280
+Only when a part is deleted and a new part is created, the changes are applied so it does not automatically
+
+257
+00:20:24,280 --> 00:20:29,680
+apply the changes in the containers for the existing parts.
+
+258
+00:20:29,710 --> 00:20:32,410
+So we have two options.
+
+259
+00:20:32,410 --> 00:20:38,890
+We can either delete each part one by one and then have replicas that automatically create new parts.
+
+260
+00:20:39,010 --> 00:20:44,740
+Or we could delete the replica set itself and create a new replica set.
+
+261
+00:20:44,830 --> 00:20:47,950
+So let's try the first option.
+
+262
+00:20:49,240 --> 00:20:51,430
+Get us.
+
+263
+00:20:52,720 --> 00:20:54,520
+So we get pods.
+
+264
+00:20:56,080 --> 00:20:59,380
+And as you can see, let's try and delete one.
+
+265
+00:21:00,600 --> 00:21:02,160
+Delete pod.
+
+266
+00:21:04,560 --> 00:21:05,610
+The first one.
+
+267
+00:21:10,990 --> 00:21:12,460
+We'll wait for that to get.
+
+268
+00:21:12,850 --> 00:21:13,690
+Let's delete it.
+
+269
+00:21:15,230 --> 00:21:16,730
+But I now run the Get Pod's command.
+
+270
+00:21:16,750 --> 00:21:20,140
+It's created a new pod and it's actually running.
+
+271
+00:21:20,140 --> 00:21:21,910
+So that's that's one of my options.
+
+272
+00:21:21,910 --> 00:21:24,850
+So I can also go ahead and delete all the others.
+
+273
+00:21:25,450 --> 00:21:28,750
+Let's now just look at the other method as well.
+
+274
+00:21:29,680 --> 00:21:31,360
+Just so you're aware.
+
+275
+00:21:32,590 --> 00:21:36,520
+So the other method is to delete the replica set.
+
+276
+00:21:38,170 --> 00:21:44,590
+But before deleting, remember if I delete this because it right now I do not have the definition file
+
+277
+00:21:44,590 --> 00:21:45,240
+for it.
+
+278
+00:21:45,250 --> 00:21:47,590
+So it was already there.
+
+279
+00:21:47,590 --> 00:21:50,920
+It was automatically created when I came into this environment.
+
+280
+00:21:52,360 --> 00:21:57,010
+So I do not have a definition file for this existing replica set.
+
+281
+00:21:57,010 --> 00:22:00,430
+So if I delete it, I may not be able to recreate it.
+
+282
+00:22:00,520 --> 00:22:05,620
+Now, any time you're in that scenario where you do not have the definition file for any objects in
+
+283
+00:22:05,620 --> 00:22:12,640
+Kubernetes and you want to capture it or create it, instead of looking at the properties and creating
+
+284
+00:22:12,640 --> 00:22:15,850
+a definition, file yourself from scratch.
+
+285
+00:22:16,180 --> 00:22:19,950
+You could simply export the definition file out of Kubernetes.
+
+286
+00:22:19,960 --> 00:22:27,940
+So if you run a cube control, get replica set command with the name of the replica set.
+
+287
+00:22:30,880 --> 00:22:31,240
+OC.
+
+288
+00:22:31,240 --> 00:22:33,670
+It lists the replica set information.
+
+289
+00:22:34,300 --> 00:22:45,670
+What I'm going to do is you could use the dash zero option along with the YAML option to get the definition
+
+290
+00:22:46,000 --> 00:22:54,280
+of the replica set in a YAML format, and that's what we can use to edit or to save the configuration.
+
+291
+00:22:55,150 --> 00:23:02,470
+So when I run that command with the when I run the Q control, get our command with the dash YAML option,
+
+292
+00:23:02,860 --> 00:23:06,460
+I get the definition file for the replica set.
+
+293
+00:23:06,490 --> 00:23:08,170
+Now this was not created by me.
+
+294
+00:23:08,410 --> 00:23:09,130
+It was never there.
+
+295
+00:23:09,130 --> 00:23:14,440
+So this was automatically generated by Kubernetes for me.
+
+296
+00:23:15,070 --> 00:23:18,280
+Now, there is a lot of information in this which we can delete.
+
+297
+00:23:18,760 --> 00:23:27,970
+For example, the creation timestamp, these IDs and links, etc. So or we can just leave it there too.
+
+298
+00:23:28,000 --> 00:23:29,180
+It doesn't really matter.
+
+299
+00:23:29,200 --> 00:23:30,700
+So I'm going to.
+
+300
+00:23:32,920 --> 00:23:39,100
+Save that those contents into my own definition file.
+
+301
+00:23:39,100 --> 00:23:44,650
+I will name that new replica set dot yaml.
+
+302
+00:23:46,280 --> 00:23:46,850
+Okay.
+
+303
+00:23:47,090 --> 00:23:51,200
+Now I can safely delete my replica set.
+
+304
+00:23:52,190 --> 00:23:54,650
+So I'm going to do a get cube control.
+
+305
+00:23:54,750 --> 00:23:58,430
+Delete this new replica set.
+
+306
+00:24:00,140 --> 00:24:01,370
+Okay, let's delete it.
+
+307
+00:24:01,520 --> 00:24:04,910
+I can now create the new replica set.
+
+308
+00:24:06,160 --> 00:24:10,810
+Burning the cube control create minus F new replica set.
+
+309
+00:24:11,620 --> 00:24:12,580
+Don't yaml file.
+
+310
+00:24:14,120 --> 00:24:16,070
+K the new asset is created.
+
+311
+00:24:16,540 --> 00:24:18,290
+One Get RS.
+
+312
+00:24:19,920 --> 00:24:21,660
+It's creating the new replica set.
+
+313
+00:24:22,410 --> 00:24:24,600
+There are two parts ready.
+
+314
+00:24:25,830 --> 00:24:27,030
+There are three ready.
+
+315
+00:24:31,220 --> 00:24:32,270
+There are four ready
+
+316
+00:24:35,150 --> 00:24:36,620
+there on the get pods command.
+
+317
+00:24:36,980 --> 00:24:39,790
+I can see that there are four ports ready.
+
+318
+00:24:39,800 --> 00:24:47,150
+There's still one pod that's left off of the previous replica set, but it should be gone any time that's
+
+319
+00:24:47,150 --> 00:24:47,510
+gone.
+
+320
+00:24:48,560 --> 00:24:49,520
+Okay, perfect.
+
+321
+00:24:49,520 --> 00:24:50,150
+So.
+
+322
+00:24:51,140 --> 00:24:52,320
+Let me check the work.
+
+323
+00:24:54,600 --> 00:24:55,020
+Okay.
+
+324
+00:24:55,140 --> 00:24:56,100
+Successful.
+
+325
+00:24:56,610 --> 00:25:00,780
+The next task is to scale the replica set to five parts.
+
+326
+00:25:00,840 --> 00:25:07,740
+For this we can use the cube control scale command, or we can edit the existing replica set using the
+
+327
+00:25:07,740 --> 00:25:09,590
+cube control Edit command.
+
+328
+00:25:09,600 --> 00:25:17,250
+So in this case we will use the scale command cube control scale replica set new dash replica dash set
+
+329
+00:25:17,970 --> 00:25:21,420
+dash dash replicas equals five.
+
+330
+00:25:23,310 --> 00:25:23,610
+Okay.
+
+331
+00:25:23,610 --> 00:25:24,810
+It's it's it's scaled.
+
+332
+00:25:24,810 --> 00:25:30,300
+When I run the get rrs command, I see that the desired number is five.
+
+333
+00:25:30,780 --> 00:25:31,560
+I run it again.
+
+334
+00:25:31,560 --> 00:25:34,440
+I see that there are five that are ready.
+
+335
+00:25:34,560 --> 00:25:41,070
+So if you look at the part, you will see that there's another another additional part that was just
+
+336
+00:25:41,070 --> 00:25:41,730
+created.
+
+337
+00:25:46,390 --> 00:25:46,700
+Okay.
+
+338
+00:25:46,720 --> 00:25:50,670
+The same way you can scale the replica set down as well to two parts.
+
+339
+00:25:50,680 --> 00:25:55,480
+So I'm going to run the same command to scale it down to two.
+
+340
+00:25:58,640 --> 00:25:59,800
+Check the number of parts.
+
+341
+00:25:59,810 --> 00:26:02,330
+As you can see, there are three terminating.
+
+342
+00:26:04,460 --> 00:26:05,420
+And.
+
+343
+00:26:06,900 --> 00:26:13,770
+There are two the desert and current and ready count is now to take the work.
+
+344
+00:26:15,500 --> 00:26:17,060
+Okay, So that's the end of it.
+

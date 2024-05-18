@@ -1,0 +1,348 @@
+1
+00:00:01,680 --> 00:00:03,540
+Hello and welcome to this demo.
+
+2
+00:00:03,570 --> 00:00:08,130
+In this demo we are going to see how to set up a lab environment.
+
+3
+00:00:08,970 --> 00:00:14,530
+So in my case, I have a Windows system, so I will be setting up a lab environment on my Windows system.
+
+4
+00:00:14,550 --> 00:00:17,070
+It doesn't really matter what operating system you're on.
+
+5
+00:00:17,070 --> 00:00:23,820
+You could follow the same instructions to set up a lab environment on Linux or your Mac operating systems.
+
+6
+00:00:23,820 --> 00:00:29,640
+So in our case, we're going to install VirtualBox, so go to VirtualBox dot org and in the website
+
+7
+00:00:29,640 --> 00:00:33,660
+you will have find a link to download the VirtualBox software.
+
+8
+00:00:34,260 --> 00:00:40,110
+In the download page, you will find links to download VirtualBox for specific operating systems.
+
+9
+00:00:40,830 --> 00:00:42,600
+In my case, I'm mine is Windows.
+
+10
+00:00:42,600 --> 00:00:49,290
+I'm going to click on Windows and I'm going to download the software once downloaded, run the executable
+
+11
+00:00:49,290 --> 00:00:54,150
+and follow the instructions in the installation Wizard to complete installation.
+
+12
+00:00:54,390 --> 00:00:58,320
+In my case, I've already installed it, so I'm just going to cancel that.
+
+13
+00:00:59,400 --> 00:01:06,000
+After you install open up the Oracle VirtualBox interface and it will look something like this.
+
+14
+00:01:06,540 --> 00:01:08,940
+Now the next step is to deploy virtual machines.
+
+15
+00:01:09,890 --> 00:01:15,530
+In order to do that, you can either create a machine, attach a CD, drive of an operating system,
+
+16
+00:01:15,530 --> 00:01:20,900
+and follow the instructions to install the operating system as we are familiar with.
+
+17
+00:01:21,290 --> 00:01:24,500
+However, there's also another easy way.
+
+18
+00:01:24,980 --> 00:01:30,980
+There are pre installed pre configured operating system images available on the internet.
+
+19
+00:01:31,010 --> 00:01:35,840
+We could use those to easily deploy as many virtual machines as we need.
+
+20
+00:01:36,140 --> 00:01:40,260
+For this, if you go to the website OS boxes dot org.
+
+21
+00:01:40,280 --> 00:01:45,830
+You will find a lot of pre-installed pre configured images of various operating systems.
+
+22
+00:01:46,160 --> 00:01:48,650
+Go to this site and select the VM images.
+
+23
+00:01:48,650 --> 00:01:54,380
+VirtualBox images link at the top and then you will be you will find a list of various different operating
+
+24
+00:01:54,380 --> 00:01:54,860
+systems.
+
+25
+00:01:54,860 --> 00:01:56,930
+From this we will select CentOS.
+
+26
+00:01:58,770 --> 00:02:01,170
+And then it will take us to the center of this page.
+
+27
+00:02:01,410 --> 00:02:04,680
+Here you can see information on downloading the center image.
+
+28
+00:02:04,710 --> 00:02:10,889
+In our case, we're downloading the VirtualBox image for Center seven and we're downloading the 64 bit
+
+29
+00:02:10,889 --> 00:02:11,540
+version.
+
+30
+00:02:11,550 --> 00:02:14,340
+So remember to download that particular version.
+
+31
+00:02:16,290 --> 00:02:16,650
+We will.
+
+32
+00:02:16,650 --> 00:02:22,050
+Then it is downloaded as a seven zip file, which is a compressed file.
+
+33
+00:02:22,050 --> 00:02:27,830
+So you need a software to uncompressed it like guitar or winzip.
+
+34
+00:02:27,840 --> 00:02:33,150
+In my case, I'm using the seven zip software to extract the contents of the file into a folder.
+
+35
+00:02:35,230 --> 00:02:38,290
+Wait for it to finish the extraction process.
+
+36
+00:02:39,970 --> 00:02:43,300
+Once finished if you go into the folder.
+
+37
+00:02:44,220 --> 00:02:46,560
+You will see that there is a folder called 64 bit.
+
+38
+00:02:49,930 --> 00:02:56,260
+And inside that folder you'll find a file with the extension VDI that stands for virtual disk.
+
+39
+00:02:56,260 --> 00:02:59,080
+And that is what we will use to create our virtual machine.
+
+40
+00:02:59,620 --> 00:03:01,720
+We're now ready to create a new virtual machine.
+
+41
+00:03:01,720 --> 00:03:09,850
+So we go back into the Oracle VM VirtualBox interface, click on New and we fill in the name and operating
+
+42
+00:03:09,850 --> 00:03:10,540
+system.
+
+43
+00:03:10,780 --> 00:03:17,170
+Now I will name the virtual machine that I'm creating as CentOS template because as we discussed, we're
+
+44
+00:03:17,380 --> 00:03:25,090
+our goal is to create a template and then use that template to create as many virtual machines as I
+
+45
+00:03:25,090 --> 00:03:25,570
+need.
+
+46
+00:03:25,780 --> 00:03:28,360
+So I'm going to name it as CentOS template.
+
+47
+00:03:28,600 --> 00:03:32,860
+I will now select the type as Linux and the version.
+
+48
+00:03:32,860 --> 00:03:38,320
+Since it does not have CentOS listed, I could simply select other.
+
+49
+00:03:39,100 --> 00:03:44,800
+Now, as you can see under the versions there are 32 bit as well as 64 bit options.
+
+50
+00:03:45,640 --> 00:03:51,970
+In our case we downloaded the center was 64 bit version, so we must select 64 bit option.
+
+51
+00:03:52,630 --> 00:03:59,740
+Now in case you do not see the 64 bit options in this list, and that is most probably because you do
+
+52
+00:03:59,740 --> 00:04:06,130
+not have the virtualization technology enabled on your laptop to enable virtualization technology on
+
+53
+00:04:06,130 --> 00:04:07,060
+your laptop.
+
+54
+00:04:07,510 --> 00:04:10,570
+It is usually under the BIOS settings.
+
+55
+00:04:11,080 --> 00:04:17,440
+So if you simply Google enable virtualization in bios followed by your laptop model, you will see a
+
+56
+00:04:17,440 --> 00:04:18,410
+set of results.
+
+57
+00:04:18,430 --> 00:04:23,960
+It's usually usually looks something like this under the BIOS, under the advanced BIOS features.
+
+58
+00:04:23,980 --> 00:04:30,940
+You'll have something called as virtualization technology and you must ensure that it is set to enable
+
+59
+00:04:30,940 --> 00:04:31,510
+state.
+
+60
+00:04:32,270 --> 00:04:38,150
+So once you do that, restart your laptop and you will find the 64 bit option and click next.
+
+61
+00:04:38,450 --> 00:04:41,960
+In the next here we select a memory size.
+
+62
+00:04:41,960 --> 00:04:49,970
+By default, it's set to 512 NB and let's change that to around two GB So we'll set it to two two gigs.
+
+63
+00:04:50,540 --> 00:04:54,380
+In the next step, we select the hard disk that we downloaded.
+
+64
+00:04:55,280 --> 00:04:56,780
+So in this case.
+
+65
+00:04:58,130 --> 00:05:02,330
+The default selection is create a virtual hard disk now, but that is not what we want.
+
+66
+00:05:02,360 --> 00:05:09,830
+We already have a pre-built image of a hard disk downloaded, so we're going to specify that select
+
+67
+00:05:09,830 --> 00:05:17,060
+the user, an existing virtual hard disk file option, and click on Browse and Browse to the file that
+
+68
+00:05:17,060 --> 00:05:21,860
+we downloaded and extracted, which is the center is seven file with the VDI extension.
+
+69
+00:05:22,100 --> 00:05:22,580
+Click on.
+
+70
+00:05:22,580 --> 00:05:22,910
+Okay.
+
+71
+00:05:22,910 --> 00:05:24,590
+And that creates the file.
+
+72
+00:05:24,620 --> 00:05:29,630
+Now, before powering on the template, we will go into settings and make a few more changes.
+
+73
+00:05:29,990 --> 00:05:37,850
+Go to system and we'll increase the CPU to around two and we go to network section and we will set the
+
+74
+00:05:37,850 --> 00:05:39,990
+adapter one to bridge network.
+
+75
+00:05:40,010 --> 00:05:46,700
+This way my virtual machine gets an IP address as well as it can connect to the internet to download
+
+76
+00:05:46,700 --> 00:05:48,770
+and install packages as required.
+
+77
+00:05:49,430 --> 00:05:51,890
+I will now go ahead and power on the system.
+
+78
+00:06:03,470 --> 00:06:05,000
+I'm now at the login prompt.
+
+79
+00:06:05,780 --> 00:06:10,490
+Select the default user, which is the which is O's boxes.
+
+80
+00:06:10,730 --> 00:06:15,950
+Now the password to find out the password for any images downloaded from boxes dot org.
+
+81
+00:06:15,980 --> 00:06:21,230
+Go to the info section and then you'll see that the username is o's boxes and the password is always
+
+82
+00:06:21,230 --> 00:06:22,820
+boxes dot org.
+
+83
+00:06:22,910 --> 00:06:24,490
+So I'm going to use that password.
+
+84
+00:06:24,530 --> 00:06:26,420
+O's boxes dot org.
+
+85
+00:06:30,640 --> 00:06:31,600
+I will click on Sign in.
+
+86
+00:06:31,630 --> 00:06:32,650
+To log in to the centre.
+
+87
+00:06:32,830 --> 00:06:33,520
+System.
+

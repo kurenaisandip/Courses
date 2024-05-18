@@ -1,0 +1,220 @@
+1
+00:00:00,780 --> 00:00:06,120
+Let us now look at some more Linux commands that will help you get through this course.
+
+2
+00:00:06,960 --> 00:00:11,910
+We will start with user accounts to know which user you are.
+
+3
+00:00:11,940 --> 00:00:14,250
+Run the Who am I command.
+
+4
+00:00:14,490 --> 00:00:17,850
+In this case it says you are user Matthew.
+
+5
+00:00:18,240 --> 00:00:23,580
+The ID command gives you more information about the user, such as the user's ID, which happens to
+
+6
+00:00:23,580 --> 00:00:28,950
+be 1001 and the group ID and the groups that the user is part of.
+
+7
+00:00:29,490 --> 00:00:36,480
+To switch from one user to another, you may use the su command su stands for switch user to switch
+
+8
+00:00:36,480 --> 00:00:37,440
+to user.
+
+9
+00:00:37,470 --> 00:00:41,700
+Say Aparna run the su command followed by the user's name.
+
+10
+00:00:42,030 --> 00:00:45,060
+You will then be prompted for the user's password.
+
+11
+00:00:45,780 --> 00:00:52,620
+If you're accessing one system from another system using say, ssh and you want to log in to the other
+
+12
+00:00:52,620 --> 00:00:59,400
+system using a different user than your current user, specify the username before the host name followed
+
+13
+00:00:59,400 --> 00:01:01,020
+by an add symbol.
+
+14
+00:01:04,540 --> 00:01:06,700
+When it comes to performing tasks.
+
+15
+00:01:06,700 --> 00:01:10,090
+Not all users can do all tasks in Linux.
+
+16
+00:01:10,240 --> 00:01:15,400
+Matthew is a regular user and so his access on the system is restricted.
+
+17
+00:01:16,120 --> 00:01:20,090
+Every Linux system has a super user known as the root user.
+
+18
+00:01:20,110 --> 00:01:27,310
+The root user has no restrictions on the system and can perform any task, which is why in most production
+
+19
+00:01:27,310 --> 00:01:33,010
+environments or enterprise environments, access to the root user is restricted and you will almost
+
+20
+00:01:33,010 --> 00:01:36,370
+never log in to the systems as a root user.
+
+21
+00:01:36,760 --> 00:01:42,610
+Now, as a normal user, what if you wish to perform actions that can only be performed by a root user
+
+22
+00:01:42,610 --> 00:01:48,490
+such as installing and configuring software and services on the system, or viewing certain paths such
+
+23
+00:01:48,490 --> 00:01:50,680
+as the root directory?
+
+24
+00:01:51,070 --> 00:01:59,110
+A root user can make that possible for a regular user by granting them pseudo privileges, by making
+
+25
+00:01:59,110 --> 00:02:02,800
+an entry into the ETSI pseudo ers file.
+
+26
+00:02:03,160 --> 00:02:09,070
+So the user is still a regular user but with root privileges.
+
+27
+00:02:09,310 --> 00:02:16,990
+When a regular user is granted pseudo privilege, they can now elevate their permission level and perform
+
+28
+00:02:16,990 --> 00:02:23,630
+tasks that they otherwise couldn't by simply pre fixing a command with the keyword pseudo.
+
+29
+00:02:24,050 --> 00:02:29,410
+They'll be asked for their password and on entering the password the command is executed.
+
+30
+00:02:31,400 --> 00:02:36,500
+When you look through the labs in the rest of this course, you'll work in an environment where you
+
+31
+00:02:36,500 --> 00:02:38,630
+will not have root access.
+
+32
+00:02:38,660 --> 00:02:42,630
+Instead, you will be a regular user with pseudo privileges.
+
+33
+00:02:42,650 --> 00:02:48,060
+So while making changes to the system, you must remember to use the pseudo prefix.
+
+34
+00:02:48,080 --> 00:02:50,780
+If not, you will get permission denied errors.
+
+35
+00:02:50,990 --> 00:02:57,200
+So whenever you hit permission denied errors, remember that it could be because you haven't used the
+
+36
+00:02:57,200 --> 00:02:58,340
+pseudo prefix.
+
+37
+00:02:58,790 --> 00:03:03,110
+We will be discussing about a lot of commands through the rest of this course.
+
+38
+00:03:03,110 --> 00:03:10,100
+And for the sake of brevity we won't be specifying the pseudo prefix each time on all our slides.
+
+39
+00:03:10,100 --> 00:03:14,960
+So it is assumed that you will use this prefix while working in the labs.
+
+40
+00:03:15,710 --> 00:03:20,270
+Let us now look at some commands that will help us download files from the internet.
+
+41
+00:03:20,540 --> 00:03:27,530
+At times you will have to download files from the internet such as RPM packages or binary files or images,
+
+42
+00:03:27,530 --> 00:03:33,290
+and you can use use the call command and provide the URL of the file to download the file.
+
+43
+00:03:33,800 --> 00:03:37,850
+Add the dash capital option to save the result to a file.
+
+44
+00:03:37,880 --> 00:03:41,630
+Otherwise it'll just print the file on screen.
+
+45
+00:03:41,960 --> 00:03:46,970
+Another tool that can be used to download files is the W get command.
+
+46
+00:03:47,360 --> 00:03:55,340
+Again, specify the full URL and with the capital O options, specify the name of the file that you
+
+47
+00:03:55,340 --> 00:03:57,230
+wanted to store locally as.
+
+48
+00:04:00,080 --> 00:04:05,240
+At times you may be on a Linux system and may not know what operating system you are on.
+
+49
+00:04:05,450 --> 00:04:07,380
+To know the current OS.
+
+50
+00:04:07,400 --> 00:04:10,780
+Inspect the release files under the C directory.
+
+51
+00:04:10,790 --> 00:04:17,600
+The release files may be named differently based on the operating system, so use a wild card like this
+
+52
+00:04:18,079 --> 00:04:21,680
+to see more details about the OS.
+
+53
+00:04:21,920 --> 00:04:29,450
+View these files by running the CAT command and you can see that in this case it's CentOS version seven.
+
+54
+00:04:29,780 --> 00:04:31,590
+Well, that's it for this lecture.
+
+55
+00:04:31,610 --> 00:04:35,780
+Head over to the labs and practice working with some more commands on the net.
+

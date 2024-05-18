@@ -1,0 +1,240 @@
+1
+00:00:05,400 --> 00:00:07,440
+Hello and welcome to this lecture.
+
+2
+00:00:07,470 --> 00:00:12,060
+In this lecture we will discuss about networking in Kubernetes.
+
+3
+00:00:14,380 --> 00:00:18,400
+Let us look at the very basics of networking in Kubernetes.
+
+4
+00:00:18,670 --> 00:00:21,920
+We will start with a single node Kubernetes cluster.
+
+5
+00:00:21,940 --> 00:00:24,040
+The node has an IP address.
+
+6
+00:00:24,040 --> 00:00:27,580
+Say it is 192.168.1.2.
+
+7
+00:00:27,610 --> 00:00:34,390
+In this case, this is the IP address we use to access the Kubernetes node SSH into it, etc..
+
+8
+00:00:34,900 --> 00:00:40,540
+On a side note, remember, if you're using a mini cube setup, then I'm talking about the IP address
+
+9
+00:00:40,540 --> 00:00:44,530
+of the mini cube virtual machine inside your hypervisor.
+
+10
+00:00:44,770 --> 00:00:50,350
+Your laptop may be having a different IP like one 82.1 60 8.1. ten.
+
+11
+00:00:50,350 --> 00:00:54,160
+So it's important to understand how your VMs are set up.
+
+12
+00:00:54,880 --> 00:00:59,640
+So on the single Node Kubernetes cluster, we have created a single pod.
+
+13
+00:00:59,650 --> 00:01:02,560
+As you know, a pod hosts a container.
+
+14
+00:01:02,890 --> 00:01:08,560
+Unlike in the Docker world, where an IP address is always assigned to a Docker container.
+
+15
+00:01:08,590 --> 00:01:12,790
+In the Kubernetes world, the IP address is assigned to a pod.
+
+16
+00:01:13,300 --> 00:01:17,650
+Each pod in the Kubernetes gets its own internal IP address.
+
+17
+00:01:18,010 --> 00:01:26,980
+In this case, it's in the range 10.2 44 series and the IP assigned to the pod is 10.2 40 4.0.2.
+
+18
+00:01:27,630 --> 00:01:30,120
+So how is it getting this IP address?
+
+19
+00:01:30,480 --> 00:01:38,400
+When Kubernetes is initially configured, we create an internal private network with the address 10.2
+
+20
+00:01:38,400 --> 00:01:42,480
+44.00, and all the ports are attached to it.
+
+21
+00:01:42,840 --> 00:01:49,020
+When you deploy multiple ports, they all get a separate IP assigned from this network.
+
+22
+00:01:49,410 --> 00:01:56,490
+The ports can communicate to each other through this IP, but accessing the other ports using this internal
+
+23
+00:01:56,490 --> 00:02:02,880
+IP address may not be a good idea as it's subject to change when ports are recreated.
+
+24
+00:02:03,180 --> 00:02:07,950
+We will see better ways to establish communication between ports in a while.
+
+25
+00:02:07,980 --> 00:02:13,950
+For now, it's important to understand how the internal networking works in Kubernetes.
+
+26
+00:02:15,480 --> 00:02:21,390
+So it's all easy and simple to understand when it comes to networking on a single node.
+
+27
+00:02:21,390 --> 00:02:25,710
+But how does it work when you have multiple nodes in your cluster?
+
+28
+00:02:26,070 --> 00:02:34,470
+In this case, we have two nodes running Kubernetes and they have IP addresses, 192 168 1.2 and 1.3
+
+29
+00:02:34,470 --> 00:02:35,490
+assigned to them.
+
+30
+00:02:35,730 --> 00:02:38,910
+Note that they are not part of the cluster yet.
+
+31
+00:02:38,910 --> 00:02:44,100
+Each of them has a single port deployed as discussed in the previous slide.
+
+32
+00:02:44,130 --> 00:02:50,400
+These ports are attached to an internal network and they have their own IP addresses assigned.
+
+33
+00:02:50,880 --> 00:02:57,570
+However, if you look at the internal network addresses, you can see that they are the same.
+
+34
+00:02:57,570 --> 00:03:05,520
+The two networks have an address 10.2 40 4.0.0, and the ports deployed have the same address to.
+
+35
+00:03:06,440 --> 00:03:12,320
+This is not going to work well when the nodes are part of the same cluster, the ports have the same
+
+36
+00:03:12,320 --> 00:03:17,270
+IP addresses assigned to them and that will lead to IP conflicts in the network.
+
+37
+00:03:17,870 --> 00:03:19,550
+Now, that's one problem.
+
+38
+00:03:19,760 --> 00:03:27,380
+When a Kubernetes cluster is set up, Kubernetes does not automatically set up any kind of networking
+
+39
+00:03:27,380 --> 00:03:29,090
+to handle these issues.
+
+40
+00:03:29,450 --> 00:03:37,370
+As a matter of fact, Kubernetes expects us to set up networking to meet certain fundamental requirements.
+
+41
+00:03:37,730 --> 00:03:45,380
+Some of these are that all the containers or pods in a Kubernetes cluster must be able to communicate
+
+42
+00:03:45,380 --> 00:03:48,950
+with one another without having to configure Nat.
+
+43
+00:03:49,800 --> 00:03:56,400
+All nodes must be able to communicate with containers, and all containers must be able to communicate
+
+44
+00:03:56,400 --> 00:03:58,260
+with the nodes in the cluster.
+
+45
+00:03:58,680 --> 00:04:05,100
+Kubernetes expects us to set up a networking solution that meets these criteria.
+
+46
+00:04:06,260 --> 00:04:13,940
+Fortunately, we don't have to set it up all on our own as there are multiple pre-built solutions available.
+
+47
+00:04:14,000 --> 00:04:23,780
+Some of them are the Cisco AC Networks, Psyllium, big cloud Fabric, Flannel, VMware Annex, TT and
+
+48
+00:04:23,780 --> 00:04:24,560
+Calico.
+
+49
+00:04:25,190 --> 00:04:31,400
+Depending on the platform you're deploying your Kubernetes cluster on, you may use one of these solutions.
+
+50
+00:04:31,610 --> 00:04:38,270
+For example, if you were setting up a Kubernetes cluster from scratch on your own systems, you may
+
+51
+00:04:38,270 --> 00:04:43,010
+use any of the solutions like calico or flannel, etc..
+
+52
+00:04:43,400 --> 00:04:48,290
+If you were deploying on a VMware environment, Nzxt may be a good option.
+
+53
+00:04:48,500 --> 00:04:54,950
+If you look at the play with K AIDS labs, they use weave net as their networking solution.
+
+54
+00:04:55,660 --> 00:05:01,980
+So back to our cluster with the custom networking, either flannel or calico setup.
+
+55
+00:05:01,990 --> 00:05:09,880
+It now manages the networks and IP in my nodes and assigns a different network address for each network
+
+56
+00:05:09,880 --> 00:05:10,690
+in the node.
+
+57
+00:05:11,080 --> 00:05:18,360
+This creates a virtual network of all pods and nodes where they are all assigned a unique IP address.
+
+58
+00:05:18,370 --> 00:05:25,420
+And by using simple routing techniques, the cluster networking enables communication between the different
+
+59
+00:05:25,420 --> 00:05:29,560
+parts or nodes to meet the networking requirements of Kubernetes.
+
+60
+00:05:29,860 --> 00:05:35,980
+Thus, all the pods now can communicate to each other using the assigned IP address.
+

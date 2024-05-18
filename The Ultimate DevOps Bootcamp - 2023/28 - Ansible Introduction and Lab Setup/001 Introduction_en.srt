@@ -1,0 +1,140 @@
+1
+00:00:01,359 --> 00:00:05,050
+Hello and welcome to the Ansible for the absolute beginners course.
+
+2
+00:00:05,050 --> 00:00:09,010
+My name is Chad Manabat and I will be your instructor for this course.
+
+3
+00:00:09,710 --> 00:00:12,620
+I'm a DevOps trainer at Code Cloud Dotcom.
+
+4
+00:00:12,620 --> 00:00:19,700
+The true hands on learn by doing platform have been working in the industry as a consultant for over
+
+5
+00:00:19,700 --> 00:00:26,000
+13 years and have helped hundreds of thousands of students learn technology in a fun and interactive
+
+6
+00:00:26,000 --> 00:00:26,270
+way.
+
+7
+00:00:26,900 --> 00:00:33,590
+In this course you will learn Ansible through a series of lectures that use animation and fun illustrations
+
+8
+00:00:33,590 --> 00:00:35,880
+that simplify complex concepts.
+
+9
+00:00:35,900 --> 00:00:42,170
+We have demos that will show you how to install and get started with Ansible, and most importantly,
+
+10
+00:00:42,170 --> 00:00:46,760
+we have hands on exercises that you can access right in your browser.
+
+11
+00:00:47,150 --> 00:00:52,790
+At the end of the course you will work on a real world project of deploying the Code Cloud e Commerce
+
+12
+00:00:52,790 --> 00:00:55,640
+application using simple playbooks.
+
+13
+00:00:56,570 --> 00:00:59,210
+Let's now look at the objectives of this course.
+
+14
+00:00:59,750 --> 00:01:05,420
+Since this is for the absolute beginners, we go all the way from scratch, covering everything you
+
+15
+00:01:05,420 --> 00:01:07,070
+need to know to get started.
+
+16
+00:01:07,370 --> 00:01:10,820
+You don't need any prior coding or scripting experience.
+
+17
+00:01:11,120 --> 00:01:15,170
+We will get started with understanding what Ansible is and what it can do.
+
+18
+00:01:15,260 --> 00:01:21,020
+We will go through how to set up Ansible in your environment using a simple virtual machine deployed
+
+19
+00:01:21,020 --> 00:01:22,340
+using VirtualBox.
+
+20
+00:01:22,580 --> 00:01:28,250
+Then we will get started with an introduction to YAML, which is the language of Ansible.
+
+21
+00:01:28,370 --> 00:01:30,860
+All ansible playbooks are written in YAML.
+
+22
+00:01:31,130 --> 00:01:36,920
+One of the common challenges that beginners face in Ansible is understanding how to work with YAML.
+
+23
+00:01:37,220 --> 00:01:39,140
+But don't worry, we've got your back.
+
+24
+00:01:39,140 --> 00:01:44,720
+We have a number of coding exercises that will get you all set with YAML in no time.
+
+25
+00:01:45,520 --> 00:01:52,000
+We will then head over to Ansible inventory files, playbooks and various concepts such as variables,
+
+26
+00:01:52,000 --> 00:01:54,520
+conditionals, loops and roles.
+
+27
+00:01:55,000 --> 00:02:01,540
+Again, all of these concepts are accompanied by hands on exercises that give you enough practice to
+
+28
+00:02:01,540 --> 00:02:04,090
+be confident in automating with Ansible.
+
+29
+00:02:04,120 --> 00:02:10,419
+As with all of our other courses, we have hands on exercises that you can access right in your browser.
+
+30
+00:02:10,690 --> 00:02:16,600
+The browser gives you a quiz portal with a set of questions and an editor to answer the question.
+
+31
+00:02:16,870 --> 00:02:20,230
+Develop YAML files and playbooks to solve the quiz.
+
+32
+00:02:20,650 --> 00:02:27,310
+If you run into issues, you may view the hands or the solution section for the answer or reach us through
+
+33
+00:02:27,310 --> 00:02:28,630
+our Q&A section.
+
+34
+00:02:28,990 --> 00:02:30,220
+So let's get started.
+
+35
+00:02:30,400 --> 00:02:32,290
+I'm ready when you are.
+

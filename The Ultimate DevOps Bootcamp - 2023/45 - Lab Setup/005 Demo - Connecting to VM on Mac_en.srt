@@ -1,0 +1,260 @@
+1
+00:00:00,800 --> 00:00:06,380
+So there are different ways to connect to a Linux VM on VirtualBox depending on how you set up your
+
+2
+00:00:06,380 --> 00:00:07,220
+networking.
+
+3
+00:00:07,460 --> 00:00:15,020
+I used two different approaches while deploying the VMs in Windows and Mac, so I kind of had two demos
+
+4
+00:00:15,020 --> 00:00:15,980
+there, Windows and Mac.
+
+5
+00:00:16,010 --> 00:00:17,210
+You don't have to go through them.
+
+6
+00:00:17,210 --> 00:00:18,920
+It's kind of the same demo.
+
+7
+00:00:18,950 --> 00:00:24,440
+The only difference between the two is that on one I set up a bridge networking and on the other I didn't.
+
+8
+00:00:24,740 --> 00:00:29,300
+So the one on the left, as you see here, is the setting on Mac.
+
+9
+00:00:29,300 --> 00:00:32,600
+And on the one on the right is the setting on Windows.
+
+10
+00:00:32,930 --> 00:00:38,720
+On the Windows deployment, I added a bridge adapter and on the Mac OS, I didn't.
+
+11
+00:00:38,930 --> 00:00:43,640
+I just configured the default NAT option for the networking adapter.
+
+12
+00:00:44,180 --> 00:00:51,140
+Now if you had configured the bridge adapter as in Windows, the VM becomes part of the external network
+
+13
+00:00:51,140 --> 00:00:53,800
+and it gets an IP address assigned to it.
+
+14
+00:00:53,810 --> 00:00:58,970
+You can simply SSH to it as you would as a switch to another system in your network.
+
+15
+00:00:59,270 --> 00:01:05,570
+In case of Nat, as in the Mac setup, it doesn't connect to the external network and so does not get
+
+16
+00:01:05,570 --> 00:01:09,980
+an IP address on the external network that we can use to SSH to.
+
+17
+00:01:11,000 --> 00:01:15,140
+So we will use port forwarding as we discussed in the previous lecture.
+
+18
+00:01:15,960 --> 00:01:20,340
+I also want to point out that this doesn't have anything to do with Windows or Mac.
+
+19
+00:01:20,430 --> 00:01:25,470
+Both these network configurations can be configured on either OS and it works the same.
+
+20
+00:01:25,470 --> 00:01:29,370
+I just chose two different options just to show you the difference between the two.
+
+21
+00:01:30,060 --> 00:01:32,440
+So let's proceed with the connectivity on Mac.
+
+22
+00:01:32,460 --> 00:01:38,550
+Once the system is powered on, if the console looks too small, you can go to the view menu and scale
+
+23
+00:01:38,550 --> 00:01:40,620
+visibility to 300%.
+
+24
+00:01:41,010 --> 00:01:46,140
+There is a welcome screen and wizard within the console, so just go through that and close them.
+
+25
+00:01:53,670 --> 00:01:57,130
+From the application's menu select terminal.
+
+26
+00:01:57,150 --> 00:02:04,830
+We'll now check the IP address of the system so we type in IP address, show command to see the IP addresses.
+
+27
+00:02:05,280 --> 00:02:09,660
+As you can see, it gets an IP address of ten .0. 2.15.
+
+28
+00:02:09,930 --> 00:02:15,960
+Now this is a private internal IP assigned by the NAT router for this VM.
+
+29
+00:02:15,960 --> 00:02:19,160
+So this IP is not reachable from anywhere else.
+
+30
+00:02:19,170 --> 00:02:23,270
+Neither the host or nor any other VMs created on this network.
+
+31
+00:02:23,280 --> 00:02:28,170
+So don't try to ping this IP address access to this IP from the host.
+
+32
+00:02:28,260 --> 00:02:29,730
+You'll not be able to do that.
+
+33
+00:02:29,970 --> 00:02:36,600
+If you had multiple VMs, you will see that all VMs configured with Nat are isolated and they all get
+
+34
+00:02:36,600 --> 00:02:40,350
+the same IP address assigned and they cannot reach each other.
+
+35
+00:02:40,500 --> 00:02:45,690
+However, with network address translation, they can reach the external world.
+
+36
+00:02:45,690 --> 00:02:48,120
+So you should have internet connectivity.
+
+37
+00:02:48,120 --> 00:02:56,220
+If your host has Internet connectivity, you can verify that by trying to ping an external website like
+
+38
+00:02:56,220 --> 00:02:56,760
+this.
+
+39
+00:02:58,270 --> 00:02:59,710
+Okay, so that looks good.
+
+40
+00:03:00,400 --> 00:03:03,790
+So how do you remotely connect to the system?
+
+41
+00:03:03,790 --> 00:03:11,110
+Like, if you want to ssh into this VM to perform, you know, to carry out operations, to run commands.
+
+42
+00:03:11,710 --> 00:03:12,910
+How do you do that?
+
+43
+00:03:13,000 --> 00:03:17,800
+So first, verify that the SSH service is running for this.
+
+44
+00:03:17,800 --> 00:03:20,890
+Run the service SSH the status command.
+
+45
+00:03:21,040 --> 00:03:23,360
+We see the status is active.
+
+46
+00:03:23,380 --> 00:03:28,990
+Now our goal is to ssh into this VM from a terminal on our host.
+
+47
+00:03:29,200 --> 00:03:35,320
+Since it doesn't have an IP address that we can ssh to, we will set up port forwarding.
+
+48
+00:03:35,350 --> 00:03:41,620
+Go to the settings menu of this VM and under the network section select port forwarding.
+
+49
+00:03:47,580 --> 00:03:48,600
+Add a new rule.
+
+50
+00:03:49,620 --> 00:03:54,580
+We will forward a port on our local host to a port on the VMM.
+
+51
+00:03:54,600 --> 00:04:02,220
+The SSH service listens on Port 22 on the VM, but we also have an SSH service on our host that uses
+
+52
+00:04:02,220 --> 00:04:03,320
+Port 22.
+
+53
+00:04:03,330 --> 00:04:07,310
+So we cannot forward 22 on our host to the VM.
+
+54
+00:04:07,320 --> 00:04:15,210
+So we will configure another port, say port 2222 on the host to forward to port 22 on the VM.
+
+55
+00:04:15,210 --> 00:04:19,260
+So we add a rule for that and we name it as SSH port.
+
+56
+00:04:19,980 --> 00:04:29,400
+Now I could try to switch to my local host IP or a loopback IP address, which is 120 7.0.0.1 and specify
+
+57
+00:04:29,400 --> 00:04:37,470
+port 2222 And if you'd like to log in as route user, specify the username before the IP address and
+
+58
+00:04:37,470 --> 00:04:41,160
+enter the password ohs boxes dot org and you're in.
+
+59
+00:04:42,290 --> 00:04:46,170
+Well, we have now connected to our VM and we can now run any commands.
+
+60
+00:04:46,190 --> 00:04:52,460
+We'll inspect the release files under the ETSI directory, using the CAD command to verify the version
+
+61
+00:04:52,460 --> 00:04:53,390
+of OS.
+
+62
+00:04:53,630 --> 00:04:57,230
+And as we can see that it's CentOS seven.
+
+63
+00:04:58,070 --> 00:05:00,020
+So we've connected to the right system.
+
+64
+00:05:01,310 --> 00:05:02,880
+So that's it for this demo.
+
+65
+00:05:02,900 --> 00:05:04,970
+I will see you in the next video.
+

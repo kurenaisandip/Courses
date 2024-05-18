@@ -1,0 +1,224 @@
+1
+00:00:00,610 --> 00:00:04,840
+In this section, we will take a look at data sources in TerraForm.
+
+2
+00:00:06,540 --> 00:00:12,360
+We know by now that TerraForm makes use of configuration files along with the state file to provision
+
+3
+00:00:12,360 --> 00:00:13,890
+infrastructure resources.
+
+4
+00:00:14,630 --> 00:00:19,760
+But as we saw earlier, the reform is just one of the infrastructure as a code tool that can be used
+
+5
+00:00:19,760 --> 00:00:20,780
+for provisioning.
+
+6
+00:00:21,670 --> 00:00:28,180
+Infrastructure can be provisioned using other tools such as puppet cloud formation, salt stack, ansible,
+
+7
+00:00:28,180 --> 00:00:28,930
+etc..
+
+8
+00:00:29,470 --> 00:00:35,200
+Not to mention ad hoc scripts and manually provisioned infrastructure or even resources that are created
+
+9
+00:00:35,200 --> 00:00:37,840
+by TerraForm from another configuration directory.
+
+10
+00:00:38,610 --> 00:00:44,130
+For instance, let us assume that a database instance was provisioned manually in the cloud.
+
+11
+00:00:44,520 --> 00:00:50,070
+Although TerraForm does not manage this resource, it can read attributes such as the database name,
+
+12
+00:00:50,070 --> 00:00:56,520
+host address or the DB user and use it to provision an application resource that is managed by TerraForm.
+
+13
+00:00:57,300 --> 00:00:58,980
+Let's take a simpler example.
+
+14
+00:00:59,130 --> 00:01:02,960
+We have a local file resource called Pet created with the contents.
+
+15
+00:01:02,970 --> 00:01:04,440
+We love pets.
+
+16
+00:01:04,860 --> 00:01:10,410
+Once this resource is provision, the file is created in the slash root directory, and the information
+
+17
+00:01:10,410 --> 00:01:13,680
+about this file is also stored in the TerraForm State file.
+
+18
+00:01:14,370 --> 00:01:18,750
+Now let's create a new file using a simple shell script like this.
+
+19
+00:01:19,540 --> 00:01:24,850
+Quite evidently this file is outside the control and management of TerraForm at this point in time.
+
+20
+00:01:25,510 --> 00:01:32,020
+The local file resource that their form is in charge of is stacked under the root directory and has
+
+21
+00:01:32,020 --> 00:01:38,110
+no relationship with the local file called TCD, which is also created under the slash root directory.
+
+22
+00:01:38,900 --> 00:01:39,680
+The dogs are.
+
+23
+00:01:39,680 --> 00:01:43,670
+Text has a single line that says dogs are awesome.
+
+24
+00:01:44,180 --> 00:01:50,090
+We would like terraform to use this file as a data source and use its data as contents of our existing
+
+25
+00:01:50,090 --> 00:01:51,990
+file called XKCD.
+
+26
+00:01:52,690 --> 00:01:57,940
+If you want to make use of the attributes of this new file that is created by the Bash script, we can
+
+27
+00:01:57,940 --> 00:01:59,620
+make use of data sources.
+
+28
+00:02:00,940 --> 00:02:06,580
+Data sources allow TerraForm to read attributes from resources which are provisioned outside its control.
+
+29
+00:02:06,670 --> 00:02:13,210
+For example, to read the attributes from the local file called DOCS, we can define a data block within
+
+30
+00:02:13,210 --> 00:02:15,250
+the configuration file like this.
+
+31
+00:02:16,060 --> 00:02:20,410
+As you may have noticed, the data block is quite similar to the resource block.
+
+32
+00:02:20,710 --> 00:02:26,230
+Instead of the keyword called resource, we define a data source block with the keyword called data.
+
+33
+00:02:26,830 --> 00:02:30,340
+This is followed by the type of resource which we are trying to read.
+
+34
+00:02:30,370 --> 00:02:32,860
+In this example, it's a local file.
+
+35
+00:02:33,970 --> 00:02:38,350
+This can be any valid resource type for any provider supported by TerraForm.
+
+36
+00:02:39,300 --> 00:02:44,460
+Next comes the logical resource name into which the attributes for a resource will be read.
+
+37
+00:02:44,880 --> 00:02:49,620
+Within the block we have arguments just like we have in a normal resource block.
+
+38
+00:02:50,040 --> 00:02:55,410
+The data source block consists of specific arguments for a data source and to know which argument is
+
+39
+00:02:55,410 --> 00:02:56,040
+expected.
+
+40
+00:02:56,040 --> 00:03:01,740
+We can look up the provider documentation, enter a form registry for the local file data source.
+
+41
+00:03:01,740 --> 00:03:05,820
+We just have one argument that should be used, which is the file name to be read.
+
+42
+00:03:07,700 --> 00:03:11,930
+The data rate from a data source is then available under the data object.
+
+43
+00:03:12,130 --> 00:03:12,740
+The form.
+
+44
+00:03:15,060 --> 00:03:23,340
+So to use this data in the resource called PET, we could simply use data dot local file dog dot content.
+
+45
+00:03:25,790 --> 00:03:31,160
+These details are, of course, available in the form documentation under data sources, within the
+
+46
+00:03:31,160 --> 00:03:36,980
+documentation and under the attributes exported, We can see that the data source for a local file exposed
+
+47
+00:03:36,980 --> 00:03:41,750
+to attributes, the content and the base 64 encoded version of the content.
+
+48
+00:03:43,140 --> 00:03:45,750
+To distinguish between a resource and data sources.
+
+49
+00:03:45,750 --> 00:03:47,490
+Let's do a quick comparison.
+
+50
+00:03:48,770 --> 00:03:54,110
+Resources are created with the resource block and data sources are created with the data block.
+
+51
+00:03:54,470 --> 00:04:00,230
+Resources in their form are used to create, update and destroy infrastructure, whereas a data source
+
+52
+00:04:00,230 --> 00:04:03,320
+is used to read information from a specific resource.
+
+53
+00:04:04,160 --> 00:04:09,770
+Regular resources are also called manage resources, as it's an extension which is managed by TerraForm.
+
+54
+00:04:10,310 --> 00:04:13,520
+Data sources are also called data resources.
+
+55
+00:04:15,420 --> 00:04:17,010
+That's it for this lecture.
+
+56
+00:04:17,339 --> 00:04:22,470
+Now, let's head over to the hands on labs and practice working with data sources in TerraForm.
+

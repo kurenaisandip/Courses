@@ -1,0 +1,472 @@
+1
+00:00:01,730 --> 00:00:03,590
+Hello and welcome to this demo.
+
+2
+00:00:03,620 --> 00:00:09,920
+In this demo we are going to see how to set up a lab environment to play around with Ansible.
+
+3
+00:00:10,310 --> 00:00:17,180
+In this demo, we will be setting up an entire lab environment on our laptop from scratch.
+
+4
+00:00:17,570 --> 00:00:23,810
+For this, we will use a virtualization tool called Oracle VirtualBox.
+
+5
+00:00:24,140 --> 00:00:31,880
+Since it works with all flavors of operating systems like Windows, Linux and OS X.
+
+6
+00:00:32,210 --> 00:00:32,630
+So.
+
+7
+00:00:32,870 --> 00:00:34,730
+So this is what we plan to do.
+
+8
+00:00:35,030 --> 00:00:42,830
+We will first install Oracle VirtualBox on our laptop and then we'll create a template system based
+
+9
+00:00:42,830 --> 00:00:45,470
+on the CentOS operating system.
+
+10
+00:00:46,010 --> 00:00:51,650
+Once we create the template, we will then be able to easily create multiple virtual machines as required
+
+11
+00:00:51,650 --> 00:00:52,970
+from that template.
+
+12
+00:00:53,330 --> 00:01:00,710
+For the purpose of this lab, we will first create a Ansible control machine from the template and then
+
+13
+00:01:00,710 --> 00:01:07,970
+we will move on to create two other machines which will act as the target machine for Ansible to perform
+
+14
+00:01:07,970 --> 00:01:09,530
+configuration changes on.
+
+15
+00:01:10,550 --> 00:01:16,120
+So in my case, I have a Windows system, so I will be setting up a lab environment on my Windows system.
+
+16
+00:01:16,130 --> 00:01:18,650
+It doesn't really matter what operating system you're on.
+
+17
+00:01:18,650 --> 00:01:25,400
+You could follow the same instructions to set up a lab environment on Linux or your Mac operating systems.
+
+18
+00:01:25,400 --> 00:01:27,560
+So in our case we're going to install virtual box.
+
+19
+00:01:27,560 --> 00:01:34,490
+So go to VirtualBox dot org and in the website you will have find a link to download the VirtualBox
+
+20
+00:01:34,490 --> 00:01:35,240
+software.
+
+21
+00:01:35,840 --> 00:01:41,690
+In the download page you will find links to download VirtualBox for specific operating systems.
+
+22
+00:01:42,410 --> 00:01:44,180
+In my case, I'm mine is Windows.
+
+23
+00:01:44,180 --> 00:01:50,870
+I'm going to click on Windows and I'm going to download the software once downloaded, run the executable
+
+24
+00:01:50,870 --> 00:01:55,730
+and follow the instructions in the installation Wizard to complete installation.
+
+25
+00:01:55,940 --> 00:01:59,870
+In my case, I've already installed it, so I'm just going to cancel that.
+
+26
+00:02:00,980 --> 00:02:07,580
+After you install open up the Oracle VirtualBox interface and it will look something like this.
+
+27
+00:02:08,120 --> 00:02:10,520
+Now the next step is to deploy virtual machines.
+
+28
+00:02:11,470 --> 00:02:17,110
+In order to do that, you can either create a machine, attach a CD, drive of an operating system,
+
+29
+00:02:17,110 --> 00:02:22,510
+and follow the instructions to install the operating system as we are familiar with.
+
+30
+00:02:22,900 --> 00:02:26,080
+However, there's also another easy way.
+
+31
+00:02:26,590 --> 00:02:32,560
+There are pre installed pre configured operating system images available on the internet.
+
+32
+00:02:32,590 --> 00:02:37,420
+We could use those to easily deploy as many virtual machines as we need.
+
+33
+00:02:37,720 --> 00:02:41,860
+For this, if you go to the website OS boxes dot org.
+
+34
+00:02:41,890 --> 00:02:47,410
+You will find a lot of pre-installed pre configured images of various operating systems.
+
+35
+00:02:47,740 --> 00:02:50,230
+Go to this site and select the VM images.
+
+36
+00:02:50,230 --> 00:02:55,960
+VirtualBox images link at the top and then you will be you will find a list of various different operating
+
+37
+00:02:55,960 --> 00:02:56,440
+systems.
+
+38
+00:02:56,440 --> 00:02:58,510
+From this we will select CentOS.
+
+39
+00:03:00,350 --> 00:03:02,750
+And then it will take us to the center of this page.
+
+40
+00:03:02,990 --> 00:03:06,260
+Here you can see information on downloading the center image.
+
+41
+00:03:06,290 --> 00:03:12,470
+In our case, we're downloading the VirtualBox image for CentOS seven and we're downloading the 64 bit
+
+42
+00:03:12,470 --> 00:03:13,130
+version.
+
+43
+00:03:13,130 --> 00:03:15,920
+So remember to download that particular version.
+
+44
+00:03:17,870 --> 00:03:18,230
+We will.
+
+45
+00:03:18,230 --> 00:03:23,650
+Then it is downloaded as a seven zip file, which is a compressed file.
+
+46
+00:03:23,660 --> 00:03:29,400
+So you need a software to uncompressed it like guitar or winzip.
+
+47
+00:03:29,420 --> 00:03:34,730
+In my case, I'm using the seven zip software to extract the contents of the file into a folder.
+
+48
+00:03:36,810 --> 00:03:39,810
+Wait for it to finish the extraction process.
+
+49
+00:03:41,550 --> 00:03:44,880
+Once finished if you go into the folder.
+
+50
+00:03:45,800 --> 00:03:48,170
+You will see that there is a folder called 64 bit.
+
+51
+00:03:51,510 --> 00:03:57,840
+And inside that folder you'll find a file with the extension VDI that stands for virtual disk.
+
+52
+00:03:57,840 --> 00:04:00,690
+And that is what we will use to create our virtual machine.
+
+53
+00:04:01,200 --> 00:04:03,300
+We're now ready to create a new virtual machine.
+
+54
+00:04:03,300 --> 00:04:11,430
+So we go back into the Oracle VM VirtualBox interface, click on New and we fill in the name and operating
+
+55
+00:04:11,430 --> 00:04:12,090
+system.
+
+56
+00:04:12,360 --> 00:04:18,750
+Now I will name the virtual machine that I'm creating as CentOS template because as we discussed, we're
+
+57
+00:04:18,959 --> 00:04:26,670
+our goal is to create a template and then use that template to create as many virtual machines as I
+
+58
+00:04:26,670 --> 00:04:27,150
+need.
+
+59
+00:04:27,360 --> 00:04:29,940
+So I'm going to name it as CentOS template.
+
+60
+00:04:30,180 --> 00:04:34,440
+I will now select the type as Linux and the version.
+
+61
+00:04:34,440 --> 00:04:39,870
+Since it does not have CentOS listed, I could simply select other.
+
+62
+00:04:40,780 --> 00:04:46,360
+Now, as you can see under the versions, there are 32 bit as well as 64 bit options.
+
+63
+00:04:47,230 --> 00:04:53,560
+In our case, we downloaded the CentOS 64 bit version, so we must select a 64 bit option.
+
+64
+00:04:54,190 --> 00:05:01,210
+Now, in case you do not see the 64 bit options in this list, and that is most probably because you
+
+65
+00:05:01,210 --> 00:05:07,570
+do not have the virtualization technology enabled on your laptop to enable virtualization technology
+
+66
+00:05:07,570 --> 00:05:08,650
+on your laptop.
+
+67
+00:05:09,100 --> 00:05:12,160
+It is usually under the BIOS settings.
+
+68
+00:05:12,670 --> 00:05:19,000
+So if you simply Google enable virtualization in bios followed by your laptop model, you will see a
+
+69
+00:05:19,000 --> 00:05:19,990
+set of results.
+
+70
+00:05:20,020 --> 00:05:25,520
+It's usually usually looks something like this under the BIOS, under the advanced BIOS features.
+
+71
+00:05:25,600 --> 00:05:32,530
+You'll have something called as virtualization technology and you must ensure that it is set to enable
+
+72
+00:05:32,530 --> 00:05:33,100
+state.
+
+73
+00:05:33,850 --> 00:05:40,360
+So once you do that, restart your laptop and you will find the 64 bit option, select the other Linux
+
+74
+00:05:40,360 --> 00:05:43,480
+64 bit option for this and click next.
+
+75
+00:05:43,780 --> 00:05:48,010
+In the next here we select a memory size by default.
+
+76
+00:05:48,010 --> 00:05:55,300
+It's set to 512 NB and let's change that to around two GB So we'll set it to two two gigs.
+
+77
+00:05:55,900 --> 00:05:59,740
+In the next step, we select the hard disk that we downloaded.
+
+78
+00:06:00,640 --> 00:06:02,140
+So in this case.
+
+79
+00:06:03,480 --> 00:06:07,680
+The default selection is create a virtual hard disk now, but that is not what we want.
+
+80
+00:06:07,710 --> 00:06:15,180
+We already have a pre-built image of a hard disk downloaded, so we're going to specify that select
+
+81
+00:06:15,180 --> 00:06:22,380
+the user, an existing virtual hard disk file option, and click on Browse and Browse to the file that
+
+82
+00:06:22,380 --> 00:06:27,180
+we downloaded and extracted, which is the center is seven file with the VDI extension.
+
+83
+00:06:27,450 --> 00:06:27,900
+Click on.
+
+84
+00:06:27,900 --> 00:06:28,260
+Okay.
+
+85
+00:06:28,260 --> 00:06:29,910
+And that creates the file.
+
+86
+00:06:29,940 --> 00:06:34,980
+Now, before powering on the template, we will go into settings and make a few more changes.
+
+87
+00:06:35,340 --> 00:06:43,200
+Go to system and we'll increase the CPU to around two and we go to network section and we will set the
+
+88
+00:06:43,200 --> 00:06:45,340
+adapter one to bridge network.
+
+89
+00:06:45,360 --> 00:06:52,050
+This way my virtual machine gets an IP address as well as it can connect to the internet to download
+
+90
+00:06:52,050 --> 00:06:54,120
+and install packages as required.
+
+91
+00:06:54,780 --> 00:06:57,240
+I will now go ahead and power on the system.
+
+92
+00:07:08,480 --> 00:07:08,730
+Okay.
+
+93
+00:07:08,840 --> 00:07:15,830
+And now at the login prompt, select the default user, which is the which is O's boxes.
+
+94
+00:07:16,100 --> 00:07:21,290
+Now the password to find out the password for any images downloaded from OS boxes dot org.
+
+95
+00:07:21,320 --> 00:07:26,570
+Go to the info section and then you'll see that the username is OS boxes and the password is always
+
+96
+00:07:26,570 --> 00:07:28,160
+boxes dot org.
+
+97
+00:07:28,250 --> 00:07:31,760
+So I'm going to use that password os boxes dot org.
+
+98
+00:07:35,990 --> 00:07:38,040
+I will click on sign in to log in to the centre.
+
+99
+00:07:38,070 --> 00:07:38,870
+A system.
+
+100
+00:07:40,670 --> 00:07:42,260
+I will open up a terminal.
+
+101
+00:07:44,290 --> 00:07:46,570
+And typing if config.
+
+102
+00:07:47,390 --> 00:07:48,680
+The AF config.
+
+103
+00:07:49,490 --> 00:07:50,300
+Command.
+
+104
+00:07:51,230 --> 00:07:54,830
+Tells me the IP address currently assigned to the virtual machine.
+
+105
+00:07:54,950 --> 00:07:59,630
+As you can see, it is 190 2.168.1.112.
+
+106
+00:08:00,590 --> 00:08:08,180
+Now I will open up a SSH terminal to SSH into that virtual machine.
+
+107
+00:08:08,410 --> 00:08:14,720
+Now in my case I'm using a terminal software called as mobile XTERM.
+
+108
+00:08:14,810 --> 00:08:15,770
+I like to use this.
+
+109
+00:08:15,770 --> 00:08:18,110
+This is a free software that is available.
+
+110
+00:08:18,140 --> 00:08:21,170
+You could use any SSH terminal software.
+
+111
+00:08:21,170 --> 00:08:23,150
+You could simply use putty as well.
+
+112
+00:08:23,600 --> 00:08:33,230
+So create a new SSH session and specify the IP address, which is 190 2.168.1.112.
+
+113
+00:08:36,600 --> 00:08:39,090
+And the username is Oz Boxes.
+
+114
+00:08:40,330 --> 00:08:40,659
+Click on.
+
+115
+00:08:40,659 --> 00:08:41,260
+Okay.
+
+116
+00:08:43,730 --> 00:08:49,160
+Now we'll specify the password which is OS boxes dot org and I'm logged in.
+
+117
+00:08:51,730 --> 00:08:56,260
+Once I verify that I'm able to ssh into it, I will now shut it down so that I can create.
+
+118
+00:08:57,410 --> 00:08:59,390
+Clones of this virtual machine.
+

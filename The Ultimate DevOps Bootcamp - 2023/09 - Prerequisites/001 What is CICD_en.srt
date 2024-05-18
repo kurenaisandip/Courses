@@ -1,0 +1,408 @@
+1
+00:00:02,490 --> 00:00:09,990
+Let's talk about what Sy said is why it's important, why we need it in today's world and the different
+
+2
+00:00:09,990 --> 00:00:11,340
+components behind it.
+
+3
+00:00:12,040 --> 00:00:16,960
+So first things first continuous integration and continuous deployment.
+
+4
+00:00:17,530 --> 00:00:23,050
+Delivery is a way to take code, package it up and deploy it to a system.
+
+5
+00:00:23,050 --> 00:00:29,440
+That system could be serverless, like a lambda function or an Azure function could be a virtual machine
+
+6
+00:00:29,440 --> 00:00:30,850
+or an easy to instance.
+
+7
+00:00:30,850 --> 00:00:38,710
+It could be some container running somewhere with Docker, etc. So let's break down what PSI is, what
+
+8
+00:00:38,710 --> 00:00:42,220
+CD is, and what CD is.
+
+9
+00:00:43,090 --> 00:00:47,620
+So first things first, continuous integration, which is your CI process.
+
+10
+00:00:47,620 --> 00:00:51,970
+And really the gist of it is you take the code and you package it up.
+
+11
+00:00:51,970 --> 00:00:57,130
+So I want you to think of continuous integration kind of like a gift that you're wrapping.
+
+12
+00:00:57,130 --> 00:00:59,200
+So the gift comes in pieces.
+
+13
+00:00:59,200 --> 00:01:04,810
+Maybe you order it on Amazon and then once you get that gift, you take it out of the box and then you
+
+14
+00:01:04,810 --> 00:01:05,820
+put that gift together.
+
+15
+00:01:05,830 --> 00:01:08,770
+Maybe it's like a toy chest or a toy box or something like that.
+
+16
+00:01:08,770 --> 00:01:14,830
+So you have a bunch of screws, maybe you have some nails, you got to go get that screwdriver, make
+
+17
+00:01:14,830 --> 00:01:16,750
+sure all the screws are in properly.
+
+18
+00:01:16,750 --> 00:01:22,960
+And then once you do that and once everything is in where it's supposed to be, then the gift gets wrapped
+
+19
+00:01:22,960 --> 00:01:24,310
+in wrapping paper.
+
+20
+00:01:24,340 --> 00:01:26,650
+That's really your CI process.
+
+21
+00:01:26,650 --> 00:01:34,510
+You're taking the code, you're packaging it up, and then you are giving it to the CD process to continuous
+
+22
+00:01:34,510 --> 00:01:36,730
+deployment or continuous delivery process.
+
+23
+00:01:38,110 --> 00:01:41,030
+So there are a few key pieces of CI.
+
+24
+00:01:41,050 --> 00:01:43,810
+The first is you package up that code.
+
+25
+00:01:43,810 --> 00:01:50,440
+So let's say you're in GitHub and you have a GitHub repository and maybe that GitHub repository has
+
+26
+00:01:50,440 --> 00:01:56,560
+a bunch of different folders or directories with all different pieces of code in it inside of your CI
+
+27
+00:01:56,560 --> 00:01:57,460
+process.
+
+28
+00:01:57,460 --> 00:02:05,680
+It does a sort of clone of that GitHub repository and then it packages it up, it puts it in that box,
+
+29
+00:02:05,680 --> 00:02:07,560
+it wraps it up like that gift.
+
+30
+00:02:07,570 --> 00:02:11,380
+The next thing is typically in your CI process is where you test your code.
+
+31
+00:02:11,380 --> 00:02:17,260
+So like unit test, you would run automatically integration tests, etc. Pretty much you want to make
+
+32
+00:02:17,260 --> 00:02:20,950
+sure that that code is ready to go before you even try to deploy it.
+
+33
+00:02:20,950 --> 00:02:23,730
+You want to make sure that it passes all your tests.
+
+34
+00:02:23,740 --> 00:02:28,190
+You want to make sure that it has all of the dependencies that are needed.
+
+35
+00:02:28,210 --> 00:02:33,070
+Imagine trying to deploy an application and then once it's deployed, you realize, Oh, it's missing
+
+36
+00:02:33,070 --> 00:02:36,460
+this go library or it's missing this python package.
+
+37
+00:02:36,460 --> 00:02:41,260
+And then the last thing is you would typically run any type of security checks against the code.
+
+38
+00:02:41,260 --> 00:02:48,730
+So, for example, let's say you're using some type of security lender or sonar cube or something like
+
+39
+00:02:48,730 --> 00:02:49,240
+that.
+
+40
+00:02:49,240 --> 00:02:54,640
+This is really the process, your CI process, where you would run those security checks against the
+
+41
+00:02:54,640 --> 00:02:55,210
+code.
+
+42
+00:02:57,010 --> 00:03:01,030
+Okay, So now let's talk about continuous delivery and continuous deployment.
+
+43
+00:03:01,060 --> 00:03:02,020
+Now, don't worry.
+
+44
+00:03:02,020 --> 00:03:07,720
+We will be talking about the differences between continuous delivery and continuous deployment, I believe,
+
+45
+00:03:07,720 --> 00:03:09,190
+coming up in the next slide.
+
+46
+00:03:09,370 --> 00:03:14,560
+So the CD process is where you deploy the code to some system.
+
+47
+00:03:14,560 --> 00:03:17,150
+That system could be, again, serverless.
+
+48
+00:03:17,170 --> 00:03:18,280
+It could be a container.
+
+49
+00:03:18,290 --> 00:03:19,570
+It could be a virtual machine.
+
+50
+00:03:19,570 --> 00:03:21,100
+It could even be bare metal.
+
+51
+00:03:21,100 --> 00:03:22,720
+It doesn't have to actually be in the cloud.
+
+52
+00:03:22,720 --> 00:03:28,240
+It could be on prem running in, I don't know, VMware ESXi, for example.
+
+53
+00:03:28,420 --> 00:03:33,250
+So I want you to think about that gift that you wrapped in the C section.
+
+54
+00:03:33,250 --> 00:03:37,150
+Once that gift is wrapped, it can be given to a person.
+
+55
+00:03:37,150 --> 00:03:44,560
+So you take that gift, that wrapped gift, you put it that gift in your car, you drive it to the person's
+
+56
+00:03:44,560 --> 00:03:50,320
+house and you deliver it to their house, You deliver it, you maybe put it on, I don't know, the
+
+57
+00:03:50,320 --> 00:03:51,970
+front step or something like that.
+
+58
+00:03:51,970 --> 00:03:58,990
+But the point is, you take the gift, that packaged gift and you drive it to the person's house, you
+
+59
+00:03:58,990 --> 00:03:59,830
+deliver it.
+
+60
+00:03:59,830 --> 00:04:01,630
+So that's that CD process.
+
+61
+00:04:01,630 --> 00:04:10,570
+Once the code is packaged and tested and all that good stuff in the CI process, you then deliver it
+
+62
+00:04:10,570 --> 00:04:12,870
+to whatever system you're running on.
+
+63
+00:04:12,880 --> 00:04:18,430
+Now, really quick, I do just want to chat about the differences between continuous deployment and
+
+64
+00:04:18,430 --> 00:04:19,390
+continuous delivery.
+
+65
+00:04:19,390 --> 00:04:23,080
+Now, the reason why I bring this up is because a lot of people don't talk about this.
+
+66
+00:04:23,080 --> 00:04:29,050
+You know, you always hear about the CD process or the CD process, but not the differences between
+
+67
+00:04:29,050 --> 00:04:30,310
+CD and CD.
+
+68
+00:04:30,850 --> 00:04:38,080
+So continuous delivery is there's essentially some button somewhere to deploy the code for some manual
+
+69
+00:04:38,080 --> 00:04:38,650
+intervention.
+
+70
+00:04:38,650 --> 00:04:43,180
+So, for example, let's say the code goes through the CI process and it's ready to be deployed.
+
+71
+00:04:43,180 --> 00:04:48,250
+Well, then you would go into Jenkins and you would click the button to deploy the code.
+
+72
+00:04:48,250 --> 00:04:50,080
+So there is manual intervention.
+
+73
+00:04:50,080 --> 00:04:57,820
+Obviously, it's not as manual as, you know, taking the packaged code and RDP or SSH into a server,
+
+74
+00:04:57,820 --> 00:05:01,470
+copying the code where it's supposed to be manually running the code.
+
+75
+00:05:01,480 --> 00:05:03,010
+It's of course not like that.
+
+76
+00:05:03,010 --> 00:05:04,920
+Everything is still automated.
+
+77
+00:05:04,930 --> 00:05:08,290
+The only thing that's not automated is that button click.
+
+78
+00:05:08,290 --> 00:05:13,930
+Somebody has to physically log in to Jenkins and click that button, or quite frankly, any other CSP
+
+79
+00:05:13,990 --> 00:05:14,440
+platform.
+
+80
+00:05:14,440 --> 00:05:17,110
+It's all the same when it comes to continuous delivery.
+
+81
+00:05:18,120 --> 00:05:24,270
+Now continuous deployment means the code gets automatically deployed after the CI process.
+
+82
+00:05:24,270 --> 00:05:29,070
+So let's say that you're committing and pushing some code to GitHub.
+
+83
+00:05:29,280 --> 00:05:36,450
+Once it gets pushed to GitHub, the CI process would automatically kick off and then once the code builds,
+
+84
+00:05:36,450 --> 00:05:43,290
+the CD process would automatically run and it would be deployed to your, again, your container or
+
+85
+00:05:43,290 --> 00:05:46,250
+your VM or serverless or wherever.
+
+86
+00:05:46,260 --> 00:05:49,050
+So the key differences here are continuous delivery.
+
+87
+00:05:49,050 --> 00:05:52,950
+There's some magical button that you have to press to deploy the code.
+
+88
+00:05:53,220 --> 00:05:57,720
+Continuous deployment, it's all about just everything is automatic.
+
+89
+00:05:57,720 --> 00:06:00,180
+There's zero human intervention.
+
+90
+00:06:00,180 --> 00:06:06,240
+So, you know, if code gets pushed at 2:00 in the afternoon to GitHub, guess what?
+
+91
+00:06:06,240 --> 00:06:08,400
+It's going to also be deployed to your system.
+
+92
+00:06:09,240 --> 00:06:11,790
+So the key pieces of KD is in number one.
+
+93
+00:06:11,790 --> 00:06:15,780
+It ensures that you are authenticated to the system or wherever you're deploying, let's say, to point
+
+94
+00:06:15,780 --> 00:06:16,320
+to a system.
+
+95
+00:06:16,320 --> 00:06:23,190
+Let's say you deploying to, I don't know, AWS or Azure, you would ensure that you are authenticated
+
+96
+00:06:23,190 --> 00:06:24,840
+during the CD process.
+
+97
+00:06:24,840 --> 00:06:29,660
+The next bit is ensure that the code that's being deployed is working as expected once deployed.
+
+98
+00:06:29,670 --> 00:06:35,490
+So a lot of people, what they do as part of the CD process is inside of there you have tests to actually
+
+99
+00:06:35,790 --> 00:06:40,470
+run a test against the system to make sure that the application is running.
+
+100
+00:06:40,470 --> 00:06:45,270
+If it's not running the way that it's supposed to, the CD process would fail.
+
+101
+00:06:46,290 --> 00:06:48,440
+Well, that's it for this lecture.
+
+102
+00:06:48,450 --> 00:06:49,920
+We'll see you in the next.
+

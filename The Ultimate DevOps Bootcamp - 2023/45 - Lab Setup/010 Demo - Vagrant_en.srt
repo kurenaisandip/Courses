@@ -1,0 +1,352 @@
+1
+00:00:00,420 --> 00:00:04,740
+Let's take a quick demo of Vagrant to download and install vagrant.
+
+2
+00:00:04,770 --> 00:00:12,600
+Go to Vagrant up dotcom, then go to the downloads page and select the right version for your OS.
+
+3
+00:00:12,630 --> 00:00:15,750
+I'm on Mac, so I'm going to select Mac OS.
+
+4
+00:00:15,900 --> 00:00:21,870
+And this works the same on all operating systems, so you can follow the same instructions that I'm
+
+5
+00:00:21,870 --> 00:00:23,190
+following in this demo.
+
+6
+00:00:24,020 --> 00:00:27,350
+Once the executable is downloaded, install it on your system.
+
+7
+00:00:31,820 --> 00:00:35,960
+Once installed, the command vagrant should be available on your system.
+
+8
+00:00:37,130 --> 00:00:43,430
+That is now open up a terminal and create a directory for Vagrant where we will store all our vagrant
+
+9
+00:00:43,430 --> 00:00:44,480
+configurations.
+
+10
+00:00:44,570 --> 00:00:50,750
+We then CD into that directory and we are now ready to deploy a VM using Vagrant.
+
+11
+00:00:51,260 --> 00:00:57,500
+Now remember, you must have the virtual machine provider, which in this case is VirtualBox already
+
+12
+00:00:57,500 --> 00:00:58,850
+installed on the system.
+
+13
+00:00:59,210 --> 00:01:00,980
+So I already have that.
+
+14
+00:01:01,220 --> 00:01:05,090
+It could also be VMware Workstation or Fusion as well.
+
+15
+00:01:05,090 --> 00:01:11,270
+So whatever it is that you plan to use, remember it must exist on the system before you actually try
+
+16
+00:01:11,270 --> 00:01:13,460
+to bring up a VM using Vagrant.
+
+17
+00:01:14,060 --> 00:01:19,130
+Now, if it's anything other than VirtualBox, then when you run the background up command, you must
+
+18
+00:01:19,130 --> 00:01:22,850
+also specify that provider using the provider option.
+
+19
+00:01:23,750 --> 00:01:27,230
+Now we need to find vagrant boxes to deploy.
+
+20
+00:01:27,650 --> 00:01:32,720
+Searching for vagrant boxes in Google will land you on the vagrant cloud page.
+
+21
+00:01:32,720 --> 00:01:37,520
+And here you can search for various boxes for different operating systems and solutions.
+
+22
+00:01:37,550 --> 00:01:39,680
+I'll go with CentOS seven.
+
+23
+00:01:40,070 --> 00:01:45,320
+Select that in that CentOS seven page, we see a template for the vagrant file.
+
+24
+00:01:45,410 --> 00:01:52,220
+We could copy this and create a vagrant file by ourself manually, or if we want Vagrant to create that
+
+25
+00:01:52,220 --> 00:01:53,270
+file for us.
+
+26
+00:01:53,450 --> 00:01:56,190
+Go to the new tab and copy the command.
+
+27
+00:01:56,210 --> 00:02:02,090
+The command is vagrant in it and followed by the name Central seven.
+
+28
+00:02:02,420 --> 00:02:08,660
+All this command does is create a vagrant file with the image set to CentOS seven.
+
+29
+00:02:09,080 --> 00:02:14,690
+If you see the contents of the vagrant file, we see that it is really just a template with all the
+
+30
+00:02:14,690 --> 00:02:16,190
+options commented out.
+
+31
+00:02:16,430 --> 00:02:20,540
+Any line that begins with a hash is commented out.
+
+32
+00:02:20,780 --> 00:02:24,860
+The only line set is the line with the box name.
+
+33
+00:02:38,870 --> 00:02:45,860
+Running the vagrant up command now downloads the image and then creates a virtualbox VM with it.
+
+34
+00:02:56,920 --> 00:03:00,400
+If you open VirtualBox, you can see the VM being created.
+
+35
+00:03:00,430 --> 00:03:03,970
+It takes a while for it to boot up, so give it some time.
+
+36
+00:03:10,620 --> 00:03:15,900
+And once it's booted up, we see the machine booted and the ready message.
+
+37
+00:03:16,890 --> 00:03:22,980
+Now, when you run this vagrant up command and if you were using an environment other than VirtualBox,
+
+38
+00:03:22,980 --> 00:03:28,560
+then this is where you must also specify the provider using the provider option.
+
+39
+00:03:29,400 --> 00:03:33,540
+We can now ssh into the VM using the vagrant ssh command.
+
+40
+00:03:33,540 --> 00:03:39,600
+So even if you are on a windows environment, you don't really need another SSH terminal tool or putty
+
+41
+00:03:39,600 --> 00:03:40,370
+or anything.
+
+42
+00:03:40,380 --> 00:03:42,060
+This command just works.
+
+43
+00:03:42,090 --> 00:03:47,220
+It also takes care of authenticating you into the VM using SSH keys.
+
+44
+00:03:47,640 --> 00:03:53,250
+We are now in and we can test the version by viewing the ETSI release files.
+
+45
+00:03:56,490 --> 00:04:00,060
+And I check the status of the VM using the Vagrant Status command.
+
+46
+00:04:00,210 --> 00:04:03,030
+We see it's in a running state to shut down.
+
+47
+00:04:03,030 --> 00:04:04,130
+Run the vagrant.
+
+48
+00:04:04,140 --> 00:04:04,530
+Halt!
+
+49
+00:04:04,530 --> 00:04:05,220
+Command.
+
+50
+00:04:08,700 --> 00:04:11,340
+We now see the status is powered off.
+
+51
+00:04:17,560 --> 00:04:20,740
+Let's now go into the vagrant file and make some changes.
+
+52
+00:04:21,190 --> 00:04:27,640
+If you go all the way to the bottom, we see the VMs resource settings like memory and configuration.
+
+53
+00:04:27,910 --> 00:04:29,620
+It's currently commanded out.
+
+54
+00:04:31,400 --> 00:04:37,940
+If you look at the settings of the VM, we see that it has 512 GB of RAM and one V CPU.
+
+55
+00:04:38,390 --> 00:04:45,110
+Lower resources can increase boot time for the VM, so we'll increase the resources for the VM from
+
+56
+00:04:45,110 --> 00:04:46,220
+the vagrant file.
+
+57
+00:04:47,870 --> 00:04:53,990
+So let's uncomment the memory specification as well as the starting and ending of that block.
+
+58
+00:04:54,530 --> 00:05:02,990
+Now we will leave the memory to one gbps to provide CPU configuration, used the VB CPU's property and
+
+59
+00:05:02,990 --> 00:05:05,600
+we set it to two CPUs.
+
+60
+00:05:09,660 --> 00:05:12,060
+We can also rename the VM here.
+
+61
+00:05:12,090 --> 00:05:16,410
+Not sure if you notice, but the VM has a random name assigned to it.
+
+62
+00:05:16,590 --> 00:05:21,120
+And all of these settings can be found in the vagrant documentation page.
+
+63
+00:05:21,600 --> 00:05:27,570
+We save that file and every time you modify the vagrant file for the changes to take effect, you must
+
+64
+00:05:27,570 --> 00:05:29,850
+run the vagrant reload command.
+
+65
+00:05:30,240 --> 00:05:36,690
+We wait for it to boot up and we can see that the VM name is already updated to the name we specified.
+
+66
+00:05:51,390 --> 00:05:55,890
+Go into settings and we see the memory and CPU are set correctly as well.
+
+67
+00:06:01,920 --> 00:06:08,070
+At times when you boot up VMs using the background up command, you might see an error like this.
+
+68
+00:06:08,550 --> 00:06:10,110
+It's a timeout error.
+
+69
+00:06:10,140 --> 00:06:16,320
+What's happening here is that Vagrant starts the VM and waits for it to boot up completely.
+
+70
+00:06:16,350 --> 00:06:20,760
+However, the VM took more time to boot than Vagrant expected.
+
+71
+00:06:21,030 --> 00:06:27,030
+This could be because the VM is configured with very few resources and it takes a long time for the
+
+72
+00:06:27,030 --> 00:06:27,820
+VM to load.
+
+73
+00:06:27,840 --> 00:06:33,870
+The VM may end up booting properly eventually, and then you should be able to access the VM as you
+
+74
+00:06:33,870 --> 00:06:34,800
+would normally.
+
+75
+00:06:34,980 --> 00:06:41,610
+But in case you are not sure and you think it's stuck power of the VM using the vagrant hold command.
+
+76
+00:06:46,140 --> 00:06:54,510
+And then go to the vagrant file and you can increase the timeout by adding a property config VM boot
+
+77
+00:06:54,510 --> 00:06:56,220
+timeout like this.
+
+78
+00:07:28,290 --> 00:07:29,010
+Reloading.
+
+79
+00:07:29,010 --> 00:07:36,390
+The vagrant file restarts the VMM and the next time vagrant waits longer before throwing an error message.
+
+80
+00:07:37,310 --> 00:07:42,620
+Well, that's a quick introduction to Vagrant, and I hope it will help you set up labs quickly.
+
+81
+00:07:42,800 --> 00:07:45,240
+If you'd like to learn more about Vagrant.
+
+82
+00:07:45,260 --> 00:07:50,120
+Please let us know and we can probably create a separate course just for Vagrant, because there are
+
+83
+00:07:50,120 --> 00:07:52,280
+so many things that you can do with Vagrant.
+
+84
+00:07:52,370 --> 00:07:57,220
+You can configure multiple VMs, you can configure scripts as we saw in the lecture.
+
+85
+00:07:57,230 --> 00:08:03,920
+So it's a very neat tool to really set up a custom lab environment and then save that configuration
+
+86
+00:08:04,400 --> 00:08:07,220
+so that you can share it with others.
+
+87
+00:08:07,550 --> 00:08:09,020
+Well, that's it for this section.
+
+88
+00:08:09,120 --> 00:08:11,000
+I will see you in the next.
+

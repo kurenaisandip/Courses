@@ -1,0 +1,176 @@
+1
+00:00:00,450 --> 00:00:06,689
+Let us now look at another type of service known as the load balancer type.
+
+2
+00:00:07,590 --> 00:00:14,940
+So we have seen the note port service that helps us make an external facing application available on
+
+3
+00:00:14,940 --> 00:00:16,830
+a port on the worker nodes.
+
+4
+00:00:17,100 --> 00:00:23,340
+So let's turn our focus to the front end applications, which are the voting app and the result app.
+
+5
+00:00:23,790 --> 00:00:31,500
+Now we know that these ports are hosted on the worker nodes in a cluster, so let's say we have a four
+
+6
+00:00:31,500 --> 00:00:32,430
+node cluster.
+
+7
+00:00:32,549 --> 00:00:40,590
+And to make the applications accessible to external users, we create the services of type node port.
+
+8
+00:00:41,010 --> 00:00:48,420
+Now the services with type node port help in receiving traffic on the port on the nodes and routing
+
+9
+00:00:48,420 --> 00:00:50,310
+the traffic to the respective ports.
+
+10
+00:00:50,790 --> 00:00:55,460
+But what URL would you give your end users to access the applications?
+
+11
+00:00:55,500 --> 00:01:02,790
+You could access any of these two applications using IP of any of the nodes and the high port.
+
+12
+00:01:04,050 --> 00:01:05,640
+What the service is exposed on.
+
+13
+00:01:05,760 --> 00:01:11,730
+So that would be for IP and port combinations for the voting app and for IP and port combination for
+
+14
+00:01:11,730 --> 00:01:12,810
+the result app.
+
+15
+00:01:13,260 --> 00:01:20,310
+So note that even if your ports are only hosted on two of the nodes, they will still be accessible
+
+16
+00:01:20,310 --> 00:01:22,920
+on the IP of all the nodes in the cluster.
+
+17
+00:01:23,460 --> 00:01:28,400
+Say the pods for the voting app are only deployed on the nodes with IP 70 and 71.
+
+18
+00:01:28,410 --> 00:01:32,100
+They would still be accessible on the ports of all the nodes in the cluster.
+
+19
+00:01:32,400 --> 00:01:35,350
+So that's how a service is configured.
+
+20
+00:01:35,370 --> 00:01:41,610
+So you would share these URLs to your users to access the application, but that's not what the end
+
+21
+00:01:41,610 --> 00:01:42,400
+users want.
+
+22
+00:01:42,420 --> 00:01:51,620
+They need a single URL like example voting abc.com or the example result App.com to access the application.
+
+23
+00:01:51,630 --> 00:01:53,580
+So how do you achieve that?
+
+24
+00:01:53,610 --> 00:02:01,290
+Now, one way to achieve this is to create a new VMM for load balancer purpose and install and configure
+
+25
+00:02:01,290 --> 00:02:10,500
+a suitable load balancer on it like air proxy or Engine X, etc. Then configure the load balancer to
+
+26
+00:02:10,500 --> 00:02:12,870
+route traffic to the underlying nodes.
+
+27
+00:02:13,410 --> 00:02:20,880
+Now setting all of that external load balancing and then maintaining and managing that can be a tedious
+
+28
+00:02:20,880 --> 00:02:21,570
+task.
+
+29
+00:02:22,490 --> 00:02:30,710
+However, if we were on a supported cloud platform like Google Cloud or AWS or Azure, I could leverage
+
+30
+00:02:30,710 --> 00:02:34,070
+the native load balancer of that cloud platform.
+
+31
+00:02:34,580 --> 00:02:41,420
+Kubernetes has support for integrating with the native load balancers of certain cloud providers and
+
+32
+00:02:41,420 --> 00:02:44,090
+configuring and configuring that for us.
+
+33
+00:02:44,330 --> 00:02:51,980
+So all you need to do is set the service type for the front end services to load balancer instead of
+
+34
+00:02:51,980 --> 00:02:52,760
+Node port.
+
+35
+00:02:53,000 --> 00:02:57,470
+Now remember that this only works with supported cloud platforms.
+
+36
+00:02:57,680 --> 00:03:01,990
+So GCP, AWS and Azure are definitely supported.
+
+37
+00:03:02,000 --> 00:03:05,030
+So if you set the type of service to load balancer.
+
+38
+00:03:06,340 --> 00:03:14,320
+In an unsupported environment like VirtualBox or any other environment, then it would have the same
+
+39
+00:03:14,320 --> 00:03:23,360
+effect as setting it to Node port where the services are exposed on a high end port on the nodes there.
+
+40
+00:03:23,380 --> 00:03:28,330
+It just won't do any kind of external load balancer configuration.
+
+41
+00:03:28,780 --> 00:03:35,950
+So later on when we walk through the demos of deploying our application on cloud platforms, we will
+
+42
+00:03:35,950 --> 00:03:38,340
+see this in action, right?
+
+43
+00:03:38,350 --> 00:03:39,580
+So that's it for now.
+
+44
+00:03:39,670 --> 00:03:41,800
+I will see you in the next lecture.
+

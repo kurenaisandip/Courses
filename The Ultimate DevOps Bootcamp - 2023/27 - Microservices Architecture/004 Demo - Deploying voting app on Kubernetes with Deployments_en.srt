@@ -1,0 +1,464 @@
+1
+00:00:00,650 --> 00:00:04,070
+Okay, So this is what we saw in the last demo.
+
+2
+00:00:04,070 --> 00:00:11,300
+So we deployed pods and services to keep it really simple and we were able to access our application
+
+3
+00:00:11,750 --> 00:00:12,860
+from a browser.
+
+4
+00:00:13,220 --> 00:00:18,650
+But deploying applications as just pods has its own challenges.
+
+5
+00:00:19,190 --> 00:00:22,700
+Deploying pods doesn't help us scale our application easily.
+
+6
+00:00:22,700 --> 00:00:28,610
+If we wanted to add more instances of a particular service and if you wanted to update the application
+
+7
+00:00:28,610 --> 00:00:34,160
+like an image that was used in the application, then your application will have to be taken down while
+
+8
+00:00:34,160 --> 00:00:38,810
+the new port is created so that that may result in a downtime.
+
+9
+00:00:38,900 --> 00:00:44,000
+So the right approach is to use deployments to deploy an application.
+
+10
+00:00:44,000 --> 00:00:47,930
+So let us now improvise our setup using deployments.
+
+11
+00:00:47,930 --> 00:00:54,950
+So we choose deployments over replica sets as deployments automatically create replica sets as required.
+
+12
+00:00:54,950 --> 00:01:02,360
+And it can have it can help us perform rolling updates and rollbacks and maintain a record of revisions
+
+13
+00:01:02,360 --> 00:01:06,650
+and record the cause of change as we have seen in the previous demos.
+
+14
+00:01:07,280 --> 00:01:13,820
+So deployments are the way to go, so we'll add more pod if required for the front end applications
+
+15
+00:01:13,820 --> 00:01:20,750
+like voting app and result app by by creating a deployment and setting the replica to three, we'll
+
+16
+00:01:20,750 --> 00:01:24,710
+initially start off with just one replica for all for each of these components.
+
+17
+00:01:24,710 --> 00:01:28,850
+And later we'll see how easy it is to scale them to three or more.
+
+18
+00:01:28,850 --> 00:01:29,390
+Right?
+
+19
+00:01:29,390 --> 00:01:37,010
+So we will also encapsulate the databases and the worker applications within deployments.
+
+20
+00:01:37,010 --> 00:01:39,530
+So let's take a look at that now.
+
+21
+00:01:39,830 --> 00:01:46,580
+So here I am in the Visual Studio Code, and this is the project directory which has all the ports and
+
+22
+00:01:46,580 --> 00:01:48,080
+service definition files.
+
+23
+00:01:48,080 --> 00:01:51,440
+So let's create a new file for the deployment.
+
+24
+00:01:51,440 --> 00:01:54,020
+So we'll start with the voting app itself.
+
+25
+00:01:54,020 --> 00:02:00,950
+So I'll name this file as voting app dash deploy YAML and I'm going to use the split screen function
+
+26
+00:02:00,950 --> 00:02:05,570
+so that I can open the port and the deployment definition file side by side.
+
+27
+00:02:05,720 --> 00:02:11,840
+So let's create the deployment file for the building the application by using the pod definition file
+
+28
+00:02:11,840 --> 00:02:12,970
+as the template.
+
+29
+00:02:12,980 --> 00:02:18,410
+So let's start with the API version and it will be apps slash one.
+
+30
+00:02:18,410 --> 00:02:20,630
+The kind will be deployment.
+
+31
+00:02:20,630 --> 00:02:22,610
+And let's add the metadata.
+
+32
+00:02:22,940 --> 00:02:29,120
+The name of the deployment would be voting app dash deploy and we'll add some labels.
+
+33
+00:02:36,320 --> 00:02:38,930
+Next, let's add the specs section.
+
+34
+00:02:39,200 --> 00:02:43,130
+So it has already pre populated a couple of entries for us.
+
+35
+00:02:43,520 --> 00:02:50,150
+So we should be specifying the number of replicas and for all our parts, we're just going to stick
+
+36
+00:02:50,150 --> 00:02:52,570
+to one replica to begin with.
+
+37
+00:02:52,580 --> 00:02:59,420
+And since we are on a single node cluster to save some resources and under the selector section, I'm
+
+38
+00:02:59,420 --> 00:03:01,460
+going to add the labels from the pod.
+
+39
+00:03:01,460 --> 00:03:09,740
+So we use the match labels option and then we will copy and paste the labels over from the pod definition
+
+40
+00:03:09,740 --> 00:03:10,250
+file.
+
+41
+00:03:11,760 --> 00:03:18,030
+And now under the template section, I'm just going to copy everything from the metadata to the end
+
+42
+00:03:18,030 --> 00:03:21,510
+of the file and then paste it under the template section.
+
+43
+00:03:22,290 --> 00:03:24,720
+Once done, we fix the formatting.
+
+44
+00:03:26,670 --> 00:03:28,500
+All right, So that looks good.
+
+45
+00:03:28,620 --> 00:03:32,620
+So let's proceed with the next deployment, which will be the ready deployment.
+
+46
+00:03:32,640 --> 00:03:36,600
+So again, I open a radius, the radius part definition file.
+
+47
+00:03:36,600 --> 00:03:41,430
+And just like before, we create a new file called radius that deployed YAML.
+
+48
+00:03:42,940 --> 00:03:46,720
+And then we will copy the contents of the voting app deployment file.
+
+49
+00:03:46,960 --> 00:03:48,100
+Just to get started.
+
+50
+00:03:59,280 --> 00:04:02,190
+And we will change the name of the deployment to radius deploy.
+
+51
+00:04:02,190 --> 00:04:04,260
+And the same for labels as well.
+
+52
+00:04:04,260 --> 00:04:13,020
+So we'll stick to replica one and we will copy the labels from the pod definition file for radius.
+
+53
+00:04:14,410 --> 00:04:19,720
+And then we copy over the template from the pods and then paste it and then fix the formatting.
+
+54
+00:04:24,190 --> 00:04:29,410
+So that's done and we will proceed with the PostgreSQL deployment.
+
+55
+00:04:36,240 --> 00:04:42,060
+Let's copy the radius deployment file and I'll open the Postgres port definition file for reference.
+
+56
+00:04:42,060 --> 00:04:48,990
+And let's make the changes to the names and labels and update the selector labels with the ones on the
+
+57
+00:04:48,990 --> 00:04:49,590
+pod.
+
+58
+00:04:59,660 --> 00:05:06,770
+And then move over the definition under the template section, and then we fix the formatting.
+
+59
+00:05:10,310 --> 00:05:11,990
+Okay, So that looks all right.
+
+60
+00:05:12,950 --> 00:05:14,930
+Next, let's proceed with the worker.
+
+61
+00:05:14,930 --> 00:05:16,520
+So we're going to close this.
+
+62
+00:05:19,370 --> 00:05:21,530
+Let's create a worker app deployment file.
+
+63
+00:05:24,010 --> 00:05:27,940
+And we will copy and paste the template and update the name.
+
+64
+00:05:31,840 --> 00:05:37,510
+And let's copy the labels from the pod definition file and put it under the selector section.
+
+65
+00:05:37,690 --> 00:05:39,590
+And the same as before.
+
+66
+00:05:39,610 --> 00:05:44,710
+Let's copy the pod manifest file and paste it under the template section.
+
+67
+00:05:45,040 --> 00:05:47,340
+So that's the deployment for worker.
+
+68
+00:05:47,350 --> 00:05:50,220
+And now we are left with one for the result app.
+
+69
+00:05:50,230 --> 00:05:55,480
+So again, we close these two and here is our result app.
+
+70
+00:05:56,140 --> 00:06:02,710
+We will create a new file result app deployed YAML and we copy and paste a template again and we update
+
+71
+00:06:02,710 --> 00:06:06,130
+the name and labels and the template as we did before.
+
+72
+00:06:15,760 --> 00:06:22,120
+So we are now done with all our deployment definition files, and I'm going to get rid of all of this.
+
+73
+00:06:22,120 --> 00:06:26,140
+So here is all the new deployment files that we created.
+
+74
+00:06:26,140 --> 00:06:32,140
+And now let's head back to our terminal and create these deployments along with the services.
+
+75
+00:06:32,350 --> 00:06:37,720
+So before we do that, let's make sure that there are no ports and services running in the cluster.
+
+76
+00:06:37,720 --> 00:06:43,810
+So we have a cleaned up everything that was created for the previous demonstration.
+
+77
+00:06:43,810 --> 00:06:48,850
+So there are no ports or services other than the default Kubernetes one.
+
+78
+00:06:48,850 --> 00:06:54,220
+And now let's refresh and make sure that all our deployment files have been created.
+
+79
+00:06:54,370 --> 00:07:00,340
+So here we have the five new deployments that we created and the services will remain the same.
+
+80
+00:07:00,340 --> 00:07:04,740
+So we'll first start with the the wording app deployment.
+
+81
+00:07:04,750 --> 00:07:11,860
+So we'll create it using the create command and passing the app deployment file as input.
+
+82
+00:07:11,860 --> 00:07:17,380
+And let's also create the service and let's do a quick check on the deployment and make sure that it's
+
+83
+00:07:17,380 --> 00:07:17,890
+running.
+
+84
+00:07:17,890 --> 00:07:20,830
+So yes, we see that it is in a running state.
+
+85
+00:07:20,830 --> 00:07:25,920
+So now let's create the readiness deployment and followed by the ready service.
+
+86
+00:07:25,930 --> 00:07:31,120
+And similarly, let's create the post service deployment and the post service, and let's make sure
+
+87
+00:07:31,120 --> 00:07:33,610
+that everything is up.
+
+88
+00:07:33,820 --> 00:07:41,680
+So we see that all the ports are up, the deployments are running one out of one ports, which means
+
+89
+00:07:41,680 --> 00:07:44,890
+that the ports are up and running and let's check the service.
+
+90
+00:07:44,980 --> 00:07:51,040
+So we have the DB service, we have the ready service and the app service created so far.
+
+91
+00:07:51,280 --> 00:07:55,690
+So now let's clear the screen and we create the worker deployment.
+
+92
+00:07:58,460 --> 00:08:01,160
+Now, remember, the worker does not have a service.
+
+93
+00:08:01,160 --> 00:08:04,940
+So let's make sure that everything is running as as expected.
+
+94
+00:08:05,030 --> 00:08:09,430
+And we see that the worker part of the deployment is running as well.
+
+95
+00:08:09,440 --> 00:08:14,030
+So finally we create the result app deployment and the result app service.
+
+96
+00:08:18,970 --> 00:08:22,600
+And we now see that everything is running as expected.
+
+97
+00:08:22,600 --> 00:08:26,560
+So let's change this to deployment command.
+
+98
+00:08:26,730 --> 00:08:33,429
+SVC So we have all the the five deployments in the running state and we have four services.
+
+99
+00:08:33,820 --> 00:08:38,230
+So now let's get the URLs for our two front end services.
+
+100
+00:08:38,230 --> 00:08:42,730
+So we'll use mini queue service and the name of the service with the URL flag.
+
+101
+00:08:44,280 --> 00:08:47,190
+And let's do the same for the result service as well.
+
+102
+00:08:49,970 --> 00:08:56,720
+And we get the URLs with the ports 30,004 and 30,005.
+
+103
+00:08:57,050 --> 00:09:02,170
+So now I'm going to launch the Web browser and we'll try to access these applications.
+
+104
+00:09:02,210 --> 00:09:07,130
+So let's look at the first URL, which is the voting app itself, and let's get the word.
+
+105
+00:09:08,680 --> 00:09:14,030
+And let me open another window here, which will go to 30,005.
+
+106
+00:09:14,050 --> 00:09:17,950
+And you can see that the result is shown as expected.
+
+107
+00:09:20,120 --> 00:09:22,310
+So now I'm going to scale up the deployment.
+
+108
+00:09:22,310 --> 00:09:28,940
+So run the scale command and specify the number of replicas to three to add two more replicas for the
+
+109
+00:09:28,940 --> 00:09:30,050
+wedding application.
+
+110
+00:09:31,090 --> 00:09:37,900
+So when we run the Get Deployments command, we see that there are three paths for the voting app right
+
+111
+00:09:37,900 --> 00:09:38,350
+now.
+
+112
+00:09:42,640 --> 00:09:50,170
+Now, if we now go to the URL and refresh the page, each time we see that the page is served by a new
+
+113
+00:09:50,170 --> 00:09:51,820
+pod each time.
+
+114
+00:09:52,300 --> 00:09:57,970
+So we see how easy it is to scale our applications with deployments.
+
+115
+00:09:58,630 --> 00:10:00,100
+Well, that's it for this demo.
+
+116
+00:10:00,220 --> 00:10:01,900
+I will see you in the next.
+

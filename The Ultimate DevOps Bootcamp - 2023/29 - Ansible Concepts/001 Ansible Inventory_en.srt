@@ -1,0 +1,232 @@
+1
+00:00:01,270 --> 00:00:04,930
+We will now look at configuring inventory in Ansible.
+
+2
+00:00:05,689 --> 00:00:11,000
+Ansible can work with one or multiple systems in your infrastructure at the same time.
+
+3
+00:00:11,210 --> 00:00:17,150
+In order to work with multiple servers, Ansible needs to establish connectivity to those servers.
+
+4
+00:00:17,180 --> 00:00:22,520
+This is done using SSH for Linux and PowerShell remote for Windows.
+
+5
+00:00:22,850 --> 00:00:25,430
+That's what makes Ansible agent less.
+
+6
+00:00:25,670 --> 00:00:31,190
+Agent less means that you don't need to install any additional software on the target machines to be
+
+7
+00:00:31,190 --> 00:00:32,780
+able to work with Ansible.
+
+8
+00:00:33,170 --> 00:00:36,980
+A simple SSH connectivity with Surface Ansible needs.
+
+9
+00:00:37,520 --> 00:00:43,550
+One of the major disadvantages of most other orchestration tools is that you're required to configure
+
+10
+00:00:43,550 --> 00:00:48,350
+an agent on the target systems before you can invoke any kind of automation.
+
+11
+00:00:48,950 --> 00:00:53,960
+Now, information about these target systems is stored in an inventory file.
+
+12
+00:00:54,290 --> 00:01:00,500
+If you don't create a new inventory file, Ansible uses the default inventory file located at Etsy.
+
+13
+00:01:00,500 --> 00:01:02,660
+Ansible hosts location.
+
+14
+00:01:03,110 --> 00:01:05,870
+Let's take a look at a sample inventory file.
+
+15
+00:01:06,350 --> 00:01:10,310
+The inventory file is in an INI like format.
+
+16
+00:01:10,340 --> 00:01:13,760
+It's simply a number of servers listed one after the other.
+
+17
+00:01:13,790 --> 00:01:18,050
+You can also group different servers together by defining it like this.
+
+18
+00:01:18,500 --> 00:01:24,710
+Enter the name of the group within square brackets and define the list of servers part of that group
+
+19
+00:01:24,710 --> 00:01:25,820
+in the lines below.
+
+20
+00:01:26,150 --> 00:01:30,080
+You can have multiple groups defined in a single inventory file.
+
+21
+00:01:30,470 --> 00:01:33,530
+Let's take a closer look at inventory files.
+
+22
+00:01:33,770 --> 00:01:37,640
+For example, I have a list of servers named from 1 to 4.
+
+23
+00:01:37,670 --> 00:01:44,210
+However, I would like to refer to these servers in Ansible using an alias such as web server or database
+
+24
+00:01:44,210 --> 00:01:44,870
+server.
+
+25
+00:01:45,140 --> 00:01:51,260
+I could do this by adding an alias for each server at the beginning of the line and assigning the address
+
+26
+00:01:51,260 --> 00:01:55,010
+of that server to ansible underscore host parameter.
+
+27
+00:01:55,800 --> 00:02:03,000
+Ansible underscore host is an inventory parameter used to specify the FCN or IP address of a server.
+
+28
+00:02:03,300 --> 00:02:05,670
+There are other inventory parameters too.
+
+29
+00:02:05,700 --> 00:02:11,820
+Some of them are ansible underscore connection, ansible, underscore port, ansible, underscore user
+
+30
+00:02:11,820 --> 00:02:13,170
+and ansible underscore.
+
+31
+00:02:13,170 --> 00:02:15,150
+Ssh underscore pass.
+
+32
+00:02:16,090 --> 00:02:20,560
+And civil underscore connection is what defines how Ansible connects to the Target server.
+
+33
+00:02:20,890 --> 00:02:27,820
+As we discussed in the previous slide, is this an SSH connection to a Linux server or a win arm connection
+
+34
+00:02:27,820 --> 00:02:29,260
+to a Windows server?
+
+35
+00:02:29,440 --> 00:02:35,350
+This is how we define if the target host we wish to connect to is a Linux or a Windows host.
+
+36
+00:02:35,680 --> 00:02:41,500
+You could also set it to local host to indicate that we would like to work with the local host and not
+
+37
+00:02:41,500 --> 00:02:43,180
+connect to any remote host.
+
+38
+00:02:43,660 --> 00:02:49,060
+If you don't have multiple servers to play around with, you could simply start with a local host in
+
+39
+00:02:49,060 --> 00:02:50,260
+your inventory file.
+
+40
+00:02:51,290 --> 00:02:55,040
+Ansible underscore port defines which part to connect to.
+
+41
+00:02:55,740 --> 00:02:56,520
+By default.
+
+42
+00:02:56,520 --> 00:03:03,480
+It is set to port 22 for SSH, but if you need to change you can set it differently using ansible underscore
+
+43
+00:03:03,480 --> 00:03:04,770
+port parameter.
+
+44
+00:03:05,070 --> 00:03:10,110
+Ansible underscore user defines the user used to make remote connections by default.
+
+45
+00:03:10,110 --> 00:03:12,750
+This is set to root for Linux machines.
+
+46
+00:03:12,840 --> 00:03:17,100
+If you need to change this, define it as shown here.
+
+47
+00:03:18,370 --> 00:03:23,530
+Ansible underscore ssh underscore paths defines the ssh password for Linux.
+
+48
+00:03:24,260 --> 00:03:30,380
+Note that storing passwords in plain text format like this may not be very ideal.
+
+49
+00:03:31,590 --> 00:03:38,040
+The best practice is to set up SSH key based passwordless authentication between the servers and you
+
+50
+00:03:38,040 --> 00:03:41,710
+should definitely do that in your production or corporate environments.
+
+51
+00:03:41,730 --> 00:03:48,840
+But for now, we want to start with the absolute basics of Ansible without getting too much into security
+
+52
+00:03:48,840 --> 00:03:50,070
+or other topics.
+
+53
+00:03:50,310 --> 00:03:55,890
+So to begin with, we'll start with a really basic setup with a username and password.
+
+54
+00:03:56,040 --> 00:04:02,190
+Otherwise you will be stuck configuring and troubleshooting security issues for the most part of this
+
+55
+00:04:02,190 --> 00:04:02,910
+course.
+
+56
+00:04:03,870 --> 00:04:05,910
+Well, that's it for this lecture.
+
+57
+00:04:05,940 --> 00:04:11,550
+Head over to the coding challenges and practice working with inventory files in Ansible.
+
+58
+00:04:11,770 --> 00:04:13,830
+I will see you in the next lecture.
+

@@ -1,0 +1,324 @@
+1
+00:00:00,150 --> 00:00:05,070
+In this lecture, we will look at how to connect to the VM we created in the previous video.
+
+2
+00:00:05,580 --> 00:00:10,560
+Now, some of the most frequently asked questions about setting up a local lab environment revolves
+
+3
+00:00:10,560 --> 00:00:12,330
+around connectivity.
+
+4
+00:00:12,360 --> 00:00:15,390
+How do we connect to the VM and how do we ssh into it?
+
+5
+00:00:15,420 --> 00:00:21,300
+Why can't I access the something that's hosted on the VM such as the web browser?
+
+6
+00:00:21,570 --> 00:00:25,410
+And we'll find answers for these in this video.
+
+7
+00:00:25,530 --> 00:00:33,720
+So on our laptop, which we will call as the host system, we have deployed Oracle VirtualBox and created
+
+8
+00:00:33,720 --> 00:00:38,460
+a VM having CentOS image which happens to be the same.
+
+9
+00:00:38,460 --> 00:00:44,490
+The guest system I'm using Mac, but it works the same for Windows or Linux.
+
+10
+00:00:45,340 --> 00:00:52,930
+Now, when a VM is installed and ready, you can start the VM either in a normal mode or a headless
+
+11
+00:00:52,930 --> 00:00:53,470
+mode.
+
+12
+00:00:53,860 --> 00:00:57,640
+Now, a normal mode gives you a console to the VM.
+
+13
+00:00:57,820 --> 00:01:02,500
+You can see the UI of the VM as you would see a Linux laptop boot up.
+
+14
+00:01:02,650 --> 00:01:05,220
+It's like looking at the monitor of a machine.
+
+15
+00:01:05,230 --> 00:01:12,370
+If the image we downloaded came with a Linux GUI as well, then we can see the UI on the screen and
+
+16
+00:01:12,370 --> 00:01:16,390
+work with the VM, like working with any other GI.
+
+17
+00:01:16,660 --> 00:01:24,160
+The GI is okay to explore and maybe play around with initially, but when you get into real dev ops
+
+18
+00:01:24,160 --> 00:01:29,330
+and cloud and automation tasks, it would be better to have CLI access.
+
+19
+00:01:29,350 --> 00:01:36,400
+So I personally never used the GI because it's in fact a bit painful to work with switching between
+
+20
+00:01:36,400 --> 00:01:38,290
+your system and the VM UI.
+
+21
+00:01:38,290 --> 00:01:45,580
+And since it's a v m, the UI and console may be a bit slow, you can't easily copy and paste stuff
+
+22
+00:01:45,580 --> 00:01:50,140
+from your host to the guests or copy files back and forth.
+
+23
+00:01:50,410 --> 00:01:53,020
+You can, but it's just not that easy.
+
+24
+00:01:53,050 --> 00:01:59,800
+Now, eventually you need a terminal to work with a Linux system that is to run commands for installing
+
+25
+00:01:59,800 --> 00:02:02,080
+packages, working with services, etc..
+
+26
+00:02:02,320 --> 00:02:11,290
+So instead of using the terminal inside the GI, it is a lot more convenient to use a terminal on your
+
+27
+00:02:11,290 --> 00:02:12,460
+host laptop.
+
+28
+00:02:13,390 --> 00:02:14,320
+In the normal mode.
+
+29
+00:02:14,320 --> 00:02:18,430
+When the console is closed, the VM must be shut down or suspended.
+
+30
+00:02:18,550 --> 00:02:22,720
+It props up this message where it gives you these three options.
+
+31
+00:02:22,900 --> 00:02:29,230
+The first one says Save the machine state, which is suspend and then sent or the other options are
+
+32
+00:02:29,230 --> 00:02:31,690
+sent a shut down signal or power of the machine.
+
+33
+00:02:32,800 --> 00:02:36,460
+The other option shown here is the head start.
+
+34
+00:02:36,460 --> 00:02:42,160
+So if that is selected, the VM still starts, but the console window won't be opened.
+
+35
+00:02:42,400 --> 00:02:48,430
+The VM can only be accessed remotely using SSH or remote desktop tools for Windows.
+
+36
+00:02:48,730 --> 00:02:54,970
+The third option is where it can be started in a normal mode, but closing the console won't require
+
+37
+00:02:54,970 --> 00:02:58,730
+you to suspend or shut down the VM.
+
+38
+00:02:58,750 --> 00:03:04,540
+Instead, you have you now have a new option that says continue to run in the background.
+
+39
+00:03:06,180 --> 00:03:12,870
+So that just selecting that option simply closes the console alone and it continues to keep the the
+
+40
+00:03:12,880 --> 00:03:14,370
+VM running in the background.
+
+41
+00:03:15,220 --> 00:03:20,410
+Depending on what OS has been used on the guest system, we have different ways of connecting to it.
+
+42
+00:03:20,440 --> 00:03:25,900
+For example, say we had a Windows system to remotely connect to the Windows system without using the
+
+43
+00:03:25,900 --> 00:03:26,710
+console.
+
+44
+00:03:26,740 --> 00:03:32,620
+You could use the some kind of remote desktop client such as the one provided by Microsoft.
+
+45
+00:03:34,070 --> 00:03:40,280
+Now if the guest has a Linux operating system as it is in case of Santos, we can connect to it remotely
+
+46
+00:03:40,280 --> 00:03:49,670
+through SSH using SSH clients like the terminal app in Linux or Mac and tools like putty in Windows.
+
+47
+00:03:49,910 --> 00:03:56,030
+Although the VMs are within our laptop, think of them as separate machines connected to the same network.
+
+48
+00:03:56,180 --> 00:04:02,210
+So whatever you need for one system to connect to another system, you would need that here.
+
+49
+00:04:02,240 --> 00:04:08,030
+For this to work, you must have these VMs configured with IP addresses and the relevant services must
+
+50
+00:04:08,030 --> 00:04:08,660
+be configured.
+
+51
+00:04:08,660 --> 00:04:15,620
+And running on Windows, you need the remote desktop service to be running and on Linux you need the
+
+52
+00:04:15,620 --> 00:04:17,420
+SSH service to be running.
+
+53
+00:04:17,810 --> 00:04:21,680
+So make sure SSH server is installed and is in a running state.
+
+54
+00:04:21,709 --> 00:04:28,910
+If so, you can SSH into the VM from the host system using the terminal on the host and the IP address
+
+55
+00:04:28,910 --> 00:04:30,230
+of the remote VM.
+
+56
+00:04:31,270 --> 00:04:36,970
+But how do you configure set service and IP addresses on the VM if you can't connect to it on the first
+
+57
+00:04:36,970 --> 00:04:37,580
+place?
+
+58
+00:04:37,600 --> 00:04:42,040
+For that, you could use the console to perform initial configuration.
+
+59
+00:04:42,070 --> 00:04:48,820
+It's a common practice to use the console to perform initial configurations and then once SSH is enabled,
+
+60
+00:04:48,820 --> 00:04:51,970
+switch over to the terminal for all future interactions.
+
+61
+00:04:52,650 --> 00:04:59,220
+So if you run into issues connecting to a VM check to make sure that the VM has an IP address set and
+
+62
+00:04:59,220 --> 00:05:05,670
+that you are using the right IP address and that SSH service on the remote VM is running.
+
+63
+00:05:06,060 --> 00:05:12,270
+So here's a quick example on how to check or set IP addresses in a centralized machine.
+
+64
+00:05:13,360 --> 00:05:18,850
+Run the IP address, show command, and it lists all interfaces and IP addresses assigned to them.
+
+65
+00:05:21,210 --> 00:05:24,480
+The first interface is the loopback interface with the IP.
+
+66
+00:05:24,480 --> 00:05:31,740
+120 7.0.0.1 and the second interface is zero, which is the interface used for connectivity.
+
+67
+00:05:31,770 --> 00:05:35,970
+And it has IP addresses one 92.1 68 or 1.10.
+
+68
+00:05:36,510 --> 00:05:42,930
+Now, if the IP address was not set, you can set the IP using the IP address, add command and specify
+
+69
+00:05:42,930 --> 00:05:49,500
+the IP address followed by the subnet mask and the device you want to set the IP on, which happens
+
+70
+00:05:49,500 --> 00:05:51,630
+to be e zero in this case.
+
+71
+00:05:52,110 --> 00:05:58,710
+Now, with different operating systems, the device names as well as commands may differ.
+
+72
+00:05:58,710 --> 00:06:05,910
+So refer to the operating system documentations and find out the right relevant way to set IP address.
+
+73
+00:06:06,330 --> 00:06:09,240
+And here's a quick tip on checking the SSH service.
+
+74
+00:06:09,240 --> 00:06:16,890
+The SSH service comes by default with sent OS image to check if the daemon is running.
+
+75
+00:06:16,890 --> 00:06:17,190
+Run.
+
+76
+00:06:17,190 --> 00:06:19,740
+The service has saved status command.
+
+77
+00:06:20,590 --> 00:06:22,810
+If it's not running, run the service.
+
+78
+00:06:23,110 --> 00:06:26,500
+Ssh the start command to start it.
+
+79
+00:06:27,230 --> 00:06:28,500
+Well, that's it for now.
+
+80
+00:06:28,520 --> 00:06:31,280
+We will now head over to a demo and see this in action.
+
+81
+00:06:31,370 --> 00:06:36,860
+And in the upcoming lectures, we will discuss more about networking in VirtualBox.
+

@@ -1,0 +1,440 @@
+1
+00:00:00,330 --> 00:00:05,580
+In this lecture, we will look into the basics of package management in Python.
+
+2
+00:00:06,490 --> 00:00:08,620
+Pip is the package manager for Python.
+
+3
+00:00:08,620 --> 00:00:12,580
+When you install Python, it also installs PIP automatically.
+
+4
+00:00:12,580 --> 00:00:18,670
+And as we discussed earlier, we can have two separate versions of Python installed on the same host.
+
+5
+00:00:18,880 --> 00:00:21,700
+In this case we have Python version two and version three.
+
+6
+00:00:21,700 --> 00:00:25,240
+And so you will have two separate versions of PIP as well.
+
+7
+00:00:26,080 --> 00:00:30,730
+You'll have one for version two and another for version three.
+
+8
+00:00:31,700 --> 00:00:36,260
+So you have two for Python two and PIP three for Python three.
+
+9
+00:00:36,260 --> 00:00:42,470
+And if you run the PIP command along with the Dash v option, just like the python command at the end
+
+10
+00:00:42,770 --> 00:00:47,680
+of that of the output, you can also see the version that it works for.
+
+11
+00:00:47,690 --> 00:00:52,880
+So this one is for 2.7 and this runs for 3.4, Python 3.6.
+
+12
+00:00:52,880 --> 00:00:55,880
+But the version of PIP itself is different, remember?
+
+13
+00:00:55,880 --> 00:01:00,470
+So this is PIP version 9.0.3 and this as well.
+
+14
+00:01:02,320 --> 00:01:06,100
+So in some cases you may have the command just simply as PIP.
+
+15
+00:01:06,130 --> 00:01:12,640
+So if you don't know if it's pointing to Pip two or Pip three, you could run the PIP command with the
+
+16
+00:01:12,640 --> 00:01:17,760
+version flag and it will tell you what version of Python that is pointing to.
+
+17
+00:01:17,770 --> 00:01:18,730
+So this is important.
+
+18
+00:01:18,730 --> 00:01:21,430
+Sometimes this can get mixed up.
+
+19
+00:01:21,430 --> 00:01:26,740
+So you might be working on a Python three application and you might just run use the PIP command as
+
+20
+00:01:26,740 --> 00:01:34,780
+a is to install libraries and it'll install it in the python two dependencies folders.
+
+21
+00:01:35,650 --> 00:01:42,650
+So to install a package using PIP, run the PIP install command and specify the package name.
+
+22
+00:01:42,670 --> 00:01:46,540
+In this case, we're trying to install a package by the name Flask.
+
+23
+00:01:46,540 --> 00:01:52,600
+Flask is a popular web framework for Python and it helps you develop web applications.
+
+24
+00:01:52,600 --> 00:01:55,690
+We'll see that in one of the upcoming lectures.
+
+25
+00:01:57,010 --> 00:02:01,120
+So when Python is installed, it creates a directory structure like this.
+
+26
+00:02:01,150 --> 00:02:07,930
+A directory is created for each version of Python under the user lib path.
+
+27
+00:02:08,020 --> 00:02:14,020
+This is so when packages are installed using a specific version of PIP, they are placed under the right
+
+28
+00:02:14,020 --> 00:02:14,980
+python version.
+
+29
+00:02:14,980 --> 00:02:20,530
+So when you install a python package, it installs it under the user lib python path.
+
+30
+00:02:20,530 --> 00:02:27,700
+Under the side packages directory, a separate directory is available for each version of python packages.
+
+31
+00:02:27,700 --> 00:02:33,310
+Could also be 32 bit or 64 bit, so a separate path is available for 64 bit packages.
+
+32
+00:02:33,640 --> 00:02:37,540
+So in this case FLASK is a 64 bit package.
+
+33
+00:02:37,540 --> 00:02:44,380
+So and we installed it for Python version two because PIP points to Python version two and so it gets
+
+34
+00:02:44,380 --> 00:02:51,100
+installed under user lib 60 for Python two and side packages.
+
+35
+00:02:52,010 --> 00:02:56,540
+So this is for 32 bit packages and this is for 64 bit packages.
+
+36
+00:02:56,540 --> 00:03:01,940
+And inside each of them you have separate path for 2.7, 3.6.
+
+37
+00:03:02,120 --> 00:03:08,510
+So this is especially important to note because you'll most likely run into issues where you install
+
+38
+00:03:08,510 --> 00:03:12,560
+packages and your application still cannot find the packages.
+
+39
+00:03:12,560 --> 00:03:20,300
+So you can actually go in and search and in this path and find out where it is, where it was installed.
+
+40
+00:03:21,110 --> 00:03:23,320
+And that will help you in troubleshooting.
+
+41
+00:03:23,330 --> 00:03:25,870
+So let me explain a bit more about that.
+
+42
+00:03:25,880 --> 00:03:32,560
+So to see the location where a particular package is installed, run the show command and provide the
+
+43
+00:03:33,140 --> 00:03:33,950
+package name.
+
+44
+00:03:33,950 --> 00:03:40,580
+In this case, when you run the pipe show Flask command, it tells you the location where that particular
+
+45
+00:03:40,760 --> 00:03:41,960
+package is installed.
+
+46
+00:03:41,960 --> 00:03:47,090
+So as I said, user lib, 64, Python 2.7 and side packages.
+
+47
+00:03:48,580 --> 00:03:53,770
+So once installed, a package is imported into the code using the import statement.
+
+48
+00:03:54,070 --> 00:04:00,220
+When a package is imported within an application, Python looks under a set of directories for the package.
+
+49
+00:04:00,220 --> 00:04:08,340
+So to get a list of paths that Python looks for, when it looks for a package, you could print the
+
+50
+00:04:08,340 --> 00:04:12,430
+easiest path property using this piece of code that's given here.
+
+51
+00:04:12,550 --> 00:04:16,779
+This is the default location where the python interpreter would look for packages.
+
+52
+00:04:16,779 --> 00:04:23,020
+So in case you installed packages and and it can't find them, these are some of the commands that you
+
+53
+00:04:23,020 --> 00:04:26,320
+can use to identify the cause of the issue.
+
+54
+00:04:26,320 --> 00:04:31,440
+So in this case, these are the paths that it's going to look at for the packages.
+
+55
+00:04:31,450 --> 00:04:37,330
+When you do a import flask, it's actually going to look this go this path and then it's eventually
+
+56
+00:04:37,330 --> 00:04:43,750
+going to find it under this path, which is loop 64, Python 2.7 site packages.
+
+57
+00:04:44,050 --> 00:04:49,240
+And if it's not able to find it anywhere, then you probably installed it for the wrong version of Python
+
+58
+00:04:49,240 --> 00:04:51,310
+or in a different path.
+
+59
+00:04:51,310 --> 00:04:57,040
+And that path is not available here and you can use this command to troubleshoot those kind of issues.
+
+60
+00:04:59,150 --> 00:04:59,370
+Okay.
+
+61
+00:04:59,390 --> 00:05:01,010
+And this is how you import.
+
+62
+00:05:02,030 --> 00:05:05,340
+A Python package into the source code.
+
+63
+00:05:05,350 --> 00:05:07,930
+So using the import command.
+
+64
+00:05:10,080 --> 00:05:15,010
+Okay, So large applications have many, many different packages to be installed.
+
+65
+00:05:15,030 --> 00:05:21,750
+So in that case, instead of running the install command multiple times like this, you can either run
+
+66
+00:05:21,750 --> 00:05:28,920
+a single command with all the packages, package names in it, or a better approach would be to move
+
+67
+00:05:28,920 --> 00:05:36,960
+all the package details inside a file named requirements txt and then run the PIP install command,
+
+68
+00:05:36,960 --> 00:05:42,840
+but this time passing the requirements txt file using the dash r option.
+
+69
+00:05:42,990 --> 00:05:50,520
+So what happens is when you run the single command, now Pip is going to go through this file and install
+
+70
+00:05:50,520 --> 00:05:52,410
+each of these dependencies.
+
+71
+00:05:52,680 --> 00:05:53,520
+So.
+
+72
+00:05:54,570 --> 00:06:01,860
+Um, this way your all your dependencies are stored in a requirements or text file, and then it can
+
+73
+00:06:01,860 --> 00:06:09,480
+be checked in into your source code repository as well, so that when another developer downloads the
+
+74
+00:06:09,480 --> 00:06:15,750
+application, you can simply get started by running the a single PIP install for requirements command.
+
+75
+00:06:15,750 --> 00:06:21,420
+And if any new packages are to be added to the application, you simply go in and add it to the requirements
+
+76
+00:06:21,930 --> 00:06:26,010
+file and then check that into your source code repository.
+
+77
+00:06:26,880 --> 00:06:30,810
+Another best practice is to specify the version of these packages as well.
+
+78
+00:06:31,440 --> 00:06:37,830
+Like this, if you don't specify that, Python will always install the latest stable version of a package.
+
+79
+00:06:38,130 --> 00:06:44,100
+Now, for some reason, if the new version of the package introduced a change that is incompatible with
+
+80
+00:06:44,100 --> 00:06:49,440
+the rest of your application, there are chances that it would break your application.
+
+81
+00:06:49,860 --> 00:06:57,360
+So in almost all Python projects you will find a similar requirement file with version numbers inside
+
+82
+00:06:57,360 --> 00:06:57,890
+that.
+
+83
+00:06:57,900 --> 00:07:03,070
+And so when you see when you are given the source code of an application and you see the requirements
+
+84
+00:07:03,240 --> 00:07:09,960
+file, you now know what that what that file is used for and what to do with that file.
+
+85
+00:07:10,920 --> 00:07:16,260
+So when a newer version of a package is available and the current version needs to be updated, run
+
+86
+00:07:16,260 --> 00:07:23,340
+the install command with the upgrade option like this and to uninstall a package, run the uninstall
+
+87
+00:07:23,340 --> 00:07:26,070
+command and specify the package name.
+
+88
+00:07:27,470 --> 00:07:33,830
+There are a few other package managers as well with Python and such as Easy Install was the original
+
+89
+00:07:33,830 --> 00:07:36,650
+way of installing Python packages.
+
+90
+00:07:36,950 --> 00:07:44,300
+So a set of tools called setup tools are used to package python code into zipped format called eggs.
+
+91
+00:07:44,630 --> 00:07:50,630
+The easy install package manager can then be used to search, find and install these packages.
+
+92
+00:07:50,810 --> 00:07:54,440
+So think of eggs as jars in Java if you are familiar with it.
+
+93
+00:07:55,040 --> 00:08:01,640
+As we have discussed in one of the previous lectures about about Java where we use jars to jar commands
+
+94
+00:08:01,640 --> 00:08:09,680
+to package application into a single single file, It's similar to what eggs are in Python, so once
+
+95
+00:08:09,680 --> 00:08:15,860
+you get the eggs, either use the easy install utility or just by downloading the binary and placing
+
+96
+00:08:15,860 --> 00:08:21,890
+them in a path where python looks for dependencies as we saw a few slides before and your application
+
+97
+00:08:21,890 --> 00:08:27,950
+will be able to import these packages so you don't really have to unpack an egg.
+
+98
+00:08:28,160 --> 00:08:35,150
+You can just simply download the egg file and place it in a location where python can find it and it'll
+
+99
+00:08:35,390 --> 00:08:39,140
+just use that without having to unpackaged it.
+
+100
+00:08:40,190 --> 00:08:41,870
+And then came a wheel.
+
+101
+00:08:41,870 --> 00:08:48,950
+So wheels are like eggs, as in they are also zip files too, but they must be unpacked before installing.
+
+102
+00:08:48,950 --> 00:08:50,510
+So wheels have an extension.
+
+103
+00:08:50,900 --> 00:08:59,630
+WHL and packages packaged as wheels can be installed using python like this as you would with the other
+
+104
+00:08:59,630 --> 00:09:00,770
+python packages.
+
+105
+00:09:01,550 --> 00:09:03,500
+So that's it for now.
+
+106
+00:09:03,680 --> 00:09:07,160
+Head over to the labs and practice working with python packages.
+
+107
+00:09:07,580 --> 00:09:12,320
+In this lab you'll identify you'll work with package management tools where you'll identify the list
+
+108
+00:09:12,320 --> 00:09:16,910
+of packages to be installed, identify the location where the packages are installed, work with different
+
+109
+00:09:16,910 --> 00:09:24,680
+versions of PIP and upgrade and uninstall packages and work with requirements file, etc. So head over
+
+110
+00:09:24,680 --> 00:09:27,170
+to the labs and I'll see you in the next lecture.
+

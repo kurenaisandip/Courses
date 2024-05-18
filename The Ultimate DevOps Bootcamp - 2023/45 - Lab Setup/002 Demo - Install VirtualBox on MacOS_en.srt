@@ -1,0 +1,196 @@
+1
+00:00:01,690 --> 00:00:03,550
+Hello and welcome to this demo.
+
+2
+00:00:03,580 --> 00:00:08,050
+In this demo, we're going to see how to set up a lab environment.
+
+3
+00:00:08,050 --> 00:00:10,180
+So in our case, we're going to install VirtualBox.
+
+4
+00:00:10,180 --> 00:00:17,080
+So go to VirtualBox dot org and in the website you will have find a link to download the VirtualBox
+
+5
+00:00:17,080 --> 00:00:17,860
+software.
+
+6
+00:00:18,460 --> 00:00:24,820
+In the download page, you will find links to download VirtualBox for specific operating systems and
+
+7
+00:00:24,820 --> 00:00:31,420
+I'm going to download the software once downloaded, run the executable and follow the instructions
+
+8
+00:00:31,420 --> 00:00:39,490
+in the installation Wizard to complete installation after you install Open up the Oracle Virtual Box
+
+9
+00:00:39,490 --> 00:00:42,130
+interface and it will look something like this.
+
+10
+00:00:42,670 --> 00:00:45,070
+Now the next step is to deploy virtual machines.
+
+11
+00:00:46,000 --> 00:00:51,670
+In order to do that, you can either create a machine, attach a CD, drive of an operating system,
+
+12
+00:00:51,670 --> 00:00:57,040
+and follow the instructions to install the operating system as we are familiar with.
+
+13
+00:00:57,430 --> 00:01:00,640
+However, there's also another easy way.
+
+14
+00:01:01,120 --> 00:01:07,120
+There are pre installed pre configured operating system images available on the internet.
+
+15
+00:01:07,150 --> 00:01:11,980
+We could use those to easily deploy as many virtual machines as we need.
+
+16
+00:01:12,250 --> 00:01:16,400
+For this, if you go to the website OS boxes dot org.
+
+17
+00:01:16,420 --> 00:01:21,940
+You will find a lot of pre-installed pre configured images of various operating systems.
+
+18
+00:01:22,300 --> 00:01:28,570
+Go to this site and select the VM images, virtual box images link at the top and then you will be you
+
+19
+00:01:28,570 --> 00:01:31,000
+will find a list of various different operating systems.
+
+20
+00:01:31,000 --> 00:01:33,040
+From this we will select CentOS.
+
+21
+00:01:34,890 --> 00:01:37,290
+And then it will take us to the center of this page.
+
+22
+00:01:37,530 --> 00:01:40,800
+Here you can see information on downloading the center image.
+
+23
+00:01:40,830 --> 00:01:47,010
+In our case, we're downloading the VirtualBox image for Center seven and we're downloading the 64 bit
+
+24
+00:01:47,010 --> 00:01:47,670
+version.
+
+25
+00:01:47,670 --> 00:01:50,460
+So remember to download that particular version.
+
+26
+00:01:51,660 --> 00:01:56,250
+It is downloaded as a7z file, which is a compressed file.
+
+27
+00:01:56,250 --> 00:01:59,560
+So you need a software to uncompressed it.
+
+28
+00:01:59,580 --> 00:02:02,700
+Wait for it to finish the extraction process.
+
+29
+00:02:04,360 --> 00:02:07,690
+Once finished if you go into the folder.
+
+30
+00:02:08,639 --> 00:02:10,979
+You will see that there is a folder called 64 bit.
+
+31
+00:02:12,160 --> 00:02:18,880
+And inside that folder you will find a file with the extension VDI that stands for virtual disk, and
+
+32
+00:02:18,880 --> 00:02:21,340
+that is what we will use to create our virtual machine.
+
+33
+00:02:21,850 --> 00:02:23,950
+We're now ready to create a new virtual machine.
+
+34
+00:02:23,950 --> 00:02:32,080
+So we go back into the Oracle virtual box interface, click on New and we fill in the name and operating
+
+35
+00:02:32,080 --> 00:02:32,740
+system.
+
+36
+00:02:32,920 --> 00:02:37,420
+I will now select the type as Linux and click next.
+
+37
+00:02:37,750 --> 00:02:41,410
+In the next here we select a memory size.
+
+38
+00:02:41,590 --> 00:02:45,490
+In the next step, we select the hard disk that we downloaded.
+
+39
+00:02:46,390 --> 00:02:51,580
+So in this case, the default selection is create a virtual hard disk now, but that is not what we
+
+40
+00:02:51,580 --> 00:02:51,940
+want.
+
+41
+00:02:51,970 --> 00:02:59,440
+We already have a pre-built image of a hard disk downloaded, so we're going to specify that select
+
+42
+00:02:59,440 --> 00:03:06,640
+the user, an existing virtual hard disk file option, and click on Browse and Browse to the file that
+
+43
+00:03:06,640 --> 00:03:11,440
+we downloaded and extracted, which is the center is seven file with the VDI extension.
+
+44
+00:03:11,710 --> 00:03:12,160
+Click on.
+
+45
+00:03:12,160 --> 00:03:12,520
+Okay.
+
+46
+00:03:12,520 --> 00:03:14,170
+And that creates the file.
+
+47
+00:03:14,200 --> 00:03:19,210
+Now, before powering on the template, we will go into settings and make a few more changes.
+
+48
+00:03:23,470 --> 00:03:27,940
+Go to system and we'll increase the CPU to around two.
+
+49
+00:03:34,060 --> 00:03:36,460
+I will now go ahead and power on the system.
+

@@ -1,0 +1,192 @@
+1
+00:00:01,870 --> 00:00:02,980
+In this lecture.
+
+2
+00:00:02,980 --> 00:00:06,370
+Let's take a look at providers in more detail.
+
+3
+00:00:08,690 --> 00:00:14,630
+We saw in the previous lecture that after we write a TerraForm configuration file, the first thing
+
+4
+00:00:14,630 --> 00:00:18,800
+to do is to initialize the directory with the TerraForm Init command.
+
+5
+00:00:19,550 --> 00:00:25,880
+When we run TerraForm in it within a directory containing the configuration files, TerraForm downloads
+
+6
+00:00:25,880 --> 00:00:30,110
+and installs plugins for the providers used within the configuration.
+
+7
+00:00:31,110 --> 00:00:38,280
+These can be plug ins for cloud providers such as AWS, GCP, Azure, or something as simple as the
+
+8
+00:00:38,280 --> 00:00:42,120
+local provider that we use to create a local file type resource.
+
+9
+00:00:42,870 --> 00:00:48,630
+TerraForm uses a plugin based architecture to work with hundreds of such infrastructure platforms.
+
+10
+00:00:49,500 --> 00:00:55,230
+Different providers are distributed by Hashicorp and are publicly available in the TerraForm Registry
+
+11
+00:00:55,230 --> 00:00:58,680
+at the URL Registry dot TerraForm dot o.
+
+12
+00:00:59,810 --> 00:01:02,030
+There are three tiers of providers.
+
+13
+00:01:03,040 --> 00:01:05,260
+The first one is the official provider.
+
+14
+00:01:05,710 --> 00:01:12,520
+These are owned and maintained by Hashicorp and include the major cloud providers such as GCP and Azure.
+
+15
+00:01:13,150 --> 00:01:17,800
+The local provider that we have used so far is also an official provider.
+
+16
+00:01:18,400 --> 00:01:21,850
+The second type of provider is a verified provider.
+
+17
+00:01:22,420 --> 00:01:28,390
+A verified provider is owned and maintained by a third party technology company that has gone through
+
+18
+00:01:28,390 --> 00:01:30,790
+a partner provider process with Hashicorp.
+
+19
+00:01:31,720 --> 00:01:38,530
+Some of the examples are the big IP provider from Fine Networks, Heroku, Digital, Ocean, etc..
+
+20
+00:01:39,650 --> 00:01:45,080
+And finally, we have the community providers that are published and maintained by individual contributors
+
+21
+00:01:45,080 --> 00:01:46,640
+of the Hashicorp community.
+
+22
+00:01:48,330 --> 00:01:53,580
+The TerraForm init command went run shows the version of the plugin that is being installed.
+
+23
+00:01:54,690 --> 00:02:02,910
+In this case we can see that the plugin name Hashicorp slash local with the version 2.00 has been installed
+
+24
+00:02:02,910 --> 00:02:03,930
+in the directory.
+
+25
+00:02:04,700 --> 00:02:10,729
+Deter from init is a safe command and it can be run as many times as needed without impacting the actual
+
+26
+00:02:10,729 --> 00:02:12,560
+infrastructure that is deployed.
+
+27
+00:02:14,310 --> 00:02:20,970
+The plug ins are downloaded into a hidden directory called TerraForm slash plugins in the working directory
+
+28
+00:02:20,970 --> 00:02:22,770
+containing the configuration files.
+
+29
+00:02:23,430 --> 00:02:29,220
+In our example, the working directory is slash root slash terraform dash local file.
+
+30
+00:02:31,070 --> 00:02:32,930
+The plugin name that you see here.
+
+31
+00:02:32,930 --> 00:02:37,730
+Hashicorp Slash Local is also known as the source address.
+
+32
+00:02:38,270 --> 00:02:44,210
+This is an identifier that is used by TerraForm to locate and download the plugin from the registry.
+
+33
+00:02:44,600 --> 00:02:47,390
+Let's take a closer look at the format of the name.
+
+34
+00:02:48,470 --> 00:02:54,650
+The first part of the name, which in this case is Hashicorp is the organizational namespace.
+
+35
+00:02:55,100 --> 00:03:00,140
+This is followed by the type which is the name of the provider, such as local.
+
+36
+00:03:00,620 --> 00:03:07,760
+Other examples of providers are AWS, Azure, ARM, Google, Random, etc..
+
+37
+00:03:08,420 --> 00:03:11,840
+The plugin name can also optionally have a hostname in front.
+
+38
+00:03:12,290 --> 00:03:16,100
+The hostname is the name of the registry where the plugin is located.
+
+39
+00:03:16,670 --> 00:03:22,700
+If omitted, it defaults to registry dot terraform dot IO, which is Hashicorp public registry.
+
+40
+00:03:23,850 --> 00:03:30,390
+Given the fact that the local provider is stored in the public from registry within the Hashicorp namespace,
+
+41
+00:03:30,390 --> 00:03:37,860
+the source address for it can be represented as registry dot, terraform, dot IO slash Hashicorp slash
+
+42
+00:03:37,860 --> 00:03:42,930
+local or simply by hashicorp slash local by omitting the hostname.
+
+43
+00:03:44,210 --> 00:03:48,350
+By default, TerraForm installs the latest version of the provider.
+
+44
+00:03:49,110 --> 00:03:54,600
+Provide The plugins, especially the official ones, are constantly updated with newer versions.
+
+45
+00:03:54,630 --> 00:04:01,530
+This is done to bring in new functionality or to add in bug fixes and these can introduce breaking changes
+
+46
+00:04:01,530 --> 00:04:02,400
+to your code.
+
+47
+00:04:03,250 --> 00:04:08,440
+We can lock down our configuration files to make use of a specific provider version as well.
+
+48
+00:04:08,710 --> 00:04:11,500
+We will see how to do that later in this course.
+

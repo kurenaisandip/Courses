@@ -1,0 +1,376 @@
+1
+00:00:00,120 --> 00:00:03,360
+In this lecture, we discuss about roles in Ansible.
+
+2
+00:00:04,200 --> 00:00:11,940
+Just like how you would assign roles to different people in the real world, making them doctors, engineers,
+
+3
+00:00:11,940 --> 00:00:14,910
+astronauts, policemen or chef.
+
+4
+00:00:15,570 --> 00:00:23,850
+In the Ansible world, you would assign roles to blank servers to make them a database server or a web
+
+5
+00:00:23,850 --> 00:00:28,470
+server or a Redis messaging server or a backup server.
+
+6
+00:00:29,380 --> 00:00:37,130
+Assigning a role in the real world means doing everything one needs to do to make someone, a doctor,
+
+7
+00:00:37,150 --> 00:00:42,520
+an engineer, like, for example, sending the person to a medical school, earning a medical degree,
+
+8
+00:00:42,790 --> 00:00:48,520
+completing a residency program, and finally obtaining a license to practice, or with an engineer,
+
+9
+00:00:48,520 --> 00:00:55,270
+it would be going to an engineering school, earning a bachelor's degree, gaining field experience,
+
+10
+00:00:55,270 --> 00:00:59,560
+or getting a postgraduate degree in the automation world.
+
+11
+00:01:00,160 --> 00:01:08,380
+Assigning a role means doing everything you need to do to make a server a database server, such as
+
+12
+00:01:08,380 --> 00:01:15,220
+installing the prerequisites required for MySQL, installing MySQL packages themselves, configuring
+
+13
+00:01:15,220 --> 00:01:19,930
+the MySQL servers and finally configuring database or users.
+
+14
+00:01:20,760 --> 00:01:27,270
+With a web server, it would be again installing the prerequisites for engine X, installing engine
+
+15
+00:01:27,270 --> 00:01:32,880
+X packages, configuring Engine X services and configuring the custom web pages.
+
+16
+00:01:34,070 --> 00:01:39,920
+By now we know how to get these tasks done using Ansible playbooks.
+
+17
+00:01:40,650 --> 00:01:41,970
+We have done this a lot.
+
+18
+00:01:42,000 --> 00:01:45,120
+Here's a simple playbook that that can do this.
+
+19
+00:01:45,420 --> 00:01:51,030
+But then if you can do this in a playbook, why do you need roles?
+
+20
+00:01:52,110 --> 00:01:59,580
+This set of tasks to install and perform basic configurations on a MySQL database is going to remain
+
+21
+00:01:59,580 --> 00:02:00,930
+mostly common.
+
+22
+00:02:01,110 --> 00:02:08,400
+Once a person develops this Ansible playbook, it can be shared with hundreds of thousands of others
+
+23
+00:02:08,400 --> 00:02:10,130
+trying to do the same thing.
+
+24
+00:02:10,139 --> 00:02:18,840
+Install my SQL instead of all of them rewriting this piece of code and you could package it into a role
+
+25
+00:02:18,840 --> 00:02:20,610
+and reuse it later.
+
+26
+00:02:21,060 --> 00:02:24,390
+Next time you could simply assign the role you created.
+
+27
+00:02:24,390 --> 00:02:32,280
+And in a playbook like this, be it a single server or hundreds of servers, that's all you need.
+
+28
+00:02:32,970 --> 00:02:42,120
+So that's the primary purpose of roles to make your work reusable, be it for other tasks or projects
+
+29
+00:02:42,120 --> 00:02:46,950
+within your organization or outside for others globally.
+
+30
+00:02:47,990 --> 00:02:52,800
+Roles also help in organising your code within Ansible.
+
+31
+00:02:52,820 --> 00:03:00,760
+Roles introduce a set of best practices that must be followed to organize all tasks into a task directory.
+
+32
+00:03:00,770 --> 00:03:04,630
+All variables used by these tasks in the Advanced Directory.
+
+33
+00:03:04,640 --> 00:03:08,330
+Any default values goes into the default directory.
+
+34
+00:03:08,510 --> 00:03:15,890
+All handlers go into the handlers directory and any templates used by the playbooks go into the templates
+
+35
+00:03:15,890 --> 00:03:16,700
+directory.
+
+36
+00:03:17,210 --> 00:03:22,130
+Roles also help in sharing your code with others in the Ansible community.
+
+37
+00:03:22,130 --> 00:03:29,720
+Ansible Galaxy is one such community where you can find thousands of roles for almost any task you can
+
+38
+00:03:29,720 --> 00:03:30,530
+think of.
+
+39
+00:03:30,530 --> 00:03:36,200
+Installing and configuring different web servers, different database servers, automation tools, monitoring
+
+40
+00:03:36,230 --> 00:03:40,070
+tools, packaging tools, security software, etc..
+
+41
+00:03:41,000 --> 00:03:47,330
+So before you start writing those playbooks, I highly recommend taking a look at this community first.
+
+42
+00:03:47,750 --> 00:03:51,500
+There must be a role created for that already by someone.
+
+43
+00:03:51,500 --> 00:03:53,750
+So how do you get started with roles?
+
+44
+00:03:53,780 --> 00:03:54,770
+It's easy.
+
+45
+00:03:54,860 --> 00:03:57,030
+As we discussed in the previous slide.
+
+46
+00:03:57,050 --> 00:04:04,610
+First, we create the directory structure required for a role, but you don't have to do that manually.
+
+47
+00:04:05,000 --> 00:04:10,070
+Ansible Galaxy has a neat tool that can create a skeleton for you.
+
+48
+00:04:10,190 --> 00:04:16,610
+Use the ansible galaxy init command to initialize and create a directory structure.
+
+49
+00:04:16,700 --> 00:04:24,800
+Remember this is to create your own role from scratch and then move all of your code into the task directory
+
+50
+00:04:24,800 --> 00:04:25,790
+into a file.
+
+51
+00:04:26,030 --> 00:04:26,900
+And that's it.
+
+52
+00:04:27,410 --> 00:04:30,320
+So how do you use your role within your playbook?
+
+53
+00:04:30,650 --> 00:04:34,340
+Say I have my playbook within a directory called My Playbook.
+
+54
+00:04:34,520 --> 00:04:41,420
+My playbook YAML file contains a simple play to install and configure my SQL on my DB server.
+
+55
+00:04:42,020 --> 00:04:46,790
+I would like to assign the role I created using the roles directive like this.
+
+56
+00:04:47,300 --> 00:04:52,130
+But if I were to do that, how does my playbook know where that role is?
+
+57
+00:04:52,160 --> 00:04:55,010
+I could have created that role anywhere on my system.
+
+58
+00:04:55,460 --> 00:04:57,830
+How can my playbook find that role?
+
+59
+00:04:58,340 --> 00:05:00,040
+There are different ways to do that.
+
+60
+00:05:00,050 --> 00:05:06,830
+I could create a directory called Roles within my Playbook folder and move the role I created under
+
+61
+00:05:06,830 --> 00:05:07,250
+it.
+
+62
+00:05:07,580 --> 00:05:14,360
+When the playbook runs, Ansible looks for a role named my SQL under the roles directory, and that's
+
+63
+00:05:14,360 --> 00:05:15,600
+one way of doing it.
+
+64
+00:05:15,620 --> 00:05:23,390
+Or you can move the roles to a common directory designated for roles on your system at Etsy Ansible
+
+65
+00:05:23,390 --> 00:05:24,830
+roles location.
+
+66
+00:05:25,070 --> 00:05:32,180
+That's the default location where Ansible searches for roles if it can be found in your playbooks directory.
+
+67
+00:05:32,720 --> 00:05:39,770
+Of course, that's defined in the Ansible configuration file as roles path, which you can modify if
+
+68
+00:05:39,770 --> 00:05:40,550
+required.
+
+69
+00:05:41,320 --> 00:05:47,410
+Once you have created your role and place it in your roles directory and used it in a playbook, you
+
+70
+00:05:47,410 --> 00:05:53,350
+may share it with the community by uploading it to Ansible Galaxy through a GitHub repository.
+
+71
+00:05:54,470 --> 00:05:57,530
+Now what if you don't want to use a roll from Galaxy?
+
+72
+00:05:57,530 --> 00:06:03,920
+Instead, you want to find an existing role and use it in your playbook to find roles.
+
+73
+00:06:03,920 --> 00:06:11,330
+You could search from the Ansible Galaxy UI or do it from the command line interface using the Ansible
+
+74
+00:06:11,630 --> 00:06:13,460
+Galaxy Search Command.
+
+75
+00:06:14,370 --> 00:06:15,330
+To use a role.
+
+76
+00:06:15,330 --> 00:06:19,890
+Run the Ansible Galaxy install command with the name of the role.
+
+77
+00:06:20,130 --> 00:06:26,550
+The role is extracted to the default roles directory at SC Ansible roles Location.
+
+78
+00:06:27,000 --> 00:06:32,910
+The roles can now be used in your playbook by specifying the same name like this as an array of strings
+
+79
+00:06:32,910 --> 00:06:34,020
+as role names.
+
+80
+00:06:34,200 --> 00:06:38,230
+Another way to specify roles as an array of dictionaries.
+
+81
+00:06:38,250 --> 00:06:44,640
+This will allow you to pass in additional options to the role, such as to execute the role by escalating
+
+82
+00:06:44,640 --> 00:06:51,660
+privileges, by specifying the become directory or to pass additional parameters like the MySQL SQL
+
+83
+00:06:51,660 --> 00:06:55,260
+underscore user underscore name option like this.
+
+84
+00:06:56,100 --> 00:07:03,570
+To summarize rules make it really easy to develop, reuse and share Ansible playbooks to configure a
+
+85
+00:07:03,570 --> 00:07:07,080
+single server with both database and web application on it.
+
+86
+00:07:07,410 --> 00:07:12,210
+Assign both roles to it to configure it separately on separate servers.
+
+87
+00:07:12,390 --> 00:07:17,670
+Create two plays in the playbook one for each server and assign the respective roles to them.
+
+88
+00:07:18,320 --> 00:07:24,320
+To view a list of roles currently installed or on the Ansible Galaxy List command to view the location
+
+89
+00:07:24,320 --> 00:07:26,660
+where roles would be installed.
+
+90
+00:07:26,870 --> 00:07:31,460
+Check the ansible configuration using the ansible config dump command.
+
+91
+00:07:31,820 --> 00:07:35,150
+The default role path is where the roles are installed.
+
+92
+00:07:36,200 --> 00:07:37,400
+While installing rolls.
+
+93
+00:07:37,400 --> 00:07:43,490
+You may use the dash p option to install it in the current directory under roles like this.
+
+94
+00:07:44,380 --> 00:07:45,910
+Well, that's it for this lecture.
+

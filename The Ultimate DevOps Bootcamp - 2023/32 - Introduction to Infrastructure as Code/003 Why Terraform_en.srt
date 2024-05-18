@@ -1,0 +1,256 @@
+1
+00:00:00,530 --> 00:00:05,480
+Let's now talk about TerraForm and go over some of its features at a high level.
+
+2
+00:00:06,840 --> 00:00:12,240
+As we discussed, the reform is a popular ESI tool, which is specifically useful as an infrastructure
+
+3
+00:00:12,240 --> 00:00:13,290
+provisioning tool.
+
+4
+00:00:14,240 --> 00:00:18,080
+TerraForm is a free and open source tool which is developed by Hashicorp.
+
+5
+00:00:18,650 --> 00:00:24,020
+It installs as a single binary, which can be set up very quickly, allowing us to build, manage and
+
+6
+00:00:24,020 --> 00:00:26,480
+destroy infrastructure in a matter of minutes.
+
+7
+00:00:27,530 --> 00:00:33,620
+One of the biggest advantages of TerraForm is its ability to deploy infrastructure across multiple platforms,
+
+8
+00:00:33,620 --> 00:00:40,220
+including private and public cloud, such as on premise vSphere cluster or Cloud solutions such as AWS,
+
+9
+00:00:40,220 --> 00:00:42,440
+GCP or Azure to name a few.
+
+10
+00:00:43,250 --> 00:00:47,090
+These are just a few of the many resources that are from can manage.
+
+11
+00:00:47,600 --> 00:00:52,640
+So how does TerraForm manage infrastructure on so many different kinds of platforms?
+
+12
+00:00:53,800 --> 00:00:55,690
+This is achieved through providers.
+
+13
+00:00:56,020 --> 00:01:00,340
+A provider helps TerraForm manage third party platforms through their API.
+
+14
+00:01:01,600 --> 00:01:06,340
+Providers enabled TerraForm managed cloud platforms like AWS, GCP or Azure.
+
+15
+00:01:06,370 --> 00:01:13,720
+As we have just seen, as well as network infrastructure like big IP, Cloudflare DNS, Palo Alto Networks
+
+16
+00:01:13,720 --> 00:01:21,370
+and info blocks, as well as monitoring and data management tools like Datadog or Xero, Wavefront and
+
+17
+00:01:21,370 --> 00:01:29,500
+Sumo Logic databases like Influx, DB, MongoDB, my SQL, PostgreSQL and version control systems like
+
+18
+00:01:29,500 --> 00:01:31,540
+GitHub, Bitbucket or GitLab.
+
+19
+00:01:32,420 --> 00:01:38,150
+TerraForm supports hundreds of such providers and as a result can work with almost every infrastructure
+
+20
+00:01:38,150 --> 00:01:38,900
+platform.
+
+21
+00:01:40,090 --> 00:01:45,940
+TerraForm uses SQL, which stands for Hashicorp Configuration Language, which is a simple declarative
+
+22
+00:01:45,940 --> 00:01:50,530
+language to define the infrastructure resources to be provisioned as blocks of code.
+
+23
+00:01:51,690 --> 00:01:57,630
+All infrastructure resources can be defined within configuration files that has a dot DF file extension.
+
+24
+00:01:58,460 --> 00:02:03,140
+The configuration syntax is easy to read and write and pick up for a beginner.
+
+25
+00:02:03,930 --> 00:02:09,150
+The sample code is used to provision a new EQ to instance on the cloud.
+
+26
+00:02:10,100 --> 00:02:15,380
+This code is declarative and can be maintained in a version control system, allowing it to be distributed
+
+27
+00:02:15,380 --> 00:02:16,400
+to other teams.
+
+28
+00:02:17,890 --> 00:02:21,910
+We cover the syntax in more detail later in this course.
+
+29
+00:02:22,000 --> 00:02:27,670
+We also have lots of hands on labs where you will be practicing working with these files and gain a
+
+30
+00:02:27,670 --> 00:02:29,890
+lot of experience by the end of this course.
+
+31
+00:02:31,480 --> 00:02:33,880
+So we said that the code is declarative.
+
+32
+00:02:33,880 --> 00:02:36,160
+But what does declarative mean?
+
+33
+00:02:37,320 --> 00:02:41,460
+The code we define is the state that we want our infrastructure to be in.
+
+34
+00:02:41,880 --> 00:02:43,500
+That's the desired state.
+
+35
+00:02:44,410 --> 00:02:47,950
+And this on the right is the current state where there's nothing.
+
+36
+00:02:48,880 --> 00:02:53,860
+TerraForm will take care of what is required to go from the current state to the desired state without
+
+37
+00:02:53,860 --> 00:02:56,110
+us having to worry about how to get there.
+
+38
+00:02:56,590 --> 00:02:58,570
+So how does TerraForm do that?
+
+39
+00:02:59,670 --> 00:03:05,090
+Perform works in three phases in IT plan and apply during the init phase.
+
+40
+00:03:05,120 --> 00:03:10,430
+TerraForm initializes the project and identifies the providers to be used for the target environment.
+
+41
+00:03:11,060 --> 00:03:17,250
+During the plan phase TerraForm drafts a plan to get to the target state and then in the upload phase.
+
+42
+00:03:17,270 --> 00:03:21,890
+TerraForm makes the necessary changes required on the target environment to bring it to the desired
+
+43
+00:03:21,890 --> 00:03:22,460
+state.
+
+44
+00:03:23,720 --> 00:03:28,970
+If for some reason the environment was to shift from the desired state, then a subsequent TerraForm
+
+45
+00:03:28,970 --> 00:03:33,590
+apply will bring it back to the desired state by only fixing the missing component.
+
+46
+00:03:35,250 --> 00:03:38,700
+Every object data for manages is called a resource.
+
+47
+00:03:39,300 --> 00:03:45,480
+A resource can be a compute instance, a database server in the cloud or on a physical server on premise
+
+48
+00:03:45,480 --> 00:03:46,800
+that therefore manages.
+
+49
+00:03:48,220 --> 00:03:53,920
+Therefore manages the lifecycle of resources from its provisioning to configuration to decommissioning.
+
+50
+00:03:55,160 --> 00:03:59,240
+TerraForm records the state of the infrastructure as it is seen in the real world.
+
+51
+00:03:59,240 --> 00:04:05,270
+And based on this, it can determine what actions to take when updating resources for a particular platform.
+
+52
+00:04:06,270 --> 00:04:11,400
+TerraForm can ensure that the entire infrastructure is always in the defined state at all times.
+
+53
+00:04:12,640 --> 00:04:16,300
+The state is a blueprint of the infrastructure deployed by TerraForm.
+
+54
+00:04:17,740 --> 00:04:22,990
+TerraForm can read attributes of existing infrastructure components by configuring data sources.
+
+55
+00:04:23,230 --> 00:04:27,100
+This can lead to be used for configuring other resources within TerraForm.
+
+56
+00:04:28,650 --> 00:04:34,410
+TerraForm can also import other resources outside of TerraForm that were either created manually or
+
+57
+00:04:34,410 --> 00:04:40,230
+by the means of other ESI tools and bring it under its control so that it can manage those resources
+
+58
+00:04:40,230 --> 00:04:41,040
+going forward.
+
+59
+00:04:42,560 --> 00:04:47,960
+Perform cloud entry form enterprise provide additional features that allow simplified collaboration
+
+60
+00:04:47,960 --> 00:04:54,050
+between teams, managing infrastructure, improved security and a centralized UI to manage TerraForm
+
+61
+00:04:54,050 --> 00:04:54,920
+deployments.
+
+62
+00:04:55,900 --> 00:05:00,850
+All these features make TerraForm an excellent enterprise grade infrastructure provisioning tool.
+
+63
+00:05:01,910 --> 00:05:05,270
+Well, that was a quick introduction to TerraForm at a high level.
+
+64
+00:05:05,870 --> 00:05:10,640
+So let's dive in and explore all of these in much more detail in the upcoming lectures.
+

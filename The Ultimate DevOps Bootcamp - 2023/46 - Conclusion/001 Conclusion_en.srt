@@ -1,0 +1,56 @@
+1
+00:00:00,480 --> 00:00:03,719
+Congratulations on making it through to the end of this course.
+
+2
+00:00:03,750 --> 00:00:09,330
+It takes a lot of great and perseverance to finish something you started, and I admire you for the
+
+3
+00:00:09,330 --> 00:00:09,810
+same.
+
+4
+00:00:10,080 --> 00:00:15,330
+I hope you enjoyed your journey through this course and gain some valuable knowledge if you did.
+
+5
+00:00:15,360 --> 00:00:16,650
+Don't forget to let us know.
+
+6
+00:00:16,650 --> 00:00:22,320
+And don't forget to share it in your community to continue your learning journey.
+
+7
+00:00:22,350 --> 00:00:23,730
+Head over to Code Cloud.
+
+8
+00:00:23,730 --> 00:00:29,730
+At Code Cloud, our mission is to elevate the learning experience of our users and take tech education
+
+9
+00:00:29,730 --> 00:00:30,660
+to the next level.
+
+10
+00:00:30,660 --> 00:00:33,710
+Using our interactive and hands on approach to learning.
+
+11
+00:00:33,720 --> 00:00:39,330
+We have over 30 courses apart from those that are available here on Udemy, and you can gain instant
+
+12
+00:00:39,330 --> 00:00:43,500
+access to cloud playgrounds for AWS, GCP and Azure.
+
+13
+00:00:44,880 --> 00:00:50,160
+Well, thank you so much for listening to us for the past few hours, days or even months.
+
+14
+00:00:50,460 --> 00:00:52,380
+And I'll see you on the other side.
+

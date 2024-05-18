@@ -1,0 +1,84 @@
+1
+00:00:02,160 --> 00:00:08,280
+You know, when you're logging into, I don't know, some site maybe it has a little bit of so so you
+
+2
+00:00:08,280 --> 00:00:14,970
+can connect and log in via like your Gmail or your GitHub or another type of email service, something
+
+3
+00:00:14,970 --> 00:00:15,750
+like that.
+
+4
+00:00:15,780 --> 00:00:17,580
+Well, that's a connection.
+
+5
+00:00:17,580 --> 00:00:25,380
+It allows you to connect from one service to another or it allows you to connect with one service to
+
+6
+00:00:25,380 --> 00:00:26,120
+another.
+
+7
+00:00:26,130 --> 00:00:28,560
+And that's essentially what plugins are.
+
+8
+00:00:28,560 --> 00:00:31,500
+Plugins allow you to connect to other services.
+
+9
+00:00:31,500 --> 00:00:37,230
+So for example, let's say you want to connect to Azure from Jenkins.
+
+10
+00:00:37,230 --> 00:00:42,720
+Well, you would download an Azure plug in, you would have it in your pipeline and then that would
+
+11
+00:00:42,720 --> 00:00:49,530
+be able to allow you to connect to Azure at a programmatic level and it allows you to ultimately easily
+
+12
+00:00:49,530 --> 00:00:51,180
+work with other products.
+
+13
+00:00:51,180 --> 00:00:57,960
+So for example, let's say you want to use Jenkins for the build process and you want to use, I don't
+
+14
+00:00:57,960 --> 00:01:02,760
+know, GitHub actions or another pipeline tool for the deployment.
+
+15
+00:01:02,760 --> 00:01:03,960
+You could absolutely do that.
+
+16
+00:01:03,960 --> 00:01:08,520
+You can do the builds via Jenkins and then send those builds to GitHub actions.
+
+17
+00:01:08,700 --> 00:01:13,920
+So in this section we're going to talk all about plugins, how to search for plugins, how to install
+
+18
+00:01:13,920 --> 00:01:17,400
+plugins in Jenkins, how to do everything plugin related.
+
+19
+00:01:17,400 --> 00:01:19,650
+So with that, let's go ahead and jump right in.
+
+20
+00:01:20,790 --> 00:01:22,940
+Well, that's it for this lecture.
+
+21
+00:01:22,950 --> 00:01:24,390
+We'll see you in the next.
+

@@ -1,0 +1,324 @@
+1
+00:00:07,950 --> 00:00:14,460
+Before we jump into Jenkins, let's go ahead and take a look at what we ultimately need to do to get
+
+2
+00:00:14,460 --> 00:00:16,740
+this application actually up and running.
+
+3
+00:00:16,740 --> 00:00:19,940
+And I'm on my local host here and you could literally do the same thing.
+
+4
+00:00:19,950 --> 00:00:26,030
+Just go to my GitHub, pull down the Go Web app sample repo and you could follow along here.
+
+5
+00:00:26,040 --> 00:00:30,660
+So the first thing that I'm going to do is I'm going to do go run, main dot, go.
+
+6
+00:00:30,660 --> 00:00:36,950
+And the reason why is because our main go configuration is right here in our root directory.
+
+7
+00:00:36,960 --> 00:00:41,790
+So when I run that the application is running successfully as we can see.
+
+8
+00:00:42,120 --> 00:00:47,970
+Now let me just head over to my web browser really quick and we can see that the app is up on 8080.
+
+9
+00:00:48,670 --> 00:00:50,690
+So I'm going to go and I'm going to log in here.
+
+10
+00:00:50,710 --> 00:00:51,790
+Test.
+
+11
+00:00:51,820 --> 00:00:52,840
+Test.
+
+12
+00:00:53,770 --> 00:00:57,280
+And we can see that I am officially logged into the application.
+
+13
+00:00:57,280 --> 00:01:02,740
+Now, something else that we could do here is I do slash API slash books.
+
+14
+00:01:02,980 --> 00:01:08,440
+We can see here that we get a little bit of some information back here regarding books.
+
+15
+00:01:08,530 --> 00:01:13,640
+We could also do slash API slash log in status.
+
+16
+00:01:13,660 --> 00:01:15,160
+As we can see, we're logged in.
+
+17
+00:01:15,160 --> 00:01:18,310
+So point being we can see if the application is up and running.
+
+18
+00:01:18,310 --> 00:01:19,860
+Let's head back over to VS code.
+
+19
+00:01:19,870 --> 00:01:24,700
+Now within VS code we can see here that we were hitting our application, we can see the output on the
+
+20
+00:01:24,700 --> 00:01:25,450
+terminal.
+
+21
+00:01:25,570 --> 00:01:32,680
+But what if we don't want to literally go through each API and hit the application?
+
+22
+00:01:32,680 --> 00:01:34,900
+That's pretty manual.
+
+23
+00:01:34,900 --> 00:01:36,370
+Well, we could run our tests.
+
+24
+00:01:36,370 --> 00:01:41,770
+So if I go into my controller directory here, for example, we can see that I have a bunch of tests
+
+25
+00:01:41,770 --> 00:01:42,340
+in here.
+
+26
+00:01:42,580 --> 00:01:47,200
+So I'm just going to go ahead and I'm going to open up another terminal right in vs code.
+
+27
+00:01:47,200 --> 00:01:51,870
+If you want to do that, you can just click the plus button and then open up a new terminal here.
+
+28
+00:01:51,880 --> 00:01:56,200
+Now what I'm going to do is I'm going to run, go test minus V dot.
+
+29
+00:01:56,200 --> 00:02:00,880
+What that means is run every single test inside of the controller directory.
+
+30
+00:02:02,550 --> 00:02:06,230
+And as we can see, all of our tests did pass successfully.
+
+31
+00:02:06,240 --> 00:02:13,470
+We got the pass at the end and the OC at the end and we got the 200 for the API call for all of our
+
+32
+00:02:13,470 --> 00:02:16,430
+get APIs, which is great.
+
+33
+00:02:16,440 --> 00:02:19,830
+But here's, here's the problem.
+
+34
+00:02:20,850 --> 00:02:25,560
+As you're kind of going through this and as you're kind of setting this up like this is a lot of manual
+
+35
+00:02:25,560 --> 00:02:25,890
+effort.
+
+36
+00:02:25,890 --> 00:02:31,290
+Imagine if you have to go in as a DevOps engineer, go through each directory and run your tests and
+
+37
+00:02:31,290 --> 00:02:33,060
+then confirm that your tests are good.
+
+38
+00:02:33,060 --> 00:02:37,950
+And to even be able to run the test, the application needs to be running.
+
+39
+00:02:37,950 --> 00:02:42,960
+So you have to also get the application up and running and then to confirm that the application is up
+
+40
+00:02:42,960 --> 00:02:47,520
+and running, you have to open up a web browser, you have to go in, you have to confirm that the APIs
+
+41
+00:02:47,520 --> 00:02:48,560
+are able to be hit.
+
+42
+00:02:48,570 --> 00:02:51,350
+There's a lot of manual effort here that goes into this.
+
+43
+00:02:51,360 --> 00:02:56,430
+Now, let's not forget, you can only do this with the application state as it is right now.
+
+44
+00:02:56,430 --> 00:02:59,460
+Let's say you do all of this testing and you're like, Yep, we're good to go here.
+
+45
+00:02:59,460 --> 00:03:01,350
+I tested it manually locally.
+
+46
+00:03:01,350 --> 00:03:02,850
+Well, you know what?
+
+47
+00:03:02,850 --> 00:03:05,340
+What if five changes happen in a day?
+
+48
+00:03:05,340 --> 00:03:07,020
+What if ten changes happen in a day?
+
+49
+00:03:07,050 --> 00:03:09,210
+What if they're the littlest changes?
+
+50
+00:03:09,660 --> 00:03:12,300
+A variable name, a function name?
+
+51
+00:03:12,300 --> 00:03:14,310
+It could be a super small change.
+
+52
+00:03:14,310 --> 00:03:18,500
+And yet you still have to go in and manually test it.
+
+53
+00:03:18,510 --> 00:03:22,590
+Now think about how many fires that you're going to have to put out to just do this.
+
+54
+00:03:22,590 --> 00:03:25,980
+You're going to have to stop everything that you're doing, any value driven work, and you're just
+
+55
+00:03:25,980 --> 00:03:29,460
+going to have to jump right in here and do all the tests manually.
+
+56
+00:03:29,460 --> 00:03:34,230
+But let's say you had your PSI solution set up in Jenkins Well, guess what?
+
+57
+00:03:34,230 --> 00:03:37,620
+You could actually run this command here.
+
+58
+00:03:37,620 --> 00:03:40,080
+This let me just up here, right here.
+
+59
+00:03:40,080 --> 00:03:40,740
+There you go.
+
+60
+00:03:40,740 --> 00:03:42,690
+Go test minus V dot.
+
+61
+00:03:42,690 --> 00:03:50,190
+You could run that command inside of your Jenkins CI pipeline because as we're going to learn inside
+
+62
+00:03:50,190 --> 00:03:54,210
+of a CI pipeline, that's where you do all of your tests, like your unit test and your integration
+
+63
+00:03:54,210 --> 00:03:54,930
+test, mock test.
+
+64
+00:03:54,930 --> 00:03:57,900
+ET cetera, etc., which is what these tests are.
+
+65
+00:03:57,900 --> 00:04:04,260
+So you would actually do all of this automatically inside of your CI pipeline versus you having to,
+
+66
+00:04:04,260 --> 00:04:10,320
+again, go spin up the application, spin up another terminal, get the test stub, go into the right
+
+67
+00:04:10,320 --> 00:04:13,320
+directory, run the test, confirm that they're all good.
+
+68
+00:04:13,320 --> 00:04:13,710
+No.
+
+69
+00:04:13,710 --> 00:04:17,010
+Instead of doing that, you could just set it all up in your CI pipeline.
+
+70
+00:04:17,010 --> 00:04:19,290
+Now, really quick, something that I did want to show.
+
+71
+00:04:19,290 --> 00:04:21,959
+Let's just head back over to the web browser really quick.
+
+72
+00:04:21,959 --> 00:04:24,060
+There is this Swagger API.
+
+73
+00:04:24,060 --> 00:04:29,040
+So all of these APIs that are set up on this web sample application, there's a Swagger API.
+
+74
+00:04:29,040 --> 00:04:32,100
+So let's say you wanted to do.
+
+75
+00:04:34,630 --> 00:04:39,310
+Slash swagger slash index dot HTML.
+
+76
+00:04:40,680 --> 00:04:42,810
+You can see every single API.
+
+77
+00:04:42,840 --> 00:04:46,440
+So this is actually really, really cool if you want to get a visual of what's happening inside of the
+
+78
+00:04:46,440 --> 00:04:47,460
+application.
+
+79
+00:04:48,420 --> 00:04:49,260
+All right, everybody.
+
+80
+00:04:49,260 --> 00:04:50,690
+That's it for this lecture.
+
+81
+00:04:50,700 --> 00:04:54,000
+Head over to the labs and start practicing what you've just learned.
+

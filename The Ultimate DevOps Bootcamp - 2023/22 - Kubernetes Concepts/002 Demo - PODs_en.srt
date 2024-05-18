@@ -1,0 +1,212 @@
+1
+00:00:00,180 --> 00:00:04,530
+In this demo, we're going to deploy a pod in our mini cube cluster.
+
+2
+00:00:04,740 --> 00:00:09,530
+As we discussed, a pod is the most basic and the smallest unit in Kubernetes.
+
+3
+00:00:09,540 --> 00:00:14,910
+So we will use the cube kernel command line utility to interact with the Kubernetes cluster.
+
+4
+00:00:15,300 --> 00:00:20,700
+Now, if you followed our demo earlier of deploying a cluster using mini cube, then you already have
+
+5
+00:00:20,700 --> 00:00:25,080
+the cube command line utility configured to work with the cluster.
+
+6
+00:00:25,170 --> 00:00:31,740
+We will run the command cube model, run Engine X, which is the name of the pod dash.
+
+7
+00:00:31,740 --> 00:00:35,640
+Dash image equals to engine X.
+
+8
+00:00:36,240 --> 00:00:40,590
+Now here is where we specify the docker image to be used.
+
+9
+00:00:40,920 --> 00:00:47,760
+While the pod name could be anything, the image name has to be the name of an image available at Docker
+
+10
+00:00:47,760 --> 00:00:50,970
+Hub or any other container registry.
+
+11
+00:00:51,150 --> 00:00:59,220
+You can additionally specify a tag for the image name or a different address to an image hosted on another
+
+12
+00:00:59,220 --> 00:01:00,150
+registry.
+
+13
+00:01:00,150 --> 00:01:06,120
+If the image is hosted in a place that's other than Docker Hub.
+
+14
+00:01:07,200 --> 00:01:14,640
+So once we run this command, we see a pod by the name and Genex has been created and you can check
+
+15
+00:01:14,640 --> 00:01:17,760
+the status using the cube Cardinal get Pods command.
+
+16
+00:01:18,000 --> 00:01:24,150
+Now here you can see the column name which is Engine X, The status is running and we see that there
+
+17
+00:01:24,150 --> 00:01:28,530
+is a ready column which shows the number of containers in a ready state.
+
+18
+00:01:28,740 --> 00:01:32,370
+We also see if the container has restarted since it was created.
+
+19
+00:01:32,370 --> 00:01:34,830
+And how long has the pod been running?
+
+20
+00:01:34,920 --> 00:01:42,150
+We can get more information related to the pod by running the cube cattle describe pod in Genex command,
+
+21
+00:01:42,690 --> 00:01:48,180
+and you'll notice that this provides a lot more information as compared to the get command.
+
+22
+00:01:48,180 --> 00:01:51,720
+So, for example, the name of the pod is in X.
+
+23
+00:01:51,840 --> 00:01:55,590
+It shows any labels that has been assigned to this pod.
+
+24
+00:01:55,590 --> 00:02:01,680
+So this was created by default when we ran the run command.
+
+25
+00:02:01,680 --> 00:02:08,310
+It shows when it was started, it shows the node that is that it is assigned to along with the IP address
+
+26
+00:02:08,310 --> 00:02:09,150
+of the node.
+
+27
+00:02:09,240 --> 00:02:14,430
+So in this case we just have a single node cluster set up using mini cube and the node name is Mini
+
+28
+00:02:14,430 --> 00:02:18,000
+Cube and that is the IP address of this worker node.
+
+29
+00:02:18,330 --> 00:02:21,990
+Secondly, it also shows the IP address of the port itself.
+
+30
+00:02:21,990 --> 00:02:28,350
+So in this case the pod is assigned an IP of one 72.16 .0.3.
+
+31
+00:02:28,800 --> 00:02:33,750
+We'll cover more about the IP addresses of the pod later in the networking section.
+
+32
+00:02:34,230 --> 00:02:39,720
+Now moving on, we can see that it displays information related to the container so we know that there
+
+33
+00:02:39,720 --> 00:02:43,110
+is a single container which uses the image engine X.
+
+34
+00:02:43,350 --> 00:02:47,250
+If there were multiple containers, we would list them here.
+
+35
+00:02:47,610 --> 00:02:53,940
+I'll explain about creating a pod with multiple containers in the upcoming lectures, but here we can
+
+36
+00:02:53,940 --> 00:02:59,100
+also see that the engine X image was pulled from Docker Hub.
+
+37
+00:02:59,990 --> 00:03:05,220
+And if you scroll all the way to the bottom, you'll see additional information called events.
+
+38
+00:03:05,240 --> 00:03:10,220
+And here you see the list of events that occurred since the pod was created.
+
+39
+00:03:11,120 --> 00:03:13,860
+It went through multiple stages before it started.
+
+40
+00:03:13,880 --> 00:03:17,660
+We can see that the pod was assigned to the mini cube node.
+
+41
+00:03:17,780 --> 00:03:24,710
+If there were multiple nodes, you would see which node the pod was assigned to here, and then it entered
+
+42
+00:03:24,710 --> 00:03:30,560
+the pulling phase where the engine X image was pulled down from Docker Hub successfully.
+
+43
+00:03:30,710 --> 00:03:35,450
+And then the container called Engine X was created and started.
+
+44
+00:03:35,840 --> 00:03:42,560
+Now there is one other command that we can use to check the status of the pod, and that is the same
+
+45
+00:03:42,560 --> 00:03:43,470
+command as before.
+
+46
+00:03:43,490 --> 00:03:47,870
+The cube car will get pod command but with the dash wide option.
+
+47
+00:03:48,050 --> 00:03:53,990
+And this provides additional information such as the node where the pod is running and the IP address
+
+48
+00:03:53,990 --> 00:03:55,360
+of the pod as well.
+
+49
+00:03:55,370 --> 00:03:59,390
+So this is the internal IP address of the pod itself.
+
+50
+00:03:59,390 --> 00:04:04,700
+So each pod gets an internal IP of its own within the within the Kubernetes cluster.
+
+51
+00:04:05,540 --> 00:04:06,950
+But more on that later.
+
+52
+00:04:07,160 --> 00:04:12,860
+That was a quick demonstration on how to run a pod in mini cube environment.
+
+53
+00:04:13,370 --> 00:04:19,459
+In the upcoming videos, we will see how to create a pod using a YAML definition file.
+

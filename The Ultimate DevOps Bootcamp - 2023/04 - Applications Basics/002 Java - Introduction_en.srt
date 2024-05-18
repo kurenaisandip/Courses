@@ -1,0 +1,260 @@
+1
+00:00:00,150 --> 00:00:03,330
+In this section, we will look into the basics of Java.
+
+2
+00:00:04,080 --> 00:00:10,170
+Java, as you know, has been one of the most popular programming languages widely used for building
+
+3
+00:00:10,350 --> 00:00:13,200
+desktop, mobile and web applications.
+
+4
+00:00:13,230 --> 00:00:17,770
+It is free and open source and has a huge community following and support.
+
+5
+00:00:17,790 --> 00:00:24,810
+The latest version of Java as of this recording is version 13, and these are some of the previous versions
+
+6
+00:00:24,810 --> 00:00:26,310
+and the year they came out.
+
+7
+00:00:26,820 --> 00:00:33,090
+In your work environment, you might find a lot of applications dependent on different versions of Java,
+
+8
+00:00:33,090 --> 00:00:37,920
+and it's not unlikely to see a lot of organizations stuck at version eight.
+
+9
+00:00:38,310 --> 00:00:45,150
+Version nine introduced changes that made many popular tools and libraries incompatible at the time
+
+10
+00:00:45,150 --> 00:00:49,320
+of the release, which prevented many companies from upgrading their infrastructure.
+
+11
+00:00:49,620 --> 00:00:55,770
+So these, along with some of the changes in licensing terms, resulted in many applications being stuck
+
+12
+00:00:55,770 --> 00:00:57,870
+at version eight of Java.
+
+13
+00:00:59,060 --> 00:01:05,060
+You may download and install Java on your platform from the Oracle website on Linux machines like Central
+
+14
+00:01:05,060 --> 00:01:06,980
+West, which we will be using in our lab.
+
+15
+00:01:07,010 --> 00:01:14,600
+Download the Java build and using a utility like we get and extract it to a directory.
+
+16
+00:01:15,330 --> 00:01:20,340
+The bin directory within the extracted folder has all the java binary files.
+
+17
+00:01:20,910 --> 00:01:25,080
+To check if java is installed on a machine or to check the version of Java.
+
+18
+00:01:25,110 --> 00:01:29,370
+Run the Java command with the version option.
+
+19
+00:01:29,790 --> 00:01:33,810
+As you can see, the current version is 13 .0.2.
+
+20
+00:01:34,690 --> 00:01:41,890
+Now, it's important to note that older versions of Java before version eight also referred to the version
+
+21
+00:01:41,890 --> 00:01:45,220
+numbers as 1.8 instead of just eight.
+
+22
+00:01:45,340 --> 00:01:49,840
+So that was the original version naming scheme in the past.
+
+23
+00:01:49,990 --> 00:01:52,150
+So this changed with version nine.
+
+24
+00:01:52,150 --> 00:01:58,190
+So don't get confused with the two types of version names up until version eight.
+
+25
+00:01:58,210 --> 00:02:02,140
+It was known as 1.5, 1.6, 1.7 and 1.8.
+
+26
+00:02:02,140 --> 00:02:06,760
+But from version nine onwards it changed to nine, ten, 11, 12, 13, etc..
+
+27
+00:02:07,150 --> 00:02:07,870
+Now.
+
+28
+00:02:08,630 --> 00:02:15,020
+We thought we were talking about Java, but what's all the JDK that we see here?
+
+29
+00:02:15,050 --> 00:02:17,870
+So the release page says JDK availability.
+
+30
+00:02:17,870 --> 00:02:20,570
+The downloaded files are named JDK.
+
+31
+00:02:21,050 --> 00:02:22,670
+The version says Open JDK.
+
+32
+00:02:22,670 --> 00:02:24,920
+So what's what's a JDK?
+
+33
+00:02:25,490 --> 00:02:29,030
+JDK stands for Java Development Kit.
+
+34
+00:02:29,060 --> 00:02:35,480
+It is a set of tools that will help you develop, build and run Java applications on a system.
+
+35
+00:02:35,480 --> 00:02:38,090
+So you don't really install just Java.
+
+36
+00:02:38,120 --> 00:02:44,930
+You install a kit or a set of tools that helps to all three to develop a Java application.
+
+37
+00:02:44,930 --> 00:02:51,650
+You can really just use any text editor to write the code, but once you do to debug your application,
+
+38
+00:02:51,650 --> 00:02:57,470
+you have the Java debugger tool to document your application source code.
+
+39
+00:02:57,470 --> 00:03:00,000
+You have the Java doc tool.
+
+40
+00:03:00,020 --> 00:03:06,230
+Once the source code is developed to build and compile your application, you have the Java Sea tool
+
+41
+00:03:06,230 --> 00:03:12,410
+and the JAR Tool helps archive the code and related libraries into a single jar file.
+
+42
+00:03:13,440 --> 00:03:20,280
+Now we will talk more about how this build process works and see it in action in the upcoming lectures.
+
+43
+00:03:21,000 --> 00:03:25,980
+Once built to run the Java application, you need the Java runtime environment.
+
+44
+00:03:26,490 --> 00:03:32,070
+A Java runtime environment is needed to run a Java application on any given system.
+
+45
+00:03:32,100 --> 00:03:39,970
+In fact, that's the only component you need to simply run a build Java application on any system.
+
+46
+00:03:39,990 --> 00:03:47,460
+And of course, you also need the Java command line utility or the loader that is used to run the application.
+
+47
+00:03:48,030 --> 00:03:53,910
+So all of these and many other tools together form the Java development kit.
+
+48
+00:03:54,120 --> 00:03:58,110
+So these tools are commands available in the bin directory.
+
+49
+00:03:58,560 --> 00:04:07,020
+When you install Java and what we have listed here are just a few of the many tools included within
+
+50
+00:04:07,020 --> 00:04:08,040
+the JDK.
+
+51
+00:04:09,480 --> 00:04:15,540
+It's important to note that in the past, before version nine of Java, JDK and Java were shipped as
+
+52
+00:04:15,540 --> 00:04:16,709
+separate components.
+
+53
+00:04:16,920 --> 00:04:20,459
+So back then you could install these components individually.
+
+54
+00:04:20,459 --> 00:04:26,850
+And so if you were not really developing a Java application and just wanted to run an existing, fully
+
+55
+00:04:26,850 --> 00:04:33,000
+built application, you could simply just install the Java runtime environment alone and run the application.
+
+56
+00:04:33,690 --> 00:04:37,680
+You would see separate directories of installation for each of these.
+
+57
+00:04:37,860 --> 00:04:45,600
+From version nine onwards, both JDK and GRC are packaged together into a single Java development kit
+
+58
+00:04:45,600 --> 00:04:46,260
+package.
+
+59
+00:04:46,260 --> 00:04:52,530
+So when you install JDK, you will install all tools as well as the Java runtime environment.
+
+60
+00:04:53,240 --> 00:04:57,950
+Well, we will now head over to the labs and our practice working with.
+
+61
+00:04:58,810 --> 00:04:59,290
+Java.
+
+62
+00:04:59,290 --> 00:05:04,220
+So you'll basically be having multiple systems and you'll install Java.
+
+63
+00:05:04,240 --> 00:05:06,920
+You'll explore the different versions of Java.
+
+64
+00:05:06,940 --> 00:05:08,860
+You'll run basic Java programs.
+
+65
+00:05:09,040 --> 00:05:13,480
+And in the next lecture, we'll continue with builds in Java.
+

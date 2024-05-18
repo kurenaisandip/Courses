@@ -1,0 +1,248 @@
+1
+00:00:08,450 --> 00:00:09,350
+All right, everybody.
+
+2
+00:00:09,350 --> 00:00:14,140
+Now that we know how to build a sample pipeline, we know all of the options available.
+
+3
+00:00:14,150 --> 00:00:20,270
+Let's actually dive in and build our code and test it for the first time.
+
+4
+00:00:20,690 --> 00:00:25,520
+So the first thing that we're going to do is we're going to go to manage Jenkins.
+
+5
+00:00:26,680 --> 00:00:29,070
+And then I'm going to go to manage plugins.
+
+6
+00:00:29,080 --> 00:00:34,510
+Now, I actually already have this plugin installed, but you will need to go ahead and you will need
+
+7
+00:00:34,510 --> 00:00:36,250
+to install it yourself.
+
+8
+00:00:36,430 --> 00:00:39,610
+So search for go.
+
+9
+00:00:41,190 --> 00:00:47,100
+And as you can see, I have this go plug in here, but you can just go to available search for go and
+
+10
+00:00:47,100 --> 00:00:48,150
+you should see a pop up.
+
+11
+00:00:48,150 --> 00:00:51,530
+You're just not seeing it here because I already have it installed.
+
+12
+00:00:51,540 --> 00:00:56,790
+Now, once you have that, you're going to have to restart Jenkins.
+
+13
+00:00:56,790 --> 00:01:00,950
+So go ahead, restart Jenkins and then come on back.
+
+14
+00:01:00,960 --> 00:01:01,350
+All right.
+
+15
+00:01:01,350 --> 00:01:05,700
+Now, once you're back, let's go ahead and start configuring our pipeline.
+
+16
+00:01:05,910 --> 00:01:10,680
+So first things first, we're going to type pipeline and we're going to go in and we're going to use
+
+17
+00:01:10,680 --> 00:01:11,790
+our brackets here.
+
+18
+00:01:12,440 --> 00:01:17,480
+Now we're going to use Agent Annie because we haven't set up our new build agent yet, which is again,
+
+19
+00:01:17,480 --> 00:01:18,530
+is perfectly fine.
+
+20
+00:01:18,530 --> 00:01:20,480
+We will get there, I promise.
+
+21
+00:01:20,840 --> 00:01:28,340
+And then we're going to type tools, new opening, closing bracket, and then we're going to type go
+
+22
+00:01:28,340 --> 00:01:34,450
+for go line, and then we'll do go hyphen 1.17.
+
+23
+00:01:34,460 --> 00:01:41,420
+Now, this is the latest in terms of when I'm recording this course right here, but it may be different
+
+24
+00:01:41,420 --> 00:01:41,990
+for you.
+
+25
+00:01:41,990 --> 00:01:45,590
+If you have a newer version, feel free to pop that one in.
+
+26
+00:01:46,790 --> 00:01:47,010
+Okay.
+
+27
+00:01:47,210 --> 00:01:50,360
+Next, what we're going to do is we're going to set up our environment.
+
+28
+00:01:50,450 --> 00:01:52,790
+So we're going to type environment.
+
+29
+00:01:53,600 --> 00:01:59,360
+Now we're going to type go 111 module equals on.
+
+30
+00:01:59,360 --> 00:02:05,780
+Now, if you're not familiar with this, essentially what this means is you can install the latest version
+
+31
+00:02:05,780 --> 00:02:08,660
+of some code base from, say, GitHub, for example.
+
+32
+00:02:10,320 --> 00:02:10,650
+Okay.
+
+33
+00:02:10,650 --> 00:02:13,560
+Now, next, we're going to set up our stages.
+
+34
+00:02:13,770 --> 00:02:17,090
+So let's go ahead and set up our stages here.
+
+35
+00:02:17,100 --> 00:02:24,390
+We're going to type stage and we're going to type test in here because our first stage will be our tests.
+
+36
+00:02:25,110 --> 00:02:26,310
+And what do I mean by that?
+
+37
+00:02:26,310 --> 00:02:29,040
+What I mean is we're going to be running some unit tests on our code.
+
+38
+00:02:29,610 --> 00:02:32,640
+So I'm going to type in steps.
+
+39
+00:02:33,330 --> 00:02:40,140
+And then our first step is going to be to bring down the code very much like we did right here.
+
+40
+00:02:41,080 --> 00:02:47,890
+We're going to literally paste that same thing in there, and then we're going to run a shell command
+
+41
+00:02:49,000 --> 00:02:53,110
+and we're going to say, Go test, dot, dot, dot, dot.
+
+42
+00:02:53,140 --> 00:02:59,320
+What this means is it looks at the current directory and all of the subdirectories and runs every test
+
+43
+00:02:59,320 --> 00:03:00,280
+that's available.
+
+44
+00:03:00,460 --> 00:03:03,290
+So with that, I'm going to go ahead and copy this.
+
+45
+00:03:03,310 --> 00:03:05,320
+We're going to head back over to Jenkins.
+
+46
+00:03:05,320 --> 00:03:08,800
+And then now let's go to Dashboard new item.
+
+47
+00:03:08,800 --> 00:03:10,840
+We'll call this go three.
+
+48
+00:03:11,200 --> 00:03:14,740
+We'll click on Pipeline, Click select here.
+
+49
+00:03:15,610 --> 00:03:19,720
+And then we'll go ahead, we'll scroll down to Pipeline and we'll pop our pipeline in.
+
+50
+00:03:19,870 --> 00:03:23,980
+So again, what this is doing is it's using GO version 1.17.
+
+51
+00:03:23,980 --> 00:03:27,160
+We're ensuring that the go 111 module is on.
+
+52
+00:03:27,160 --> 00:03:31,830
+We are setting up a one stage for running our unit test.
+
+53
+00:03:31,840 --> 00:03:34,630
+So let's go ahead and let's save that.
+
+54
+00:03:35,020 --> 00:03:36,610
+Let's click build now.
+
+55
+00:03:37,330 --> 00:03:40,960
+And hopefully our code will build successfully.
+
+56
+00:03:42,810 --> 00:03:43,140
+Okay.
+
+57
+00:03:43,320 --> 00:03:47,260
+And as we can see, our code finish testing successfully.
+
+58
+00:03:47,280 --> 00:03:49,880
+We can go ahead and we can take a look at the logs here.
+
+59
+00:03:49,890 --> 00:03:56,250
+We can see our shell script and we can see that there are no test files in these repositories.
+
+60
+00:03:56,250 --> 00:04:03,540
+But in the controller repository here, we can see that there were tests and they all pass successfully.
+
+61
+00:04:04,770 --> 00:04:06,920
+Well, that's it for this lecture.
+
+62
+00:04:06,930 --> 00:04:08,370
+We'll see you in the next.
+

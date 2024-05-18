@@ -1,0 +1,640 @@
+1
+00:00:00,240 --> 00:00:02,820
+Hello and welcome to this demo on The Solution.
+
+2
+00:00:03,610 --> 00:00:06,730
+Once you click start scenario, you will be in the terminal.
+
+3
+00:00:07,600 --> 00:00:11,560
+The terminal is to a master node in a Kubernetes cluster.
+
+4
+00:00:11,650 --> 00:00:14,920
+At the top you have the link for the quiz portal.
+
+5
+00:00:14,920 --> 00:00:19,030
+So we'll click on the portal link to open up the quiz Portal.
+
+6
+00:00:19,120 --> 00:00:25,090
+And here you have all the questions that you need to solve, all the questions and challenges that that
+
+7
+00:00:25,090 --> 00:00:27,100
+are presented to you.
+
+8
+00:00:28,360 --> 00:00:37,240
+So we have a list of about 12 to 13 questions available and about one hour to solve all the challenges.
+
+9
+00:00:37,240 --> 00:00:41,500
+So we will start with some of the information gathering exercises.
+
+10
+00:00:41,500 --> 00:00:47,650
+So the first question here is how many pods exist on the system in the current default namespace?
+
+11
+00:00:47,650 --> 00:00:53,560
+So I go back to my terminal and I run the cube control, get Pods command, and I see that there are
+
+12
+00:00:53,560 --> 00:00:54,730
+no resources found.
+
+13
+00:00:54,730 --> 00:00:56,110
+So that's zero.
+
+14
+00:00:56,140 --> 00:00:58,060
+So we'll select the answer as zero.
+
+15
+00:00:59,290 --> 00:01:00,370
+So that's correct.
+
+16
+00:01:00,730 --> 00:01:06,130
+In the next question, we are asked to create a new pod with the engine X image.
+
+17
+00:01:06,490 --> 00:01:08,800
+Now we can do that in different ways.
+
+18
+00:01:09,070 --> 00:01:16,840
+You can either create a pod definition file and create a pod with the engine X image, or in this case
+
+19
+00:01:16,840 --> 00:01:23,410
+I'm just going to run the cube control, run command and create a deployment with the engine X image.
+
+20
+00:01:23,620 --> 00:01:25,360
+This in fact creates a deployment.
+
+21
+00:01:25,360 --> 00:01:30,910
+However, the deployment in turn creates a pod with the image engine X.
+
+22
+00:01:31,330 --> 00:01:36,850
+So to answer the question, all you need to do is somehow create an animate pod with the engine and
+
+23
+00:01:36,850 --> 00:01:37,330
+x image.
+
+24
+00:01:37,330 --> 00:01:37,540
+So.
+
+25
+00:01:37,540 --> 00:01:38,410
+That's right.
+
+26
+00:01:39,790 --> 00:01:43,420
+The next question is how many pods exist on the system now?
+
+27
+00:01:43,420 --> 00:01:49,480
+So I'm going to run the cube control, get pods command, and I can see that there is the engine X image
+
+28
+00:01:49,480 --> 00:01:50,430
+that we just created.
+
+29
+00:01:50,440 --> 00:01:56,950
+However, there are also a few other parts that are created as part of this question, so we'll count
+
+30
+00:01:56,950 --> 00:01:57,700
+the number of pods.
+
+31
+00:01:57,700 --> 00:02:00,790
+So that's one, two, three, four, four is the answer.
+
+32
+00:02:01,150 --> 00:02:02,440
+So I'm going to select four.
+
+33
+00:02:02,800 --> 00:02:03,850
+So that's correct.
+
+34
+00:02:04,240 --> 00:02:09,070
+Next, we're asked to find out the image used to create the new pods.
+
+35
+00:02:09,820 --> 00:02:19,120
+So if you go back to the terminal, we will now run the cube control, describe pod command and specify
+
+36
+00:02:19,120 --> 00:02:21,760
+the name of any one of those new pods.
+
+37
+00:02:24,190 --> 00:02:27,070
+And this will give us detailed information about the pod.
+
+38
+00:02:27,070 --> 00:02:33,910
+And under this we can look at the container section and the image that is used is busy box.
+
+39
+00:02:33,910 --> 00:02:36,850
+So PC box is the right answer.
+
+40
+00:02:38,140 --> 00:02:38,800
+Next.
+
+41
+00:02:38,980 --> 00:02:41,470
+Which notes are these parts placed on?
+
+42
+00:02:41,560 --> 00:02:47,400
+So if you go back and run the command cube control, get pods.
+
+43
+00:02:47,410 --> 00:02:52,810
+But with the dash o wide option, it prints some additional columns.
+
+44
+00:02:52,810 --> 00:02:56,410
+And here you can see that all the parts are on Node zero one.
+
+45
+00:02:56,410 --> 00:02:59,080
+So Node one is the answer to that question.
+
+46
+00:03:00,040 --> 00:03:03,550
+Okay, now we're setting up some changes.
+
+47
+00:03:03,550 --> 00:03:08,470
+So a new part is created, which is called this web app Pod, and we're asked to find the number of
+
+48
+00:03:08,470 --> 00:03:10,420
+containers in the Web app pod.
+
+49
+00:03:10,630 --> 00:03:18,310
+So if you look at this output here itself, you see that under the ready column, it says 1/2.
+
+50
+00:03:18,310 --> 00:03:22,720
+And so that two indicates the total number of containers part of that pod.
+
+51
+00:03:23,530 --> 00:03:31,720
+You can also run the cube control, describe pod command and look under the container section and count
+
+52
+00:03:31,720 --> 00:03:32,470
+the number of pods.
+
+53
+00:03:32,470 --> 00:03:34,660
+So we have an X and agent X.
+
+54
+00:03:34,660 --> 00:03:37,170
+So there are two containers part of that pod.
+
+55
+00:03:37,180 --> 00:03:38,710
+So two is the right answer.
+
+56
+00:03:40,600 --> 00:03:43,540
+What images are used in the new Web app iPod.
+
+57
+00:03:44,500 --> 00:03:51,520
+So if you look under the same output, you see that there is Y and X, and there is H and x.
+
+58
+00:03:51,610 --> 00:03:56,650
+So those are the two images used, SGI and X, and Agent X is the right answer.
+
+59
+00:03:58,820 --> 00:03:59,090
+Okay.
+
+60
+00:03:59,120 --> 00:04:03,200
+Now, what is the state of the container Agent X in the pod web app.
+
+61
+00:04:03,320 --> 00:04:09,530
+So if you look at the agent section for Agent X, you see that the state is waiting.
+
+62
+00:04:10,160 --> 00:04:11,660
+So if you go back.
+
+63
+00:04:12,550 --> 00:04:16,240
+It should be one of either error or waiting.
+
+64
+00:04:16,240 --> 00:04:17,589
+So that's the right answer.
+
+65
+00:04:18,579 --> 00:04:24,340
+Now, why do you think the container age index in the pod web app is in the error state or in the waiting
+
+66
+00:04:24,340 --> 00:04:24,970
+state?
+
+67
+00:04:26,050 --> 00:04:30,970
+So if you look at the reason right in the next line, it says image, pull back off.
+
+68
+00:04:31,090 --> 00:04:37,330
+If you're not clear what that means, you can scroll down and look at the under the events section and
+
+69
+00:04:37,330 --> 00:04:43,780
+you see that it says fail to pull image is an X error response from daemon repository, an index not
+
+70
+00:04:43,780 --> 00:04:44,500
+found.
+
+71
+00:04:45,040 --> 00:04:50,860
+What that basically says is that there is no repository in Docker hub called Agent X or there's just
+
+72
+00:04:50,860 --> 00:04:52,870
+no image with the name Agent X.
+
+73
+00:04:52,870 --> 00:04:59,630
+So the right answer is a docker image with this name does not exist on Docker Hub.
+
+74
+00:04:59,650 --> 00:05:00,850
+It should be Docker Hub.
+
+75
+00:05:01,630 --> 00:05:02,920
+It's kind of truncated there.
+
+76
+00:05:02,920 --> 00:05:04,360
+So that's the right answer.
+
+77
+00:05:05,140 --> 00:05:09,820
+So what does the ready column in the output of the Cube control get pod command indicate?
+
+78
+00:05:10,690 --> 00:05:13,240
+So let's run the cube control, get pods command.
+
+79
+00:05:13,570 --> 00:05:20,980
+The ready column has two numbers separated by a slash, so it indicates.
+
+80
+00:05:21,280 --> 00:05:24,910
+The second part indicates the total number of containers in the pod.
+
+81
+00:05:24,910 --> 00:05:30,580
+And the first pod indicates the total number of number of containers that are ready.
+
+82
+00:05:30,580 --> 00:05:36,480
+So it's the containers that are ready and the containers, total number of containers in the pod.
+
+83
+00:05:36,490 --> 00:05:43,570
+So the answer is not the first one, not the second one, but it is the third one running containers
+
+84
+00:05:43,570 --> 00:05:46,720
+in pod and the total containers in pod.
+
+85
+00:05:47,620 --> 00:05:49,960
+Now we are asked to delete the Webmap pod.
+
+86
+00:05:50,320 --> 00:05:55,630
+So if you try to delete it, if you try to check the answer without deleting, it will tell you that
+
+87
+00:05:55,780 --> 00:05:56,530
+it's failed.
+
+88
+00:05:56,530 --> 00:06:02,620
+So just to delete the pod from the cube control delete pod web app command and that should delete the
+
+89
+00:06:02,620 --> 00:06:05,530
+pod when you check again.
+
+90
+00:06:05,680 --> 00:06:06,940
+That is successful.
+
+91
+00:06:07,660 --> 00:06:13,360
+Now we are asked to create a new pod with the name readies and with the image ready is one, two, three.
+
+92
+00:06:13,750 --> 00:06:16,440
+Now you can create a pod using the pod definition file.
+
+93
+00:06:16,450 --> 00:06:22,000
+Now, if you're not sure about the format of the pod definition file, head over to the Kubernetes documentation
+
+94
+00:06:22,000 --> 00:06:22,660
+page.
+
+95
+00:06:22,690 --> 00:06:28,460
+Now, this is one area that you must be you must practice.
+
+96
+00:06:28,480 --> 00:06:35,590
+And browsing through the Kubernetes documentation page, this is especially helpful if you are preparing
+
+97
+00:06:35,590 --> 00:06:37,830
+for the Kubernetes certification exam.
+
+98
+00:06:37,840 --> 00:06:46,840
+So in the Kubernetes certification exam, you are given one tab of your browser to access Kubernetes
+
+99
+00:06:46,840 --> 00:06:47,920
+documentation.
+
+100
+00:06:47,920 --> 00:06:57,880
+So you can only have one tab, and you must walk through that single page at all times to find information.
+
+101
+00:06:58,000 --> 00:07:05,680
+So you should know how to find whatever you're looking for in the you can use the search button, so
+
+102
+00:07:05,680 --> 00:07:07,330
+you should know what to search for.
+
+103
+00:07:07,540 --> 00:07:14,860
+In this case, I'll just search for pods and I'll just select the first result.
+
+104
+00:07:15,370 --> 00:07:21,670
+If I walk through, I do not find a pod definition file, so it should be in the other languages, the
+
+105
+00:07:21,670 --> 00:07:23,260
+pod overview section.
+
+106
+00:07:23,500 --> 00:07:27,340
+And if you look under that, you can find the template.
+
+107
+00:07:27,670 --> 00:07:29,020
+So I'm going to copy that.
+
+108
+00:07:29,440 --> 00:07:34,420
+I don't need the last line because I'm not going to specify a command, so I'm just going to skip that
+
+109
+00:07:34,870 --> 00:07:40,090
+and I'll go back to my terminal and I'm going to create a pod definition file.
+
+110
+00:07:40,090 --> 00:07:49,180
+I'll call it Redis pod Ammo, and I paste the contents here and then I go in and edit the HTML file
+
+111
+00:07:49,180 --> 00:07:49,990
+contents.
+
+112
+00:07:50,320 --> 00:07:55,330
+Now all I need is to two specifications.
+
+113
+00:07:55,330 --> 00:08:00,550
+The name of the pod should be read is, and the image name should be read as one, two, three.
+
+114
+00:08:00,550 --> 00:08:02,710
+So I'm going to update the name to read this.
+
+115
+00:08:03,220 --> 00:08:08,890
+I'm not asked to create any labels, so I'm just going to delete that the container name could be read
+
+116
+00:08:08,890 --> 00:08:13,660
+is it doesn't really matter in this case as it has not been checked.
+
+117
+00:08:13,660 --> 00:08:17,140
+The image should be read is one, two, three.
+
+118
+00:08:17,140 --> 00:08:19,660
+So I'm going to update the image to read this.
+
+119
+00:08:19,930 --> 00:08:21,190
+One, two, three.
+
+120
+00:08:22,960 --> 00:08:23,370
+Okay.
+
+121
+00:08:23,470 --> 00:08:30,670
+So I'm now going to save that file and I will now create the pod using the cube control, Create command.
+
+122
+00:08:31,000 --> 00:08:32,559
+The pod release is created.
+
+123
+00:08:32,600 --> 00:08:34,030
+I'm going to check my work.
+
+124
+00:08:34,690 --> 00:08:36,429
+And it's good.
+
+125
+00:08:37,240 --> 00:08:43,289
+Now, the red is one, two, three was not a good image, as you might have noticed.
+
+126
+00:08:43,299 --> 00:08:45,940
+So the next task is to fix it.
+
+127
+00:08:45,940 --> 00:08:49,930
+So here what we're trying to do is given a pod.
+
+128
+00:08:49,930 --> 00:08:54,910
+Given an existing pod, how do you edit values in it?
+
+129
+00:08:54,910 --> 00:09:02,080
+So in the current pod, we have an incorrect image that's being used, so we're asked to fix it.
+
+130
+00:09:02,080 --> 00:09:03,610
+There are different ways to do it.
+
+131
+00:09:03,610 --> 00:09:11,710
+You can either update the file with the right image name and then use the control applied command,
+
+132
+00:09:11,830 --> 00:09:14,650
+or you could delete the pod and recreate it.
+
+133
+00:09:15,370 --> 00:09:19,390
+Or you could simply use the cube control edit pod command.
+
+134
+00:09:19,390 --> 00:09:20,860
+So we'll we'll do that.
+
+135
+00:09:20,860 --> 00:09:24,070
+Now we'll use the cube control, edit pod, read this command.
+
+136
+00:09:24,160 --> 00:09:27,460
+And what this does is it opens up a.
+
+137
+00:09:28,300 --> 00:09:34,300
+Evi ed instance with the file that has the definition.
+
+138
+00:09:34,300 --> 00:09:36,950
+Now, this is not the file that we created.
+
+139
+00:09:36,970 --> 00:09:44,230
+This is a file that was generated by Kubernetes in the background, and it gives you access.
+
+140
+00:09:44,230 --> 00:09:49,660
+It just gave you access to the port definition file used internally by Kubernetes.
+
+141
+00:09:49,840 --> 00:09:56,470
+And so you can see that there are a lot of additional fields in it, like the create timestamp, resource
+
+142
+00:09:56,470 --> 00:09:57,610
+version, etc..
+
+143
+00:09:57,610 --> 00:10:02,350
+So these are fields that were created automatically by Kubernetes internally.
+
+144
+00:10:02,470 --> 00:10:09,010
+Now, all we need to do is make the changes that we were asked to make in this case.
+
+145
+00:10:09,310 --> 00:10:18,340
+We'll just go over to the Readies image name and update the image name to remove the extra one, two,
+
+146
+00:10:18,340 --> 00:10:18,910
+three.
+
+147
+00:10:19,750 --> 00:10:20,140
+Okay.
+
+148
+00:10:20,140 --> 00:10:23,440
+And then you can just save the file as you normally would.
+
+149
+00:10:23,560 --> 00:10:28,360
+And so that basically has updated the pod with the radius image.
+
+150
+00:10:28,360 --> 00:10:33,670
+So when you now run the cube control, get pods command, you can see that the red is pod is in the
+
+151
+00:10:33,670 --> 00:10:34,630
+running state.
+
+152
+00:10:34,780 --> 00:10:42,010
+If you describe the pod to view the image, you will see that the image name is red.
+
+153
+00:10:42,160 --> 00:10:43,140
+So that's good.
+
+154
+00:10:43,150 --> 00:10:45,430
+So we're going to check the work now.
+
+155
+00:10:46,200 --> 00:10:47,110
+Okay, perfect.
+
+156
+00:10:47,110 --> 00:10:48,190
+So that's done.
+
+157
+00:10:48,520 --> 00:10:56,350
+So in this coding exercise, we've practiced viewing information about existing pods.
+
+158
+00:10:56,470 --> 00:11:03,130
+A little bit of troubleshooting, identifying why a pod is in a failed state, going through the events
+
+159
+00:11:03,130 --> 00:11:06,800
+and trying to figure out what could be the problem.
+
+160
+00:11:06,820 --> 00:11:14,380
+We also looked at editing an existing pod or creating a new pod given a set of specifications.
+

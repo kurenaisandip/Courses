@@ -1,0 +1,424 @@
+1
+00:00:01,839 --> 00:00:06,610
+In this lecture, we will take a close look at the variables block in TerraForm.
+
+2
+00:00:07,360 --> 00:00:11,680
+First, let us look at the different arguments that a variable block uses.
+
+3
+00:00:12,640 --> 00:00:15,850
+The variable block inter form accepts three parameters.
+
+4
+00:00:16,059 --> 00:00:20,380
+The first one, which we have already used is the default parameter.
+
+5
+00:00:21,010 --> 00:00:24,430
+This is where we specify the default value for a variable.
+
+6
+00:00:25,380 --> 00:00:27,960
+The others are type and description.
+
+7
+00:00:28,860 --> 00:00:34,200
+Description is optional, but it is a good practice to use this argument to describe what the variable
+
+8
+00:00:34,200 --> 00:00:35,160
+is used for.
+
+9
+00:00:35,970 --> 00:00:42,240
+The type argument is optional as well, but when use it enforces the type of variable being used.
+
+10
+00:00:42,780 --> 00:00:50,400
+The basic variable types that can be used are string number and boolean string variables, as we have
+
+11
+00:00:50,400 --> 00:00:58,020
+seen in our example so far, accept a single value which can be alphanumeric that is consisting of alphabets
+
+12
+00:00:58,020 --> 00:00:59,040
+and numbers.
+
+13
+00:00:59,930 --> 00:01:06,140
+The number of variable type accepts a single value of a number which can be positive or negative.
+
+14
+00:01:06,680 --> 00:01:11,270
+And the Boolean variable type accepts a value of true or false.
+
+15
+00:01:12,640 --> 00:01:16,660
+The type parameter as mentioned previously is optional.
+
+16
+00:01:17,050 --> 00:01:22,720
+If it is not specified in the variable block, it is set to the type any by default.
+
+17
+00:01:23,930 --> 00:01:30,080
+Besides these three simple variable types, TerraForm also supports additional types such as list,
+
+18
+00:01:30,080 --> 00:01:32,900
+map, set, object and tuple.
+
+19
+00:01:33,500 --> 00:01:36,500
+Let us now see how to use all of these in TerraForm.
+
+20
+00:01:37,220 --> 00:01:38,750
+Let us start with list.
+
+21
+00:01:39,510 --> 00:01:44,340
+A list is a numbered collection of values, and it can be defined like this.
+
+22
+00:01:45,700 --> 00:01:50,980
+In this example, we have a variable called prefix that uses a list of values.
+
+23
+00:01:50,980 --> 00:01:51,700
+Mr..
+
+24
+00:01:51,700 --> 00:01:52,270
+Mrs..
+
+25
+00:01:52,270 --> 00:01:53,080
+And Sir.
+
+26
+00:01:53,530 --> 00:01:56,410
+But why do we call it a numbered collection?
+
+27
+00:01:57,130 --> 00:02:04,390
+Well, that is because each value, which is also known as an element, can be referenced by the number
+
+28
+00:02:04,390 --> 00:02:06,130
+or index within that list.
+
+29
+00:02:07,290 --> 00:02:10,259
+The index of a list always begins at zero.
+
+30
+00:02:10,979 --> 00:02:15,960
+In this case, the first element of the list at index zero is the word.
+
+31
+00:02:15,960 --> 00:02:16,770
+Mr..
+
+32
+00:02:17,340 --> 00:02:19,740
+The element at index one is.
+
+33
+00:02:19,740 --> 00:02:20,460
+Mrs..
+
+34
+00:02:20,700 --> 00:02:24,390
+And the final element at index two is sir.
+
+35
+00:02:24,600 --> 00:02:28,830
+These variables can be accessed within a configuration file like this.
+
+36
+00:02:29,640 --> 00:02:33,270
+With the index specified within square brackets.
+
+37
+00:02:33,870 --> 00:02:37,440
+Hence the expression word or prefix with index.
+
+38
+00:02:37,440 --> 00:02:46,980
+Zero uses the value Mr. wat or prefix with the index one uses the value Mrs. and with index two it uses
+
+39
+00:02:46,980 --> 00:02:48,510
+the value of sir.
+
+40
+00:02:49,320 --> 00:02:52,560
+Next, let us look at the type called map.
+
+41
+00:02:52,890 --> 00:02:57,000
+A map is data represented in the format of key value pairs.
+
+42
+00:02:57,860 --> 00:02:59,540
+In the variables file.
+
+43
+00:02:59,570 --> 00:03:06,650
+Let us create a new variable called file content with the type set to map in the default values, we
+
+44
+00:03:06,650 --> 00:03:11,270
+can specify as many key value pairs in close within curly braces.
+
+45
+00:03:12,080 --> 00:03:12,650
+Here.
+
+46
+00:03:12,650 --> 00:03:18,350
+The statement one and statement two are keys and the string data following them are values.
+
+47
+00:03:18,890 --> 00:03:25,190
+Now, to access a specific value from the map within the TerraForm configuration file, we can make
+
+48
+00:03:25,190 --> 00:03:26,360
+use of key matching.
+
+49
+00:03:26,930 --> 00:03:32,990
+In this case, we want the content of the local file resource to be the value of the key called statement
+
+50
+00:03:32,990 --> 00:03:33,470
+two.
+
+51
+00:03:34,320 --> 00:03:41,700
+And for that we use an expression war file content, which is the name of the map type variable, followed
+
+52
+00:03:41,700 --> 00:03:44,400
+by the matching key within square brackets.
+
+53
+00:03:44,850 --> 00:03:47,100
+We can also combine type constraints.
+
+54
+00:03:47,520 --> 00:03:52,500
+For example, if you want a list of string type elements, we can declare it like this.
+
+55
+00:03:53,010 --> 00:03:56,070
+To use a list of numbers, change it like this.
+
+56
+00:03:56,520 --> 00:04:01,830
+If the variable values used do not match the type of constraint the TerraForm commands will fail.
+
+57
+00:04:02,070 --> 00:04:07,980
+In this example, we have used the type list where the element should be of type number.
+
+58
+00:04:08,250 --> 00:04:11,280
+But the default values are all of type string.
+
+59
+00:04:11,970 --> 00:04:18,510
+Now when we run TerraForm commands such as a plan or an apply, you will see an error like this that
+
+60
+00:04:18,510 --> 00:04:24,660
+states that the default value is not compatible with the variable type constraint and that a number
+
+61
+00:04:24,660 --> 00:04:26,310
+is required and not a string.
+
+62
+00:04:27,060 --> 00:04:29,680
+And the same is applicable with maps as well.
+
+63
+00:04:29,700 --> 00:04:35,010
+We can use type constraints to make sure that the values of a map are of a specific type.
+
+64
+00:04:35,800 --> 00:04:42,490
+In the first variable block, we are using a map of type string, and in the second one we are making
+
+65
+00:04:42,490 --> 00:04:44,650
+use of a map that uses numbers.
+
+66
+00:04:45,730 --> 00:04:47,500
+Let us now look at sets.
+
+67
+00:04:48,010 --> 00:04:49,990
+Set is similar to a list.
+
+68
+00:04:50,260 --> 00:04:55,330
+The difference between a set and a list is that a set cannot have duplicate elements.
+
+69
+00:04:56,520 --> 00:05:02,010
+In these examples, we have a variable type of set of strings or a set of numbers.
+
+70
+00:05:02,250 --> 00:05:06,660
+The examples on the left are good, but the ones on the right are not.
+
+71
+00:05:07,200 --> 00:05:10,560
+They have duplicate values in them that will throw an error.
+
+72
+00:05:11,040 --> 00:05:14,580
+The default values are declared just like you would do for a list.
+
+73
+00:05:14,580 --> 00:05:18,120
+But remember that there shouldn't be any duplicate values here.
+
+74
+00:05:19,400 --> 00:05:23,060
+The next type of variable that we are going to look at are objects.
+
+75
+00:05:23,600 --> 00:05:29,060
+With objects, we can create complex data structures by combining all the variable types that we have
+
+76
+00:05:29,060 --> 00:05:29,990
+seen so far.
+
+77
+00:05:30,590 --> 00:05:36,230
+For example, let us consider a new variable called Bela, which is the name of a cat.
+
+78
+00:05:36,830 --> 00:05:42,980
+This variable is used to define the different features of this cat, such as its name, which is a string,
+
+79
+00:05:43,190 --> 00:05:45,440
+the color, which is a string as well.
+
+80
+00:05:45,710 --> 00:05:53,300
+H Which is the number, the food that it eats, which is a list of strings and a boolean value indicating
+
+81
+00:05:53,300 --> 00:05:54,980
+if it's a favorite pet or not.
+
+82
+00:05:55,460 --> 00:05:58,130
+Let us now assign some values to this variable.
+
+83
+00:05:58,220 --> 00:06:01,070
+Let us use name is equal to Bella.
+
+84
+00:06:01,520 --> 00:06:03,200
+Color is equal to brown.
+
+85
+00:06:03,590 --> 00:06:05,140
+Eight is equal to seven.
+
+86
+00:06:05,150 --> 00:06:10,640
+Food is fish, chicken and turkey and favorite pet, which is set to true.
+
+87
+00:06:12,000 --> 00:06:16,500
+And we can use the same default values within our variable block like this.
+
+88
+00:06:18,100 --> 00:06:21,820
+The last variable type that we are going to look at is tuples.
+
+89
+00:06:22,490 --> 00:06:26,750
+Tuple is similar to a list and consists of a sequence of elements.
+
+90
+00:06:27,290 --> 00:06:33,650
+The difference between a tuple and a list is that list uses elements of the same variable type, such
+
+91
+00:06:33,650 --> 00:06:34,940
+as string or number.
+
+92
+00:06:35,120 --> 00:06:40,070
+But in case of tuple, we can make use of elements of different variable types.
+
+93
+00:06:40,430 --> 00:06:45,140
+The type of variables to be used in a tuple is defined within the square brackets.
+
+94
+00:06:45,620 --> 00:06:49,190
+In this example, we have three types of elements defined.
+
+95
+00:06:49,310 --> 00:06:51,080
+The first is a string.
+
+96
+00:06:51,260 --> 00:06:52,820
+Second is a number.
+
+97
+00:06:52,820 --> 00:06:54,410
+And finally, a boolean.
+
+98
+00:06:55,100 --> 00:07:01,160
+The variables to be passed to this should exactly be three in number and of that specific type for it
+
+99
+00:07:01,160 --> 00:07:01,820
+to work.
+
+100
+00:07:02,180 --> 00:07:08,180
+Here we have passed the value of cat to the string element, the number seven to the number element
+
+101
+00:07:08,180 --> 00:07:10,010
+and true to the boolean.
+
+102
+00:07:10,400 --> 00:07:15,080
+Adding additional elements or incorrect type will result in an error as seen here.
+
+103
+00:07:15,680 --> 00:07:21,740
+If you add an additional value of dog to the variable, it will fail as the tuple only expects three
+
+104
+00:07:21,740 --> 00:07:24,740
+elements of type, string, number and boolean.
+
+105
+00:07:25,690 --> 00:07:27,250
+That's it for this lecture.
+
+106
+00:07:27,280 --> 00:07:32,560
+Let's head over to the hands on labs and explore working with variable types in TerraForm.
+

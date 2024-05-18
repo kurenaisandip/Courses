@@ -1,0 +1,864 @@
+1
+00:00:00,510 --> 00:00:01,940
+Hello and welcome to this demo.
+
+2
+00:00:01,950 --> 00:00:07,950
+In this demo, we're going to look at some of the basic Docker commands, some basic commands that are
+
+3
+00:00:07,950 --> 00:00:12,360
+necessary for one to get started and in order to play around with Docker.
+
+4
+00:00:12,690 --> 00:00:18,810
+So in the previous demo, we installed Docker following a set of instructions from the Docker documentation
+
+5
+00:00:18,810 --> 00:00:22,980
+site and we ran a sample Docker.
+
+6
+00:00:22,980 --> 00:00:27,960
+Hello world container and a Docker Ubuntu image.
+
+7
+00:00:28,380 --> 00:00:31,590
+In this demo we're going to look at some other commands.
+
+8
+00:00:31,590 --> 00:00:34,890
+So just to start with, we will run the Docker.
+
+9
+00:00:35,550 --> 00:00:37,020
+We'll start with the Docker run command.
+
+10
+00:00:37,020 --> 00:00:44,520
+So the Docker run command is used to run a container from an image, so you need to specify an image
+
+11
+00:00:44,520 --> 00:00:48,090
+name to find out what images you can use.
+
+12
+00:00:48,120 --> 00:00:57,930
+Go to the Docker Hub website and go to explore and you should be able to see a lot of default official
+
+13
+00:00:57,930 --> 00:01:01,080
+images available like the Hello World that we just saw.
+
+14
+00:01:01,380 --> 00:01:06,360
+Let's say you would like to try a center as you could.
+
+15
+00:01:06,360 --> 00:01:07,410
+You could just do.
+
+16
+00:01:07,410 --> 00:01:11,340
+If you click on this, you'll see the instructions on running the center.
+
+17
+00:01:11,500 --> 00:01:15,960
+So you could simply do as you can see here, it just says Docker pulls and os.
+
+18
+00:01:15,960 --> 00:01:24,900
+So you could simply do a Docker run sent OHS and that should first try and find if there's a st OS image
+
+19
+00:01:24,900 --> 00:01:26,060
+available locally.
+
+20
+00:01:26,070 --> 00:01:33,000
+If not, it's just going, going, going to go out and download the latest image or the latest version
+
+21
+00:01:33,000 --> 00:01:34,770
+of the CentOS image.
+
+22
+00:01:41,410 --> 00:01:48,520
+As you can see here, the name, if you simply specify a name like this as Santos, it's going to look
+
+23
+00:01:48,610 --> 00:01:51,430
+at the library repository.
+
+24
+00:01:51,430 --> 00:01:57,730
+And library is a default docker repository, which has the official images.
+
+25
+00:01:58,420 --> 00:02:07,120
+So if you go to the go back to the Docker Hub website, all the official images such as those that are
+
+26
+00:02:07,120 --> 00:02:12,730
+available here can simply be downloaded with just the name of that particular image.
+
+27
+00:02:13,570 --> 00:02:19,510
+On the other hand, if you develop your own images, for example, if I go to my dashboard and I have
+
+28
+00:02:20,110 --> 00:02:25,810
+some images that I use here, such as the Ansible playable, etc., if I need to run any of these,
+
+29
+00:02:25,810 --> 00:02:32,190
+then I need to use the name in this particular format called as the first with the user ID, so that
+
+30
+00:02:32,230 --> 00:02:34,180
+is my user ID and under.
+
+31
+00:02:34,350 --> 00:02:38,940
+And then followed by a forward slash and the name of the repository.
+
+32
+00:02:38,950 --> 00:02:50,590
+So these you should use names in this format if you are using your own images or you could simply use
+
+33
+00:02:50,590 --> 00:02:57,730
+the name directly, but that then these need to be official repositories that are supported by Docker.
+
+34
+00:02:58,960 --> 00:03:05,110
+So I have this new image downloaded called Docker Santos.
+
+35
+00:03:05,230 --> 00:03:10,540
+Now, it's not actually going to as you can see, I am back to my prompt.
+
+36
+00:03:10,930 --> 00:03:16,990
+It didn't it ran, but it exited immediately and that's because we didn't ask it to do anything.
+
+37
+00:03:16,990 --> 00:03:23,050
+So it's just the Santos image is just a base image for for the central operating system.
+
+38
+00:03:23,560 --> 00:03:28,030
+As you know, Docker is used to run services and applications.
+
+39
+00:03:28,030 --> 00:03:32,680
+So if you want to keep that container alive, you need to be running something.
+
+40
+00:03:32,860 --> 00:03:37,960
+So I'm just going to run, run it again.
+
+41
+00:03:38,350 --> 00:03:44,980
+And this time it won't take long because the image is already pulled and I'm going to say, ask you
+
+42
+00:03:44,980 --> 00:03:52,030
+to run the Bash command and if I want to automatically be logged into the Docker container when it's
+
+43
+00:03:52,030 --> 00:03:55,240
+run, I should be using the dash i.t options.
+
+44
+00:03:55,240 --> 00:03:57,850
+We look at what these options are in a bit.
+
+45
+00:03:59,170 --> 00:04:01,690
+So now as you can see, the prompt has changed.
+
+46
+00:04:01,690 --> 00:04:07,810
+So what's, what's happened is Docker ran this CentOS container, which is a CentOS operating system
+
+47
+00:04:07,810 --> 00:04:15,820
+and then run the bash command and then it logged me in directly to the container since I specified the
+
+48
+00:04:16,120 --> 00:04:18,730
+I.T options.
+
+49
+00:04:18,730 --> 00:04:21,040
+So I'm now inside the Docker container.
+
+50
+00:04:21,040 --> 00:04:28,600
+If you look at this, the prompt, it says root at an A unique ID, this is the unique ID for the Docker
+
+51
+00:04:28,600 --> 00:04:29,380
+container.
+
+52
+00:04:30,070 --> 00:04:32,740
+Whereas earlier I was at the Docker prompt.
+
+53
+00:04:33,550 --> 00:04:38,290
+So I'm going to just to check the operating system that I'm on.
+
+54
+00:04:38,440 --> 00:04:43,240
+I'm going to do a cat slash EDC slash star release star.
+
+55
+00:04:43,240 --> 00:04:49,590
+And as you can see, I am on the Santos Linux OS, so I'm inside the OS.
+
+56
+00:04:50,440 --> 00:04:54,640
+Okay, so I'm going to exit now and I'm just going to clear my screen.
+
+57
+00:04:55,030 --> 00:04:56,950
+So that's the first command.
+
+58
+00:04:56,950 --> 00:05:01,990
+So Docker run and an image name will run a Docker container.
+
+59
+00:05:01,990 --> 00:05:05,190
+The next command that we're going to see is the PS Command.
+
+60
+00:05:05,200 --> 00:05:10,540
+So I'm going to run the Docker, PS Command, The Docker, PS Command lists all the running containers
+
+61
+00:05:11,020 --> 00:05:16,750
+and in this case I do not have a running container because I just ran the st OS, I got, I logged into
+
+62
+00:05:16,750 --> 00:05:22,960
+that into as I ran a couple of commands and then I exited and that actually took me out of the container
+
+63
+00:05:22,960 --> 00:05:25,720
+and the container wasn't doing running any service.
+
+64
+00:05:25,720 --> 00:05:32,920
+So Docker exited that container, the Docker PS command list, all the running containers.
+
+65
+00:05:32,920 --> 00:05:35,230
+Only now I do not have any running container.
+
+66
+00:05:35,230 --> 00:05:40,030
+So what I'm going to do is I'm going to run the CentOS container once again.
+
+67
+00:05:40,570 --> 00:05:48,370
+So I'm going to say Docker run st OS and earlier I gave the bash command and now I'm just going to run
+
+68
+00:05:48,550 --> 00:05:51,730
+the sleep command, I'm just going to sleep for 20 seconds.
+
+69
+00:05:51,880 --> 00:05:53,620
+So the container is going to come up.
+
+70
+00:05:54,070 --> 00:06:01,240
+It's just going to sleep for 20 seconds and then it's just going to shut down.
+
+71
+00:06:02,260 --> 00:06:06,790
+And then I want to run this in the background, so I'm just going to give a dash d.
+
+72
+00:06:07,510 --> 00:06:09,820
+So that I get back to my terminal.
+
+73
+00:06:10,990 --> 00:06:15,460
+And as you can see, this is the container ID and it just ran run the container.
+
+74
+00:06:15,490 --> 00:06:20,080
+Now, if I run the Docker command, I will see that this is a container ID.
+
+75
+00:06:20,110 --> 00:06:21,220
+This is the image.
+
+76
+00:06:21,220 --> 00:06:22,480
+It's running off of.
+
+77
+00:06:22,930 --> 00:06:25,660
+The command that is running is sleep 20.
+
+78
+00:06:25,660 --> 00:06:27,250
+So it's going to sleep for 20 seconds.
+
+79
+00:06:27,280 --> 00:06:29,290
+It was created 7 seconds ago.
+
+80
+00:06:29,440 --> 00:06:31,510
+It's been up for 6 seconds.
+
+81
+00:06:31,510 --> 00:06:36,040
+And it's it's got a funny name called Flamboyant Noise.
+
+82
+00:06:37,210 --> 00:06:43,600
+Now, we asked it to just sleep for 20 seconds, just to keep it alive for 20 seconds.
+
+83
+00:06:43,630 --> 00:06:47,740
+So if I run the Docker command now, probably it should should have gone.
+
+84
+00:06:47,740 --> 00:06:47,980
+Yes.
+
+85
+00:06:47,980 --> 00:06:53,850
+So it's gone because it slept for 20 seconds and then that was the end of that command.
+
+86
+00:06:53,860 --> 00:06:59,830
+And so since the command exited, the Docker container exited as well, because it didn't have anything
+
+87
+00:06:59,830 --> 00:07:03,280
+to run or any service running on it.
+
+88
+00:07:04,270 --> 00:07:07,910
+So that's a quick example of Docker Command.
+
+89
+00:07:07,930 --> 00:07:17,020
+Now, if you'd like to see all the containers you ran in the past and all the exited containers, especially
+
+90
+00:07:17,020 --> 00:07:18,100
+so you could do a
+
+91
+00:07:20,800 --> 00:07:27,850
+run, a Docker, PS Dash, a Docker piece command with the dash a option and you'll see all the, all
+
+92
+00:07:27,850 --> 00:07:29,380
+the containers that exited.
+
+93
+00:07:29,590 --> 00:07:37,660
+So the last one that we ran was the St OS with the sleep Command and it was created about a minute ago
+
+94
+00:07:37,660 --> 00:07:41,830
+and it exited about 54 seconds ago.
+
+95
+00:07:41,860 --> 00:07:50,950
+Similarly before that we ran the st OS with the bash the first time and I was on it for about 3 minutes,
+
+96
+00:07:50,950 --> 00:07:55,430
+checking the OS etc. and it was created about 4 minutes ago.
+
+97
+00:07:55,450 --> 00:07:59,860
+Similarly, you can see all the previous containers that we ran.
+
+98
+00:08:00,310 --> 00:08:09,730
+So when you run a container and it exits, the container actually lives in on the disk drive.
+
+99
+00:08:10,480 --> 00:08:16,960
+Now that we have seen how to list all the running containers, let's look at another example.
+
+100
+00:08:16,960 --> 00:08:20,440
+So I'm going to run the same command to.
+
+101
+00:08:21,730 --> 00:08:22,810
+Run as Santos.
+
+102
+00:08:22,810 --> 00:08:26,740
+But in this case, I'm going to sleep for around 2000 seconds.
+
+103
+00:08:27,070 --> 00:08:33,530
+And what this will mean is that my send, it'll run a Santos container, and then it'll sleep for 22000
+
+104
+00:08:33,530 --> 00:08:34,480
+seconds.
+
+105
+00:08:35,350 --> 00:08:36,190
+And so.
+
+106
+00:08:36,190 --> 00:08:38,049
+And after that, it's going to exit.
+
+107
+00:08:38,080 --> 00:08:41,799
+Now, if I run the Docker command now, I should be able to see that.
+
+108
+00:08:41,799 --> 00:08:47,110
+So it's up for 13 seconds and it's just going to be alive for 2000 seconds.
+
+109
+00:08:47,860 --> 00:08:53,170
+Now, for some reason, if I want to stop or kill this container right now, I could use the Docker
+
+110
+00:08:53,170 --> 00:08:54,000
+stop command.
+
+111
+00:08:54,010 --> 00:08:58,690
+So I do a Docker stop and then say serene pasture.
+
+112
+00:08:59,920 --> 00:09:06,610
+I could either provide the name of the container or I could give the container ID.
+
+113
+00:09:07,510 --> 00:09:17,140
+And when I do that, it takes a couple of seconds to stop or force kill that particular Docker container.
+
+114
+00:09:21,180 --> 00:09:25,430
+K Now, if I do a Docker piece, I can see that it's no longer there.
+
+115
+00:09:25,450 --> 00:09:32,800
+If I do a Docker piece Dash eh, I will be able to see that the container that I just ran at the top,
+
+116
+00:09:32,800 --> 00:09:39,130
+it was created about a minute ago and it exited about 9 seconds ago and you can see the exit code in
+
+117
+00:09:39,130 --> 00:09:39,640
+here.
+
+118
+00:09:39,640 --> 00:09:45,880
+So the exit code for the previous containers are all zero because they exited under normal conditions.
+
+119
+00:09:45,880 --> 00:09:52,000
+But since I killed it using the stop command, you can see the exit code, which is 137 right here.
+
+120
+00:09:53,020 --> 00:09:59,020
+So now I have a lot of containers that I ran previously and I kind of want to clean it up.
+
+121
+00:09:59,020 --> 00:10:01,820
+So what can I do to remove these containers?
+
+122
+00:10:01,840 --> 00:10:04,170
+For that I could use the Docker arm command.
+
+123
+00:10:04,180 --> 00:10:05,510
+So I do a Docker arm.
+
+124
+00:10:05,530 --> 00:10:07,240
+I'm going to start with the first one.
+
+125
+00:10:07,930 --> 00:10:12,640
+I'm going to provide this container ID so I could either refer to the containers with the container
+
+126
+00:10:12,640 --> 00:10:17,050
+ID or with the name right here.
+
+127
+00:10:17,050 --> 00:10:19,710
+So in this case, I'm going to select this one.
+
+128
+00:10:19,720 --> 00:10:21,100
+I'm going to provide the name.
+
+129
+00:10:22,810 --> 00:10:27,940
+And so I've removed two containers, and if I do a docker dash a, I will be able to see that those
+
+130
+00:10:27,940 --> 00:10:33,610
+are gone so that that's what you should do to reclaim disk space.
+
+131
+00:10:34,270 --> 00:10:37,420
+Similarly, I'm going to get rid of all of this.
+
+132
+00:10:38,170 --> 00:10:40,990
+Now, I don't need to provide the entire container ID.
+
+133
+00:10:41,830 --> 00:10:44,830
+I could actually provide just a few the first few letters.
+
+134
+00:10:44,830 --> 00:10:52,060
+So I say 345 and then I can provide multiple container IDs or names in the same command as well.
+
+135
+00:10:52,060 --> 00:10:54,100
+So this one is 345.
+
+136
+00:10:54,130 --> 00:10:55,210
+The next one is E.
+
+137
+00:10:55,210 --> 00:10:56,230
+Zero A.
+
+138
+00:10:58,180 --> 00:11:00,100
+The next one is seven, seven three.
+
+139
+00:11:00,370 --> 00:11:03,970
+So it's going to remove all of them at once.
+
+140
+00:11:04,000 --> 00:11:08,020
+Now, if I run the Docker command, I can see that all those three are gone.
+
+141
+00:11:08,020 --> 00:11:11,920
+So this this is a way to remove the Docker containers.
+
+142
+00:11:14,140 --> 00:11:16,330
+So I'm just going to clean.
+
+143
+00:11:16,510 --> 00:11:17,890
+Clean up all that.
+
+144
+00:11:21,780 --> 00:11:23,640
+Six, two and five.
+
+145
+00:11:23,810 --> 00:11:32,760
+B So I don't have any containers running or dead at the moment, so that's good.
+
+146
+00:11:32,760 --> 00:11:34,740
+So I've cleaned up all of that.
+
+147
+00:11:34,740 --> 00:11:40,890
+Now the image that I pulled, which is the I've actually pulled three images so far.
+
+148
+00:11:40,890 --> 00:11:46,170
+First the hello world, then the Ubuntu and then the CentOS.
+
+149
+00:11:46,350 --> 00:11:52,350
+Now to see the images that I currently have, I could run the Docker images command.
+
+150
+00:11:53,700 --> 00:11:55,140
+Then I can actually see the images.
+
+151
+00:11:55,140 --> 00:12:02,160
+I actually pulled another one called Busy Box, which is a really, really lightweight toolkit, as
+
+152
+00:12:02,160 --> 00:12:03,030
+you can call it.
+
+153
+00:12:03,750 --> 00:12:08,100
+It's just one around 1.13 and B in size.
+
+154
+00:12:09,420 --> 00:12:14,280
+So if you want to really test something really small, you could actually use this particular image.
+
+155
+00:12:14,490 --> 00:12:17,730
+So now what do I do to get rid of these images?
+
+156
+00:12:17,730 --> 00:12:22,020
+Let's say I pulled this for just to test them and I want to get rid of them.
+
+157
+00:12:22,020 --> 00:12:29,910
+I could do a Docker arm command followed by the name sorry, Docker RMI command.
+
+158
+00:12:29,910 --> 00:12:32,520
+So ARM is used for removing containers.
+
+159
+00:12:32,550 --> 00:12:35,520
+RMI is used for removing images.
+
+160
+00:12:35,520 --> 00:12:42,360
+So do a docker RMI and then say busy box that removes the busy box.
+
+161
+00:12:42,400 --> 00:12:49,140
+Then I do docker or I and remove the ubuntu that removes the ubuntu.
+
+162
+00:12:51,180 --> 00:12:53,400
+So now I have two left.
+
+163
+00:12:53,400 --> 00:12:59,460
+And just to demo something real quick, I'm going to run a container based off of CentOS.
+
+164
+00:13:00,870 --> 00:13:07,800
+And if I do a docker piece dash A now I can see that there's a container based on the center OS image.
+
+165
+00:13:08,120 --> 00:13:17,550
+Now the reason I did this is if I try to delete now I can see that if I try to delete the docker image
+
+166
+00:13:17,550 --> 00:13:22,380
+for send always using the RMI command, it'll actually fail.
+
+167
+00:13:22,470 --> 00:13:28,470
+Telling me that this particular image is being used by a particular container.
+
+168
+00:13:28,470 --> 00:13:34,890
+So we actually have a container dependent on this particular image that you can see here.
+
+169
+00:13:34,980 --> 00:13:40,230
+So we need to get rid of all the containers first before removing the image.
+
+170
+00:13:40,230 --> 00:13:41,430
+So we're going to do.
+
+171
+00:13:43,340 --> 00:13:44,900
+A doctor.
+
+172
+00:13:45,770 --> 00:13:46,640
+Erm.
+
+173
+00:13:47,790 --> 00:13:49,950
+And eight e to remove the container.
+
+174
+00:13:50,280 --> 00:13:52,950
+And we make sure the container no longer exists.
+
+175
+00:13:53,670 --> 00:13:59,910
+And then we remove the image using Docker, RMI, CentOS.
+
+176
+00:14:00,720 --> 00:14:01,920
+And now the image is gone.
+
+177
+00:14:05,220 --> 00:14:09,390
+Similarly, we're going to remove the Hello world image.
+
+178
+00:14:12,850 --> 00:14:21,550
+Okay, so we do not have any containers and we do not have any images running at the moment.
+
+179
+00:14:23,030 --> 00:14:28,010
+Um, okay, so that's some of the basic.
+
+180
+00:14:29,380 --> 00:14:30,760
+Docker commands.
+
+181
+00:14:30,850 --> 00:14:36,460
+Let me also show you one another command, which is pull.
+
+182
+00:14:36,460 --> 00:14:43,810
+So if you do the doctor pull earlier when we run the Docker run command with Ubuntu, it first looks
+
+183
+00:14:43,810 --> 00:14:45,700
+for an image locally.
+
+184
+00:14:45,700 --> 00:14:50,380
+If not, it's going to go out and pull the image and then it's going to pull the image and immediately
+
+185
+00:14:50,380 --> 00:14:53,110
+run that image and run a container with that image.
+
+186
+00:14:53,200 --> 00:14:59,530
+Now if we don't want Docker to run immediately and if we just want to pull an image and just to keep
+
+187
+00:14:59,530 --> 00:15:07,240
+it so that later on if we were planning to run it, we don't want to spend time pulling the image.
+
+188
+00:15:07,240 --> 00:15:10,320
+You could simply pull the image alone using the Docker pool command.
+
+189
+00:15:10,330 --> 00:15:18,610
+So you do a Docker pull and say Ubuntu and that goes out and pulls the Docker image and stores it locally
+
+190
+00:15:18,610 --> 00:15:19,780
+on the local system.
+
+191
+00:15:21,640 --> 00:15:23,680
+OC, so it's pulled the image.
+
+192
+00:15:23,800 --> 00:15:30,580
+Now, if I now run the Docker images command, I can see the Ubuntu image is there.
+
+193
+00:15:32,850 --> 00:15:39,090
+Okay, so there's one more thing to look at before we end this demo, and that's running a command on
+
+194
+00:15:39,090 --> 00:15:40,410
+a particular container.
+
+195
+00:15:40,950 --> 00:15:48,690
+So we're going to run a open to container, so we're going to do a Docker, run Ubuntu and we're going
+
+196
+00:15:48,690 --> 00:15:56,730
+to keep it alive for, let's say 1100 seconds and we want it to run in the background so we get back
+
+197
+00:15:56,730 --> 00:15:59,080
+to our prompt or console.
+
+198
+00:15:59,100 --> 00:16:02,070
+So we're going to do we run it in the background using the dash.
+
+199
+00:16:02,070 --> 00:16:06,960
+DD And so there it goes.
+
+200
+00:16:08,310 --> 00:16:13,950
+If you do a Docker command, you can see that it's running and it's sleeping for 100 seconds.
+
+201
+00:16:14,070 --> 00:16:23,040
+Now, while a Docker container is running like this, if you'd like to run a particular command on the
+
+202
+00:16:23,670 --> 00:16:29,340
+on the currently executing container, for example, if you'd like to see the contents of a particular
+
+203
+00:16:29,340 --> 00:16:36,110
+file which is inside the container, you might want to run a cat command on a particular file.
+
+204
+00:16:36,120 --> 00:16:43,320
+So to run a command inside a running container first, identify the container you want to work with
+
+205
+00:16:43,320 --> 00:16:52,680
+and then do a Docker run sorry Docker exec and provide the container ID.
+
+206
+00:16:52,710 --> 00:16:57,000
+In this case, this is a container ID and then followed by the command that you wish to run.
+
+207
+00:16:57,000 --> 00:17:03,510
+So I'm just going to run the cat slash Etsy slash star release file.
+
+208
+00:17:03,510 --> 00:17:09,329
+So I'm just going to look at the release file to understand what version of the OS is running.
+
+209
+00:17:09,329 --> 00:17:19,260
+So the exec command basically runs or executes and executes a command on a running container.
+
+210
+00:17:19,680 --> 00:17:25,920
+When I hit this, it actually runs this particular command inside the container and gives me an output.
+
+211
+00:17:27,980 --> 00:17:32,230
+So that's basically it for this demo.
+
+212
+00:17:32,240 --> 00:17:40,160
+We just looked at some of the basic commands and the some of the additional parameters we looked at.
+
+213
+00:17:40,160 --> 00:17:46,720
+We're going to look a look at them a little bit more in detail in the upcoming demos and lectures.
+
+214
+00:17:46,730 --> 00:17:48,410
+So this is it for now.
+
+215
+00:17:49,220 --> 00:17:53,510
+So these are some basic commands, so go ahead and play around with it.
+
+216
+00:17:54,050 --> 00:17:57,290
+Thank you for your time and see you in the next lecture.
+

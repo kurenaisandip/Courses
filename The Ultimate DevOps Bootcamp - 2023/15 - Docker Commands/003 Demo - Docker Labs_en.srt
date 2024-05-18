@@ -1,0 +1,232 @@
+1
+00:00:00,650 --> 00:00:04,880
+Let me now walk you through the hands on lab practice environment.
+
+2
+00:00:05,680 --> 00:00:11,410
+The links to access the labs associated with this course are available at Code Cloud.
+
+3
+00:00:11,410 --> 00:00:16,180
+At Code cloud dot com slash P slash Docker Dash Labs.
+
+4
+00:00:16,180 --> 00:00:19,430
+This link is also given in the description of this video.
+
+5
+00:00:19,450 --> 00:00:26,770
+Once you're on this page, use the links given there to access the labs associated to your lecture.
+
+6
+00:00:26,800 --> 00:00:32,860
+Each lecture has its own lab, so remember to choose the right lab for your lecture.
+
+7
+00:00:33,190 --> 00:00:35,860
+The labs open up right in your browser.
+
+8
+00:00:35,980 --> 00:00:40,240
+I would recommend to use Google Chrome while working with the labs.
+
+9
+00:00:40,690 --> 00:00:46,330
+The interface consists of two parts a terminal on the left and a quiz portal on the right.
+
+10
+00:00:46,750 --> 00:00:50,060
+The quiz portal on the right gives you challenges to solve.
+
+11
+00:00:50,080 --> 00:00:54,880
+Follow the quiz and try and answer the questions asked and complete the tasks given to you.
+
+12
+00:00:55,450 --> 00:01:01,330
+Each scenario consists of anywhere from 10 to 20 questions that needs to be answered within 30 minutes
+
+13
+00:01:01,330 --> 00:01:02,140
+to an hour.
+
+14
+00:01:02,930 --> 00:01:03,620
+At the top.
+
+15
+00:01:03,620 --> 00:01:05,420
+You have the question numbers below.
+
+16
+00:01:05,420 --> 00:01:07,820
+That is the remaining time for your lab.
+
+17
+00:01:07,850 --> 00:01:09,320
+Below that is the question.
+
+18
+00:01:09,320 --> 00:01:11,700
+If you are not able to solve the challenge.
+
+19
+00:01:11,720 --> 00:01:14,030
+Look for hints in the hand section.
+
+20
+00:01:14,270 --> 00:01:19,760
+You may skip a question by hitting the skip button in the top right corner, but remember that you will
+
+21
+00:01:19,760 --> 00:01:23,690
+not be able to go back to a previous question once you have skipped.
+
+22
+00:01:24,440 --> 00:01:31,310
+If the Quest portal gets stuck for some reason, click on the quiz Portal tab at the top to open the
+
+23
+00:01:31,310 --> 00:01:33,290
+quiz portal in a separate window.
+
+24
+00:01:37,650 --> 00:01:41,980
+The terminal gives you access to a real system running docker.
+
+25
+00:01:42,000 --> 00:01:46,470
+You can run any Docker command here and run your own containers or applications.
+
+26
+00:01:46,860 --> 00:01:51,570
+You would typically be running commands to solve the task assigned in the quiz portal.
+
+27
+00:01:52,050 --> 00:01:57,030
+You may play around an experiment with this environment, but make sure you do that after you've gone
+
+28
+00:01:57,030 --> 00:02:02,280
+through the quiz so that your work does not interfere with the tasks provided by the quiz.
+
+29
+00:02:03,280 --> 00:02:05,530
+So let me walk you through a few questions.
+
+30
+00:02:06,110 --> 00:02:07,970
+There are two types of questions.
+
+31
+00:02:08,240 --> 00:02:14,480
+Each lab scenario starts with a set of exploratory, multiple choice questions where you're asked to
+
+32
+00:02:14,480 --> 00:02:19,190
+explore and find information in the given environment and select the right answer.
+
+33
+00:02:19,670 --> 00:02:22,250
+This is to get you familiarized with the setup.
+
+34
+00:02:22,580 --> 00:02:28,790
+You're then asked to perform task like run a container, stop them, delete them, build your own image,
+
+35
+00:02:28,790 --> 00:02:29,540
+etc..
+
+36
+00:02:30,560 --> 00:02:31,160
+Here.
+
+37
+00:02:31,160 --> 00:02:36,140
+The first question asks us to find the version of Docker server engine running on the host.
+
+38
+00:02:36,440 --> 00:02:41,180
+Run the Docker version command in the terminal and identify the right version.
+
+39
+00:02:41,420 --> 00:02:44,690
+Then select the appropriate option from the given choices.
+
+40
+00:02:46,450 --> 00:02:53,350
+Another example is the fourth question where it asks you to run a container using the radius image.
+
+41
+00:02:54,300 --> 00:02:58,980
+If you're not sure of the command, click on hints and it will show you a hint.
+
+42
+00:02:59,550 --> 00:03:03,490
+We now run a Redis container using the Docker run Redis command.
+
+43
+00:03:03,510 --> 00:03:05,080
+Wait for the container to run.
+
+44
+00:03:05,100 --> 00:03:08,640
+Once done, click on check to check your work.
+
+45
+00:03:09,460 --> 00:03:11,830
+We have now successfully completed the task.
+
+46
+00:03:11,860 --> 00:03:17,050
+Similarly, follow along and complete all tasks once the lab exercise is completed.
+
+47
+00:03:17,260 --> 00:03:20,170
+Remember to leave a feedback and let us know how it went.
+
+48
+00:03:20,200 --> 00:03:25,840
+A few things to note These are publicly accessible labs that anyone can access.
+
+49
+00:03:25,840 --> 00:03:32,770
+So if you catch yourself locked out during a peak hour, please wait for some time and try again.
+
+50
+00:03:33,490 --> 00:03:38,800
+Also remember to not store any private or confidential data on these systems.
+
+51
+00:03:39,220 --> 00:03:46,210
+Remember that this environment is for learning purposes only and is only alive for an hour, after which
+
+52
+00:03:46,210 --> 00:03:47,470
+the lab is destroyed.
+
+53
+00:03:47,770 --> 00:03:49,420
+So does all your work.
+
+54
+00:03:50,150 --> 00:03:55,910
+But you may start over and access these labs as many times as you want until you feel confident.
+
+55
+00:03:56,150 --> 00:03:59,150
+I will also post solutions to these lab quizzes.
+
+56
+00:03:59,150 --> 00:04:02,090
+So if you run into issues, you may refer to those.
+
+57
+00:04:02,660 --> 00:04:03,670
+That's it for now.
+
+58
+00:04:03,680 --> 00:04:07,850
+Head over to the first challenge and I will see you on the other side.
+

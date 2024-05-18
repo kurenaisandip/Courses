@@ -1,0 +1,308 @@
+1
+00:00:05,360 --> 00:00:07,939
+Welcome to this lecture on Docker engine.
+
+2
+00:00:07,970 --> 00:00:14,570
+In this lecture, we will take a deeper look at Docker architecture, how it actually runs applications
+
+3
+00:00:14,570 --> 00:00:18,140
+in isolated containers and how it works under the hood.
+
+4
+00:00:19,900 --> 00:00:25,990
+Docker engine, as we have learned before, is simply referred to a host with Docker installed on it.
+
+5
+00:00:26,110 --> 00:00:32,439
+When you install Docker on a Linux host, you're actually installing three different components the
+
+6
+00:00:32,439 --> 00:00:36,910
+Docker daemon, the rest API server and the Docker CLI.
+
+7
+00:00:37,120 --> 00:00:43,750
+The Docker daemon is a background process that manages Docker objects such as the images, containers,
+
+8
+00:00:43,750 --> 00:00:45,370
+volumes and networks.
+
+9
+00:00:45,550 --> 00:00:52,240
+The Docker Rest API server is the API interface that programs can use to talk to the daemon and provide
+
+10
+00:00:52,240 --> 00:00:53,200
+instructions.
+
+11
+00:00:53,410 --> 00:01:00,010
+You could create your own tools using this rest API and the Docker CLI is nothing but the command line
+
+12
+00:01:00,010 --> 00:01:06,160
+interface that we've been using until now to perform actions such as running a container, stopping
+
+13
+00:01:06,160 --> 00:01:13,390
+containers, destroying images, etc. It uses the rest API to interact with the docker daemon.
+
+14
+00:01:14,190 --> 00:01:20,970
+Something to note here is that the doctor Cly need not necessarily be on the same host.
+
+15
+00:01:21,000 --> 00:01:28,020
+It could be on another system like a laptop and can still work with a remote docker engine.
+
+16
+00:01:28,320 --> 00:01:36,030
+Simply use the dash option on the Docker command and specify the remote Docker engine address and a
+
+17
+00:01:36,030 --> 00:01:37,590
+port as shown here.
+
+18
+00:01:37,920 --> 00:01:45,990
+For example, to run a container based on Engine X on a remote docker host, run the command Docker
+
+19
+00:01:45,990 --> 00:01:48,900
+Dash H equals 10.1.
+
+20
+00:01:48,900 --> 00:01:50,700
+23 .2.1.
+
+21
+00:01:50,700 --> 00:01:52,980
+Colon 2375.
+
+22
+00:01:53,810 --> 00:01:55,430
+Run NDA annex.
+
+23
+00:02:00,560 --> 00:02:05,810
+Now let's try and understand how exactly our application's containerized in Docker.
+
+24
+00:02:06,140 --> 00:02:08,090
+How does it work under the hood?
+
+25
+00:02:08,509 --> 00:02:17,300
+Docker uses namespaces to isolate workspace, process IDs, network inter process, communication mounts
+
+26
+00:02:17,300 --> 00:02:24,830
+and Unix timesharing systems are created in their own namespace, thereby providing isolation between
+
+27
+00:02:24,830 --> 00:02:25,730
+containers.
+
+28
+00:02:28,090 --> 00:02:33,520
+Let's take a look at one of the namespace Isolation technique Process ID namespaces.
+
+29
+00:02:33,790 --> 00:02:40,060
+Whenever a Linux system builds up, it starts with just one process with a process ID of one.
+
+30
+00:02:40,270 --> 00:02:44,860
+This is the root process and kicks off all the other processes in the system.
+
+31
+00:02:45,160 --> 00:02:50,440
+By the time the system boots up completely, we have a handful of processes running.
+
+32
+00:02:50,860 --> 00:02:56,050
+This can be seen by running the PS command to list all the running processes.
+
+33
+00:02:56,880 --> 00:02:57,540
+The process.
+
+34
+00:02:57,540 --> 00:03:02,610
+IDs are unique and two processes cannot have the same process ID.
+
+35
+00:03:03,380 --> 00:03:09,140
+Now, if we were to create a container, which is basically like a child's system within the current
+
+36
+00:03:09,140 --> 00:03:16,040
+system, the child's system needs to think that it is an independent system on its own and it has its
+
+37
+00:03:16,040 --> 00:03:22,250
+own set of processes originating from a root process with a process ID of one.
+
+38
+00:03:23,340 --> 00:03:28,620
+But we know that there is no hard isolation between the containers and the underlying host.
+
+39
+00:03:28,620 --> 00:03:34,710
+So the processes running inside the container are in fact processes running on the underlying host.
+
+40
+00:03:34,710 --> 00:03:38,820
+And so two processes cannot have the same process ID of one.
+
+41
+00:03:39,150 --> 00:03:43,790
+This is where namespaces come into play with process ID namespaces.
+
+42
+00:03:43,800 --> 00:03:47,510
+Each process can have multiple process IDs associated with it.
+
+43
+00:03:47,520 --> 00:03:53,190
+For example, when the processes start in the container, it's actually just another set of processes
+
+44
+00:03:53,190 --> 00:03:59,710
+on the base Linux system and it gets the next available process ID, in this case five and six.
+
+45
+00:03:59,730 --> 00:04:06,090
+However, they also get another process ID starting with ID one in the container namespace, which is
+
+46
+00:04:06,090 --> 00:04:08,420
+only visible inside the container.
+
+47
+00:04:08,430 --> 00:04:15,060
+So the container thinks that it has its own root process tree and so it is an independent system.
+
+48
+00:04:15,690 --> 00:04:18,750
+So how does that relate to an actual system?
+
+49
+00:04:18,779 --> 00:04:20,760
+How do you see this on a host?
+
+50
+00:04:21,029 --> 00:04:25,180
+Let's say I were to run an Engine X server as a container.
+
+51
+00:04:25,200 --> 00:04:29,640
+We know that the engine X container runs an engine X service.
+
+52
+00:04:30,060 --> 00:04:37,050
+If we were to list all the services inside the Docker container, we see that the Engine X service running
+
+53
+00:04:37,050 --> 00:04:38,940
+with a process ID of one.
+
+54
+00:04:39,240 --> 00:04:44,160
+This is the process ID of the service inside of the container namespace.
+
+55
+00:04:44,550 --> 00:04:50,760
+If we list the services on the Docker host, we will see the same service but with a different process
+
+56
+00:04:50,760 --> 00:04:51,390
+ID.
+
+57
+00:04:52,310 --> 00:04:59,360
+That indicates that all processes are in fact running on the same host but separated into their own
+
+58
+00:04:59,360 --> 00:05:02,210
+containers using namespaces.
+
+59
+00:05:04,220 --> 00:05:10,820
+So we learned that the underlying Docker host, as well as the containers, share the same system resources
+
+60
+00:05:10,820 --> 00:05:13,100
+such as CPU and memory.
+
+61
+00:05:13,640 --> 00:05:19,610
+How much of the resources are dedicated to the host and the containers, and how does Docker manage
+
+62
+00:05:19,610 --> 00:05:22,490
+and share the resources between the containers?
+
+63
+00:05:22,940 --> 00:05:30,680
+By default there is no restriction as to how much of a resource a container can use, and hence a container
+
+64
+00:05:30,680 --> 00:05:34,790
+may end up utilizing all of the resources on the underlying host.
+
+65
+00:05:35,240 --> 00:05:40,370
+But there is a way to restrict the amount of CPU or memory a container can use.
+
+66
+00:05:41,060 --> 00:05:48,410
+Docker uses C groups or control groups to restrict the amount of hardware resources allocated to each
+
+67
+00:05:48,410 --> 00:05:49,280
+container.
+
+68
+00:05:49,990 --> 00:05:57,130
+This can be done by providing the dash dash CPU's option to the Docker run command, providing a value
+
+69
+00:05:57,130 --> 00:05:58,280
+of 0.5.
+
+70
+00:05:58,300 --> 00:06:05,560
+We'll ensure that the container does not take up more than 50% of the host CPU at any given time.
+
+71
+00:06:05,890 --> 00:06:07,420
+The same goes with memory.
+
+72
+00:06:07,750 --> 00:06:14,410
+Setting a value of 100 MB to the dash dash memory option limits the amount of memory the container can
+
+73
+00:06:14,410 --> 00:06:16,780
+use to 100 megabytes.
+
+74
+00:06:17,720 --> 00:06:24,050
+If you're interested in reading more on this topic, refer to the links I posted in the reference page.
+
+75
+00:06:24,590 --> 00:06:26,930
+That's it for now on Docker Engine.
+
+76
+00:06:27,080 --> 00:06:33,230
+In the next lecture we talk about other advanced topics on Docker storage and file systems.
+
+77
+00:06:33,440 --> 00:06:34,790
+See you in the next lecture.
+

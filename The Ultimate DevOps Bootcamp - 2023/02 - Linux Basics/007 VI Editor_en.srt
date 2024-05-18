@@ -1,0 +1,180 @@
+1
+00:00:00,180 --> 00:00:05,460
+In this section, we will learn more about console based text editors and Linux.
+
+2
+00:00:06,390 --> 00:00:12,840
+Earlier in this course, we saw the usage of the CAT command to write and redirect data into a file.
+
+3
+00:00:13,230 --> 00:00:20,550
+While this works well and has its uses, it is a very basic form and offers no additional features and
+
+4
+00:00:20,550 --> 00:00:26,550
+is not feasible when dealing with adding or manipulating large amount of texts or for writing code.
+
+5
+00:00:27,090 --> 00:00:32,910
+In the DevOps and cloud world, you'll be working with a number of Linux servers and most of the time
+
+6
+00:00:32,910 --> 00:00:39,570
+you'll be accessing them remotely using terminal tools and you'll be modifying content in a number of
+
+7
+00:00:39,570 --> 00:00:42,570
+files, configuration files mostly.
+
+8
+00:00:42,570 --> 00:00:48,060
+So getting the basics of VI editor comes in really handy in such cases.
+
+9
+00:00:48,450 --> 00:00:57,180
+There are a number of text editors available in Linux such as VI, Vim, Nano, etc. and in this course
+
+10
+00:00:57,180 --> 00:01:00,810
+we will look at VI editor, which happens to be the most popular one.
+
+11
+00:01:02,140 --> 00:01:06,220
+VI ed comes installed by default with most operating systems.
+
+12
+00:01:06,220 --> 00:01:10,600
+Run the VI command and specify the file name to open it.
+
+13
+00:01:11,170 --> 00:01:16,120
+The terminal opens the file and you're now inside the VI editor.
+
+14
+00:01:16,800 --> 00:01:17,020
+VII.
+
+15
+00:01:17,130 --> 00:01:21,900
+Ed has two modes of operation the command mode and the insert mode.
+
+16
+00:01:22,200 --> 00:01:28,350
+When you open a file in VI editor, you are by default in the command mode.
+
+17
+00:01:28,590 --> 00:01:35,400
+In this mode you can issue commands to the editor, such as to copy and paste lines or delete a line
+
+18
+00:01:35,400 --> 00:01:38,850
+or a word, or to navigate between lines, etc..
+
+19
+00:01:38,970 --> 00:01:42,120
+But you cannot write contents to the file.
+
+20
+00:01:42,540 --> 00:01:49,330
+To write contents to the file, you must switch to the insert mode to switch to the insert mode.
+
+21
+00:01:49,350 --> 00:01:51,180
+Type lowercase i.
+
+22
+00:01:51,660 --> 00:01:58,050
+Once you are in insert mode, you may modify the file contents as you would normally to switch back
+
+23
+00:01:58,050 --> 00:02:01,270
+from insert mode to the command mode.
+
+24
+00:02:01,290 --> 00:02:03,180
+Press the escape key.
+
+25
+00:02:04,700 --> 00:02:08,030
+Let's see what operations are available in the command mode.
+
+26
+00:02:08,759 --> 00:02:15,450
+You may move around through the editor using the arrow keys or the keys cage on your keyboard.
+
+27
+00:02:15,450 --> 00:02:19,350
+K to go up H to left J two down and L to the right.
+
+28
+00:02:20,090 --> 00:02:22,580
+To delete a character, press X.
+
+29
+00:02:23,030 --> 00:02:29,270
+Typing D deletes the entire line to copy a line type y y.
+
+30
+00:02:29,270 --> 00:02:30,570
+And to paste it.
+
+31
+00:02:30,590 --> 00:02:32,150
+Type in P.
+
+32
+00:02:32,880 --> 00:02:39,150
+To scroll the page up or down, press the control plus you or DD buttons.
+
+33
+00:02:39,450 --> 00:02:46,440
+Typing in colon takes you to the prompt where you can type in commands to save the changes made to the
+
+34
+00:02:46,440 --> 00:02:48,840
+file and write the file to disk.
+
+35
+00:02:48,870 --> 00:02:51,450
+Use the colon w command.
+
+36
+00:02:51,750 --> 00:02:54,960
+You can optionally specify a file name as well.
+
+37
+00:02:55,580 --> 00:03:03,350
+To discard any unsaved changes made to the file and quit whim type in colon Q command to save changes
+
+38
+00:03:03,350 --> 00:03:07,340
+and quit type in colon WQ command.
+
+39
+00:03:08,290 --> 00:03:09,880
+So how do you find stuff?
+
+40
+00:03:09,880 --> 00:03:16,810
+For example, I want to find the word off in this file for this type in the command slash off.
+
+41
+00:03:17,870 --> 00:03:24,710
+When you do that, all occurrences of the word off is highlighted and the cursor is positioned at that
+
+42
+00:03:24,710 --> 00:03:28,610
+location to move your cursor to the rest of the occurrences.
+
+43
+00:03:28,790 --> 00:03:36,020
+Press the key and you can continue to press the end key to move the cursor to all future occurrences.
+
+44
+00:03:36,290 --> 00:03:38,960
+Well, that's it for the basics of VI editor.
+
+45
+00:03:38,960 --> 00:03:43,430
+For now, head over to the labs and practice working with VI Editor.
+

@@ -1,0 +1,124 @@
+1
+00:00:02,430 --> 00:00:10,990
+There are obviously a ton of different tools out there, free paid enterprise.
+
+2
+00:00:11,010 --> 00:00:11,880
+All of that stuff.
+
+3
+00:00:11,880 --> 00:00:15,120
+There's a ridiculous amount nowadays, So why?
+
+4
+00:00:15,150 --> 00:00:22,380
+Jenkins Well, we're going to go over these bits, but I want you to think open source a ton of plugins
+
+5
+00:00:22,380 --> 00:00:24,140
+completely free.
+
+6
+00:00:24,150 --> 00:00:28,260
+And if you want to pay a little bit of money, there are some enterprise options as well.
+
+7
+00:00:28,620 --> 00:00:37,890
+So first things first, Jenkins itself, the full CI CD suite, all of the plugins, the ability to
+
+8
+00:00:37,890 --> 00:00:45,180
+deploy it, the ability to host it yourself, it is all 110% free.
+
+9
+00:00:45,180 --> 00:00:48,660
+You can host it on a VM, on a container.
+
+10
+00:00:48,660 --> 00:00:51,960
+You could even host it locally for development purposes if you want.
+
+11
+00:00:51,960 --> 00:00:58,560
+I wouldn't recommend for production purposes hosting it on your Mac or on your Windows device, but
+
+12
+00:00:58,560 --> 00:01:00,230
+you could if you wanted to.
+
+13
+00:01:00,240 --> 00:01:04,310
+And again, you don't have to pay anything to actually use the software.
+
+14
+00:01:04,319 --> 00:01:05,820
+This is open source.
+
+15
+00:01:05,820 --> 00:01:07,920
+This is 100% free.
+
+16
+00:01:08,800 --> 00:01:09,820
+Next.
+
+17
+00:01:09,910 --> 00:01:16,930
+There are a ton of plug ins, specifically 1000 plus plug ins, which to be honest.
+
+18
+00:01:17,970 --> 00:01:22,850
+Is definitely a lot more than a lot of other platforms, and there's a good reason for that.
+
+19
+00:01:22,860 --> 00:01:25,830
+Jenkins has been around for a really long time.
+
+20
+00:01:25,830 --> 00:01:32,580
+People have created a ton of plugins for it, primarily because remember it is open source and because
+
+21
+00:01:32,580 --> 00:01:37,920
+it's open source, you can create all of the different plugins for it whenever you want to.
+
+22
+00:01:37,920 --> 00:01:44,250
+And with all of the plugins you pretty much going to have a plugin for every major DevOps tool, public
+
+23
+00:01:44,250 --> 00:01:50,400
+cloud provider programming language like Go and Python if you need support for it, it's all there.
+
+24
+00:01:50,580 --> 00:01:51,960
+And if it's not, guess what?
+
+25
+00:01:51,960 --> 00:01:52,650
+It's open source.
+
+26
+00:01:52,650 --> 00:01:53,820
+You could create yourself.
+
+27
+00:01:53,820 --> 00:01:58,920
+Now if you want enterprise like you want support, you want a number to call.
+
+28
+00:01:58,920 --> 00:02:01,650
+You want the ability to not have to host it yourself.
+
+29
+00:02:01,650 --> 00:02:04,830
+You want it more like a SAS style platform.
+
+30
+00:02:04,830 --> 00:02:08,460
+Enterprise options for Jenkins are available.
+
+31
+00:02:09,389 --> 00:02:13,050
+Well, that's it for this lecture we'll see in the next.
+

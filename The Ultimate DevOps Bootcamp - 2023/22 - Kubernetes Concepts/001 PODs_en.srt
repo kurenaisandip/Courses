@@ -1,0 +1,436 @@
+1
+00:00:04,260 --> 00:00:07,650
+Hello and welcome to this lecture on Kubernetes pods.
+
+2
+00:00:09,620 --> 00:00:15,620
+Before we head into understanding parts, we would like to assume that the following have been set up
+
+3
+00:00:15,620 --> 00:00:16,340
+already.
+
+4
+00:00:16,640 --> 00:00:23,870
+At this point, we assume that the application is already developed and built into Docker images and
+
+5
+00:00:23,870 --> 00:00:29,750
+it is available on a Docker repository like Docker Hub so Kubernetes can pull it down.
+
+6
+00:00:30,050 --> 00:00:36,710
+We also assume that the Kubernetes cluster has already been set up and is working.
+
+7
+00:00:37,190 --> 00:00:41,180
+This could be a single node setup or a multi node setup.
+
+8
+00:00:41,180 --> 00:00:42,110
+Doesn't matter.
+
+9
+00:00:42,410 --> 00:00:45,560
+All the services need to be in a running state.
+
+10
+00:00:46,710 --> 00:00:53,850
+As we discussed before with Kubernetes, our ultimate aim is to deploy our application in the form of
+
+11
+00:00:53,850 --> 00:00:59,190
+containers on a set of machines that are configured as worker nodes in a cluster.
+
+12
+00:00:59,370 --> 00:01:05,459
+However, Kubernetes does not deploy containers directly on the worker nodes.
+
+13
+00:01:05,880 --> 00:01:12,360
+The containers are encapsulated into a Kubernetes object known as pods.
+
+14
+00:01:12,780 --> 00:01:16,650
+A pod is a single instance of an application.
+
+15
+00:01:16,830 --> 00:01:22,440
+A pod is the smallest object that you can create in Kubernetes.
+
+16
+00:01:24,480 --> 00:01:32,910
+Here we see the simplest of simplest cases where you have a single node Kubernetes cluster with a single
+
+17
+00:01:32,910 --> 00:01:39,030
+instance of your application running in a single Docker container encapsulated in a pod.
+
+18
+00:01:39,790 --> 00:01:46,060
+What if the number of users accessing your application increase and you need to scale your application?
+
+19
+00:01:46,480 --> 00:01:51,730
+You need to add additional instances of your web application to share the load.
+
+20
+00:01:52,180 --> 00:01:55,480
+Now, where would you spin up additional instances?
+
+21
+00:01:55,690 --> 00:01:59,830
+Do we bring up new container instance within the same pod?
+
+22
+00:01:59,950 --> 00:02:06,790
+No, we create new pod altogether with a new instance of the same application.
+
+23
+00:02:07,030 --> 00:02:14,020
+As you can see, we now have two instances of our web application running on two separate paths on the
+
+24
+00:02:14,020 --> 00:02:16,570
+same Kubernetes system or node.
+
+25
+00:02:16,930 --> 00:02:22,790
+What if the user base further increases and your current node has no sufficient capacity?
+
+26
+00:02:22,810 --> 00:02:28,360
+Well, then you can always deploy additional parts on a new node in the cluster.
+
+27
+00:02:28,600 --> 00:02:33,880
+You will have a new node added to the cluster to expand the clusters physical capacity.
+
+28
+00:02:34,180 --> 00:02:41,500
+So what I'm trying to illustrate in this slide is that pods usually have a 1 to 1 relationship with
+
+29
+00:02:41,500 --> 00:02:43,690
+containers running your application.
+
+30
+00:02:43,990 --> 00:02:50,170
+To scale up, you create new pods and to scale down, you delete existing pod.
+
+31
+00:02:50,620 --> 00:02:56,350
+You do not add additional containers to an existing pod to scale your application.
+
+32
+00:02:56,650 --> 00:03:02,320
+Also, if you're wondering how we implement all of this and how we achieve load balancing between the
+
+33
+00:03:02,320 --> 00:03:06,670
+containers, etc., we will get into all of that in a later lecture.
+
+34
+00:03:06,730 --> 00:03:11,470
+For now, we are only trying to understand the basic concepts.
+
+35
+00:03:12,630 --> 00:03:17,880
+We just said that ports usually have a 1 to 1 relationship with the containers.
+
+36
+00:03:17,880 --> 00:03:22,560
+But are we restricted to having a single container in a single pod?
+
+37
+00:03:22,650 --> 00:03:23,460
+No.
+
+38
+00:03:23,760 --> 00:03:31,080
+A single pod can have multiple containers, except for the fact that they're usually not multiple containers
+
+39
+00:03:31,080 --> 00:03:32,460
+of the same kind.
+
+40
+00:03:32,850 --> 00:03:35,200
+As we discussed in the previous slide.
+
+41
+00:03:35,220 --> 00:03:41,640
+If our intention was to scale our application, then we would need to create additional pods.
+
+42
+00:03:42,030 --> 00:03:48,420
+But sometimes you might have a scenario where you have a helper container that might be doing some kind
+
+43
+00:03:48,420 --> 00:03:55,080
+of supporting task for our web application, such as processing a user, enter data processing a file
+
+44
+00:03:55,080 --> 00:04:01,350
+uploaded by the user, etc. and you want these helper containers to live alongside your application
+
+45
+00:04:01,350 --> 00:04:02,130
+container.
+
+46
+00:04:02,580 --> 00:04:09,930
+In that case, you can have both of these containers part of the same pod so that when a new application
+
+47
+00:04:09,930 --> 00:04:16,589
+container is created, the helper is also created and when it dies, the helper also dies since they
+
+48
+00:04:16,589 --> 00:04:18,269
+are part of the same pod.
+
+49
+00:04:18,720 --> 00:04:24,960
+The two containers can also communicate with each other directly by referring to each other as local
+
+50
+00:04:24,960 --> 00:04:31,980
+host, since they share the same network space, plus they can easily share the same storage space as
+
+51
+00:04:31,980 --> 00:04:32,490
+well.
+
+52
+00:04:33,820 --> 00:04:38,380
+If you still have doubts in this topic, I would understand if you did, because I did.
+
+53
+00:04:38,380 --> 00:04:44,440
+The first time I learned these concepts, we could take another shot at understanding parts from a different
+
+54
+00:04:44,440 --> 00:04:45,070
+angle.
+
+55
+00:04:46,090 --> 00:04:52,930
+Let's for a moment keep Kubernetes out of our discussion and talk about simple Docker containers.
+
+56
+00:04:53,140 --> 00:04:59,740
+Let's assume we were developing a process or a script to deploy our application on a Docker host.
+
+57
+00:05:00,500 --> 00:05:07,160
+Then we would first simply deploy our application using a simple Docker run Python app command, and
+
+58
+00:05:07,160 --> 00:05:10,640
+the application runs fine and our users are able to access it.
+
+59
+00:05:11,240 --> 00:05:17,720
+When the load increases, we deploy more instances of our application by running the Docker run commands
+
+60
+00:05:17,720 --> 00:05:18,920
+many more times.
+
+61
+00:05:19,460 --> 00:05:22,880
+This works fine and we are all happy now.
+
+62
+00:05:22,880 --> 00:05:24,260
+Sometime in the future.
+
+63
+00:05:24,260 --> 00:05:30,830
+Our application is further developed, undergoes architectural changes and grows and gets complex.
+
+64
+00:05:31,040 --> 00:05:37,910
+We now have a new helper container that helps our web application by processing or fetching data from
+
+65
+00:05:37,910 --> 00:05:38,630
+elsewhere.
+
+66
+00:05:39,050 --> 00:05:45,830
+These helper containers maintain a 1 to 1 relationship with our application container and thus need
+
+67
+00:05:45,830 --> 00:05:51,980
+to communicate with the application containers directly and access data from those containers.
+
+68
+00:05:52,860 --> 00:05:59,880
+For this, we need to maintain a map of what app and helper containers are connected to each other.
+
+69
+00:06:00,120 --> 00:06:07,050
+We would need to establish network connectivity between these containers ourselves using links and custom
+
+70
+00:06:07,050 --> 00:06:07,760
+networks.
+
+71
+00:06:07,770 --> 00:06:11,850
+We would need to create shareable volumes and share it among the containers.
+
+72
+00:06:12,240 --> 00:06:15,060
+We would need to maintain a map of that as well.
+
+73
+00:06:15,480 --> 00:06:21,720
+And most importantly, we would need to monitor the state of the application container and when it dies,
+
+74
+00:06:21,720 --> 00:06:25,650
+manually kill the helper container as well as it's no longer required.
+
+75
+00:06:25,980 --> 00:06:30,810
+When a new container is deployed, we would need to deploy the new helper container as well.
+
+76
+00:06:30,870 --> 00:06:35,750
+With Part Kubernetes does all of this for us automatically.
+
+77
+00:06:35,760 --> 00:06:41,550
+We just need to define what containers a pod consists of and the containers in a pod.
+
+78
+00:06:41,550 --> 00:06:48,720
+By default, we'll have access to the same storage, the same network namespace, and same fate as in
+
+79
+00:06:48,720 --> 00:06:52,860
+they will be created together and destroyed together.
+
+80
+00:06:52,860 --> 00:06:58,230
+Even if our application didn't happen to be so complex and we could live with a single container.
+
+81
+00:06:58,230 --> 00:07:05,340
+Kubernetes still requires you to create pods, but this is good in the long run, as your application
+
+82
+00:07:05,340 --> 00:07:10,140
+is now equipped for architectural changes and scale in the future.
+
+83
+00:07:10,800 --> 00:07:17,550
+However, also note that multi pod containers are a rare use case and we're going to stick to single
+
+84
+00:07:17,550 --> 00:07:20,340
+containers per pod in this course.
+
+85
+00:07:21,320 --> 00:07:24,080
+Let us now look at how to deploy pods.
+
+86
+00:07:24,620 --> 00:07:28,340
+Earlier, we learned about the cube control run command.
+
+87
+00:07:28,700 --> 00:07:34,730
+What this command really does is it deploys a Docker container by creating a pod.
+
+88
+00:07:35,010 --> 00:07:41,090
+So it first creates a pod automatically and deploys an instance of the engine x Docker image.
+
+89
+00:07:41,480 --> 00:07:44,660
+But where does it get the application image from?
+
+90
+00:07:44,900 --> 00:07:50,000
+For that you need to specify the image name using the image parameter.
+
+91
+00:07:50,630 --> 00:07:51,980
+The application image.
+
+92
+00:07:51,980 --> 00:07:57,230
+In this case, the engine X image is downloaded from the Docker Hub Repository.
+
+93
+00:07:57,410 --> 00:08:03,260
+Docker Hub, as we discussed, is a public repository where latest Docker images of various applications
+
+94
+00:08:03,260 --> 00:08:04,040
+are stored.
+
+95
+00:08:04,070 --> 00:08:10,160
+You could configure Kubernetes to pull the image from the public Docker hub or a private repository
+
+96
+00:08:10,160 --> 00:08:11,600
+within the organisation.
+
+97
+00:08:12,320 --> 00:08:17,480
+Now that we have a pod created, how do we see the list of pods available?
+
+98
+00:08:18,190 --> 00:08:24,550
+The cube control get parts Command helps us see the list of parts in our cluster.
+
+99
+00:08:25,150 --> 00:08:31,930
+In this case, we see the pod is in a container creating state and soon changes to a running state when
+
+100
+00:08:31,930 --> 00:08:33,250
+it is actually running.
+
+101
+00:08:34,049 --> 00:08:39,840
+Also remember that we haven't really talked about the concepts on how a user can access the Engine X
+
+102
+00:08:39,840 --> 00:08:40,770
+web server.
+
+103
+00:08:40,770 --> 00:08:46,260
+And so in the current state, we haven't made the web server accessible to external users.
+
+104
+00:08:46,410 --> 00:08:49,560
+You can access it internally from the node.
+
+105
+00:08:49,680 --> 00:08:57,120
+But for now we will just see how to deploy a pod and later in a later lecture.
+
+106
+00:08:57,120 --> 00:09:03,630
+Once we learn about networking and services, we will get to know how to make this service accessible
+
+107
+00:09:03,630 --> 00:09:04,770
+to end users.
+
+108
+00:09:06,840 --> 00:09:08,610
+Well, that's it for this lecture.
+
+109
+00:09:08,640 --> 00:09:11,700
+Head over to a demo and I will see you in the next one.
+

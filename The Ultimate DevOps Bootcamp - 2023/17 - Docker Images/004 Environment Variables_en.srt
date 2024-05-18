@@ -1,0 +1,88 @@
+1
+00:00:05,070 --> 00:00:08,910
+Let us start with a simple web application written in Python.
+
+2
+00:00:08,940 --> 00:00:15,120
+This piece of code is used to create a web application that displays a web page with a background color.
+
+3
+00:00:15,630 --> 00:00:21,120
+If you look closely into the application code, you will see a line that sets the background color to
+
+4
+00:00:21,120 --> 00:00:21,450
+red.
+
+5
+00:00:21,780 --> 00:00:23,780
+Now, that works just fine.
+
+6
+00:00:23,790 --> 00:00:29,580
+However, if you decide to change the color in the future, you will have to change the application
+
+7
+00:00:29,580 --> 00:00:30,210
+code.
+
+8
+00:00:30,420 --> 00:00:37,140
+It is a best practice to move such information out of the application code and into, say, an environment
+
+9
+00:00:37,140 --> 00:00:39,390
+variable called app color.
+
+10
+00:00:39,780 --> 00:00:45,980
+The next time you run the application, set an environment variable called add color to a desired value,
+
+11
+00:00:45,990 --> 00:00:48,600
+and the application now has a new color.
+
+12
+00:00:49,490 --> 00:00:55,640
+Once your application gets packaged into a Docker image, you will then run it with the Docker run command,
+
+13
+00:00:55,640 --> 00:00:57,740
+followed by the name of the image.
+
+14
+00:00:57,980 --> 00:01:04,400
+However, if you wish to pass the environment variable as we did before, you would now use the Docker
+
+15
+00:01:04,400 --> 00:01:12,290
+run commands option to set an environment variable within the container to deploy multiple containers
+
+16
+00:01:12,290 --> 00:01:13,610
+with different colours.
+
+17
+00:01:13,610 --> 00:01:19,520
+You would run the Docker command multiple times and set a different value for the environment variable
+
+18
+00:01:19,520 --> 00:01:20,420
+each time.
+
+19
+00:01:21,500 --> 00:01:27,140
+So how do you find the environment variable set on a container that's already running?
+
+20
+00:01:27,590 --> 00:01:32,570
+Use the Docker, inspect command to inspect the properties of a running container.
+
+21
+00:01:33,020 --> 00:01:38,660
+Under the config section you will find the list of environment variables set on the container.
+
+22
+00:01:38,810 --> 00:01:43,730
+Well, that's it for this lecture on configuring Environment Variables in Docker.
+

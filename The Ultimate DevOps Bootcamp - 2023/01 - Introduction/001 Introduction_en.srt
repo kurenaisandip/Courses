@@ -1,0 +1,164 @@
+1
+00:00:00,940 --> 00:00:04,410
+Hello and welcome to the Ultimate DevOps Bootcamp course.
+
+2
+00:00:04,420 --> 00:00:10,030
+If you have been procrastinating about starting your DevOps journey, this is the perfect time and the
+
+3
+00:00:10,030 --> 00:00:11,170
+perfect course.
+
+4
+00:00:11,200 --> 00:00:15,760
+My name is Chad Monomyth, and me, along with my fellow instructors, will be assisting you through
+
+5
+00:00:15,760 --> 00:00:16,510
+this course.
+
+6
+00:00:16,600 --> 00:00:22,150
+In this course you'll not just learn theory, but you'll learn by doing with the help of our hands on
+
+7
+00:00:22,150 --> 00:00:22,780
+labs.
+
+8
+00:00:22,900 --> 00:00:28,480
+Every topic is followed by a hands on lab created specifically for that topic to help you gain hands
+
+9
+00:00:28,480 --> 00:00:29,410
+on experience.
+
+10
+00:00:31,490 --> 00:00:36,590
+If you're an absolute beginner, we'll start with the basic prerequisites on systems administration
+
+11
+00:00:36,590 --> 00:00:38,000
+like Linux and networking.
+
+12
+00:00:38,030 --> 00:00:43,100
+Ultimately, I.T. and DevOps is there to serve applications to end users.
+
+13
+00:00:43,100 --> 00:00:47,450
+And if you started your career on the infrastructure side of things, and if you have been a person
+
+14
+00:00:47,450 --> 00:00:52,640
+who hated coding and development, then you might find it especially difficult to follow some of the
+
+15
+00:00:52,640 --> 00:00:58,820
+concepts in DevOps, like what's front end and back end in a software, What are APIs, what's a build
+
+16
+00:00:58,820 --> 00:01:03,500
+process, what is packaging, what are dependencies, what are environment variables, etc. So although
+
+17
+00:01:03,500 --> 00:01:08,420
+you don't have to learn coding, it's good to have some idea about these from the perspective of a few
+
+18
+00:01:08,420 --> 00:01:10,640
+of the most popular programming languages.
+
+19
+00:01:10,640 --> 00:01:12,050
+So that's what we see next.
+
+20
+00:01:12,050 --> 00:01:14,480
+We see the basics of Java, Node.js, Python.
+
+21
+00:01:14,480 --> 00:01:16,700
+Again, there is no coding or programming involved.
+
+22
+00:01:16,700 --> 00:01:21,470
+We will only see how to take an application written in these languages and what are the necessary steps
+
+23
+00:01:21,470 --> 00:01:23,810
+required to build and host them in a server.
+
+24
+00:01:24,290 --> 00:01:30,200
+Developers collaborate on Git and Git is kind of at the center of DevOps pipeline or infrastructure
+
+25
+00:01:30,200 --> 00:01:30,740
+as code.
+
+26
+00:01:30,740 --> 00:01:33,650
+So Git I would say is the most important piece to learn.
+
+27
+00:01:33,650 --> 00:01:39,350
+So we have a short module on that and we then move on to containers and Docker and container orchestration
+
+28
+00:01:39,350 --> 00:01:40,280
+with Kubernetes.
+
+29
+00:01:40,670 --> 00:01:46,070
+Now many DevOps tools like Ansible, Docker and Kubernetes use YAML files to define configurations.
+
+30
+00:01:46,070 --> 00:01:51,950
+So understanding the basics of YAML is a must and you will learn YAML with a set of hands on exercises.
+
+31
+00:01:52,590 --> 00:01:55,460
+Now we learn about microservices architecture.
+
+32
+00:01:55,460 --> 00:02:01,520
+After this, we then move on to learning automation tools like Ansible and TerraForm, and finally we
+
+33
+00:02:01,520 --> 00:02:02,810
+learn about Python.
+
+34
+00:02:02,810 --> 00:02:08,750
+Now it's important to learn at least one programming language and you learn all of this by doing so
+
+35
+00:02:08,750 --> 00:02:14,360
+together you can stack up hundreds of hours of hands on experience by the time you're at the end of
+
+36
+00:02:14,360 --> 00:02:15,140
+this course.
+
+37
+00:02:18,320 --> 00:02:19,910
+If you run into any issues.
+
+38
+00:02:19,910 --> 00:02:26,540
+We have a thriving community to support you and we are so sure you'll benefit from our courses that
+
+39
+00:02:26,540 --> 00:02:28,520
+we offer a 30 day money back guarantee.
+
+40
+00:02:28,520 --> 00:02:30,260
+So there is nothing for you to lose.
+
+41
+00:02:30,560 --> 00:02:34,760
+I'm very excited to get started and I will see you in the first lesson.
+

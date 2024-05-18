@@ -1,0 +1,128 @@
+1
+00:00:00,450 --> 00:00:07,290
+If you're working on a new feature, you might work on a branch called feature forward slash sign up.
+
+2
+00:00:07,470 --> 00:00:11,540
+And only once that feature has been finished and entirely tested.
+
+3
+00:00:11,550 --> 00:00:14,700
+We want to get all those changes into the master branch.
+
+4
+00:00:15,000 --> 00:00:18,360
+We can merge a branch with a git merge command.
+
+5
+00:00:18,810 --> 00:00:25,170
+The git merge command receives the name of the branch that we want to merge into our current branch.
+
+6
+00:00:25,380 --> 00:00:31,530
+In this case we first have to check out to the master branch in order to merge feature forward slash
+
+7
+00:00:31,530 --> 00:00:33,120
+sign up into master.
+
+8
+00:00:34,620 --> 00:00:39,410
+We can now merge by typing git merge feature forward slash sign up.
+
+9
+00:00:39,420 --> 00:00:45,690
+There are two types of merges that git can perform a fast forward merge or a no.
+
+10
+00:00:45,690 --> 00:00:47,160
+Fast forward merge.
+
+11
+00:00:47,670 --> 00:00:54,030
+A fast forward merge can happen when the current branch has no extra commits compared to the branch
+
+12
+00:00:54,030 --> 00:00:55,110
+that we're merging.
+
+13
+00:00:55,590 --> 00:01:00,720
+Git is lazy and will first try to perform the easiest option.
+
+14
+00:01:00,720 --> 00:01:02,190
+The fast forward.
+
+15
+00:01:02,810 --> 00:01:09,020
+This type of merge doesn't create a new commit, but rather merges the commits on the branch that we're
+
+16
+00:01:09,020 --> 00:01:11,780
+merging right into the current branch.
+
+17
+00:01:12,230 --> 00:01:19,070
+Since the master branch doesn't contain any extra commits, we can merge branch directly into master.
+
+18
+00:01:19,460 --> 00:01:20,210
+Perfect.
+
+19
+00:01:20,210 --> 00:01:25,280
+We now have all the changes that were made on the branch available on the master branch.
+
+20
+00:01:25,760 --> 00:01:27,410
+So what's to know?
+
+21
+00:01:27,410 --> 00:01:29,180
+Fast forward all about.
+
+22
+00:01:29,540 --> 00:01:34,880
+It's great if your current branch doesn't have any extra commits compared to the branch that you want
+
+23
+00:01:34,880 --> 00:01:38,600
+to merge, but unfortunately that's rarely the case.
+
+24
+00:01:38,990 --> 00:01:44,750
+If we commit a changes on the current branch that the branch we want to merge doesn't have, git will
+
+25
+00:01:44,750 --> 00:01:45,920
+perform a no.
+
+26
+00:01:45,920 --> 00:01:54,320
+Fast forward merge with a no fast forward merge get creates a new merging commit on the active branch.
+
+27
+00:01:54,740 --> 00:01:59,990
+The commits parent commit point to both the active branch and the branch that we want to merge.
+
+28
+00:02:00,530 --> 00:02:01,430
+No big deal.
+
+29
+00:02:01,430 --> 00:02:03,020
+A perfect merge.
+
+30
+00:02:03,080 --> 00:02:06,800
+The master branch now contains all the changes that we've made.
+
+31
+00:02:06,830 --> 00:02:08,810
+That's it for this lecture.
+
+32
+00:02:08,840 --> 00:02:12,620
+Head over to the labs and start practicing what you've just learned.
+

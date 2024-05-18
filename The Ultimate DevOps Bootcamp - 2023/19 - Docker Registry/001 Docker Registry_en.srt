@@ -1,0 +1,236 @@
+1
+00:00:05,190 --> 00:00:07,470
+We will now look at Docker Registry.
+
+2
+00:00:07,830 --> 00:00:09,810
+So what is a registry?
+
+3
+00:00:10,660 --> 00:00:17,590
+If the containers were the rain, then they would rain from the Docker registry, which are the clouds.
+
+4
+00:00:17,770 --> 00:00:20,230
+That's where Docker images are stored.
+
+5
+00:00:20,560 --> 00:00:24,130
+It's the central repository of all Docker images.
+
+6
+00:00:24,490 --> 00:00:26,980
+Let's look at a simple engine x container.
+
+7
+00:00:27,490 --> 00:00:33,070
+We run the Docker run engine X command to run an instance of the engine X image.
+
+8
+00:00:33,780 --> 00:00:36,390
+Let's take a closer look at that image name.
+
+9
+00:00:36,780 --> 00:00:42,420
+Now, the name is Engine X, but what is this image and where is this image pulled from?
+
+10
+00:00:42,780 --> 00:00:47,600
+This name follows Dockers image naming convention and Gen X.
+
+11
+00:00:47,610 --> 00:00:51,180
+Here is the image or the repository name.
+
+12
+00:00:51,450 --> 00:00:56,370
+When you say engine X, it's actually engine x slash engine x.
+
+13
+00:00:56,460 --> 00:01:00,090
+The first part stands for the user or account name.
+
+14
+00:01:00,090 --> 00:01:06,690
+So if you don't provide an account or a repository name, it assumes that it is the same as the given
+
+15
+00:01:06,690 --> 00:01:08,850
+name, which in this case is engine X.
+
+16
+00:01:09,270 --> 00:01:13,080
+The user names is usually your Docker hub account name.
+
+17
+00:01:13,080 --> 00:01:16,680
+Or if it is an organization, then it's the name of the organization.
+
+18
+00:01:17,400 --> 00:01:23,880
+If you were to create your own account and create your own repositories or images under it, then you
+
+19
+00:01:23,880 --> 00:01:25,500
+would use a similar pattern.
+
+20
+00:01:26,280 --> 00:01:29,610
+Now where are these images stored and pulled from?
+
+21
+00:01:30,310 --> 00:01:36,250
+Since we have not specified the location where these images are to be pulled from, it is assumed to
+
+22
+00:01:36,250 --> 00:01:42,820
+be on Dockers default Registry Docker Hub, the DNS name for which is Docker Dot IO.
+
+23
+00:01:43,270 --> 00:01:46,240
+The registry is where all the images are stored.
+
+24
+00:01:46,270 --> 00:01:51,880
+Whenever you create a new image or update an existing image, you push it to the registry.
+
+25
+00:01:51,880 --> 00:01:56,980
+And every time anyone deploys this application, it is pulled from that registry.
+
+26
+00:01:57,100 --> 00:01:59,840
+There are many other popular registries as well.
+
+27
+00:01:59,860 --> 00:02:06,280
+For example, Google's registry is at GCR Dot IO, where a lot of Kubernetes related images are stored
+
+28
+00:02:06,280 --> 00:02:09,789
+like the ones used for performing end to end tests on the cluster.
+
+29
+00:02:10,240 --> 00:02:16,030
+These are all publicly accessible images that anyone can download and access.
+
+30
+00:02:16,390 --> 00:02:22,090
+When you have applications built in-house that shouldn't be made available to the public, hosting an
+
+31
+00:02:22,090 --> 00:02:25,240
+internal private registry may be a good solution.
+
+32
+00:02:25,270 --> 00:02:33,040
+Many cloud service providers such as US Azure or GCP, provide a private registry by default when you
+
+33
+00:02:33,040 --> 00:02:34,810
+open an account with them.
+
+34
+00:02:35,690 --> 00:02:41,690
+On any of these solutions, be it Docker Hub or Google Registry or your internal private registry,
+
+35
+00:02:41,690 --> 00:02:48,290
+you may choose to make a repository private so that it can only be accessed using a set of credentials.
+
+36
+00:02:48,710 --> 00:02:55,340
+From Dockers perspective to run a container using an image from a private registry, you first log in
+
+37
+00:02:55,340 --> 00:03:01,610
+to your private registry using the Docker Login command input your credentials Once successful, run
+
+38
+00:03:01,610 --> 00:03:06,110
+the application using private registry as part of the image name like this.
+
+39
+00:03:06,770 --> 00:03:11,810
+Now, if you did not log in to the private registry, it will come back saying that the image cannot
+
+40
+00:03:11,810 --> 00:03:12,560
+be found.
+
+41
+00:03:13,070 --> 00:03:17,930
+So remember to always log in before pulling or pushing to a private registry.
+
+42
+00:03:18,680 --> 00:03:25,610
+We said that cloud providers like AWS or GCP provide a private registry when you create an account with
+
+43
+00:03:25,610 --> 00:03:26,090
+them.
+
+44
+00:03:26,240 --> 00:03:31,190
+But what if you are running your application on premise and don't have a private registry?
+
+45
+00:03:31,220 --> 00:03:35,360
+How do you deploy your own private registry within your organization?
+
+46
+00:03:36,030 --> 00:03:42,130
+The doctor registry is itself another application and of course is available as a docker image.
+
+47
+00:03:42,150 --> 00:03:48,300
+The name of the image is Registry and it exposes the API on Port 5000.
+
+48
+00:03:48,840 --> 00:03:55,920
+Now that you have your custom registry running at Port 5000 on this Docker host, how do you push your
+
+49
+00:03:55,920 --> 00:03:57,540
+own image to it?
+
+50
+00:03:58,610 --> 00:04:04,430
+Use the Docker image tag command to tag the image with a private registry URL in it.
+
+51
+00:04:04,610 --> 00:04:12,110
+In this case, since it's running on the same docker host, I can use local host semicolon 5000 followed
+
+52
+00:04:12,110 --> 00:04:13,340
+by the image name.
+
+53
+00:04:14,210 --> 00:04:20,300
+I can then push my image to my local private registry using the Command Docker push and the new image
+
+54
+00:04:20,300 --> 00:04:22,940
+name with the Docker registry information in it.
+
+55
+00:04:23,150 --> 00:04:28,880
+From there on, I can pull my image from anywhere within this network using either local host If you're
+
+56
+00:04:28,880 --> 00:04:36,260
+on the same host or the IP or domain name of my Docker host if I'm accessing from another host in my
+
+57
+00:04:36,260 --> 00:04:36,980
+environment.
+
+58
+00:04:37,730 --> 00:04:39,620
+Well, that's it for this lecture.
+
+59
+00:04:39,650 --> 00:04:45,140
+Head over to the practice test and practice working with private Docker registries.
+

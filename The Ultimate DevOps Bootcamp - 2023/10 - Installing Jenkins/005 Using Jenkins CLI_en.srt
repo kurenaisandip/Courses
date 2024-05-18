@@ -1,0 +1,276 @@
+1
+00:00:03,310 --> 00:00:07,960
+All right, everybody, now that we understand a little bit about the Jenkins clay, what it does,
+
+2
+00:00:07,960 --> 00:00:09,780
+let's go ahead and learn how to use it.
+
+3
+00:00:09,790 --> 00:00:12,070
+So I'm at my Jenkins portal right now.
+
+4
+00:00:12,070 --> 00:00:15,580
+And what I'm going to do is I'm going to click on Manage Jenkins.
+
+5
+00:00:15,610 --> 00:00:21,070
+Now, if I scroll all the way down here, notice how under tools and actions I have Jenkins CLI.
+
+6
+00:00:21,100 --> 00:00:22,480
+Let's go ahead and click on that.
+
+7
+00:00:22,960 --> 00:00:28,420
+Now, this does show a little bit of a piece of documentation stating what you can do to get up and
+
+8
+00:00:28,420 --> 00:00:29,320
+running and all of that.
+
+9
+00:00:29,320 --> 00:00:32,910
+But let's go through from an authentication perspective.
+
+10
+00:00:32,920 --> 00:00:38,350
+So first things first, let's go ahead and install the Jenkins cloud.
+
+11
+00:00:38,500 --> 00:00:41,110
+So I'm going to open up my terminal here and I'm on my Jenkins host.
+
+12
+00:00:41,140 --> 00:00:45,910
+Notice I'm going to run a command against the Jenkins Cloud jar.
+
+13
+00:00:46,740 --> 00:00:51,330
+Now, if I lose here, we'll see that I have my Jenkins Clyde dot jar.
+
+14
+00:00:51,630 --> 00:00:55,800
+Now we have to authenticate to Jenkins from here.
+
+15
+00:00:55,800 --> 00:01:00,220
+Even though yes, we are on the Jenkins host, we still have to authenticate to Jenkins.
+
+16
+00:01:00,240 --> 00:01:05,790
+Now, the way that we can do that is if I go ahead and I open up another Jenkins portal here, I'm going
+
+17
+00:01:05,790 --> 00:01:11,790
+to go to manage actually, rather under my name here, I'm going to click on configure.
+
+18
+00:01:12,610 --> 00:01:15,990
+And then I'm going to go to API tokens.
+
+19
+00:01:16,000 --> 00:01:20,110
+Now, under here, as you can see, I already have an API token created.
+
+20
+00:01:20,110 --> 00:01:26,380
+You may not, which is okay, all you have to do is just click add new token and the new token will
+
+21
+00:01:26,380 --> 00:01:28,450
+pop up when I click generate here.
+
+22
+00:01:28,450 --> 00:01:31,450
+And as you can see, I have a new token right here.
+
+23
+00:01:31,750 --> 00:01:36,700
+So now that I have the token, I can authenticate to Jenkins.
+
+24
+00:01:36,940 --> 00:01:38,320
+And how do we do that?
+
+25
+00:01:38,320 --> 00:01:41,050
+Well, let's go ahead and open up our terminal here again.
+
+26
+00:01:41,800 --> 00:01:45,880
+And as you can see, I'm running the Java Jar Jenkins command.
+
+27
+00:01:46,000 --> 00:01:48,130
+I'm specifying my URL here.
+
+28
+00:01:48,130 --> 00:01:50,500
+And now I have this auth argument.
+
+29
+00:01:50,500 --> 00:01:54,490
+And what the auth argument does is I pass in my username.
+
+30
+00:01:55,270 --> 00:01:58,240
+Colon, then my API token.
+
+31
+00:01:58,510 --> 00:02:00,700
+So I'm going to go ahead and I'm going to run that.
+
+32
+00:02:01,720 --> 00:02:07,240
+And boom, as we can see, we get a whole bunch of these commands that are available for us because
+
+33
+00:02:07,240 --> 00:02:08,500
+we're authenticated.
+
+34
+00:02:08,800 --> 00:02:14,590
+So now let's actually run through maybe, I don't know, showing some jobs, for example.
+
+35
+00:02:15,010 --> 00:02:16,080
+Well, go ahead.
+
+36
+00:02:16,080 --> 00:02:17,200
+And I'm going to run this command.
+
+37
+00:02:17,200 --> 00:02:22,150
+And what this is doing is it's pretty much the same exact command that we had before, except now I'm
+
+38
+00:02:22,150 --> 00:02:25,750
+specifying the web socket argument with list jobs.
+
+39
+00:02:27,150 --> 00:02:30,420
+And as we can see, we have one job here called Test one.
+
+40
+00:02:30,420 --> 00:02:31,890
+Let's actually create a new job.
+
+41
+00:02:31,890 --> 00:02:34,980
+And what that means is where it's going to create a new pipeline.
+
+42
+00:02:34,980 --> 00:02:38,460
+And we're just going to create a template, one just to getting started one.
+
+43
+00:02:38,580 --> 00:02:40,620
+So I'm going to call this test two.
+
+44
+00:02:41,520 --> 00:02:44,640
+I'm going to click on Pipeline, then I'm going to click okay here.
+
+45
+00:02:45,330 --> 00:02:50,040
+I scroll all the way down and then you're going to see this try sample pipeline.
+
+46
+00:02:50,250 --> 00:02:51,840
+We'll click on Hello World.
+
+47
+00:02:51,840 --> 00:02:54,510
+This is just going to literally Echo Hello World here.
+
+48
+00:02:54,720 --> 00:02:56,190
+So I'm going to click Save.
+
+49
+00:02:56,850 --> 00:02:57,060
+Then.
+
+50
+00:02:57,060 --> 00:03:01,020
+Now what I'm going to do is I'm going to go back to my terminal to clear my screen and I'm going to
+
+51
+00:03:01,020 --> 00:03:03,630
+run the command to list jobs one more time.
+
+52
+00:03:04,850 --> 00:03:07,430
+Now notice here I now have two jobs listed.
+
+53
+00:03:07,430 --> 00:03:10,160
+Before we only had test one.
+
+54
+00:03:10,160 --> 00:03:12,980
+Now we have test one and test two.
+
+55
+00:03:13,520 --> 00:03:16,400
+So I'm going to run a new command again.
+
+56
+00:03:16,400 --> 00:03:18,740
+This is always the same here, folks.
+
+57
+00:03:18,740 --> 00:03:26,120
+So the Java jar specifying the Jenkins jar, specifying the server URL specifying the auth.
+
+58
+00:03:26,120 --> 00:03:27,200
+This is always the same.
+
+59
+00:03:27,200 --> 00:03:31,310
+Really, the only thing that actually changes is the command itself.
+
+60
+00:03:31,310 --> 00:03:34,060
+So as you can see, we had the list Jobs command.
+
+61
+00:03:34,070 --> 00:03:36,590
+Now we're going to do the build command.
+
+62
+00:03:36,800 --> 00:03:40,720
+So we're going to do this build against test two.
+
+63
+00:03:40,730 --> 00:03:46,160
+So really quick, as you can see, we have no builds here currently literally nothing.
+
+64
+00:03:47,050 --> 00:03:48,690
+You go, and I'm going to run this command.
+
+65
+00:03:49,840 --> 00:03:56,290
+You go back to the Jenkins portal here, and as you can see, we now have a build that ran successfully.
+
+66
+00:03:56,530 --> 00:04:01,680
+So if you want to get started with the Jenkins CLI, this is typically the best way.
+
+67
+00:04:01,690 --> 00:04:08,740
+Go through, learn about the authentication methods, learn how to list jobs, how to build jobs, etc..
+
+68
+00:04:08,950 --> 00:04:10,540
+Well, that's all for now.
+
+69
+00:04:10,540 --> 00:04:12,250
+Let's get some hands on practice.
+

@@ -1,0 +1,148 @@
+1
+00:00:05,830 --> 00:00:09,940
+Hello and welcome to this lecture on container orchestration.
+
+2
+00:00:10,750 --> 00:00:17,370
+So we learned about containers and we now have our application packaged into a Docker container.
+
+3
+00:00:17,380 --> 00:00:18,920
+But what's next?
+
+4
+00:00:18,940 --> 00:00:20,990
+How do you run it in production?
+
+5
+00:00:21,010 --> 00:00:27,430
+What if your application relies on other containers such as databases or messaging services or other
+
+6
+00:00:27,430 --> 00:00:28,750
+backend services?
+
+7
+00:00:28,960 --> 00:00:33,340
+What if the number of users increase and you need to scale your application?
+
+8
+00:00:33,370 --> 00:00:36,130
+How do you scale down when the load decreases?
+
+9
+00:00:36,700 --> 00:00:44,170
+To enable these functionalities, you need an underlying platform with a set of resources and capabilities.
+
+10
+00:00:44,410 --> 00:00:50,680
+The platform needs to orchestrate the connectivity between the containers and automatically scale up
+
+11
+00:00:50,680 --> 00:00:52,840
+or down based on the load.
+
+12
+00:00:53,290 --> 00:01:01,420
+This whole process of automatically deploying and managing containers is known as container orchestration.
+
+13
+00:01:01,900 --> 00:01:06,070
+Kubernetes is thus a container orchestration technology.
+
+14
+00:01:06,100 --> 00:01:09,510
+There are multiple such technologies available today.
+
+15
+00:01:09,520 --> 00:01:17,380
+Docker has its own tool called Docker Swarm Kubernetes from Google and messages from Apache.
+
+16
+00:01:17,890 --> 00:01:24,700
+While Docker Swarm is really easy to set up and get started, it lacks some of the advanced features
+
+17
+00:01:24,700 --> 00:01:27,100
+required for complex applications.
+
+18
+00:01:27,520 --> 00:01:33,610
+meSo is, on the other hand, is quite difficult to set up and get started but supports many advanced
+
+19
+00:01:33,610 --> 00:01:34,450
+features.
+
+20
+00:01:34,750 --> 00:01:41,200
+Kubernetes is arguably the most popular of it all, is a bit difficult to set up and get started, but
+
+21
+00:01:41,200 --> 00:01:48,250
+provides a lot of options to customize deployments and supports deployment of complex architectures.
+
+22
+00:01:48,280 --> 00:01:55,720
+Kubernetes is now supported on all public cloud service providers like GCP Azure and AWS.
+
+23
+00:01:55,720 --> 00:02:01,090
+And the Kubernetes Project is one of the top ranked projects in GitHub.
+
+24
+00:02:01,210 --> 00:02:05,050
+There are various advantages of container orchestration.
+
+25
+00:02:05,470 --> 00:02:12,130
+Your application is now highly available as hardware failures do not bring your application down because
+
+26
+00:02:12,130 --> 00:02:17,120
+you have multiple instances of your application running on different nodes.
+
+27
+00:02:17,140 --> 00:02:21,240
+The user traffic is load balanced across the various containers.
+
+28
+00:02:21,250 --> 00:02:28,450
+When demand increases, deploy more instances of the application seamlessly and within a matter of seconds.
+
+29
+00:02:28,450 --> 00:02:31,870
+And we have the ability to do that at a service level.
+
+30
+00:02:31,870 --> 00:02:38,260
+When we run out of hardware resources, scale the number of underlying nodes up or down without having
+
+31
+00:02:38,260 --> 00:02:45,760
+to take down the application and do all of these easily with a set of declarative object configuration
+
+32
+00:02:45,760 --> 00:02:48,550
+files, and that is Kubernetes.
+
+33
+00:02:48,580 --> 00:02:55,660
+It is a container orchestration technology used to orchestrate the deployment and management of hundreds
+
+34
+00:02:55,660 --> 00:02:59,500
+and thousands of containers in a clustered environment.
+
+35
+00:02:59,860 --> 00:03:05,650
+Don't worry, if you didn't get all of what I just said in the upcoming lectures, we will take a deeper
+
+36
+00:03:05,650 --> 00:03:12,780
+look at the architecture and various concepts surrounding Kubernetes that is all for this lecture.
+
+37
+00:03:12,790 --> 00:03:16,150
+Thank you for listening, and I will see you in the next lecture.
+

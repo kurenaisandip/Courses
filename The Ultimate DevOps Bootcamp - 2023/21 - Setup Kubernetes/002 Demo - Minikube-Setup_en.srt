@@ -1,0 +1,700 @@
+1
+00:00:01,220 --> 00:00:07,580
+In this demo, we're going to install a basic Kubernetes cluster using the mini cube utility as part
+
+2
+00:00:07,580 --> 00:00:09,230
+of this beginner's course.
+
+3
+00:00:09,230 --> 00:00:14,180
+To keep things simple and easy, we will stick to Mini Cube as our lab solution.
+
+4
+00:00:14,630 --> 00:00:20,180
+We explore additional options of provisioning equipment in this cluster using the cube admin tool.
+
+5
+00:00:20,570 --> 00:00:22,250
+In this course.
+
+6
+00:00:22,460 --> 00:00:28,760
+As for this course, we just want to stick to the very basics and all the basic operations can be performed
+
+7
+00:00:28,760 --> 00:00:30,560
+on a mini cube cluster.
+
+8
+00:00:30,830 --> 00:00:37,460
+So we will start at the Kubernetes i o page within this website, click on the documentation section
+
+9
+00:00:37,460 --> 00:00:42,350
+and navigate to tasks and install tools section.
+
+10
+00:00:42,620 --> 00:00:48,620
+Now, before installing mini Cube, we must install the Cube CODDLE utility.
+
+11
+00:00:48,800 --> 00:00:53,420
+It may be called Cube Control or Cube Cuttle or Cube CTL.
+
+12
+00:00:53,720 --> 00:01:00,260
+Whatever you prefer, you might hear me mix it up at time, so bear with me on that.
+
+13
+00:01:00,620 --> 00:01:08,120
+So the cube command line tool is what we will use to manage our Kubernetes resources and our cluster
+
+14
+00:01:08,120 --> 00:01:10,760
+after it is set up using mini cube.
+
+15
+00:01:11,210 --> 00:01:18,290
+Installing the cube kernel utility before installing Mini Cube will allow Mini Cube to configure the
+
+16
+00:01:18,290 --> 00:01:23,270
+cube puddle utility to work with the cluster when it provisions it.
+
+17
+00:01:23,300 --> 00:01:31,120
+So the cube utility can work with multiple clusters, local or remote clusters at the same time, and
+
+18
+00:01:31,190 --> 00:01:33,320
+there's a small configuration for it.
+
+19
+00:01:33,320 --> 00:01:40,190
+And mini Cube will automatically take care of that when it starts when it provisions a Kubernetes cluster.
+
+20
+00:01:40,550 --> 00:01:44,390
+But that is if you already have the cube utility installed.
+
+21
+00:01:44,390 --> 00:01:45,560
+So that's important.
+
+22
+00:01:45,740 --> 00:01:50,360
+Now, our goal is to set up a cluster on our local machine.
+
+23
+00:01:50,360 --> 00:01:58,040
+I'm on Linux or Ubuntu system, but the same procedure will also work on Windows or Mac operating systems
+
+24
+00:01:58,040 --> 00:01:58,730
+as well.
+
+25
+00:01:59,120 --> 00:02:07,250
+All the demos and tools that we have throughout this course will work on all operating systems Linux,
+
+26
+00:02:07,250 --> 00:02:08,539
+Windows or Mac.
+
+27
+00:02:09,050 --> 00:02:13,640
+You just need to follow the respective installation procedure for your OS.
+
+28
+00:02:14,240 --> 00:02:20,690
+And to start with, I'm going to install the cube kernel utility on my Linux system and we're going
+
+29
+00:02:20,690 --> 00:02:22,850
+to go ahead with the latest version.
+
+30
+00:02:22,850 --> 00:02:29,150
+So just copy and paste the command provided here for downloading the cube kernel binary.
+
+31
+00:02:35,310 --> 00:02:38,000
+The binary has now been downloaded.
+
+32
+00:02:38,010 --> 00:02:40,680
+The next step is to make this command executable.
+
+33
+00:02:40,680 --> 00:02:46,830
+So I'm going to use the command mode plus X to make it executable.
+
+34
+00:02:46,830 --> 00:02:52,320
+And finally, we're going to move this to a location within the path user local bin.
+
+35
+00:03:04,430 --> 00:03:10,340
+Okay, so this way I'll be able to run this command from anywhere within my system.
+
+36
+00:03:14,640 --> 00:03:22,500
+So let's run the version command and you can see that it has installed the 1.18 version.
+
+37
+00:03:25,530 --> 00:03:30,540
+Now, what we just saw was one way of installing cube candle utility.
+
+38
+00:03:30,540 --> 00:03:32,450
+There are other ways to do it.
+
+39
+00:03:32,460 --> 00:03:38,880
+You can install it using a package manager's depending upon the type of distribution, the OS distribution
+
+40
+00:03:38,880 --> 00:03:45,360
+that you are on and the documentation associated with these are available here.
+
+41
+00:03:45,360 --> 00:03:51,540
+So if you scroll down you will see that there are instructions for installation on Mac OS and there
+
+42
+00:03:51,540 --> 00:03:53,010
+should be one for Windows as well.
+
+43
+00:03:53,010 --> 00:03:59,760
+So make sure that you use the appropriate link and set up model based on the documentation provided.
+
+44
+00:04:00,390 --> 00:04:06,540
+Now that we have completed the installation of Cube model utility, we can proceed with the installation
+
+45
+00:04:06,540 --> 00:04:07,740
+of Mini Cube.
+
+46
+00:04:08,310 --> 00:04:14,190
+Now the first thing that we have to check and this goes for all operating systems Linux, Windows or
+
+47
+00:04:14,190 --> 00:04:21,089
+Mac, is to make sure that virtualization is enabled for your laptop or desktop wherever you're setting
+
+48
+00:04:21,089 --> 00:04:22,260
+up this lab.
+
+49
+00:04:22,500 --> 00:04:31,080
+So one of the easy ways to make sure that virtualization is enabled on Linux is to grep for the VMAX
+
+50
+00:04:31,080 --> 00:04:36,720
+or the some keyword under the proc CPU info file.
+
+51
+00:04:37,290 --> 00:04:38,760
+So that's what I'm going to do now.
+
+52
+00:04:38,760 --> 00:04:46,170
+So as long as this command shows an output such as the switches listed here, virtualization has been
+
+53
+00:04:46,170 --> 00:04:50,490
+enabled and you don't have to enable it specifically from the bios.
+
+54
+00:04:50,610 --> 00:04:55,700
+If it's not enabled, then you have to check your laptop's BIOS settings.
+
+55
+00:04:55,710 --> 00:05:00,840
+So you have to restart your laptop, go into the bios, and there should be an option to enable virtualization
+
+56
+00:05:00,840 --> 00:05:02,130
+and you have to do that.
+
+57
+00:05:02,520 --> 00:05:11,310
+You might have to check your laptop's manual in order to know how that's done or just check online with
+
+58
+00:05:11,310 --> 00:05:16,200
+your laptop model and search how to enable virtualization on your laptop.
+
+59
+00:05:16,350 --> 00:05:21,840
+And again, make sure that you check the documentation here for the respective operating system that
+
+60
+00:05:21,840 --> 00:05:22,710
+you are on.
+
+61
+00:05:23,070 --> 00:05:29,250
+For each of these, there are specific commands that can be used to run a test to see whether virtualization
+
+62
+00:05:29,250 --> 00:05:30,390
+has been enabled.
+
+63
+00:05:31,410 --> 00:05:37,050
+So next we are going to install Mini Cube and again, we will go ahead with the option for Linux.
+
+64
+00:05:37,170 --> 00:05:42,640
+And the first prerequisite is to install Cube Cuttle, which we have already done.
+
+65
+00:05:42,660 --> 00:05:45,620
+The next one is to install a hypervisor.
+
+66
+00:05:45,630 --> 00:05:49,680
+So for Linux we can either use KVM or VirtualBox.
+
+67
+00:05:49,920 --> 00:05:56,720
+We will go with VirtualBox as that is our preferred virtualization solution.
+
+68
+00:05:56,730 --> 00:06:01,800
+You can also run mini cube without a hypervisor and directly on your host using docker.
+
+69
+00:06:01,800 --> 00:06:08,820
+So if you already have Docker installed, you could leverage that and have mini Cube provisioned Kubernetes
+
+70
+00:06:08,820 --> 00:06:12,180
+cluster using a Docker container.
+
+71
+00:06:12,390 --> 00:06:18,900
+However, note that as you can see here in the documentation page, there is a warning that says it
+
+72
+00:06:18,900 --> 00:06:21,570
+can result in security or data loss issues.
+
+73
+00:06:21,570 --> 00:06:28,110
+So we will just stick with a virtual machine based approach for now, I just prefer VirtualBox because
+
+74
+00:06:28,110 --> 00:06:34,950
+it can in case you mess up something on your system and you need to restart, it's easy to get rid of
+
+75
+00:06:34,950 --> 00:06:36,720
+the VM and restart again.
+
+76
+00:06:37,080 --> 00:06:43,500
+It won't really mess up your laptop and you can take snapshots before you make a major change and then
+
+77
+00:06:43,500 --> 00:06:47,190
+you can restore that snapshot in case that changed.
+
+78
+00:06:47,790 --> 00:06:50,130
+Doesn't really well work well for you.
+
+79
+00:06:50,830 --> 00:06:57,190
+Now, VirtualBox is supported on all variety of operating systems, including Linux, Windows and OSX.
+
+80
+00:06:57,190 --> 00:07:02,020
+So I'm going to open this in a new window and it takes me to the download section.
+
+81
+00:07:02,020 --> 00:07:08,050
+And here I'm going to select Linux distribution and the one that is most appropriate for my system.
+
+82
+00:07:08,470 --> 00:07:11,440
+You may choose one that is appropriate for yours.
+
+83
+00:07:12,010 --> 00:07:17,530
+So wait for it to complete the download and then we will install VirtualBox.
+
+84
+00:07:19,220 --> 00:07:23,990
+It has downloaded the Debian package, so I'm just going to install it directly.
+
+85
+00:07:33,040 --> 00:07:34,700
+Wait for the installation to complete.
+
+86
+00:07:34,700 --> 00:07:39,440
+And while it installs, let's go back to the documentation section.
+
+87
+00:07:44,810 --> 00:07:51,200
+So now the installation has been completed and I'm just going to close this and I'm going to launch
+
+88
+00:07:51,200 --> 00:07:52,250
+a virtual box.
+
+89
+00:07:54,620 --> 00:08:00,500
+So as you can see here, this is what the VirtualBox interface looks like and you will have a similar
+
+90
+00:08:00,500 --> 00:08:05,960
+interface for Windows or Mac with minor differences, but that should not matter.
+
+91
+00:08:06,530 --> 00:08:10,910
+So right now we don't have any virtual machines running.
+
+92
+00:08:10,910 --> 00:08:17,600
+So when we provision a cluster using mini cube, it will automatically create a virtual machine as required.
+
+93
+00:08:17,840 --> 00:08:23,180
+So apart from just installing VirtualBox, you don't really have to do anything directly with it.
+
+94
+00:08:24,280 --> 00:08:25,990
+Now let's proceed with the installation.
+
+95
+00:08:25,990 --> 00:08:30,910
+So the next step is to install the mini cube utility.
+
+96
+00:08:30,940 --> 00:08:33,220
+Again, there are different ways to do this.
+
+97
+00:08:33,220 --> 00:08:40,330
+Either use the package manager and install it as a package or we can do it using a direct download approach.
+
+98
+00:08:40,659 --> 00:08:45,670
+So we're going to download the latest version and just like we did with the cube control utility, I'm
+
+99
+00:08:45,670 --> 00:08:49,240
+going to call the package and then install it on my machine.
+
+100
+00:08:50,110 --> 00:08:52,240
+So I'm just going to copy the whole thing.
+
+101
+00:08:52,240 --> 00:08:59,140
+And this will download the mini cube binaries and assign an execute bit so that we can run it as a command.
+
+102
+00:09:01,510 --> 00:09:06,190
+And once that has been done, let us add Mini Cube to our path.
+
+103
+00:09:06,220 --> 00:09:12,910
+The user local bin directory has already been created so we don't have to do that first step.
+
+104
+00:09:21,850 --> 00:09:23,200
+We will run this command.
+
+105
+00:09:24,000 --> 00:09:29,370
+To install mini cube at the location slash user slash local slash bin.
+
+106
+00:09:39,920 --> 00:09:44,420
+Next, we will provision a Kubernetes cluster using the mini cube utility.
+
+107
+00:09:45,650 --> 00:09:51,110
+So we're going to run the mini cube start command, but we also have to specify the driver name to be
+
+108
+00:09:51,110 --> 00:09:52,370
+used with this command.
+
+109
+00:09:52,790 --> 00:09:58,070
+Now, Mini Cube can work with different virtualization tools, and that's where you must specify what
+
+110
+00:09:58,070 --> 00:09:59,240
+driver to use.
+
+111
+00:09:59,270 --> 00:10:01,130
+In our case, we use VirtualBox.
+
+112
+00:10:01,130 --> 00:10:07,520
+So let's open this link and make sure that you we are using the correct driver name.
+
+113
+00:10:07,520 --> 00:10:10,640
+So the name of a VirtualBox driver is VirtualBox.
+
+114
+00:10:10,640 --> 00:10:12,470
+So we'll make use of that name.
+
+115
+00:10:13,010 --> 00:10:17,060
+So I'm going to copy and paste this command until the driver name.
+
+116
+00:10:17,330 --> 00:10:22,100
+And then I'm just going to copy the driver name from this page and paste it here.
+
+117
+00:10:24,190 --> 00:10:26,110
+We will now execute the command.
+
+118
+00:10:26,800 --> 00:10:31,690
+When it starts, you'll notice that it follows a process.
+
+119
+00:10:31,690 --> 00:10:37,390
+So it is, in fact downloading the ISO image for mini Cube.
+
+120
+00:10:37,780 --> 00:10:44,380
+And then this is the image that will be used to provision a VM on VirtualBox.
+
+121
+00:10:45,110 --> 00:10:51,980
+We now see that it's downloading Kubernetes version one point 18.3 and any other required binaries.
+
+122
+00:11:01,120 --> 00:11:07,300
+Now let me switch to the VirtualBox UI and we will see that a virtual machine by the name Mini Cube
+
+123
+00:11:07,300 --> 00:11:09,820
+has been created and it is in a running state.
+
+124
+00:11:10,240 --> 00:11:14,380
+And you can see that the VM uses two CPUs and two GB of RAM.
+
+125
+00:11:14,740 --> 00:11:17,770
+So let's wait for this setup to complete.
+
+126
+00:11:19,660 --> 00:11:27,940
+Okay, So now this has been installed and the utility is now configured to use the Kubernetes cluster
+
+127
+00:11:27,940 --> 00:11:30,160
+provisioned using mini cube.
+
+128
+00:11:30,400 --> 00:11:32,800
+So let's head back to the documentation page.
+
+129
+00:11:32,800 --> 00:11:39,310
+And the next thing that we are going to do is run the mini Cube Status Command to ensure that everything
+
+130
+00:11:39,310 --> 00:11:40,660
+has been set up correctly.
+
+131
+00:11:41,110 --> 00:11:46,210
+So I'm going to clear the screen here and then run the mini cube status command.
+
+132
+00:11:46,420 --> 00:11:55,330
+We can see that the mini cube control plane, cube, black API server and cube config are all in a running
+
+133
+00:11:55,330 --> 00:11:57,640
+and configured state, so that's good.
+
+134
+00:11:58,560 --> 00:12:03,570
+If you run into issues with the installation any time, feel free to run this command and check the
+
+135
+00:12:03,570 --> 00:12:04,260
+status.
+
+136
+00:12:04,800 --> 00:12:06,720
+So our cluster is now set up.
+
+137
+00:12:06,720 --> 00:12:11,040
+We will deploy some applications on the cluster and make sure it's working as expected.
+
+138
+00:12:11,460 --> 00:12:17,550
+Now we will get into talking about the different concepts on deploying an application in the upcoming
+
+139
+00:12:17,550 --> 00:12:18,330
+lectures.
+
+140
+00:12:18,360 --> 00:12:25,050
+Right now we just want to make sure that the cluster we set up is working as expected, so we will simply
+
+141
+00:12:25,050 --> 00:12:31,350
+follow the tutorial given in this page, although it may not make total sense now, but I assure you
+
+142
+00:12:31,350 --> 00:12:33,180
+that we will get to that in a bit.
+
+143
+00:12:33,630 --> 00:12:36,180
+So click on this link under what's next.
+
+144
+00:12:36,180 --> 00:12:41,550
+And here we have some examples that could be used to test our setup.
+
+145
+00:12:41,700 --> 00:12:46,350
+In the new page, you can skip the first step of starting a mini cube cluster.
+
+146
+00:12:46,350 --> 00:12:48,660
+So we have already done that.
+
+147
+00:12:48,810 --> 00:12:53,490
+So the next thing that we need to check is if Cube commands are working.
+
+148
+00:12:53,490 --> 00:13:00,570
+So I'm going to run the cube control, get Nodes Command and you can see that it is a single node cluster
+
+149
+00:13:00,570 --> 00:13:08,040
+and the node name is Mini Cube and it is in a ready state and it was spun up about 8 seconds ago and
+
+150
+00:13:08,040 --> 00:13:14,760
+it's running the latest release of Kubernetes, which is 1.18 as of this recording.
+
+151
+00:13:15,390 --> 00:13:19,230
+So next, let us try to create some deployments using this cluster.
+
+152
+00:13:19,230 --> 00:13:21,600
+So here we have an example on this page.
+
+153
+00:13:21,990 --> 00:13:26,250
+I'm going to run Cube Cuttle, Create Deployment Command to create the deployment.
+
+154
+00:13:36,540 --> 00:13:42,900
+Once that is done, we will run the cattle, get deployments command and you can see that the Halo mini
+
+155
+00:13:42,900 --> 00:13:46,380
+cube deployment has been running for 22 seconds.
+
+156
+00:13:47,130 --> 00:13:50,310
+Next, we will expose this deployment as a service.
+
+157
+00:13:50,440 --> 00:13:52,650
+And for that, make use of this command here.
+
+158
+00:13:52,800 --> 00:13:56,010
+And CubeSat will expose deployment.
+
+159
+00:13:56,910 --> 00:13:58,410
+Hello, Mini Cube command.
+
+160
+00:14:00,010 --> 00:14:01,810
+Now, don't worry about the command for now.
+
+161
+00:14:01,810 --> 00:14:05,350
+We'll talk about this in much detail later in this course.
+
+162
+00:14:05,380 --> 00:14:07,270
+For now, we will just copy and paste.
+
+163
+00:14:10,770 --> 00:14:11,220
+Okay.
+
+164
+00:14:11,220 --> 00:14:16,490
+And then we will skip to step five where we will get the URL of the ex post service.
+
+165
+00:14:16,500 --> 00:14:18,660
+So by running this command.
+
+166
+00:14:23,530 --> 00:14:27,130
+Copy the URL and paste it into a browser on your laptop.
+
+167
+00:14:29,160 --> 00:14:32,700
+And it should list the details about the application like this.
+
+168
+00:14:33,720 --> 00:14:39,600
+Okay, so that's not the most exciting application, but this is proof that your setup is working and
+
+169
+00:14:39,600 --> 00:14:41,250
+that's all we need for now.
+
+170
+00:14:41,340 --> 00:14:46,950
+Now follow the remaining instructions to clean up your system, delete the services, and delete the
+
+171
+00:14:46,950 --> 00:14:47,820
+deployment.
+
+172
+00:15:08,130 --> 00:15:11,840
+Now the deployment will be in a terminating state for a few seconds.
+
+173
+00:15:17,840 --> 00:15:21,920
+And after it's done, the application will no longer be accessible on the web page.
+
+174
+00:15:22,840 --> 00:15:24,610
+Well, that's it for now.
+
+175
+00:15:24,790 --> 00:15:27,010
+And I will see you in the next lecture.
+

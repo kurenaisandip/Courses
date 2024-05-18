@@ -1,0 +1,168 @@
+1
+00:00:00,180 --> 00:00:03,780
+In this section, we will look into the basics of Python.
+
+2
+00:00:03,870 --> 00:00:11,910
+Python is a free and open source cross-platform compatible programming language as we discussed before.
+
+3
+00:00:12,330 --> 00:00:19,080
+Once the application is developed, Python requires the python interpreter to run the application.
+
+4
+00:00:19,200 --> 00:00:25,770
+To download python interpreter, go to the downloads page on the Python website and download the Python
+
+5
+00:00:25,770 --> 00:00:27,870
+installer for your operating system.
+
+6
+00:00:29,360 --> 00:00:33,650
+Now, it's important to note about the two different versions of Python.
+
+7
+00:00:33,800 --> 00:00:41,840
+Version two was released in the year 2000 and its development ended in the year 2010, and Python version
+
+8
+00:00:41,840 --> 00:00:47,240
+three was initially released in the year 2008 and continues to be developed today.
+
+9
+00:00:47,660 --> 00:00:54,140
+Python three introduced considerable changes with respect to improvements and fixes from Python two
+
+10
+00:00:54,740 --> 00:01:00,770
+that programs written in Python two required a lot of changes to be made to run in Python three.
+
+11
+00:01:00,980 --> 00:01:08,090
+Python three did not guarantee backward compatibility with its predecessor, so applications had to
+
+12
+00:01:08,090 --> 00:01:11,960
+be carefully migrated or ported to Python three.
+
+13
+00:01:12,200 --> 00:01:20,000
+So remember that applications developed in Python two must be run on a python two interpreter and applications
+
+14
+00:01:20,000 --> 00:01:24,830
+written in Python three must be run in a python three interpreter.
+
+15
+00:01:25,460 --> 00:01:32,660
+Python three also introduced a whole set of new features which pave the way to support modern technologies
+
+16
+00:01:32,660 --> 00:01:36,590
+such as machine learning, data science and artificial intelligence.
+
+17
+00:01:36,620 --> 00:01:43,760
+Some operating systems come pre-installed with Python, so run the Python two or Python three commands
+
+18
+00:01:43,760 --> 00:01:47,450
+to verify if it's installed properly.
+
+19
+00:01:48,140 --> 00:01:52,220
+If not instal python using the yum installed python command.
+
+20
+00:01:52,340 --> 00:01:59,330
+Note that python two is available with the package named python two and python 3.6.
+
+21
+00:01:59,600 --> 00:02:02,990
+Version is available as python three six.
+
+22
+00:02:03,560 --> 00:02:08,270
+You can have both versions of python installed on the same system at the same time.
+
+23
+00:02:08,539 --> 00:02:15,170
+Once installed to invoke the python two interpreter, simply run the python two command and to invoke
+
+24
+00:02:15,170 --> 00:02:17,300
+the python three interpreter.
+
+25
+00:02:17,540 --> 00:02:19,580
+Simply run the python three command.
+
+26
+00:02:20,030 --> 00:02:27,710
+You will then be inside the interpreter where you can type in python commands and work with Python.
+
+27
+00:02:27,710 --> 00:02:32,030
+And if you want to exit out of that mode type exit.
+
+28
+00:02:32,210 --> 00:02:33,140
+To come out of it.
+
+29
+00:02:33,800 --> 00:02:40,910
+Note that some Python installations may also have installed as just Python without the version.
+
+30
+00:02:41,620 --> 00:02:49,420
+And Python without any version in the command line usually defaults to the whatever version was first
+
+31
+00:02:49,420 --> 00:02:49,960
+installed.
+
+32
+00:02:49,990 --> 00:02:54,490
+Sometimes it could be Python two, or it could be Python three.
+
+33
+00:02:55,160 --> 00:03:01,670
+To get the full version of installed Python run the python command for the respective version followed
+
+34
+00:03:01,670 --> 00:03:03,920
+by the Dash v option.
+
+35
+00:03:04,100 --> 00:03:06,260
+The V is in capital letter.
+
+36
+00:03:07,190 --> 00:03:12,620
+So here you can see that the Python two version is 2.7.16.
+
+37
+00:03:12,830 --> 00:03:15,710
+And Python three version is 3.6.8.
+
+38
+00:03:18,220 --> 00:03:22,780
+To run a python program, use the python command followed by the program name.
+
+39
+00:03:22,810 --> 00:03:28,870
+In this case, we have a simple Hello world program running the Python command, followed by the program
+
+40
+00:03:28,870 --> 00:03:32,410
+name runs the program and prints the message.
+
+41
+00:03:34,770 --> 00:03:42,930
+Well, head over to the labs and work with installing Python and run a sample application in Python.
+
+42
+00:03:42,930 --> 00:03:49,020
+And in the next lecture we will talk about dependencies and builds in in Python.
+

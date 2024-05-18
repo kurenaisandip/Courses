@@ -1,0 +1,276 @@
+1
+00:00:00,580 --> 00:00:07,300
+Until now, we have seen quite a few TerraForm commands in action, such as the TerraForm in IT Plan
+
+2
+00:00:07,300 --> 00:00:08,230
+and Apply.
+
+3
+00:00:09,020 --> 00:00:12,920
+Let us now take a look at some more commands available in TerraForm.
+
+4
+00:00:13,990 --> 00:00:18,490
+The first command we will take a look at is the TerraForm Validate Command.
+
+5
+00:00:19,390 --> 00:00:25,840
+Once we write our configuration file, it's not necessary to run TerraForm Plan or apply to check if
+
+6
+00:00:25,840 --> 00:00:27,730
+the syntax used is correct.
+
+7
+00:00:28,390 --> 00:00:32,650
+Instead, we can make use of the TerraForm validate command like this.
+
+8
+00:00:33,580 --> 00:00:39,160
+And if everything is correct with the file, we should see a successful validation message like this.
+
+9
+00:00:40,120 --> 00:00:45,520
+If there's an error in the configuration file, the validate command will show you the line in the file
+
+10
+00:00:45,520 --> 00:00:48,610
+that is causing the error with the hints to fix it.
+
+11
+00:00:49,400 --> 00:00:54,620
+In this example, we have used an incorrect argument for the local file resource.
+
+12
+00:00:55,010 --> 00:00:58,670
+It should be file permission and not file permissions.
+
+13
+00:00:59,620 --> 00:01:04,989
+The next command that we are going to see is the TerraForm Fmt or the TerraForm Format Command.
+
+14
+00:01:05,960 --> 00:01:11,840
+This command scans the configuration files in the current working directory and formats the code into
+
+15
+00:01:11,840 --> 00:01:13,310
+a canonical format.
+
+16
+00:01:13,940 --> 00:01:18,590
+This is a useful command to improve the readability of the TerraForm configuration file.
+
+17
+00:01:19,580 --> 00:01:25,040
+When we run this command, the files that are changed in the configuration directory is displayed on
+
+18
+00:01:25,040 --> 00:01:25,850
+the screen.
+
+19
+00:01:27,210 --> 00:01:32,700
+The TerraForm Show Command prints out the current state of the infrastructure as seen by TerraForm.
+
+20
+00:01:33,410 --> 00:01:37,670
+In this example, we have already created the local file resource.
+
+21
+00:01:37,850 --> 00:01:44,030
+And when we run the show command, it displays the current state of the resource, including all the
+
+22
+00:01:44,030 --> 00:01:50,420
+attributes created by TerraForm for that resource, such as the file, name, file and directory permissions,
+
+23
+00:01:50,420 --> 00:01:52,700
+content and ID of the resource.
+
+24
+00:01:53,530 --> 00:01:59,620
+Additionally, we can make use of the dash JSON flag to print the contents in JSON format.
+
+25
+00:02:00,970 --> 00:02:04,810
+To see a list of all providers used in the configuration directory.
+
+26
+00:02:04,810 --> 00:02:07,270
+Use the TerraForm Providers Command.
+
+27
+00:02:08,050 --> 00:02:14,500
+You can also make use of the mirror sub command to copy provide the plugins needed for the current configuration
+
+28
+00:02:14,500 --> 00:02:16,990
+to another directory like this.
+
+29
+00:02:17,500 --> 00:02:21,010
+This command will mirror the provider configuration in a new path.
+
+30
+00:02:21,040 --> 00:02:26,110
+Slash root slash terraform slash new underscore local underscore file.
+
+31
+00:02:27,600 --> 00:02:31,980
+We saw how to use TerraForm output variables in one of the previous lectures.
+
+32
+00:02:32,520 --> 00:02:38,490
+If you want to print all output variables in the configuration directory, use the command terraform
+
+33
+00:02:38,490 --> 00:02:39,330
+output.
+
+34
+00:02:39,870 --> 00:02:45,690
+You can also print the value of a specific variable by appending the name of the variable to the end
+
+35
+00:02:45,690 --> 00:02:47,130
+of the output command.
+
+36
+00:02:47,130 --> 00:02:48,150
+Like this.
+
+37
+00:02:49,640 --> 00:02:54,830
+The TerraForm Refresh Command is used to sync TerraForm with the real world infrastructure.
+
+38
+00:02:55,430 --> 00:03:01,700
+For example, if there are any changes made to a resource created by TerraForm outside its control,
+
+39
+00:03:01,700 --> 00:03:07,430
+such as a manual update, the TerraForm Refresh Command will pick it up and update the state file.
+
+40
+00:03:08,110 --> 00:03:14,140
+This reconciliation is useful to determine what action to take during the next apply.
+
+41
+00:03:15,270 --> 00:03:20,460
+This command will not modify any infrastructure resource, but it will modify the state file.
+
+42
+00:03:21,960 --> 00:03:28,200
+As we saw earlier, TerraForm Refresh is also run automatically by commands such as TerraForm Plan and
+
+43
+00:03:28,200 --> 00:03:29,250
+TerraForm Apply.
+
+44
+00:03:29,940 --> 00:03:34,230
+And this was done prior to terraform generating an execution plan.
+
+45
+00:03:35,040 --> 00:03:40,500
+This can, however, be bypassed by using the dash refresh is equal to false option with the commands.
+
+46
+00:03:41,740 --> 00:03:47,470
+The data from Graph Command is used to create a visual representation of the dependencies in a TerraForm
+
+47
+00:03:47,470 --> 00:03:50,170
+configuration or an execution plan.
+
+48
+00:03:50,860 --> 00:03:57,790
+In this example, the local file in our main file has a dependency on the random pet resource.
+
+49
+00:03:58,480 --> 00:04:03,730
+This command can be run as soon as you have the configuration file ready, even before you have initialized
+
+50
+00:04:03,730 --> 00:04:06,550
+the configuration directory with terraform in it.
+
+51
+00:04:07,540 --> 00:04:11,530
+Upon running data from Graph Command, you should see an output like this.
+
+52
+00:04:12,250 --> 00:04:18,640
+This text generated is hard to comprehend as it is, but it is a graph generated in a format called
+
+53
+00:04:18,640 --> 00:04:19,170
+DOT.
+
+54
+00:04:20,680 --> 00:04:22,480
+To make more sense of this graph.
+
+55
+00:04:22,480 --> 00:04:26,920
+We can pass it through a graph visualization software such as graph vis.
+
+56
+00:04:27,310 --> 00:04:31,120
+And we can install it in ubuntu using apt like this.
+
+57
+00:04:32,040 --> 00:04:38,160
+Once installed, we can pass the output of the form graph to the dot command which we installed using
+
+58
+00:04:38,160 --> 00:04:42,030
+the graph first package and generate a graphic like this.
+
+59
+00:04:42,940 --> 00:04:48,490
+We can now open this file via a browser and it should show a dependency graph like this.
+
+60
+00:04:49,570 --> 00:04:54,370
+The root is the configuration directory where the configuration for this graph is located.
+
+61
+00:04:55,430 --> 00:05:01,580
+We can see that there are two resources the local file called PET and the random pet resource called
+
+62
+00:05:01,580 --> 00:05:06,020
+My Pet that makes use of the local and the random provider respectively.
+
+63
+00:05:06,590 --> 00:05:12,140
+And finally, we can see that the local file called PAT depends on the random pat resource called my
+
+64
+00:05:12,140 --> 00:05:12,560
+pat.
+
+65
+00:05:12,650 --> 00:05:18,020
+As we have used a reference expression in the local file resource that points to the ID of the random
+
+66
+00:05:18,020 --> 00:05:18,530
+pat.
+
+67
+00:05:19,370 --> 00:05:20,610
+That's it for this lecture.
+
+68
+00:05:20,630 --> 00:05:25,670
+Now, let's head over to the hands on labs and explore working with the TerraForm commands that we learned
+
+69
+00:05:25,670 --> 00:05:26,600
+in this lecture.
+

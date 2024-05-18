@@ -1,0 +1,516 @@
+1
+00:00:00,360 --> 00:00:07,260
+In this lecture, we will understand the basics of SQL, which is hashicorp configuration language,
+
+2
+00:00:07,440 --> 00:00:10,710
+and then create a resource using TerraForm.
+
+3
+00:00:12,160 --> 00:00:15,310
+Let us first understand the syntax.
+
+4
+00:00:15,670 --> 00:00:19,450
+The SQL file consists of blocks and arguments.
+
+5
+00:00:19,990 --> 00:00:27,790
+A block is defined within curly braces and it contains a set of arguments in key value pair format representing
+
+6
+00:00:27,790 --> 00:00:29,350
+the configuration data.
+
+7
+00:00:30,040 --> 00:00:34,120
+But what is a block and what arguments does it contain?
+
+8
+00:00:35,110 --> 00:00:40,990
+In its simplest form, a block inter form contains information about the infrastructure platform and
+
+9
+00:00:40,990 --> 00:00:44,620
+a set of resources within that platform that we want to create.
+
+10
+00:00:45,310 --> 00:00:48,670
+For example, let us consider a simple task.
+
+11
+00:00:49,090 --> 00:00:53,350
+We want to create a file in the local system where TerraForm is installed.
+
+12
+00:00:54,630 --> 00:00:55,620
+To do this.
+
+13
+00:00:55,620 --> 00:01:03,180
+First, let us create a directory called TerraForm Local File under the slash root directory.
+
+14
+00:01:03,750 --> 00:01:08,370
+This is the directory under which we will create the SQL configuration file.
+
+15
+00:01:09,000 --> 00:01:16,140
+Once we change into this new directory, we can create a configuration file called local DF.
+
+16
+00:01:17,010 --> 00:01:21,480
+And within this file, we can define a resource block like this.
+
+17
+00:01:23,680 --> 00:01:30,070
+And inside the resource block, we specify the file name to be created as well as its contents using
+
+18
+00:01:30,070 --> 00:01:31,810
+the block arguments.
+
+19
+00:01:33,610 --> 00:01:38,650
+Let us break down the local file to understand what each line means.
+
+20
+00:01:40,040 --> 00:01:42,890
+The first element in this file is a block.
+
+21
+00:01:43,670 --> 00:01:47,000
+Of this can be identified by the curly braces inside.
+
+22
+00:01:47,950 --> 00:01:51,910
+The type of block we see here is called the resource block.
+
+23
+00:01:52,360 --> 00:01:57,460
+And this can be identified by the keyword called resource in the beginning of the block.
+
+24
+00:01:58,220 --> 00:02:00,170
+Following the keyword called resource.
+
+25
+00:02:00,170 --> 00:02:04,040
+We have the declaration of the resource type that we want to create.
+
+26
+00:02:04,640 --> 00:02:09,740
+This is a fixed value and depends on the provider where we want to create the resource.
+
+27
+00:02:10,370 --> 00:02:14,210
+In this case we have the resource type called local file.
+
+28
+00:02:16,200 --> 00:02:19,110
+A resource type provides two bits of information.
+
+29
+00:02:19,380 --> 00:02:26,040
+First is the provider, which is represented by the word before the underscore in the resource type.
+
+30
+00:02:26,640 --> 00:02:30,030
+Here we are making use of the local provider.
+
+31
+00:02:30,360 --> 00:02:36,660
+The word following the underscore, which is file in this case represents the type of resource.
+
+32
+00:02:38,560 --> 00:02:43,690
+The next and final declaration in this resource block is the resource name.
+
+33
+00:02:44,080 --> 00:02:49,990
+This is the logical name used to identify the resource and it can be named anything.
+
+34
+00:02:50,410 --> 00:02:52,750
+But in this case we have called it pet.
+
+35
+00:02:52,990 --> 00:02:56,590
+As the file we are creating contains information about pets.
+
+36
+00:02:57,450 --> 00:03:04,230
+And within this block and inside the curly braces, we define the arguments for resource, which are
+
+37
+00:03:04,230 --> 00:03:06,450
+written in key value pair format.
+
+38
+00:03:07,450 --> 00:03:13,210
+These arguments are specific to the type of resource we are creating, which in this case is the local
+
+39
+00:03:13,210 --> 00:03:13,750
+file.
+
+40
+00:03:14,830 --> 00:03:17,230
+The first argument is the file name.
+
+41
+00:03:17,860 --> 00:03:22,180
+To this, we assign the absolute part to the file we want to create.
+
+42
+00:03:22,660 --> 00:03:27,640
+In this example, it is set to slash root, slash, pet txt.
+
+43
+00:03:28,650 --> 00:03:33,750
+Now, we can also add some content to this file by making use of the content argument.
+
+44
+00:03:34,110 --> 00:03:38,370
+To this, let us add the value we love pets.
+
+45
+00:03:39,230 --> 00:03:45,710
+The words file, name and content are specific to the local file resource we want to create, and they
+
+46
+00:03:45,710 --> 00:03:46,910
+cannot be changed.
+
+47
+00:03:47,740 --> 00:03:54,760
+In other words, the resource type of local file expects that we provide the argument of file name and
+
+48
+00:03:54,760 --> 00:03:55,510
+content.
+
+49
+00:03:56,490 --> 00:03:59,940
+Each resource type has specific arguments that they expect.
+
+50
+00:04:00,540 --> 00:04:03,480
+We will see more of that as we progress through the course.
+
+51
+00:04:03,870 --> 00:04:04,700
+And that's it.
+
+52
+00:04:04,710 --> 00:04:12,210
+We now have a complete SQL configuration file that we can use to create a file by the name of text.
+
+53
+00:04:12,780 --> 00:04:18,180
+This file will be created in the slash root directory and it'll contain a single line of data.
+
+54
+00:04:19,070 --> 00:04:25,100
+The resource block that we see here is just one example of the configuration blocks used in SQL, but
+
+55
+00:04:25,100 --> 00:04:29,330
+it is also a mandatory block needed to deploy a resource using TerraForm.
+
+56
+00:04:30,340 --> 00:04:36,160
+Here is an example of a resource file created for provisioning and a AWS EC2 instance.
+
+57
+00:04:36,640 --> 00:04:40,360
+The resource type is a AWS underscore instance.
+
+58
+00:04:41,140 --> 00:04:48,580
+We name the resource web server and the arguments that we have used here is the army ID and the instance
+
+59
+00:04:48,580 --> 00:04:49,180
+type.
+
+60
+00:04:50,400 --> 00:04:55,710
+Here is another example of a resource file used to create an AWS three bucket.
+
+61
+00:04:56,130 --> 00:05:00,780
+The resource type in this case is a w underscore SW three underscore bucket.
+
+62
+00:05:01,080 --> 00:05:06,510
+The resource name that we have chosen is data and the arguments that we have provided as the bucket
+
+63
+00:05:06,510 --> 00:05:08,370
+name and the ACL.
+
+64
+00:05:09,890 --> 00:05:13,370
+A simple TerraForm workflow consists of four steps.
+
+65
+00:05:14,320 --> 00:05:16,900
+First write the configuration file.
+
+66
+00:05:17,830 --> 00:05:20,800
+Next run beta form init command.
+
+67
+00:05:22,120 --> 00:05:27,400
+And after that review of the execution plan using the TerraForm Plan Command.
+
+68
+00:05:28,650 --> 00:05:33,180
+Finally, once we are ready, apply the changes using the TerraForm.
+
+69
+00:05:33,180 --> 00:05:34,260
+Apply Command.
+
+70
+00:05:36,090 --> 00:05:41,790
+With the configuration file ready, we can now create the file resource using the TerraForm commands
+
+71
+00:05:41,790 --> 00:05:42,720
+as follows.
+
+72
+00:05:43,760 --> 00:05:46,340
+First run the TerraForm init Command.
+
+73
+00:05:46,730 --> 00:05:52,110
+This command will check the configuration file and initialize the working directory containing the dot
+
+74
+00:05:52,190 --> 00:05:53,210
+DF file.
+
+75
+00:05:54,360 --> 00:05:59,640
+One of the first things that this command does is to understand that we are making use of the local
+
+76
+00:05:59,640 --> 00:06:03,330
+provider based on the resource type declared in the resource block.
+
+77
+00:06:04,100 --> 00:06:09,980
+It will then download the plugin to be able to work on the resources declared in the ATF file.
+
+78
+00:06:11,550 --> 00:06:18,000
+From the output of this command, we can see that TerraForm in it has installed a plugin called Local.
+
+79
+00:06:19,480 --> 00:06:22,240
+Next, we are ready to create the resource.
+
+80
+00:06:22,390 --> 00:06:27,850
+But before we do that, if you want to see the execution plan that will be carried out by TerraForm,
+
+81
+00:06:27,850 --> 00:06:30,820
+we can use the command TerraForm Plan.
+
+82
+00:06:31,740 --> 00:06:36,810
+This command will show the actions that will be carried out by TerraForm to create the resource.
+
+83
+00:06:37,840 --> 00:06:44,050
+Therefore knows that it has to create resources and this is displayed in the output similar to a diff
+
+84
+00:06:44,050 --> 00:06:50,830
+command and get the output has a plus symbol next to the local file type resource called pet.
+
+85
+00:06:51,650 --> 00:06:56,990
+This includes all the arguments that we specified in the ATF file for creating the resource.
+
+86
+00:06:57,230 --> 00:07:03,020
+But you'll also notice that some default or optional arguments, which we did not specifically declare
+
+87
+00:07:03,020 --> 00:07:06,590
+in the configuration file, is also displayed on the screen.
+
+88
+00:07:07,650 --> 00:07:11,040
+The plus symbol implies that the resource will be created.
+
+89
+00:07:11,810 --> 00:07:16,430
+Now, remember, this step will not create the infrastructure response yet.
+
+90
+00:07:17,350 --> 00:07:23,320
+This information is provided for the user to review and ensure that all the actions to be performed
+
+91
+00:07:23,320 --> 00:07:25,480
+in this execution plan is desired.
+
+92
+00:07:26,630 --> 00:07:29,480
+After the review, we can create the resource.
+
+93
+00:07:30,670 --> 00:07:34,570
+And to do this, we will make use of the TerraForm Apply Command.
+
+94
+00:07:36,000 --> 00:07:42,510
+This command will display the execution plan once again, and it will then ask the user to confirm by
+
+95
+00:07:42,510 --> 00:07:44,340
+typing yes, to proceed.
+
+96
+00:07:45,020 --> 00:07:50,750
+Once we confirm it, will proceed with the creation of the resource, which in this case is a file.
+
+97
+00:07:51,950 --> 00:07:57,920
+We can validate that the file was indeed created by running the CAT command to view the file.
+
+98
+00:07:59,460 --> 00:08:05,040
+We can also run the TerraForm Show Command within the configuration directory to see the details of
+
+99
+00:08:05,040 --> 00:08:06,900
+the resource that we just created.
+
+100
+00:08:07,680 --> 00:08:11,580
+This command inspects the state file and displays the resource details.
+
+101
+00:08:11,910 --> 00:08:15,750
+We will learn more about this command and the state in a later lecture.
+
+102
+00:08:17,490 --> 00:08:21,120
+So we have now created our first resource using TerraForm.
+
+103
+00:08:21,660 --> 00:08:28,050
+Before we end the section, let us go back and look at the configuration blocks in local file.
+
+104
+00:08:29,430 --> 00:08:35,940
+In this example, we use the resource type of local file and learned that the keyword before the underscore
+
+105
+00:08:35,970 --> 00:08:38,730
+here is the provider name called local.
+
+106
+00:08:39,150 --> 00:08:41,250
+But how do we know that?
+
+107
+00:08:41,610 --> 00:08:47,730
+How do we know what resource types other than local file are available under the provider called local?
+
+108
+00:08:47,970 --> 00:08:53,400
+And finally, how do we know what arguments are expected by the local file resource?
+
+109
+00:08:55,190 --> 00:09:01,430
+Earlier, we mentioned that their form supports over 100 providers, including the local provider we
+
+110
+00:09:01,430 --> 00:09:02,900
+have used in this example.
+
+111
+00:09:03,670 --> 00:09:09,160
+Other common examples are AWS to deploy resources in Amazon AWS Cloud.
+
+112
+00:09:10,010 --> 00:09:13,550
+Azure, GCP, Cloud, etc..
+
+113
+00:09:14,760 --> 00:09:20,640
+Each of these providers have a unique list of resources that can be created on that specific platform.
+
+114
+00:09:21,510 --> 00:09:27,570
+And each resource can have a number of required or optional arguments that are needed to create that
+
+115
+00:09:27,570 --> 00:09:28,290
+resource.
+
+116
+00:09:29,530 --> 00:09:33,490
+And we can create as many resources of each type as needed.
+
+117
+00:09:35,140 --> 00:09:38,170
+It is impossible to remember all of these options.
+
+118
+00:09:38,170 --> 00:09:40,510
+And of course, we don't have to do that.
+
+119
+00:09:41,630 --> 00:09:47,270
+Their form documentation is extremely comprehensive and it is the single source of truth that we need
+
+120
+00:09:47,270 --> 00:09:47,990
+to follow.
+
+121
+00:09:48,970 --> 00:09:54,940
+If you look up the local provider within the documentation, we can see that it only has one type of
+
+122
+00:09:54,940 --> 00:09:57,160
+resource called the local file.
+
+123
+00:09:58,170 --> 00:10:03,660
+Under the argument section, we can see that there are several arguments that the resource block accepts,
+
+124
+00:10:03,690 --> 00:10:06,240
+or of which only one is mandatory.
+
+125
+00:10:06,240 --> 00:10:07,320
+The file name.
+
+126
+00:10:07,830 --> 00:10:10,230
+The rest of the arguments are optional.
+
+127
+00:10:11,200 --> 00:10:12,670
+That's it for this lecture.
+
+128
+00:10:12,700 --> 00:10:19,780
+Now, let's head over to the hands on labs and practice working with SQL and create our first resource
+
+129
+00:10:19,780 --> 00:10:20,800
+using TerraForm.
+

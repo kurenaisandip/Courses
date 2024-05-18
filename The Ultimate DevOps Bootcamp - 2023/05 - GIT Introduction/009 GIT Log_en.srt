@@ -1,0 +1,32 @@
+1
+00:00:00,750 --> 00:00:05,040
+You can see the commits that were made to the project in your terminal.
+
+2
+00:00:05,370 --> 00:00:12,180
+The command get log shows the information that you need to know about all the commits, such as the
+
+3
+00:00:12,180 --> 00:00:19,170
+commit hash, the author name, the date of the commit and the commit message.
+
+4
+00:00:19,380 --> 00:00:24,420
+We'll talk more about the commit hash and what it means later on in this course.
+
+5
+00:00:25,050 --> 00:00:31,080
+If you don't care about all this extra information about the commit, you can easily show it as one
+
+6
+00:00:31,080 --> 00:00:34,140
+line with a dash, dash one line option.
+
+7
+00:00:34,620 --> 00:00:39,390
+There are actually many ways to visualize our commits with the git log command.
+
+8
+00:00:39,600 --> 00:00:45,570
+Throughout the course I'll show some different configuration options for the different use cases.
+

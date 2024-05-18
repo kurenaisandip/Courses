@@ -1,0 +1,296 @@
+1
+00:00:00,680 --> 00:00:06,290
+Okay, So we have now set up Node.js and we're ready to rock.
+
+2
+00:00:06,290 --> 00:00:11,990
+So it is also important to learn a little bit about libraries and dependencies and package management
+
+3
+00:00:11,990 --> 00:00:18,020
+in Node.js, because this is one area that you might struggle with when trying to deploy an application.
+
+4
+00:00:18,770 --> 00:00:24,440
+You might run into dependency errors, unable to find libraries and mismatching versions.
+
+5
+00:00:24,890 --> 00:00:27,800
+So we'll see how those are fixed.
+
+6
+00:00:27,830 --> 00:00:33,890
+Now, as with any programming language, Node.js supports a large number of packages or libraries that
+
+7
+00:00:33,890 --> 00:00:38,960
+are developed by the either the core team or contributed by the community.
+
+8
+00:00:39,320 --> 00:00:46,460
+These could be packages for working with files, hosting web servers, interacting with databases,
+
+9
+00:00:46,460 --> 00:00:54,250
+implementing security, etc. And all of these packages are available at a public repository at PM JS
+
+10
+00:00:54,290 --> 00:01:03,230
+dot com and PM, which stands for Node Package Manager allows developers to develop new reusable packages
+
+11
+00:01:03,230 --> 00:01:06,890
+or modules and share them on the public repository.
+
+12
+00:01:07,160 --> 00:01:11,150
+Other developers can then download and use these on their projects.
+
+13
+00:01:11,660 --> 00:01:15,590
+There are thousands of packages available in the repository today.
+
+14
+00:01:16,540 --> 00:01:22,120
+So KPMG's Dotcom is the website that hosts the public repository.
+
+15
+00:01:23,330 --> 00:01:30,890
+When you install Node.js, a command line utility called NPM is also installed automatically that helps
+
+16
+00:01:30,890 --> 00:01:38,900
+you interact with NPM repository, run the NPM v command to list the version of the NPM CLI utility.
+
+17
+00:01:39,320 --> 00:01:42,510
+Note that this could be different from the Node.js version.
+
+18
+00:01:42,530 --> 00:01:48,410
+Use the NPM search command along with the name of the package to search for a package that will list
+
+19
+00:01:48,410 --> 00:01:50,810
+all packages available by that name.
+
+20
+00:01:51,860 --> 00:01:53,240
+A brief description.
+
+21
+00:01:53,240 --> 00:01:55,670
+The author and date it was published.
+
+22
+00:01:56,120 --> 00:02:02,750
+Once you identify what package needs to be installed, install it using the NPM install command.
+
+23
+00:02:03,510 --> 00:02:10,020
+When you install a package and PM installs it under the directory node, underscore modules under your
+
+24
+00:02:10,020 --> 00:02:16,110
+present working directory, a directory by the name of the package is created and all files are created
+
+25
+00:02:16,110 --> 00:02:23,080
+under it, such as the license file, the read me file, and the code is located under the lib directory.
+
+26
+00:02:23,100 --> 00:02:29,940
+There's also a file named package JSON, and that is the file that contains the metadata for that package,
+
+27
+00:02:29,940 --> 00:02:38,700
+such as its name version, its author is get repository, etc. This is a useful file that you can inspect
+
+28
+00:02:38,700 --> 00:02:43,410
+in case you are troubleshooting issues with dependency errors.
+
+29
+00:02:43,680 --> 00:02:46,890
+So you can install packages for two purposes.
+
+30
+00:02:46,890 --> 00:02:52,710
+One for the application you are building or two globally across the system.
+
+31
+00:02:53,220 --> 00:02:58,080
+What we just did was install a package for the application that we are working on.
+
+32
+00:02:58,080 --> 00:03:04,020
+When you run the NPM install command without any options, it assumes that you want to install the package
+
+33
+00:03:04,020 --> 00:03:05,490
+in the current directory.
+
+34
+00:03:05,670 --> 00:03:09,170
+So for example, our application is coded in a file named app.
+
+35
+00:03:09,660 --> 00:03:16,140
+US within that file you can import this package using the required function like this and specifying
+
+36
+00:03:16,140 --> 00:03:17,130
+the package name.
+
+37
+00:03:18,180 --> 00:03:21,690
+Well, that's just about how much we're we're going to read.
+
+38
+00:03:21,840 --> 00:03:23,520
+Worry about the code for now.
+
+39
+00:03:23,640 --> 00:03:30,180
+When we import a package into our application, like this node first looks at the local node underscore
+
+40
+00:03:30,180 --> 00:03:33,660
+modules directory under our application for that package.
+
+41
+00:03:33,690 --> 00:03:37,050
+In this case, it finds the file under the node modules directory.
+
+42
+00:03:37,050 --> 00:03:38,250
+So it uses that.
+
+43
+00:03:38,640 --> 00:03:42,510
+If not, it looks for the package under the global directory.
+
+44
+00:03:42,510 --> 00:03:49,830
+So to see the list of paths that node looks at, look at the module paths configuration of node.
+
+45
+00:03:49,830 --> 00:03:55,860
+By running this command, it will list all the paths node would look at while importing a package.
+
+46
+00:03:56,790 --> 00:04:03,930
+You can also install a package globally to be available across a system for this run the same and PM
+
+47
+00:04:03,930 --> 00:04:07,500
+install command but with the dash g option.
+
+48
+00:04:08,210 --> 00:04:14,570
+So there are two types of modules built in modules and external modules Built in modules are installed
+
+49
+00:04:14,570 --> 00:04:20,120
+automatically when Node.js runtime is installed for the first time and is available for use.
+
+50
+00:04:20,360 --> 00:04:26,000
+They're located at the location user lib node modules on Linux systems.
+
+51
+00:04:26,210 --> 00:04:28,220
+Some examples are listed here.
+
+52
+00:04:28,250 --> 00:04:31,090
+The first module is used to handle file systems.
+
+53
+00:04:31,100 --> 00:04:38,210
+The HTTP module is used to host an HTTP server and the OS module is used to work with operating systems.
+
+54
+00:04:38,360 --> 00:04:41,090
+There are many more of such modules.
+
+55
+00:04:42,220 --> 00:04:47,770
+Some examples of external modules are expressed, which is a popular web framework used to develop web
+
+56
+00:04:47,770 --> 00:04:48,520
+applications.
+
+57
+00:04:48,520 --> 00:04:51,490
+React is used to create front end user interfaces.
+
+58
+00:04:51,580 --> 00:04:57,880
+The debug module is used to debug applications and these can be searched and installed using the NPM
+
+59
+00:04:57,880 --> 00:05:01,180
+search and install commands as we saw in the previous lectures.
+
+60
+00:05:02,370 --> 00:05:08,790
+So an application or a package has a set of dependencies and scripts associated with it.
+
+61
+00:05:08,910 --> 00:05:12,480
+These are recorded in the package JSON file.
+
+62
+00:05:12,810 --> 00:05:17,820
+So when developers build an application, they create this file in the root of the project.
+
+63
+00:05:17,970 --> 00:05:24,120
+This file, as we discussed, has the name and version of the application along with a list of dependencies.
+
+64
+00:05:24,390 --> 00:05:29,250
+The dependencies are packages or modules that this application requires.
+
+65
+00:05:29,280 --> 00:05:33,090
+The packages also has their versions defined.
+
+66
+00:05:33,420 --> 00:05:40,170
+Installing different on or unsupported dependencies can cause applications to not work, so it is important
+
+67
+00:05:40,170 --> 00:05:42,840
+that these versions are defined properly.
+
+68
+00:05:42,960 --> 00:05:48,690
+Also, remember that your application may have a package JSON file with the list of dependencies and
+
+69
+00:05:48,690 --> 00:05:54,360
+each of these packages may have their own package JSON file with their own dependencies.
+
+70
+00:05:54,480 --> 00:05:56,880
+So don't get confused between the two.
+
+71
+00:05:57,600 --> 00:05:59,520
+Okay, so that's it for this lecture.
+
+72
+00:05:59,520 --> 00:06:05,670
+And we now head over to the labs and practice working with LPM.
+
+73
+00:06:05,670 --> 00:06:12,060
+So we search packages, explore existing packages, install additional packages and run applications
+
+74
+00:06:12,060 --> 00:06:16,200
+that use these packages, work with dependency management, etc..
+

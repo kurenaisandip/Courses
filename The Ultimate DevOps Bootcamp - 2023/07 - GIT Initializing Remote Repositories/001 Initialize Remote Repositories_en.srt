@@ -1,0 +1,92 @@
+1
+00:00:00,930 --> 00:00:05,970
+Previously we saw it's possible to have a remote repository with Git.
+
+2
+00:00:06,120 --> 00:00:12,600
+We can push code to this remote repository that is hosted somewhere else and get this code again on
+
+3
+00:00:12,600 --> 00:00:15,870
+our local machines by pooling this information.
+
+4
+00:00:17,180 --> 00:00:21,830
+There are several platforms on which we can host our remote repository.
+
+5
+00:00:22,220 --> 00:00:29,780
+The most commonly used platforms are GitHub, Get Lab and Bitbucket, but there are also many more out
+
+6
+00:00:29,780 --> 00:00:30,320
+there.
+
+7
+00:00:31,400 --> 00:00:38,000
+Once we've successfully initialized a repository on one of those platforms, we get access to something
+
+8
+00:00:38,000 --> 00:00:40,040
+called a connection string.
+
+9
+00:00:40,730 --> 00:00:47,480
+A connection string is a URL that we can use in order to let Git know where the remote repository is
+
+10
+00:00:47,480 --> 00:00:48,440
+located.
+
+11
+00:00:49,280 --> 00:00:55,310
+We can add the remote repository to a local project with a git remote ad command.
+
+12
+00:00:56,120 --> 00:01:03,170
+We want to add a remote repository and give it the alias origin to make sure that we always know which
+
+13
+00:01:03,170 --> 00:01:05,129
+remote repository we're pushing to.
+
+14
+00:01:05,150 --> 00:01:08,330
+Without having to memorize the entire connection string.
+
+15
+00:01:09,220 --> 00:01:15,880
+In order to do so, we can type git remote add origin followed by the connection string.
+
+16
+00:01:18,640 --> 00:01:21,190
+After initializing the remote repository.
+
+17
+00:01:21,190 --> 00:01:27,280
+We have access to this remote repository that is hosted at the location of the connection string.
+
+18
+00:01:29,230 --> 00:01:34,810
+You can list all your remote repositories with a git remote v command.
+
+19
+00:01:36,100 --> 00:01:42,640
+In order to work with this remote repository, we can fetch and push the necessary data from our local
+
+20
+00:01:42,640 --> 00:01:44,920
+project to the hosted repo.
+
+21
+00:01:45,430 --> 00:01:51,850
+In this case, we're both pushing and fetching data from the same remote repository, which gets shows
+
+22
+00:01:51,850 --> 00:01:53,770
+us first.
+
+23
+00:01:53,770 --> 00:01:57,580
+Let's see how we can push data to this remote repository.
+

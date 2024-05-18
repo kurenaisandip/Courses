@@ -1,0 +1,168 @@
+1
+00:00:03,040 --> 00:00:10,090
+All right, everybody, now that we know the proper PSI process and how to build our code using Jenkins,
+
+2
+00:00:10,090 --> 00:00:15,040
+let's go ahead and learn the CI CD process, as in let's go ahead and build our code.
+
+3
+00:00:15,310 --> 00:00:20,740
+Bring it down from GitHub and create a Docker image.
+
+4
+00:00:21,130 --> 00:00:25,480
+So you're going to notice here that our Jenkins file is pretty similar.
+
+5
+00:00:25,720 --> 00:00:30,100
+How is the same pipeline structure using the same tools, the same environment variable?
+
+6
+00:00:30,100 --> 00:00:35,260
+Even that development stage is still the same where we're bringing down the go code.
+
+7
+00:00:35,260 --> 00:00:40,810
+Now really the biggest difference is on line 19 here where we have a new stage called Building Our Image.
+
+8
+00:00:41,140 --> 00:00:45,910
+Now we're using this command from the Docker plugin and I'm going to show you how to get that in just
+
+9
+00:00:45,910 --> 00:00:46,780
+a second here.
+
+10
+00:00:46,780 --> 00:00:52,480
+But what this is doing is it's going to be building a Docker image based on the code that we're bringing
+
+11
+00:00:52,480 --> 00:00:54,640
+down on line 14.
+
+12
+00:00:54,670 --> 00:00:58,810
+So let's go ahead and head over to our Jenkins instance and we're going to go ahead and we're going
+
+13
+00:00:58,810 --> 00:01:00,100
+to run this Jenkins file.
+
+14
+00:01:00,340 --> 00:01:00,700
+All right.
+
+15
+00:01:00,700 --> 00:01:02,920
+So I'm here at Jenkins.
+
+16
+00:01:02,920 --> 00:01:07,810
+And what I'm going to do first is I'm going to go to manage Jenkins and I'm going to go to manage plugins.
+
+17
+00:01:08,110 --> 00:01:12,850
+Now, if I go to install here, I'm going to do is I'm just going to search Docker.
+
+18
+00:01:12,850 --> 00:01:18,490
+You're going to see a few that I have here, the Docker API plug in the Docker Commons, plug in the
+
+19
+00:01:18,490 --> 00:01:21,280
+Docker pipeline, plug in, and then the Docker plugin.
+
+20
+00:01:21,280 --> 00:01:24,730
+You're going to want to ensure that you have all of those installed and you're going to want to ensure
+
+21
+00:01:24,730 --> 00:01:30,460
+that you have Docker installed on your build server, which in this case is just the Jenkins server.
+
+22
+00:01:30,760 --> 00:01:34,180
+So let's go ahead and go back to Jenkins.
+
+23
+00:01:34,300 --> 00:01:35,860
+We're going to go to new item.
+
+24
+00:01:35,860 --> 00:01:37,170
+We're going to give this a name.
+
+25
+00:01:37,180 --> 00:01:38,980
+Now I'm going to go ahead and I'm going to click Pipeline.
+
+26
+00:01:38,980 --> 00:01:39,220
+Click.
+
+27
+00:01:39,220 --> 00:01:42,670
+Okay, Scroll down to my pipeline script.
+
+28
+00:01:42,670 --> 00:01:45,710
+I'm going to paste in what I just showed everybody on Vee's code.
+
+29
+00:01:45,730 --> 00:01:47,800
+Notice here how it's the exact same.
+
+30
+00:01:48,880 --> 00:01:50,530
+Let me go ahead and I'm going to click Save.
+
+31
+00:01:50,920 --> 00:01:52,450
+I'm going to click Build now.
+
+32
+00:01:52,930 --> 00:01:58,390
+And now our pipeline is going to officially kick off and we have our few stages here.
+
+33
+00:01:58,390 --> 00:02:04,600
+We can see our development stage and our building, our image stage and as you can see, it is already
+
+34
+00:02:04,600 --> 00:02:05,380
+complete.
+
+35
+00:02:05,740 --> 00:02:09,370
+It's probably going to be a little bit longer for you because you probably don't have the go Docker
+
+36
+00:02:09,370 --> 00:02:11,230
+image installed locally.
+
+37
+00:02:11,230 --> 00:02:15,250
+And because I was testing this out already, I already have that.
+
+38
+00:02:15,250 --> 00:02:19,230
+So if you notice that's taken a little bit longer, that's perfectly normal.
+
+39
+00:02:19,240 --> 00:02:25,960
+But if I click on our build here and I click on our console output, we can see that our code was brought
+
+40
+00:02:25,960 --> 00:02:31,990
+down and then we can see that our Docker image was successfully built.
+
+41
+00:02:32,830 --> 00:02:34,980
+Well, that's it for this lecture.
+
+42
+00:02:34,990 --> 00:02:36,430
+We'll see you in the next.
+

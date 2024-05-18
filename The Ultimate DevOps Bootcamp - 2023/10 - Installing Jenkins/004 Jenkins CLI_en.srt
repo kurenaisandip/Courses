@@ -1,0 +1,92 @@
+1
+00:00:04,190 --> 00:00:08,210
+When you first install Jenkins, you're going to have a bunch of different things that you can do in
+
+2
+00:00:08,210 --> 00:00:11,510
+the UI, and we're definitely going to go over all of that good stuff.
+
+3
+00:00:11,510 --> 00:00:14,000
+But there is also a CLI.
+
+4
+00:00:14,030 --> 00:00:19,910
+So if you prefer to work out of the terminal instead of clicking around a UI, Jenkins does have a built
+
+5
+00:00:19,910 --> 00:00:25,900
+in command line interface that we can use and we can connect to it via curl.
+
+6
+00:00:25,910 --> 00:00:31,940
+And if we scroll down here we can actually see that there is an authentication method here that we can
+
+7
+00:00:31,940 --> 00:00:35,000
+use to get into the server.
+
+8
+00:00:35,120 --> 00:00:40,430
+So from the portal here, if I click on my name and I go to configure.
+
+9
+00:00:41,890 --> 00:00:46,810
+And I scroll down here, I have a few different options, like an API token, for example, credentials,
+
+10
+00:00:46,810 --> 00:00:47,290
+email.
+
+11
+00:00:47,290 --> 00:00:52,720
+This is just a fake email here, but if I keep going down, I have ssh keys.
+
+12
+00:00:52,720 --> 00:00:58,540
+So if I wanted to, I could take an SSH key, a public one, and pop it in here.
+
+13
+00:00:58,540 --> 00:01:07,210
+So for example, if I type cat ID RSA dot pub, this is my public ssh key on my Mac.
+
+14
+00:01:07,210 --> 00:01:15,760
+So if I go ahead and if I copy that, then I paste that in here, I click Save and I go back to configure,
+
+15
+00:01:15,850 --> 00:01:16,900
+scroll down.
+
+16
+00:01:16,900 --> 00:01:25,600
+I now have a public ssh key associated with my user Mike, and now I can work on the terminal via the
+
+17
+00:01:25,600 --> 00:01:26,590
+Jenkins CLI.
+
+18
+00:01:26,620 --> 00:01:32,020
+Now I will admit that you probably won't see people working on the CLI all that much.
+
+19
+00:01:32,020 --> 00:01:37,210
+It's going to be more or less throughout the UI and a lot of the courses that you see as well.
+
+20
+00:01:37,210 --> 00:01:44,230
+But if you want to now that you're authenticated, you can start working with the Jenkins CLI and using
+
+21
+00:01:44,230 --> 00:01:46,570
+the different common commands and all that good stuff.
+
+22
+00:01:47,760 --> 00:01:49,910
+Well, that's it for this lecture.
+
+23
+00:01:49,920 --> 00:01:51,390
+We'll see you in the next.
+

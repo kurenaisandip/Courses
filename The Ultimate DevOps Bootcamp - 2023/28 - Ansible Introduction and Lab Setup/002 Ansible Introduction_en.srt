@@ -1,0 +1,188 @@
+1
+00:00:00,580 --> 00:00:03,910
+In this lecture, we will get introduced to what Ansible is.
+
+2
+00:00:04,510 --> 00:00:06,840
+If you are a systems engineer or i.t.
+
+3
+00:00:06,850 --> 00:00:13,210
+Administrator or just anybody working in i.t, you're probably involved in doing a lot of repetitive
+
+4
+00:00:13,210 --> 00:00:19,090
+tasks in your environment, whether it be sizing and creating new hosts or virtual machines every day,
+
+5
+00:00:19,240 --> 00:00:25,510
+applying configurations on them, patching in hundreds of servers, migrations, deploying applications,
+
+6
+00:00:25,510 --> 00:00:28,570
+or even performing security and compliance audits.
+
+7
+00:00:29,050 --> 00:00:35,380
+All of these very repetitive tasks involve execution of hundreds of commands on hundreds of different
+
+8
+00:00:35,380 --> 00:00:41,680
+servers while maintaining the right sequence of events with system reboots and whatnot in between.
+
+9
+00:00:42,640 --> 00:00:49,450
+Some people develop scripts to automate these tasks, but that requires coding skills and regular maintenance
+
+10
+00:00:49,450 --> 00:00:54,220
+of these scripts and a lot of time to put these scripts together on the first place.
+
+11
+00:00:54,760 --> 00:00:56,470
+That's where Ansible helps.
+
+12
+00:00:56,920 --> 00:01:02,050
+Ansible is a powerful ID automation tool that you can learn quickly.
+
+13
+00:01:02,230 --> 00:01:09,400
+It's simple enough for everyone in I.T, yet powerful enough to automate even the most complex deployments.
+
+14
+00:01:10,280 --> 00:01:13,890
+In the past, something that took developing a complex script.
+
+15
+00:01:13,910 --> 00:01:18,770
+Now it takes just a few lines of instruction in an Ansible automation playbook.
+
+16
+00:01:20,230 --> 00:01:27,090
+Whether you want to make that happen on your local host or on all of your database servers or all of
+
+17
+00:01:27,090 --> 00:01:33,990
+your web servers on cloud, or just the ones on your VR environment, all it takes is modifying one
+
+18
+00:01:33,990 --> 00:01:34,530
+line.
+
+19
+00:01:35,190 --> 00:01:38,450
+Now, don't worry about the playbook itself or its syntax for now.
+
+20
+00:01:38,460 --> 00:01:44,340
+We will get into that in a bit and we have lots of fun exercises coming up that will get you all set
+
+21
+00:01:44,340 --> 00:01:45,720
+with this in no time.
+
+22
+00:01:47,010 --> 00:01:49,110
+Let's take a look at a simple use case.
+
+23
+00:01:49,200 --> 00:01:53,610
+Imagine you have a number of hosts in your environment that you would like to restart in a particular
+
+24
+00:01:53,610 --> 00:01:54,210
+order.
+
+25
+00:01:54,240 --> 00:01:57,750
+Some of them are Web servers and others are database servers.
+
+26
+00:01:57,750 --> 00:02:03,690
+So you would like to power down the Web servers first, followed by the database servers and then power
+
+27
+00:02:03,690 --> 00:02:06,330
+up the database servers and then the web servers.
+
+28
+00:02:06,420 --> 00:02:12,930
+You could write an Ansible playbook to get this done in a matter of minutes and simply invoke the Ansible
+
+29
+00:02:12,930 --> 00:02:16,140
+playbook every time you wish to restart your application.
+
+30
+00:02:16,860 --> 00:02:18,630
+Let's take a look at another example.
+
+31
+00:02:18,810 --> 00:02:24,240
+In this case, we are setting up a complex infrastructure that spans across public and private clouds,
+
+32
+00:02:24,240 --> 00:02:27,580
+and that includes hundreds of VMs with Ansible.
+
+33
+00:02:27,600 --> 00:02:33,720
+You could provision VMs on public clouds like Amazon and as well as private cloud environments like
+
+34
+00:02:33,720 --> 00:02:39,690
+VMware and move on to configuring applications on those and setting up communication between them,
+
+35
+00:02:39,690 --> 00:02:45,060
+such as modifying configuration files, installing applications on them, configuring firewall rules,
+
+36
+00:02:45,060 --> 00:02:52,500
+etc. There are a lot of built in modules available in Ansible that supports these kind of operations.
+
+37
+00:02:53,100 --> 00:02:58,290
+We can easily integrate Ansible with the rest of your environment so that you can pull information to
+
+38
+00:02:58,290 --> 00:03:05,790
+be used in the automation process, such as data from the IMDB database to get the list of VMs you want
+
+39
+00:03:05,790 --> 00:03:13,440
+to target, or you can configure Ansible to trigger automation automatically when from tools like ServiceNow.
+
+40
+00:03:13,860 --> 00:03:21,870
+When a workflow gets approved, the Ansible documentation pages hosted at Ansible dot com are comprehensive
+
+41
+00:03:21,870 --> 00:03:27,480
+and contains all information required to get started with Ansible and there are hundreds of examples
+
+42
+00:03:27,480 --> 00:03:29,210
+of playbooks in these pages.
+
+43
+00:03:29,220 --> 00:03:32,910
+We will be referring to these while setting up and installing Ansible.
+
+44
+00:03:33,090 --> 00:03:39,150
+So that's a quick introduction to what Ansible is, why you might want to consider it and what it can
+
+45
+00:03:39,150 --> 00:03:39,630
+do.
+
+46
+00:03:39,660 --> 00:03:45,480
+Going forward, we will look at how to quickly get started by setting up an Ansible lab environment
+
+47
+00:03:45,660 --> 00:03:47,970
+and I will see you in the next lecture.
+

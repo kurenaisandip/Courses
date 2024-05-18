@@ -1,0 +1,276 @@
+1
+00:00:00,780 --> 00:00:05,250
+In this section, we will learn how to set up lifecycle rules in TerraForm.
+
+2
+00:00:06,660 --> 00:00:12,600
+Previously we saw that when TerraForm updates a resource, it frees the infrastructure to be immutable
+
+3
+00:00:12,600 --> 00:00:18,300
+and first deletes the resource before creating a new one with the updated configuration.
+
+4
+00:00:19,020 --> 00:00:27,720
+For example, if we update the file permissions on our local file resource from 7772700 and then run
+
+5
+00:00:27,720 --> 00:00:34,080
+TerraForm apply, you would see that the older file is deleted first and then the new file is created.
+
+6
+00:00:34,950 --> 00:00:42,000
+Now, this may not be a desirable approach in all cases, and sometimes you may want the updated version
+
+7
+00:00:42,000 --> 00:00:45,750
+of the resource to be created first before the older one is deleted.
+
+8
+00:00:46,320 --> 00:00:52,080
+Or you may not want the resource to be deleted at all, even if there was a change made in its local
+
+9
+00:00:52,080 --> 00:00:53,010
+configuration.
+
+10
+00:00:53,810 --> 00:00:58,010
+This can be achieved in TerraForm by making use of lifecycle rules.
+
+11
+00:00:59,340 --> 00:01:05,160
+These rules make use of the same block syntax that we have seen many times so far, and they go directly
+
+12
+00:01:05,160 --> 00:01:08,400
+inside the resource block whose behavior we want to change.
+
+13
+00:01:09,760 --> 00:01:13,960
+The syntax of a resource block with a lifecycle rule looks like this.
+
+14
+00:01:15,600 --> 00:01:17,190
+Inside the lifecycle block.
+
+15
+00:01:17,190 --> 00:01:21,900
+We add the rule, which we want our form to adhere to while updating resources.
+
+16
+00:01:22,140 --> 00:01:26,730
+And one such argument or a rule is the create before destroy rule.
+
+17
+00:01:27,760 --> 00:01:33,460
+Here we have the same resource block that has been updated with the lifecycle rule of create before
+
+18
+00:01:33,460 --> 00:01:34,990
+destroy set to true.
+
+19
+00:01:36,040 --> 00:01:42,700
+This rule ensures that when a change in configuration forces the resource to be recreated, a new resource
+
+20
+00:01:42,700 --> 00:01:45,580
+is created first before deleting the old one.
+
+21
+00:01:46,860 --> 00:01:52,650
+Now, there would be cases where we do not want a resource to be destroyed for any reason.
+
+22
+00:01:53,160 --> 00:01:57,060
+For this we can make use of the prevent destroy option.
+
+23
+00:01:57,930 --> 00:02:03,510
+When it is set to true that reform will reject any changes that will result in their source getting
+
+24
+00:02:03,510 --> 00:02:06,600
+destroyed and display an error message like this.
+
+25
+00:02:07,400 --> 00:02:12,230
+This is especially useful to prevent your resources from getting accidentally deleted.
+
+26
+00:02:13,030 --> 00:02:19,570
+For example, a database resource such as my SQL or PostgreSQL may not be something that we want to
+
+27
+00:02:19,570 --> 00:02:21,310
+delete once it's provisioned.
+
+28
+00:02:22,450 --> 00:02:27,430
+One important thing to note here is that the resource can still be destroyed if you make use of the
+
+29
+00:02:27,430 --> 00:02:29,050
+TerraForm destroy command.
+
+30
+00:02:30,040 --> 00:02:35,350
+This rule will only prevent resource deletion from changes that are made to the configuration and a
+
+31
+00:02:35,350 --> 00:02:36,610
+subsequent apply.
+
+32
+00:02:37,830 --> 00:02:42,240
+The last argument type that we're going to see here is the ignore changes rule.
+
+33
+00:02:43,010 --> 00:02:48,980
+This life cycle rule, when applied, will prevent a resource from being updated based on a list of
+
+34
+00:02:48,980 --> 00:02:51,800
+attributes that we define within the lifecycle block.
+
+35
+00:02:53,250 --> 00:02:54,360
+To understand this better.
+
+36
+00:02:54,360 --> 00:02:59,850
+Let's make use of a sample AC two instance, which is a virtual machine on the cloud.
+
+37
+00:03:00,860 --> 00:03:07,250
+This EC two instance is to be used as a web server and can be created with a simple resource block like
+
+38
+00:03:07,250 --> 00:03:07,850
+this.
+
+39
+00:03:09,560 --> 00:03:14,630
+Don't worry if this resource block and the arguments look unfamiliar, we will cover it in much more
+
+40
+00:03:14,630 --> 00:03:16,850
+detail in the EC2 section of the course.
+
+41
+00:03:17,480 --> 00:03:22,970
+But for now, please note that the resource called web server makes use of three arguments.
+
+42
+00:03:23,090 --> 00:03:30,350
+The am-I and the instance type are used to deploy a specific type of VM with a predefined specification.
+
+43
+00:03:30,650 --> 00:03:37,190
+In this case, the values that we have chosen deploys Ubuntu server with one CPU and one GB of RAM.
+
+44
+00:03:38,370 --> 00:03:45,060
+We are also making use of a tag called name, which has a value of project, a web server using the
+
+45
+00:03:45,060 --> 00:03:47,910
+tags argument, which is off type map.
+
+46
+00:03:48,830 --> 00:03:50,390
+When we run TerraForm apply.
+
+47
+00:03:50,420 --> 00:03:57,110
+The EC2 instance is created as expected with a tag called name and a value of project a web server.
+
+48
+00:03:58,410 --> 00:04:04,290
+Now, if changes are made to any of these arguments, TerraForm will attempt to fix it during the next
+
+49
+00:04:04,290 --> 00:04:05,790
+apply as expected.
+
+50
+00:04:06,330 --> 00:04:12,960
+For example, if we modify the tag called name and change its value from project a web server to say
+
+51
+00:04:12,960 --> 00:04:18,839
+project be web server either manually or using any other tool, TerraForm will detect this change and
+
+52
+00:04:18,839 --> 00:04:23,670
+it will attempt to change it back to what it was originally, which is project a web server.
+
+53
+00:04:24,710 --> 00:04:30,410
+In some rare cases, we may actually want the change in the name by any other method to be acceptable.
+
+54
+00:04:30,410 --> 00:04:34,130
+And we want to prevent our form from reverting back to the old tag.
+
+55
+00:04:35,350 --> 00:04:40,870
+To do this, we can make use of the lifecycle block with ignore changes argument like this.
+
+56
+00:04:41,500 --> 00:04:48,220
+The ignore changes argument accepts a list as indicated by the square brackets and it will accept any
+
+57
+00:04:48,220 --> 00:04:49,660
+valid resource attribute.
+
+58
+00:04:50,230 --> 00:04:55,930
+In this particular case, we have asked our form to ignore changes which are made to the tags attribute
+
+59
+00:04:55,930 --> 00:04:57,970
+of the specific EC2 instance.
+
+60
+00:04:58,700 --> 00:05:04,370
+If a change is made to the tax, a subsequent form apply should now show that there are no changes to
+
+61
+00:05:04,370 --> 00:05:05,000
+apply.
+
+62
+00:05:05,540 --> 00:05:10,460
+The change made to the tags of a server outside of their reform is now completely ignored.
+
+63
+00:05:11,650 --> 00:05:15,490
+And since it's a list, we can update more elements like this.
+
+64
+00:05:16,430 --> 00:05:19,670
+You can also replace the list with the all keyword.
+
+65
+00:05:19,850 --> 00:05:25,970
+And this is especially useful if you do not want the resource to be modified for changes in any resource
+
+66
+00:05:25,970 --> 00:05:26,750
+attributes.
+
+67
+00:05:27,870 --> 00:05:33,390
+We will learn more about life cycle rules later in the course when we work with resources.
+
+68
+00:05:33,390 --> 00:05:38,220
+But for now, here is a quick summary of the three argument types that we have seen in this lecture.
+
+69
+00:05:40,220 --> 00:05:45,830
+And now let's head over to the Hands-On Labs and practice working with lifecycle rules in TerraForm.
+

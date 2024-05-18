@@ -1,0 +1,304 @@
+1
+00:00:00,760 --> 00:00:06,580
+Let's start with how application delivery works in a traditional infrastructure model and how it evolved
+
+2
+00:00:06,580 --> 00:00:11,620
+with the emergence of technologies such as cloud computing and infrastructure as code.
+
+3
+00:00:12,320 --> 00:00:17,570
+Let's go back in time and look at how infrastructure was provisioned in the traditional I.T. model.
+
+4
+00:00:18,500 --> 00:00:22,430
+Let us consider an organization that wants to roll out a new application.
+
+5
+00:00:22,850 --> 00:00:25,880
+The business comes up with the requirements for the application.
+
+6
+00:00:26,360 --> 00:00:31,610
+The business analyst then gathers the needs from the business, analyzes it, and converts it into a
+
+7
+00:00:31,610 --> 00:00:33,890
+set of high level technical requirements.
+
+8
+00:00:34,250 --> 00:00:36,770
+This is then passed on to a solution architect.
+
+9
+00:00:37,770 --> 00:00:38,400
+The solution.
+
+10
+00:00:38,400 --> 00:00:42,810
+Architect then designs the architecture to be followed for the deployment of this application.
+
+11
+00:00:43,690 --> 00:00:49,030
+This would typically include the infrastructure considerations, such as the type, spec and amount
+
+12
+00:00:49,030 --> 00:00:54,520
+of servers that are needed, such as those for front end web servers, back end servers, databases,
+
+13
+00:00:54,520 --> 00:00:56,050
+load balancers, etc..
+
+14
+00:00:57,030 --> 00:01:02,280
+Following the traditional infrastructure model, these would have to be deployed in the organization's
+
+15
+00:01:02,280 --> 00:01:07,140
+on premise environment, which would mean making use of the assets in the data center.
+
+16
+00:01:08,140 --> 00:01:12,670
+If additional hardware is needed, they would have to be ordered via the procurement team.
+
+17
+00:01:13,240 --> 00:01:16,390
+This team will put in a new hardware request with the vendors.
+
+18
+00:01:17,410 --> 00:01:22,960
+It can then take anywhere between a few days to weeks or even months for the hardware to be purchased
+
+19
+00:01:22,960 --> 00:01:24,640
+and delivered to the data center.
+
+20
+00:01:25,410 --> 00:01:31,380
+Once received at the data center, the field engineers would be in charge of rack and stack of the equipment.
+
+21
+00:01:31,920 --> 00:01:37,890
+The system administrators perform initial configurations and the network administrators make the systems
+
+22
+00:01:37,890 --> 00:01:39,300
+available on the network.
+
+23
+00:01:40,210 --> 00:01:44,920
+The storage admins assigned storage to these servers and the backup admins configure backups.
+
+24
+00:01:46,060 --> 00:01:51,220
+And finally, once the systems have been set up, as per the standards, they can then be handed over
+
+25
+00:01:51,220 --> 00:01:54,190
+to the application teams to deploy their applications.
+
+26
+00:01:54,730 --> 00:02:00,430
+This deployment model, which is still quite commonly used today, has quite a few disadvantages.
+
+27
+00:02:01,000 --> 00:02:06,280
+The turnover time can range between weeks to months, and that's just to get the systems in a ready
+
+28
+00:02:06,280 --> 00:02:08,530
+state to begin the application deployment.
+
+29
+00:02:09,310 --> 00:02:14,200
+This includes the time it takes for the system to be initially procured and then handed over between
+
+30
+00:02:14,200 --> 00:02:14,800
+teams.
+
+31
+00:02:15,950 --> 00:02:20,810
+Also, scaling up or scaling down the infrastructure on demand cannot be achieved quickly.
+
+32
+00:02:21,750 --> 00:02:26,010
+The overall cost to deploy and maintain this model is generally quite high.
+
+33
+00:02:26,720 --> 00:02:32,000
+While some aspects of the infrastructure provisioning process can be automated, several steps, such
+
+34
+00:02:32,000 --> 00:02:36,530
+as the rack and stack cabling and other deployment procedures are manual and slow.
+
+35
+00:02:37,550 --> 00:02:43,880
+With so many teams working on so many different tasks, chances of human error are high and this results
+
+36
+00:02:43,880 --> 00:02:45,590
+in inconsistent environments.
+
+37
+00:02:46,490 --> 00:02:51,940
+And at the major disadvantage of using this model is the underutilization of the compute resources.
+
+38
+00:02:52,670 --> 00:02:57,860
+The infrastructure sizing activity is generally carried out well in advance and the servers are sized
+
+39
+00:02:57,860 --> 00:02:59,810
+considering the peak utilization.
+
+40
+00:03:00,940 --> 00:03:06,610
+The inability to scale up or down easily means that most of these resources would not be used during
+
+41
+00:03:06,610 --> 00:03:07,810
+off peak hours.
+
+42
+00:03:09,030 --> 00:03:14,640
+In the past decade or so, organisations have been moving to virtualisation and cloud platforms to take
+
+43
+00:03:14,640 --> 00:03:21,630
+advantages of services provided by major cloud providers such as Amazon, AWS, Microsoft Azure, Google
+
+44
+00:03:21,630 --> 00:03:23,160
+Cloud Platform, etc..
+
+45
+00:03:24,180 --> 00:03:29,970
+By moving to cloud the time to spin up the infrastructure and the time to market for applications are
+
+46
+00:03:29,970 --> 00:03:31,350
+significantly reduced.
+
+47
+00:03:32,050 --> 00:03:38,050
+This is because with cloud you do not have to invest in or manage the actual hardware assets that you
+
+48
+00:03:38,050 --> 00:03:41,290
+normally would in case of a traditional infrastructure model.
+
+49
+00:03:42,590 --> 00:03:47,240
+The data center, the hardware assets and the services are managed by the cloud provider.
+
+50
+00:03:48,330 --> 00:03:53,940
+A virtual machine can be spun up in a cloud environment in a matter of minutes, and the time to market
+
+51
+00:03:53,940 --> 00:03:59,250
+is reduced from several months, as in the case of a traditional infrastructure, two weeks in a cloud
+
+52
+00:03:59,250 --> 00:04:00,030
+environment.
+
+53
+00:04:01,930 --> 00:04:07,000
+And infrastructure costs are reduced when compared with the additional data center management and human
+
+54
+00:04:07,000 --> 00:04:08,050
+resources cost.
+
+55
+00:04:09,350 --> 00:04:15,050
+Cloud infrastructure comes with support for APIs, and that opens up a whole new world of opportunity
+
+56
+00:04:15,050 --> 00:04:16,160
+for automation.
+
+57
+00:04:17,440 --> 00:04:23,350
+And finally, the built in auto scaling and elastic functionality of cloud infrastructure reduces resource
+
+58
+00:04:23,350 --> 00:04:24,040
+wastage.
+
+59
+00:04:25,270 --> 00:04:30,070
+With virtualisation and cloud, you could now provision infrastructure with a few clicks.
+
+60
+00:04:30,670 --> 00:04:35,500
+While this approach is certainly faster and more efficient when compared to the traditional deployment
+
+61
+00:04:35,500 --> 00:04:40,840
+methods, using the management console for resource provisioning is not always the ideal solution.
+
+62
+00:04:41,380 --> 00:04:46,630
+It is okay to have this approach when we are dealing with limited number of resources, but in a large
+
+63
+00:04:46,630 --> 00:04:52,060
+organisation with elastic and highly scalable cloud environment with immutable infrastructure, this
+
+64
+00:04:52,060 --> 00:04:53,350
+approach is not feasible.
+
+65
+00:04:54,490 --> 00:04:59,620
+Once provisioned, the systems still have to go through different teams with a lot of process overhead.
+
+66
+00:04:59,620 --> 00:05:06,100
+That increases the delivery time and the chances of human error are still at large, resulting in inconsistent
+
+67
+00:05:06,100 --> 00:05:07,000
+environments.
+
+68
+00:05:08,350 --> 00:05:13,570
+So different organizations started solving these challenges within themselves by developing their own
+
+69
+00:05:13,570 --> 00:05:14,680
+scripts and tools.
+
+70
+00:05:15,190 --> 00:05:21,190
+While some use simple shell scripts, others use programming languages such as Python, Ruby, Perl
+
+71
+00:05:21,190 --> 00:05:22,120
+or PowerShell.
+
+72
+00:05:23,180 --> 00:05:28,430
+Everyone was solving the same problems, trying to automate infrastructure, provisioning to deploy
+
+73
+00:05:28,430 --> 00:05:34,040
+environments faster and in a consistent fashion by leveraging the API functionalities of the various
+
+74
+00:05:34,040 --> 00:05:35,210
+cloud environments.
+
+75
+00:05:36,520 --> 00:05:41,260
+These evolved into a set of tools that came to be known as infrastructure as code.
+
+76
+00:05:42,400 --> 00:05:47,080
+In the next lecture, we will see what infrastructure as code is in more detail.
+

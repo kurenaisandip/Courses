@@ -1,0 +1,68 @@
+1
+00:00:00,900 --> 00:00:06,870
+We just updated the Origin Master branch by merging Origin Sara into it.
+
+2
+00:00:07,290 --> 00:00:13,890
+Our local repository isn't automatically aware of these changes, so we'd have to get these changes
+
+3
+00:00:13,890 --> 00:00:15,960
+into a local repository.
+
+4
+00:00:16,260 --> 00:00:19,230
+We can do so with the git fetch command.
+
+5
+00:00:19,530 --> 00:00:25,680
+We can type git fetch master in order to update the origin master branch in our local repo.
+
+6
+00:00:26,610 --> 00:00:32,970
+Now that we fetched the origin master, we can update our local master branch to point to the latest
+
+7
+00:00:32,970 --> 00:00:35,160
+changes made on Origin Master.
+
+8
+00:00:35,610 --> 00:00:40,170
+To do that we can merge Origin Master into the local master branch.
+
+9
+00:00:42,600 --> 00:00:43,140
+Awesome.
+
+10
+00:00:43,140 --> 00:00:46,590
+We now have all the latest changes available locally.
+
+11
+00:00:47,670 --> 00:00:54,630
+Instead of individually fetching and then merging, we can also pool the Origin master branch with the
+
+12
+00:00:54,660 --> 00:00:56,040
+git pool command.
+
+13
+00:00:56,430 --> 00:01:05,580
+Git pool is actually two commands in one git fetch and get merge by typing git pool origin master.
+
+14
+00:01:05,580 --> 00:01:11,460
+We can fetch and merge the remote changes directly into our local master branch.
+
+15
+00:01:12,900 --> 00:01:13,410
+That's it.
+
+16
+00:01:13,410 --> 00:01:14,060
+For now.
+
+17
+00:01:14,070 --> 00:01:16,830
+It's time to gain some hands on practice.
+

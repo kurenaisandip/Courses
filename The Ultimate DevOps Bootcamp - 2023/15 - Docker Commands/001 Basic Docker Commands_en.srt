@@ -1,0 +1,420 @@
+1
+00:00:04,740 --> 00:00:07,020
+We now look at some of the Docker commands.
+
+2
+00:00:07,050 --> 00:00:11,820
+At the end of this lecture, you will go through a hands on quiz where you will practice working with
+
+3
+00:00:11,820 --> 00:00:12,690
+these commands.
+
+4
+00:00:13,230 --> 00:00:16,230
+Let's start by looking at Docker Run Command.
+
+5
+00:00:16,590 --> 00:00:21,900
+The Docker run Command is used to run a container from an image running the Docker run engine.
+
+6
+00:00:21,900 --> 00:00:28,470
+X Command will run an instance of the engine X application on the Docker host if it already exists.
+
+7
+00:00:28,710 --> 00:00:34,650
+If the image is not present on the host, it will go out to Docker Hub and pull the image down.
+
+8
+00:00:34,890 --> 00:00:39,120
+But this is only done the first time for the subsequent executions.
+
+9
+00:00:39,120 --> 00:00:41,370
+The same image will be reused.
+
+10
+00:00:41,820 --> 00:00:48,480
+The Docker command lists all running containers and some basic information about them, such as the
+
+11
+00:00:48,480 --> 00:00:53,790
+container ID, the name of the image we use to run the containers, the current status and the name
+
+12
+00:00:53,790 --> 00:00:54,780
+of the container.
+
+13
+00:00:55,320 --> 00:01:02,490
+Each container automatically gets a random ID and name created for it by Docker, which in this case
+
+14
+00:01:02,490 --> 00:01:03,330
+is silly.
+
+15
+00:01:03,330 --> 00:01:09,420
+Submit to see all containers running or not use the Dash eight option.
+
+16
+00:01:09,420 --> 00:01:14,520
+This outputs all running as well as previously stopped or exited containers.
+
+17
+00:01:14,840 --> 00:01:19,760
+We we'll talk about the command and port fields shown in this output later in this course.
+
+18
+00:01:19,770 --> 00:01:24,780
+For now, let's just focus on the basic commands to stop a running container.
+
+19
+00:01:24,780 --> 00:01:30,390
+Use the Docker stop command, but you must provide either the container ID or the container name in
+
+20
+00:01:30,390 --> 00:01:31,410
+the stop command.
+
+21
+00:01:31,680 --> 00:01:37,950
+If you're not sure of the name, run the Docker command to get it on success, you will see the name
+
+22
+00:01:37,950 --> 00:01:42,690
+printed out and running Docker again will show no running containers.
+
+23
+00:01:42,870 --> 00:01:51,240
+Running Docker Dash A however shows the container Silly Summit and that it is in an exited stage a few
+
+24
+00:01:51,240 --> 00:01:52,050
+seconds ago.
+
+25
+00:01:53,010 --> 00:01:57,420
+Now, what if we don't want this container lying around consuming space?
+
+26
+00:01:57,450 --> 00:01:59,550
+What if we want to get rid of it for good?
+
+27
+00:02:00,060 --> 00:02:06,030
+Use the Docker arm command to remove a stopped or exited container permanently.
+
+28
+00:02:06,600 --> 00:02:08,759
+If it prints the name back, we're good.
+
+29
+00:02:09,000 --> 00:02:13,230
+Run the Docker command again to verify that it's no longer present.
+
+30
+00:02:14,010 --> 00:02:14,340
+Good.
+
+31
+00:02:14,340 --> 00:02:17,460
+But what about the engine X image that was downloaded?
+
+32
+00:02:17,460 --> 00:02:18,320
+At first?
+
+33
+00:02:18,330 --> 00:02:19,980
+We're not using that anymore.
+
+34
+00:02:19,980 --> 00:02:22,380
+So how do we get rid of that image?
+
+35
+00:02:23,140 --> 00:02:27,280
+But first, how do we see a list of images present on our host?
+
+36
+00:02:27,520 --> 00:02:33,550
+Run the Docker Images Command to see a list of available images and their sizes on our host.
+
+37
+00:02:33,550 --> 00:02:34,990
+We have four images.
+
+38
+00:02:34,990 --> 00:02:37,810
+Engine X Readies Ubuntu and Alpine.
+
+39
+00:02:37,930 --> 00:02:45,520
+We will talk about tags later in this course when we discuss about images to remove an image that you
+
+40
+00:02:45,520 --> 00:02:49,720
+no longer plan to use, run the docker RMI command.
+
+41
+00:02:49,870 --> 00:02:55,840
+Remember, you must ensure that no containers are running off of that image before attempting to remove
+
+42
+00:02:55,840 --> 00:02:56,560
+the image.
+
+43
+00:02:56,560 --> 00:03:01,900
+You must stop and delete all dependent containers to be able to delete an image.
+
+44
+00:03:02,470 --> 00:03:09,280
+When we ran the Docker run command earlier, it downloaded the Ubuntu image as it couldn't find one
+
+45
+00:03:09,280 --> 00:03:09,940
+locally.
+
+46
+00:03:10,360 --> 00:03:13,690
+What if we simply want to download the image and keep?
+
+47
+00:03:13,690 --> 00:03:19,360
+So when we run the run docker run command, we don't want to wait for it to download.
+
+48
+00:03:19,600 --> 00:03:24,970
+Use the Docker pull command to only pull the image and not run the container.
+
+49
+00:03:24,970 --> 00:03:31,270
+So in this case the docker pull Ubuntu command pulls the ubuntu image and stores it on our host.
+
+50
+00:03:32,310 --> 00:03:34,020
+Let's look at another example.
+
+51
+00:03:34,170 --> 00:03:37,570
+Say you were to run a Docker container from an Ubuntu image.
+
+52
+00:03:37,590 --> 00:03:44,370
+When you run the Docker run Ubuntu command, it runs an instance of Ubuntu image and exits immediately.
+
+53
+00:03:44,760 --> 00:03:48,640
+If you were to list the running containers, you wouldn't see the container running.
+
+54
+00:03:48,660 --> 00:03:53,790
+If you list all containers, including those that are stopped, you will see that the new container
+
+55
+00:03:53,790 --> 00:03:56,190
+you ran is in an excited state.
+
+56
+00:03:56,430 --> 00:03:57,960
+Now why is that?
+
+57
+00:03:58,960 --> 00:04:04,240
+Unlike virtual machines, containers are not meant to host an operating system.
+
+58
+00:04:04,270 --> 00:04:11,230
+Containers are meant to run a specific task or process, such as to host an instance of a web server
+
+59
+00:04:11,230 --> 00:04:17,950
+or application server or a database, or simply to carry some kind of computation or analysis task.
+
+60
+00:04:18,250 --> 00:04:22,210
+Once the task is complete, the container exits.
+
+61
+00:04:22,510 --> 00:04:27,610
+A container only leaves as long as the process inside it is alive.
+
+62
+00:04:27,640 --> 00:04:33,310
+If the web service inside the container is stopped or crashed, then the container exits.
+
+63
+00:04:33,430 --> 00:04:40,660
+This is why when you run a container from an Ubuntu image, it stops immediately because Ubuntu is just
+
+64
+00:04:40,660 --> 00:04:46,160
+an image of an operating system that is used as the base image for other applications.
+
+65
+00:04:46,180 --> 00:04:50,170
+There is no process or application running in it by default.
+
+66
+00:04:50,710 --> 00:04:57,910
+If the image isn't running any service, as is the case with Ubuntu, you could instruct Docker to run
+
+67
+00:04:57,910 --> 00:05:00,400
+a process with the Docker run command.
+
+68
+00:05:00,430 --> 00:05:04,540
+For example, a sleep command with a duration of 5 seconds.
+
+69
+00:05:04,630 --> 00:05:11,740
+When the container starts, it runs the sleep command and goes into sleep for 5 seconds post, which
+
+70
+00:05:11,740 --> 00:05:14,740
+the sleep command exits and the container stops.
+
+71
+00:05:15,470 --> 00:05:19,520
+What we just saw was executing a command when we run the container.
+
+72
+00:05:19,520 --> 00:05:23,540
+But what if we would like to execute a command on a running container?
+
+73
+00:05:23,570 --> 00:05:29,660
+For example, when I run the Docker command, I can see that there is a running container which uses
+
+74
+00:05:29,660 --> 00:05:32,930
+the Ubuntu image and sleeps for 100 seconds.
+
+75
+00:05:33,350 --> 00:05:38,630
+Let's say I would like to see the contents of a file inside this particular container.
+
+76
+00:05:38,900 --> 00:05:45,920
+I could use the Docker exec command to execute a command on my Docker container, in this case to print
+
+77
+00:05:45,920 --> 00:05:49,460
+the contents of the Etsy host's file.
+
+78
+00:05:50,580 --> 00:05:55,500
+Finally, let's look at one more option before we head over to the practice exercises.
+
+79
+00:05:56,040 --> 00:06:00,600
+I'm now going to run a Docker image I developed for a simple web application.
+
+80
+00:06:00,840 --> 00:06:05,250
+The repository name is called Cloud slash Simple Web App.
+
+81
+00:06:05,550 --> 00:06:09,540
+It runs a simple web server that listens on Port 1880.
+
+82
+00:06:09,960 --> 00:06:12,690
+When you run a Docker run command like this.
+
+83
+00:06:12,780 --> 00:06:19,830
+It runs in the foreground or in an attached mode, meaning you will be attached to the console or the
+
+84
+00:06:19,830 --> 00:06:25,560
+standard out of the Docker container, and you will see the output of the web service on your screen.
+
+85
+00:06:26,280 --> 00:06:31,440
+You won't be able to do anything else on this console other than view the output until this Docker container
+
+86
+00:06:31,440 --> 00:06:32,160
+stops.
+
+87
+00:06:32,550 --> 00:06:34,650
+It won't respond to your inputs.
+
+88
+00:06:35,410 --> 00:06:42,340
+Press the control plus C combination to stop the container and the application hosted on the container
+
+89
+00:06:42,340 --> 00:06:45,490
+exits and you get back to your prompt.
+
+90
+00:06:46,610 --> 00:06:53,120
+Another option is to run the Docker container in the detached mode by providing the dash DD option.
+
+91
+00:06:53,880 --> 00:07:00,490
+This will run the Docker container in the background mode and you will be back to your prompt immediately.
+
+92
+00:07:00,510 --> 00:07:03,450
+The container will continue to run in the back end.
+
+93
+00:07:04,020 --> 00:07:07,200
+Run the Docker command to view the running container.
+
+94
+00:07:08,510 --> 00:07:14,930
+Now, if you would like to attach back to the running container later, run the Docker, attach command
+
+95
+00:07:14,930 --> 00:07:18,080
+and specify the name or ID of the Docker container.
+
+96
+00:07:18,620 --> 00:07:25,580
+Now, remember, if you're specifying the ID of a container in any Docker command, you can simply provide
+
+97
+00:07:25,580 --> 00:07:27,560
+the first few characters alone.
+
+98
+00:07:27,800 --> 00:07:31,550
+Just so it is different from the other container IDs on the host.
+
+99
+00:07:31,640 --> 00:07:35,750
+In this case I specify a zero for three D.
+
+100
+00:07:37,240 --> 00:07:41,210
+Now don't worry about accessing the UI of the web server for now.
+
+101
+00:07:41,230 --> 00:07:44,260
+We will look more into that in the upcoming lectures.
+
+102
+00:07:44,380 --> 00:07:47,050
+For now, let's just understand the basic commands.
+
+103
+00:07:47,410 --> 00:07:50,440
+We'll now get our hands dirty with the Docker CLI.
+
+104
+00:07:50,470 --> 00:07:54,380
+So let's take a look at how to access the practice lab environments.
+
+105
+00:07:54,400 --> 00:07:55,090
+Next.
+

@@ -1,0 +1,104 @@
+1
+00:00:02,130 --> 00:00:02,310
+Okay.
+
+2
+00:00:02,520 --> 00:00:04,050
+I'm now at the login prompt.
+
+3
+00:00:04,830 --> 00:00:09,510
+Select the default user, which is the which is O's boxes.
+
+4
+00:00:09,780 --> 00:00:14,970
+Now the password to find out the password for any images downloaded from boxes dot org.
+
+5
+00:00:15,000 --> 00:00:20,250
+Go to the info section and then you'll see that the username is o's boxes and the password is always
+
+6
+00:00:20,250 --> 00:00:21,840
+boxes dot org.
+
+7
+00:00:21,930 --> 00:00:25,470
+So I'm going to use that password as boxes dot org.
+
+8
+00:00:29,680 --> 00:00:31,730
+I will click on sign in to log in to the centre.
+
+9
+00:00:31,770 --> 00:00:32,530
+A system.
+
+10
+00:00:34,380 --> 00:00:35,940
+I will open up a terminal.
+
+11
+00:00:38,000 --> 00:00:40,250
+And typing i f config.
+
+12
+00:00:41,030 --> 00:00:42,380
+The f config.
+
+13
+00:00:43,170 --> 00:00:43,950
+Command.
+
+14
+00:00:44,920 --> 00:00:48,490
+Tells me the IP address currently assigned to the virtual machine.
+
+15
+00:00:48,640 --> 00:00:53,320
+As you can see, it is 190 2.168.1.112.
+
+16
+00:00:54,280 --> 00:01:01,870
+Now I will open up a SSH terminal to SSH into that virtual machine.
+
+17
+00:01:02,080 --> 00:01:08,380
+Now in my case I'm using a terminal software called as mobile XTERM.
+
+18
+00:01:08,500 --> 00:01:09,460
+I like to use this.
+
+19
+00:01:09,460 --> 00:01:11,800
+This is a free software that is available.
+
+20
+00:01:11,830 --> 00:01:14,830
+You could use any SSH terminal software.
+
+21
+00:01:14,830 --> 00:01:16,840
+You could simply use putty as well.
+
+22
+00:01:17,290 --> 00:01:26,920
+So create a new SSH session and specify the IP address, which is 190 2.168.1.112.
+
+23
+00:01:30,310 --> 00:01:32,770
+And the username is Oz Boxes.
+
+24
+00:01:34,010 --> 00:01:34,340
+Click on.
+
+25
+00:01:34,340 --> 00:01:34,940
+Okay.
+
+26
+00:01:37,430 --> 00:01:42,830
+Now we'll specify the password which is Oz boxes dot org and I'm logged in.
+

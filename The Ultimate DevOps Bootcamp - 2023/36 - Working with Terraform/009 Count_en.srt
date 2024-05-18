@@ -1,0 +1,328 @@
+1
+00:00:00,360 --> 00:00:06,030
+In this lecture, we will take a look at the current meta argument and its uses in TerraForm.
+
+2
+00:00:07,080 --> 00:00:12,870
+One of the easiest ways to create multiple instances of the local file is to make use of the count meta
+
+3
+00:00:12,870 --> 00:00:13,650
+argument.
+
+4
+00:00:14,220 --> 00:00:19,050
+To do this, simply add an argument called count with a value greater than one.
+
+5
+00:00:19,500 --> 00:00:22,350
+Here we have used count is equal to three.
+
+6
+00:00:22,890 --> 00:00:28,560
+When we try to run TerraForm plan now we can see that the form tries to create three resources instead
+
+7
+00:00:28,560 --> 00:00:29,370
+of one.
+
+8
+00:00:31,290 --> 00:00:36,090
+In the output of the TerraForm Apply Command, we can see that three resources are created.
+
+9
+00:00:36,540 --> 00:00:42,120
+The resources are identified by pet of zero, where zero is within square brackets.
+
+10
+00:00:42,120 --> 00:00:44,370
+PET one and PET two.
+
+11
+00:00:45,360 --> 00:00:51,690
+The resource is now considered to be a list of resources with elements at Index zero one and two.
+
+12
+00:00:52,320 --> 00:00:55,230
+However, there's one problem with this approach.
+
+13
+00:00:56,310 --> 00:01:02,100
+Since we have only specified the count, TerraForm will try to create the same resource three times
+
+14
+00:01:02,460 --> 00:01:04,860
+since the file name is not unique to form.
+
+15
+00:01:05,010 --> 00:01:10,500
+Recreate the same file three times rather than creating three separate files, which defeats the purpose
+
+16
+00:01:10,500 --> 00:01:11,460
+of this task.
+
+17
+00:01:12,670 --> 00:01:18,160
+A better way to do this and make sure that all three resources have unique file names is to make use
+
+18
+00:01:18,160 --> 00:01:20,290
+of a list variable for file name.
+
+19
+00:01:21,120 --> 00:01:26,790
+And to do this, we have used default values with three elements, each corresponding to the name of
+
+20
+00:01:26,790 --> 00:01:28,560
+the file that we want to create.
+
+21
+00:01:29,600 --> 00:01:35,570
+Next, we want a form to make use of each element of this list as the value of the file name argument.
+
+22
+00:01:36,290 --> 00:01:41,600
+In this example, TerraForm should make three iterations as the count has a value of three.
+
+23
+00:01:42,230 --> 00:01:48,110
+The first iteration should pick up the element at Index zero, which is the file called Sdcard.
+
+24
+00:01:48,620 --> 00:01:51,980
+This is followed by the element at index one, which is docs.
+
+25
+00:01:52,160 --> 00:01:52,940
+TXT.
+
+26
+00:01:52,970 --> 00:01:56,510
+And finally cast txt at index two.
+
+27
+00:01:57,670 --> 00:01:59,890
+To use this within the configuration file.
+
+28
+00:01:59,890 --> 00:02:05,230
+We can make use of count index in the expression for the file name like this.
+
+29
+00:02:06,220 --> 00:02:12,370
+Now when we run from apply, we can see that there are three files created inside the slash root directory.
+
+30
+00:02:13,160 --> 00:02:17,330
+But what if we were to add a few more elements to the list in the future?
+
+31
+00:02:17,570 --> 00:02:25,500
+Say we wanted to add a few more files by the name of slash root slash costs RD and extract.
+
+32
+00:02:26,250 --> 00:02:31,950
+If we were to apply this configuration now, we would see that it will still create only three files
+
+33
+00:02:32,400 --> 00:02:35,580
+because we have set the account to a static value of three.
+
+34
+00:02:36,360 --> 00:02:41,670
+We want the count to automatically pick up the number of items that are defined within the filename
+
+35
+00:02:41,670 --> 00:02:42,390
+variable.
+
+36
+00:02:42,450 --> 00:02:48,300
+And to do this, we can set the value of count to use a built in function that would return the length
+
+37
+00:02:48,300 --> 00:02:49,110
+of the list.
+
+38
+00:02:49,740 --> 00:02:54,330
+This built in function called length will set the value of count to five.
+
+39
+00:02:55,640 --> 00:03:00,970
+TerraForm offers several built in functions that allows us to manipulate values within expressions.
+
+40
+00:03:00,980 --> 00:03:05,060
+And one simple function that we can use here is the length function.
+
+41
+00:03:06,070 --> 00:03:11,650
+The length function is used to calculate the size of a list, and we can use this function in the current
+
+42
+00:03:11,650 --> 00:03:15,850
+meta argument to dynamically determine the size of the name variable.
+
+43
+00:03:17,060 --> 00:03:19,250
+We are now ready to run from apply.
+
+44
+00:03:19,460 --> 00:03:25,340
+But before we do that, let's change the default value for the file name variable back to three elements.
+
+45
+00:03:26,760 --> 00:03:27,630
+And that's it.
+
+46
+00:03:27,720 --> 00:03:33,420
+If you run to reform plan and apply now, we should see that three resources with distinct file names
+
+47
+00:03:33,420 --> 00:03:34,470
+have been created.
+
+48
+00:03:35,860 --> 00:03:40,810
+There is, however, another significant drawback when we use the current meta argument to loop through
+
+49
+00:03:40,810 --> 00:03:41,950
+variables this way.
+
+50
+00:03:42,490 --> 00:03:48,340
+To illustrate this, let us use the same example, but this time let us remove the element slash root
+
+51
+00:03:48,340 --> 00:03:50,560
+slash pegs from the list.
+
+52
+00:03:51,910 --> 00:03:58,030
+If we run a reform plan now, we can see that instead of deleting just one resource with the file name
+
+53
+00:03:58,030 --> 00:04:04,510
+slash route slash sdcard TerraForm is replacing two resources and deleting one resource.
+
+54
+00:04:05,170 --> 00:04:06,430
+Why does it do that?
+
+55
+00:04:06,850 --> 00:04:12,850
+We only want to remove the first element in this list, but it looks like all elements are going to
+
+56
+00:04:12,850 --> 00:04:14,770
+be replaced by this operation.
+
+57
+00:04:15,900 --> 00:04:17,399
+To see why this is happening.
+
+58
+00:04:17,399 --> 00:04:19,800
+Let us first understand how it works.
+
+59
+00:04:20,430 --> 00:04:25,890
+As we saw before, when we use count the resources become a list of resources.
+
+60
+00:04:26,660 --> 00:04:28,190
+To see this using TerraForm.
+
+61
+00:04:28,190 --> 00:04:33,440
+Let us add an output variable to the main file to print all details of this resource.
+
+62
+00:04:33,980 --> 00:04:39,110
+Using the TerraForm Output Command, we can see that the resource is now in the format of a list.
+
+63
+00:04:40,200 --> 00:04:47,010
+Additionally, the resource called PET is a list with three resources each identified by its index.
+
+64
+00:04:47,370 --> 00:04:54,360
+The first resource in the list creates the file by the name Pet, and it is identified by pet with the
+
+65
+00:04:54,360 --> 00:04:58,380
+index zero zero enclosed within square brackets since it's a list.
+
+66
+00:04:59,100 --> 00:05:03,450
+The second resource element is pet of one, which creates a file called Dogs.
+
+67
+00:05:04,350 --> 00:05:09,450
+And the third resource is Pet of two, which creates a file called Castex D.
+
+68
+00:05:10,370 --> 00:05:12,950
+The first element in a list is always zero.
+
+69
+00:05:12,950 --> 00:05:20,420
+And as a result, when we deleted the element called slash root slash, which was at index zero to begin
+
+70
+00:05:20,420 --> 00:05:27,590
+with, the element with the value slash root slash dogsbody shifts up and takes its place at index zero.
+
+71
+00:05:27,830 --> 00:05:35,270
+Likewise, slash root slash becomes the element at index one and the list now only has two elements
+
+72
+00:05:35,270 --> 00:05:35,780
+in it.
+
+73
+00:05:37,010 --> 00:05:38,510
+When we run a reform plan.
+
+74
+00:05:38,510 --> 00:05:44,760
+Now reform can see that the resources at Index zero and PET one have to be destroyed and replaced.
+
+75
+00:05:44,780 --> 00:05:50,660
+This is owing to the change in their file names and there is no resource pet to so it will delete that
+
+76
+00:05:50,660 --> 00:05:51,800
+resource entirely.
+
+77
+00:05:52,740 --> 00:05:58,050
+Although after the apply operation, we will have the resources created as per our intended end state.
+
+78
+00:05:58,080 --> 00:05:59,970
+This is not an ideal approach.
+
+79
+00:06:00,090 --> 00:06:05,790
+We may not want the resources to be destroyed and recreated just because we removed an unrelated element
+
+80
+00:06:05,790 --> 00:06:09,360
+from the list and we will see how to fix that in the next lecture.
+
+81
+00:06:10,180 --> 00:06:15,490
+Now let's head over to the hands on labs and practice working with the account meta argument in order
+
+82
+00:06:15,490 --> 00:06:15,910
+for.
+

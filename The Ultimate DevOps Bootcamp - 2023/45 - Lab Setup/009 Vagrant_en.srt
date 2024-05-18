@@ -1,0 +1,304 @@
+1
+00:00:00,270 --> 00:00:03,780
+Let us now get introduced to the basics of Vagrant.
+
+2
+00:00:04,320 --> 00:00:10,560
+In the previous videos and demos, we looked at how to deploy a VM on VirtualBox.
+
+3
+00:00:10,890 --> 00:00:17,820
+We followed this process of first downloading the image from the OS boxes dot org website, and then
+
+4
+00:00:17,820 --> 00:00:19,760
+we created a new VM.
+
+5
+00:00:19,770 --> 00:00:26,040
+We then configured networking such as creating host networks, and then we went into the settings of
+
+6
+00:00:26,040 --> 00:00:31,170
+each VM and configure the interfaces to use those correct networking settings.
+
+7
+00:00:31,290 --> 00:00:36,000
+And then we also configured port forwarding and finally booted up the VM.
+
+8
+00:00:36,000 --> 00:00:40,590
+We then repeated these tasks for every VM that we wish to create.
+
+9
+00:00:41,340 --> 00:00:49,440
+Vagrant helps us automate all of these tasks and do all of these with a single vagrant up command.
+
+10
+00:00:50,350 --> 00:00:56,560
+That way, you don't have to go searching for images of operating systems or download them or create
+
+11
+00:00:56,560 --> 00:00:59,080
+networks or configure port forwarding manually.
+
+12
+00:00:59,230 --> 00:01:01,630
+Vacheron does all of that automatically.
+
+13
+00:01:01,630 --> 00:01:07,330
+So Vacheron is especially useful when you have complex systems involving multiple VMs.
+
+14
+00:01:07,330 --> 00:01:12,070
+And if you plan to deploy and manage the entire setup together.
+
+15
+00:01:13,160 --> 00:01:19,340
+To get started with it wagon dot com and click on the download option and then download and install
+
+16
+00:01:19,340 --> 00:01:21,680
+the appropriate version for your OS.
+
+17
+00:01:22,590 --> 00:01:29,160
+Once installed, run the vagrant in its command and specify the name of the box you'd like to deploy.
+
+18
+00:01:29,520 --> 00:01:32,460
+I'd like to deploy a Centaurus seven box.
+
+19
+00:01:32,460 --> 00:01:35,040
+So what is a box?
+
+20
+00:01:35,800 --> 00:01:41,860
+A box is a vagrant term and refers to a packaged format of a vagrant environment.
+
+21
+00:01:41,890 --> 00:01:48,700
+It contains an OHS image as well as scripts required to configure the environment.
+
+22
+00:01:48,850 --> 00:01:57,220
+You can find a list of all publicly available vagrant boxes at Vagrant cloud by visiting app dot vagrant
+
+23
+00:01:57,220 --> 00:01:59,890
+app dot com slash boxes.
+
+24
+00:02:00,250 --> 00:02:02,980
+Search and find the box of your choice.
+
+25
+00:02:05,890 --> 00:02:11,770
+Running the vagrant init command initializes the vagrant box in the current directory and creates a
+
+26
+00:02:11,770 --> 00:02:12,910
+vagrant file.
+
+27
+00:02:14,190 --> 00:02:18,310
+The vagrant file has instructions on customizing your box.
+
+28
+00:02:18,330 --> 00:02:20,160
+We will look at that in a bit.
+
+29
+00:02:20,990 --> 00:02:24,860
+To start the wagon box, run the vagrant up command.
+
+30
+00:02:24,860 --> 00:02:30,380
+And when this is done, Vagrant downloads the image required to create the VM.
+
+31
+00:02:30,410 --> 00:02:37,790
+It then creates the VM, gives it a random name and configures any settings such as port forwarding
+
+32
+00:02:37,790 --> 00:02:41,390
+or anything like that and waits for it to be ready.
+
+33
+00:02:43,550 --> 00:02:48,090
+Running the vagrant command without any options, lists, all available commands.
+
+34
+00:02:48,110 --> 00:02:53,870
+You can see the vagrant box command used to manage installation and removal of boxes.
+
+35
+00:02:54,080 --> 00:02:59,540
+We just saw the init and up command that initializes a box and brings up the VM.
+
+36
+00:02:59,960 --> 00:03:03,200
+You may use the suspend command to suspend a VM.
+
+37
+00:03:03,470 --> 00:03:09,260
+The resume command to resume a VM and the halt command to stop the VMM.
+
+38
+00:03:09,830 --> 00:03:16,220
+They destroy command to stop and delete the VM and the status command to get the status of a VMM.
+
+39
+00:03:16,640 --> 00:03:21,980
+If the vagrant file is changed, use the reload command to reload the VMM.
+
+40
+00:03:22,830 --> 00:03:28,050
+You can also take and restore snapshots using the vagrant Snapshot command.
+
+41
+00:03:28,710 --> 00:03:34,410
+You could ssh into the VM by simply running the vagrant ssh command.
+
+42
+00:03:34,440 --> 00:03:41,100
+Vagrant will identify the port configured for port forwarding and use that to SSH.
+
+43
+00:03:41,250 --> 00:03:47,790
+Vagrant also sets up ssh key based authentication, so it uses that as well.
+
+44
+00:03:50,200 --> 00:03:52,900
+Let's take a look at the vagrant file.
+
+45
+00:03:53,230 --> 00:03:59,120
+A vagrant file starts with a configuration block within the vagrant configuration block.
+
+46
+00:03:59,140 --> 00:04:02,240
+The image used by the box is specified.
+
+47
+00:04:02,260 --> 00:04:05,200
+In this case, it happens to be CentOS seven.
+
+48
+00:04:05,970 --> 00:04:09,510
+This is all there is configured in the default background file.
+
+49
+00:04:09,510 --> 00:04:15,030
+If you would like to customize this VMM, this is where you would do it and then you can share this
+
+50
+00:04:15,030 --> 00:04:22,680
+file with others and the VM will boot up the same way in exactly the same way with the same configurations
+
+51
+00:04:22,680 --> 00:04:23,910
+for everyone.
+
+52
+00:04:24,330 --> 00:04:30,990
+For example, you could configure port forwarding here and say Port 8080 on the host will be forwarded
+
+53
+00:04:30,990 --> 00:04:32,910
+to port 80 on the guest.
+
+54
+00:04:34,090 --> 00:04:38,530
+Or you could configure a directory to sync between the host and the VM.
+
+55
+00:04:38,560 --> 00:04:42,670
+That way you can easily move files from your host machine to the VM.
+
+56
+00:04:43,410 --> 00:04:48,690
+If you'd like to configure the CPU and memory settings on the VM, then you could do that within the
+
+57
+00:04:48,690 --> 00:04:52,680
+provider virtualbox block like this.
+
+58
+00:04:53,610 --> 00:04:58,920
+You can also configure a simple shell script to run at boot up using the shell provision block like
+
+59
+00:04:58,920 --> 00:04:59,460
+this.
+
+60
+00:05:00,980 --> 00:05:06,950
+So when you run the background up command now background provisions, EVM following the specifications
+
+61
+00:05:06,950 --> 00:05:13,790
+given in this vagrant file and also runs the Shell script given here, you may also include multiple
+
+62
+00:05:13,790 --> 00:05:15,080
+VMs in this.
+
+63
+00:05:15,320 --> 00:05:21,950
+This approach can help you automate the deployment of complex environments on your laptops, such as
+
+64
+00:05:21,950 --> 00:05:24,800
+small clusters of popular systems.
+
+65
+00:05:24,830 --> 00:05:33,170
+There are boxes that have automated clusters, such as Kubernetes clusters, which has multiple VMs.
+
+66
+00:05:34,300 --> 00:05:39,530
+VirtualBox is just one provider among the many supported by Vagrant.
+
+67
+00:05:39,550 --> 00:05:47,470
+You can also use Vagrant in a VMware environment such as VMware Workstation or VMware Fusion or in a
+
+68
+00:05:47,470 --> 00:05:50,590
+microsoft Hyper-V environment as well.
+
+69
+00:05:51,200 --> 00:05:57,560
+So I'd highly recommend you to check out Vagrant and get comfortable with it.
+
+70
+00:05:57,950 --> 00:06:06,380
+This will help you easily create and deploy a virtual machine or local lab environments, as well as
+
+71
+00:06:06,380 --> 00:06:11,930
+save all the work that you did and your configurations in a vagrant file that way.
+
+72
+00:06:11,960 --> 00:06:17,010
+In the future, you can just, if you'd like to deploy the same kind of lab environment.
+
+73
+00:06:17,030 --> 00:06:22,520
+All you need to do is run a background up command and then you can share that vagrant, file your custom
+
+74
+00:06:22,520 --> 00:06:28,430
+file with others in the community, and help others benefit from that as well.
+
+75
+00:06:28,640 --> 00:06:30,050
+Well, that's it for now.
+
+76
+00:06:30,080 --> 00:06:33,320
+Thank you for watching and I'll see you in the next lecture.
+

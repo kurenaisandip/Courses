@@ -1,0 +1,208 @@
+1
+00:00:04,080 --> 00:00:10,770
+In the previous video So far, you've seen how to test your code, how to pull it down from GitHub,
+
+2
+00:00:10,770 --> 00:00:11,820
+how to build it.
+
+3
+00:00:11,820 --> 00:00:18,100
+But we haven't exactly seen what it looks like to fully run the code.
+
+4
+00:00:18,120 --> 00:00:23,880
+So what we're going to do right here is I'm actually going to take out line 22.
+
+5
+00:00:24,510 --> 00:00:27,210
+And what we're going to do is we're going to have three stages.
+
+6
+00:00:27,210 --> 00:00:28,850
+The first is going to be the test.
+
+7
+00:00:28,860 --> 00:00:30,540
+Second is going to be build.
+
+8
+00:00:30,540 --> 00:00:33,060
+Actually, this should be just build here.
+
+9
+00:00:33,060 --> 00:00:34,770
+And then the third stage is run.
+
+10
+00:00:34,770 --> 00:00:40,320
+So this test stage and the build stage, we've kind of already seen that where we built our code, really
+
+11
+00:00:40,320 --> 00:00:42,990
+where we want to focus is the run stage.
+
+12
+00:00:42,990 --> 00:00:44,460
+So on line 24 here.
+
+13
+00:00:44,820 --> 00:00:47,310
+Notice how I have this directory.
+
+14
+00:00:47,400 --> 00:00:52,080
+Now, by default, all pipelines are under this workspace directory.
+
+15
+00:00:52,530 --> 00:01:01,140
+And then what I'm doing is I'm actually calling upon the Go web app sample build and that build actually
+
+16
+00:01:01,140 --> 00:01:04,739
+gets there by line 21 here.
+
+17
+00:01:04,739 --> 00:01:07,890
+So without line 21, this build wouldn't exist.
+
+18
+00:01:07,890 --> 00:01:14,610
+But because we're ultimately able to build our code and it all goes to the same place, we're then able
+
+19
+00:01:14,610 --> 00:01:18,430
+to call upon our go binary here.
+
+20
+00:01:18,450 --> 00:01:22,020
+So what I'm going to do is go ahead and I'm going to copy this.
+
+21
+00:01:22,750 --> 00:01:24,940
+We're going to head over to the Web browser.
+
+22
+00:01:26,130 --> 00:01:30,720
+And then what I'm going to do is I'm going to go into my pipeline right here.
+
+23
+00:01:30,810 --> 00:01:32,730
+And this pipeline is already created.
+
+24
+00:01:32,730 --> 00:01:35,460
+So go ahead and just create this pipeline.
+
+25
+00:01:35,460 --> 00:01:37,470
+Just call it go full pipeline.
+
+26
+00:01:37,470 --> 00:01:44,130
+If you call it something else, just keep in mind that you will have to change the name here on line
+
+27
+00:01:44,130 --> 00:01:44,850
+26.
+
+28
+00:01:44,850 --> 00:01:46,860
+Now, that's the name of my pipeline.
+
+29
+00:01:46,860 --> 00:01:49,200
+So I was able to get this going.
+
+30
+00:01:50,250 --> 00:01:55,290
+Next, I'm going to go to configure here and this is just going to be a standard build pipeline.
+
+31
+00:01:55,290 --> 00:01:59,970
+And then what I'm going to do is I'm going to go ahead and I'm going to run our pipeline now.
+
+32
+00:01:59,970 --> 00:02:01,770
+So go ahead and I'll build this.
+
+33
+00:02:04,640 --> 00:02:07,130
+And we'll click on our 18 build here.
+
+34
+00:02:07,130 --> 00:02:09,560
+As you can see, I've been playing around with this a little bit.
+
+35
+00:02:10,370 --> 00:02:12,260
+Now I'm going to go to my console output.
+
+36
+00:02:12,290 --> 00:02:15,050
+Now let's take a look at what's actually happening here.
+
+37
+00:02:15,890 --> 00:02:21,560
+First, I'm running my tests and as you can see, a lot of these directories don't have tests, but
+
+38
+00:02:21,560 --> 00:02:23,860
+the controller directory does.
+
+39
+00:02:23,870 --> 00:02:25,120
+And these tests ran.
+
+40
+00:02:25,130 --> 00:02:29,060
+They were all good and passed successfully, which is great.
+
+41
+00:02:29,820 --> 00:02:31,830
+Next, we're going to scroll down here.
+
+42
+00:02:32,430 --> 00:02:34,770
+We see our build process occurring.
+
+43
+00:02:36,370 --> 00:02:41,500
+Scroll down a little bit more and we can see here that our pipeline did in fact finish successfully.
+
+44
+00:02:41,620 --> 00:02:46,930
+So I'm going to go here and I'm just going to take my IP address of my Jenkins host.
+
+45
+00:02:47,860 --> 00:02:49,150
+Pop that in.
+
+46
+00:02:49,630 --> 00:02:55,030
+And as we can see, our application is up and running over Port 8000.
+
+47
+00:02:55,480 --> 00:03:02,770
+Now, one thing that I do just want to point out, I'm not sure why this occurs, but it says go web
+
+48
+00:03:02,770 --> 00:03:04,910
+app sample not found.
+
+49
+00:03:04,930 --> 00:03:11,470
+I actually even saw this on, for example, if I go to one of my previous builds that finished successfully.
+
+50
+00:03:11,800 --> 00:03:17,350
+If I just go to the console output here and I scroll down, notice how it does say the same thing,
+
+51
+00:03:17,350 --> 00:03:20,770
+but the application is in fact running successfully.
+
+52
+00:03:21,930 --> 00:03:24,480
+It's time for some hands on practice.
+

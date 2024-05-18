@@ -1,0 +1,48 @@
+1
+00:00:00,540 --> 00:00:07,530
+In order to keep our local and remote repo in sync, we have to push the data from our local repo to
+
+2
+00:00:07,530 --> 00:00:08,760
+the remote repo.
+
+3
+00:00:09,060 --> 00:00:13,740
+We can push data to a remote repo with a git push command.
+
+4
+00:00:14,160 --> 00:00:17,340
+This command expects two more arguments.
+
+5
+00:00:17,340 --> 00:00:23,940
+The alias of a remote repo which we called origin in this case and the current branch that we're on.
+
+6
+00:00:24,330 --> 00:00:30,300
+We haven't made any GID branches yet, so we're just on a default branch named master.
+
+7
+00:00:30,630 --> 00:00:36,690
+It can happen that we've made some new commits locally that we haven't pushed to the remote repository
+
+8
+00:00:36,690 --> 00:00:37,200
+yet.
+
+9
+00:00:37,650 --> 00:00:45,750
+In this case, the remote repository is not in sync with the local repo by using the git push command.
+
+10
+00:00:45,780 --> 00:00:50,160
+We can push the newly committed files to the remote repository.
+
+11
+00:00:51,240 --> 00:00:57,930
+Now that we've pushed a new data, any developer that has access to our remote repository can fetch
+
+12
+00:00:57,930 --> 00:01:00,120
+the latest changes that we just pushed.
+

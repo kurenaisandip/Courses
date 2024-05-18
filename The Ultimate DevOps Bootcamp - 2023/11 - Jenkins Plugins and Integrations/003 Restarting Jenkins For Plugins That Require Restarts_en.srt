@@ -1,0 +1,64 @@
+1
+00:00:04,330 --> 00:00:10,120
+There's going to be plug ins that you can install without restart or you could download now and install
+
+2
+00:00:10,120 --> 00:00:10,920
+after restart.
+
+3
+00:00:10,930 --> 00:00:18,670
+So some plug ins may need you to restart your Jenkins instance, but not all of them will require you
+
+4
+00:00:18,670 --> 00:00:19,750
+to ultimately do that.
+
+5
+00:00:19,750 --> 00:00:22,450
+So I wouldn't really worry about it all that much.
+
+6
+00:00:22,990 --> 00:00:32,740
+But if you need to, of course we could always just do sudo system CTL restart Jenkins.
+
+7
+00:00:36,020 --> 00:00:38,960
+And then what that's going to do is that's going to restart our instance of Jenkins.
+
+8
+00:00:38,960 --> 00:00:41,500
+We can do system CTL status.
+
+9
+00:00:41,510 --> 00:00:45,130
+Jenkins Now we can see that it is up and running, which is great.
+
+10
+00:00:45,140 --> 00:00:47,540
+But if I just go ahead and I refresh here.
+
+11
+00:00:49,090 --> 00:00:54,100
+We'll see that Jenkins is restarting right now and the services are just coming up.
+
+12
+00:00:55,990 --> 00:00:58,480
+And then now we can log back in.
+
+13
+00:01:01,740 --> 00:01:03,660
+So that's essentially how you restart.
+
+14
+00:01:03,660 --> 00:01:10,110
+Jenkins If you need to for a new plug in that's getting installed or anything else, really.
+
+15
+00:01:10,260 --> 00:01:11,820
+Well, that's all for now.
+
+16
+00:01:11,820 --> 00:01:13,530
+Let's get some hands on practice.
+

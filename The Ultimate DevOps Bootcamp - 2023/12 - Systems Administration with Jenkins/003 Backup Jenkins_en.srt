@@ -1,0 +1,260 @@
+1
+00:00:03,460 --> 00:00:05,200
+When it comes to backups and.
+
+2
+00:00:05,200 --> 00:00:10,610
+JENKINS There's not like a specific solution that you would use.
+
+3
+00:00:10,630 --> 00:00:14,650
+Really, it's kind of up to three different ways.
+
+4
+00:00:14,680 --> 00:00:20,530
+Number one, you could either do file system snapshots, which snapshots aren't real backups.
+
+5
+00:00:20,530 --> 00:00:23,560
+So I wouldn't recommend that as a long term solution.
+
+6
+00:00:23,560 --> 00:00:29,980
+But it's good for a daily kind of thing, maybe instead of an incremental route.
+
+7
+00:00:30,280 --> 00:00:34,210
+Next, you have plug ins for backups, which again, plug ins.
+
+8
+00:00:34,480 --> 00:00:40,360
+We have the ability to install and extend different services and different features in Jenkins.
+
+9
+00:00:40,540 --> 00:00:44,710
+Or you could write a shell script that backs up the Jenkins instance.
+
+10
+00:00:44,980 --> 00:00:49,180
+Now, for this section, what we're going to do is we're going to go and we're going to use one of the
+
+11
+00:00:49,180 --> 00:00:50,170
+plug ins.
+
+12
+00:00:50,170 --> 00:00:55,840
+But if you'd like to check out a Shell script, I did find this Shell script online, which you can
+
+13
+00:00:55,840 --> 00:01:01,090
+get to via this GitHub organization and then this GitHub repository right here.
+
+14
+00:01:01,090 --> 00:01:03,820
+And at that point, you can check it out.
+
+15
+00:01:03,880 --> 00:01:05,260
+See if this works for you.
+
+16
+00:01:05,260 --> 00:01:11,470
+But for me, I think it made more sense to kind of use a plug in because it's a little bit more managed
+
+17
+00:01:11,470 --> 00:01:13,570
+than maybe a one off script.
+
+18
+00:01:13,570 --> 00:01:18,100
+So what I'm going to do is in the Jenkins portal, I'm going to go to manage Jenkins.
+
+19
+00:01:19,290 --> 00:01:21,690
+And then I'm going to go to manage plugins.
+
+20
+00:01:22,380 --> 00:01:27,000
+And I'm going to go to available and then I'm going to type in back up.
+
+21
+00:01:27,300 --> 00:01:33,210
+Now, there are a few here, but from what I saw and what I see in the field, a lot of people typically
+
+22
+00:01:33,210 --> 00:01:34,860
+do use thin backups.
+
+23
+00:01:34,860 --> 00:01:36,840
+So we'll go ahead and we'll go with that one.
+
+24
+00:01:36,840 --> 00:01:41,010
+But I don't see anything wrong with trying out some of these other ones, like the Google Cloud backup,
+
+25
+00:01:41,010 --> 00:01:41,740
+for example.
+
+26
+00:01:41,760 --> 00:01:43,560
+Sounds kind of interesting, actually.
+
+27
+00:01:43,800 --> 00:01:48,990
+So I'm going to go in and I'm going to click thin backup and then I'm going to say install without restart.
+
+28
+00:01:51,470 --> 00:01:57,530
+I'm going to scroll down here and we can see that it did just install successfully.
+
+29
+00:01:58,160 --> 00:02:05,570
+So if I scroll back up and I click on Manage Jenkins again, now I just go and I scroll down here,
+
+30
+00:02:05,570 --> 00:02:10,729
+I can see then back up now back up your global and job specific configuration.
+
+31
+00:02:11,150 --> 00:02:11,630
+So I'm going go ahead.
+
+32
+00:02:11,630 --> 00:02:12,830
+I'm going to click on that.
+
+33
+00:02:13,520 --> 00:02:15,170
+And then I have a few options.
+
+34
+00:02:15,170 --> 00:02:17,720
+I can either backup, restore or click settings.
+
+35
+00:02:17,720 --> 00:02:19,280
+Let's kind of see what's in settings.
+
+36
+00:02:20,420 --> 00:02:24,500
+Backup directory, which if we click on that, specify the backup directory.
+
+37
+00:02:24,500 --> 00:02:27,080
+The Hudson process needs write access to directory.
+
+38
+00:02:27,110 --> 00:02:32,750
+Really, what this means is the backup directory of where this is being backed up.
+
+39
+00:02:32,750 --> 00:02:38,930
+So like on a local server on a file share somewhere, something like that, we can set up some backup
+
+40
+00:02:38,930 --> 00:02:47,420
+schedules, backup schedules for differential and full backups, number of backup sets, files excluded.
+
+41
+00:02:47,960 --> 00:02:48,890
+And then what files?
+
+42
+00:02:48,890 --> 00:02:50,120
+We want to back up here.
+
+43
+00:02:51,440 --> 00:02:54,950
+I'm going to go ahead and I'm going to click back and then I'll click back up now.
+
+44
+00:02:57,170 --> 00:02:59,300
+Now that, of course, will not work.
+
+45
+00:02:59,300 --> 00:03:01,310
+I just wanted to go ahead and showcase that.
+
+46
+00:03:01,310 --> 00:03:05,780
+The reason why is because we need a backup directory.
+
+47
+00:03:06,320 --> 00:03:12,230
+So what we're going to do is we're going to search into our server type in my password.
+
+48
+00:03:13,040 --> 00:03:22,400
+And then I'm just going to do just to see my home directory here and then I'm going to say MK Dear Jenkins
+
+49
+00:03:22,400 --> 00:03:23,330
+backup.
+
+50
+00:03:24,030 --> 00:03:29,570
+If I just see Jenkins back backup again, and this is my path.
+
+51
+00:03:30,140 --> 00:03:31,970
+So I'm going go ahead and I'm going to copy this.
+
+52
+00:03:32,570 --> 00:03:37,580
+And as we can see, the directory does exist, but it's not writable.
+
+53
+00:03:37,580 --> 00:03:43,130
+So depending on the permissions that you have on a server in an organization, the policies that are
+
+54
+00:03:43,130 --> 00:03:47,690
+available, you're going to need to set up these permissions for the directory here.
+
+55
+00:03:48,140 --> 00:03:52,520
+So what I did was I just C.H. modify it to seven, seven, seven.
+
+56
+00:03:52,700 --> 00:03:55,560
+That pretty much just means open it up to everything.
+
+57
+00:03:55,580 --> 00:03:57,120
+It's obviously not ideal.
+
+58
+00:03:57,140 --> 00:04:02,840
+Again, depending on your organization is totally going to depend on the policy, but for testing purposes
+
+59
+00:04:02,840 --> 00:04:06,230
+and just to showcase how the backup works, this is fine.
+
+60
+00:04:07,670 --> 00:04:09,710
+So I'm going to go ahead and I'm going to save that.
+
+61
+00:04:11,540 --> 00:04:13,430
+Now I can click a back up now.
+
+62
+00:04:13,850 --> 00:04:21,709
+So now what we can do is I'm going to CD into Jenkins back up LZ here, and we can see now I have a
+
+63
+00:04:21,709 --> 00:04:23,660
+backup that was successful.
+
+64
+00:04:24,490 --> 00:04:26,640
+Well, that's it for this lecture.
+
+65
+00:04:26,650 --> 00:04:28,090
+We'll see you in the next.
+

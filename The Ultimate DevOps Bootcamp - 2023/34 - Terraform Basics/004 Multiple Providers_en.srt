@@ -1,0 +1,176 @@
+1
+00:00:02,210 --> 00:00:08,390
+In this lecture, we will see how to use multiple providers and resources in TerraForm.
+
+2
+00:00:10,270 --> 00:00:16,960
+Until now, we have been making use of a single provider called local to deploy a local file in the
+
+3
+00:00:16,960 --> 00:00:17,650
+system.
+
+4
+00:00:18,730 --> 00:00:23,770
+TerraForm also supports the use of multiple providers within the same configuration.
+
+5
+00:00:24,760 --> 00:00:29,380
+To illustrate this, let's make use of another provider called random.
+
+6
+00:00:30,420 --> 00:00:38,190
+This provider allows us to create random resources such as a random ID or random integer, a random
+
+7
+00:00:38,190 --> 00:00:39,930
+password, etc..
+
+8
+00:00:40,960 --> 00:00:46,090
+Let us see how to use this provider and create a resource called Random Pet.
+
+9
+00:00:47,140 --> 00:00:51,400
+This resource type will generate a random pet name when applied.
+
+10
+00:00:52,760 --> 00:00:59,930
+By making use of the documentation, we can add a resource block to the existing main file like this.
+
+11
+00:01:01,280 --> 00:01:05,540
+Here we are making use of the resource type called Random Pet.
+
+12
+00:01:06,530 --> 00:01:11,510
+In an earlier lecture we saw that the resource type can be broken down to two parts.
+
+13
+00:01:11,840 --> 00:01:16,850
+The key word before the underscore is the provider, which in this case is random.
+
+14
+00:01:17,090 --> 00:01:21,350
+The key word following it is the resource type, which is the pet.
+
+15
+00:01:21,830 --> 00:01:26,220
+Let's call this resource my pet within this resource block.
+
+16
+00:01:26,240 --> 00:01:27,890
+We will use three arguments.
+
+17
+00:01:28,770 --> 00:01:32,310
+One is the prefix that is to be added to the pet name.
+
+18
+00:01:32,910 --> 00:01:38,520
+The second argument is the separator between the prefix and the pet name that is generated.
+
+19
+00:01:39,410 --> 00:01:45,440
+The final argument is the length, which is the length of the pet name to be generated in words.
+
+20
+00:01:47,820 --> 00:01:52,530
+Our media file now has resource definition for two different providers.
+
+21
+00:01:53,250 --> 00:02:00,120
+One resource of the local file type that we have already created earlier, and another resource of type
+
+22
+00:02:00,120 --> 00:02:01,170
+random pet.
+
+23
+00:02:02,090 --> 00:02:08,090
+Before we generate an execution plan and create these resources, we have to run the TerraForm Init
+
+24
+00:02:08,090 --> 00:02:09,020
+Command again.
+
+25
+00:02:09,750 --> 00:02:15,630
+Now, this is a mandatory step as the plug in for the random provider should be initialized in the configuration
+
+26
+00:02:15,630 --> 00:02:18,210
+directory before we can make use of it.
+
+27
+00:02:19,780 --> 00:02:21,610
+In the command output of the TerraForm.
+
+28
+00:02:21,610 --> 00:02:27,340
+In it, we can see that the local provider was previously installed and it will be reused.
+
+29
+00:02:27,850 --> 00:02:33,670
+The plugin for the random provider, on the other hand, will be installed as it was not used before.
+
+30
+00:02:34,650 --> 00:02:38,910
+We can now run the TerraForm plan to review the execution plan.
+
+31
+00:02:39,840 --> 00:02:47,120
+As expected, the local file resource called PET will not be updated as it is unchanged from the previous
+
+32
+00:02:47,130 --> 00:02:47,790
+apply.
+
+33
+00:02:48,730 --> 00:02:55,510
+A new resource by the name of my pet will be created based on the new resource block that we just added.
+
+34
+00:02:56,720 --> 00:02:59,990
+Now let's apply the configuration using TerraForm apply.
+
+35
+00:03:01,220 --> 00:03:08,300
+As expected, the local file resource is left as it is, but now a new resource has been created which
+
+36
+00:03:08,300 --> 00:03:09,560
+is called My Pet.
+
+37
+00:03:11,470 --> 00:03:17,260
+Random provider is a logical provider and it displays the results of the pet name on the screen like
+
+38
+00:03:17,260 --> 00:03:17,800
+this.
+
+39
+00:03:19,290 --> 00:03:19,890
+Here.
+
+40
+00:03:19,890 --> 00:03:25,350
+An attribute called ID, which contains the name of the pet is returned by the Apply command.
+
+41
+00:03:26,600 --> 00:03:32,840
+Before we move on, please note that in our illustration, the dog icon stands for a pet.
+
+42
+00:03:33,380 --> 00:03:36,170
+And we'll be making use of it throughout this course.
+
+43
+00:03:36,740 --> 00:03:42,380
+The random pet can generate any pet name, and it does not have to be specifically a dog.
+
+44
+00:03:43,310 --> 00:03:49,400
+And now let's head over to the Hands-On Labs and explore working with multiple providers in TerraForm.
+

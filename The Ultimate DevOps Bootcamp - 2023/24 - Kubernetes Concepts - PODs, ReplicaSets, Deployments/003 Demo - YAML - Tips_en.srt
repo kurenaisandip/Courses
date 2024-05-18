@@ -1,0 +1,852 @@
+1
+00:00:00,540 --> 00:00:08,039
+In the previous demo, we used the Vim Command line editor to create our pod definition file.
+
+2
+00:00:08,400 --> 00:00:15,570
+We created a pod called Engine X with a couple of labels, and we use the index image.
+
+3
+00:00:15,960 --> 00:00:22,830
+Now, while this works well, the editor is quite basic and it can be quite difficult to make use of
+
+4
+00:00:22,830 --> 00:00:23,280
+them.
+
+5
+00:00:23,280 --> 00:00:28,020
+If you want to create and edit long or even large number of YAML files.
+
+6
+00:00:28,110 --> 00:00:31,820
+The same goes with notepad or other tools in windows.
+
+7
+00:00:31,830 --> 00:00:34,850
+They are very basic and prone to errors.
+
+8
+00:00:34,860 --> 00:00:37,770
+They don't really tell you if you made a mistake.
+
+9
+00:00:38,370 --> 00:00:47,580
+The Kubernetes object definition files using YAML can be developed much easier using IDE tools.
+
+10
+00:00:48,000 --> 00:00:55,980
+Now there are many IDs out there that are free to use, such as those from chat brains, IntelliJ Idea
+
+11
+00:00:55,980 --> 00:00:57,300
+and Pi charm.
+
+12
+00:00:57,420 --> 00:01:04,680
+Atom is another free tool eclipse or netbeans that a lot of Java developers use.
+
+13
+00:01:05,190 --> 00:01:11,640
+And all of these come with support for YAML files and they will help in highlighting errors in a YAML
+
+14
+00:01:11,790 --> 00:01:15,750
+file and make making sure that you develop them right.
+
+15
+00:01:16,020 --> 00:01:22,260
+But they won't natively tell you if there are errors within the Kubernetes manifest files that you are
+
+16
+00:01:22,260 --> 00:01:22,880
+developing.
+
+17
+00:01:22,890 --> 00:01:29,460
+For example, if you typed in a wrong property name or if you are using a dictionary instead of a list.
+
+18
+00:01:29,670 --> 00:01:37,080
+And that's where you need some kind of an extension or a plugin that could help point those out for
+
+19
+00:01:37,080 --> 00:01:37,530
+you.
+
+20
+00:01:38,160 --> 00:01:45,610
+So those tools that can first verify the structure of your YAML, file the syntax, making sure that
+
+21
+00:01:45,610 --> 00:01:51,690
+it works fine, and also point out errors related to Kubernetes.
+
+22
+00:01:51,690 --> 00:01:54,480
+Write support for Kubernetes.
+
+23
+00:01:54,720 --> 00:02:00,450
+And so these IDs come with support for extensions and plugins that can help with that.
+
+24
+00:02:00,990 --> 00:02:05,100
+And those plugins could either be free or paid.
+
+25
+00:02:05,340 --> 00:02:14,190
+Now, one ID that we found that is freely available and works on all different operating systems and
+
+26
+00:02:14,190 --> 00:02:17,160
+also has a free extension for YAML.
+
+27
+00:02:17,160 --> 00:02:23,460
+Validation for Kubernetes is the Microsoft Visual Studio Code ID.
+
+28
+00:02:24,090 --> 00:02:32,010
+It's easy to set up and get started and so we will use that as our ID for the rest of this, for the
+
+29
+00:02:32,010 --> 00:02:33,720
+rest of the demos in this course.
+
+30
+00:02:34,320 --> 00:02:37,470
+Now, you don't necessarily have to use the same tool.
+
+31
+00:02:37,470 --> 00:02:45,000
+Feel free to use any ID of your choice and try to find a plugin or extension that can help with developing
+
+32
+00:02:45,000 --> 00:02:49,380
+Kubernetes YAML files for the ID of your choice.
+
+33
+00:02:50,070 --> 00:02:53,910
+So in this demo we're going to first install vs code.
+
+34
+00:02:54,390 --> 00:03:02,610
+So here I am at the code dot Visual Studio dot com website, and since I'm running on an Ubuntu based
+
+35
+00:03:02,610 --> 00:03:05,890
+distribution, I'm going to download the Debian package.
+
+36
+00:03:05,910 --> 00:03:12,750
+It should automatically list the right version to download for you depending on your operating system.
+
+37
+00:03:12,810 --> 00:03:17,940
+And as it says here, we shall studio code is free and open source software.
+
+38
+00:03:18,060 --> 00:03:20,580
+We will wait for the download to complete.
+
+39
+00:03:22,240 --> 00:03:27,310
+The download has been completed and since it's a Debian package, I'm just going to install it directly
+
+40
+00:03:27,310 --> 00:03:28,270
+on my system.
+
+41
+00:03:39,770 --> 00:03:42,170
+So let's wait for the installation to complete.
+
+42
+00:03:44,170 --> 00:03:49,600
+The installation has been completed now and I'm going to launch vs code.
+
+43
+00:03:50,140 --> 00:03:54,940
+Once open, this is what it would look like after refresh installs.
+
+44
+00:03:55,180 --> 00:04:04,690
+So we will go to the extensions section first and search for YAML and look for the extension which is
+
+45
+00:04:04,690 --> 00:04:06,100
+published by Red Hat.
+
+46
+00:04:11,530 --> 00:04:15,730
+This is the extension that has support for kubernetes yaml files.
+
+47
+00:04:16,040 --> 00:04:23,440
+Now in most cases this particular yaml extension is installed by default, but if it's not in your case,
+
+48
+00:04:23,440 --> 00:04:29,440
+then you'll see that here and you can go ahead and click on the install button to install and enable
+
+49
+00:04:29,440 --> 00:04:29,860
+it.
+
+50
+00:04:30,490 --> 00:04:36,220
+Now before we get started with developing Co-presenters definition files, using this extension, we
+
+51
+00:04:36,220 --> 00:04:44,110
+have to make a small change in our settings to configure VTS code to use the YAML extension for Kubernetes
+
+52
+00:04:44,110 --> 00:04:44,920
+files.
+
+53
+00:04:44,920 --> 00:04:45,490
+Right.
+
+54
+00:04:45,790 --> 00:04:53,380
+So by default, this YAML extension provides basic YAML validation functionality to enable Kubernetes
+
+55
+00:04:53,380 --> 00:04:54,160
+support.
+
+56
+00:04:54,190 --> 00:04:58,720
+We must configure it to work with YAML files that we plan to develop.
+
+57
+00:04:58,840 --> 00:05:00,250
+So there are two ways to do it.
+
+58
+00:05:00,280 --> 00:05:08,380
+One way is to click on this gear icon on the YAML file yaml extension and go to extension settings and
+
+59
+00:05:08,380 --> 00:05:16,360
+scroll all the way to the bottom where there is a YAML schemas option and click on the edit in settings
+
+60
+00:05:16,570 --> 00:05:17,920
+json file option.
+
+61
+00:05:18,400 --> 00:05:21,160
+Now this will take you to the settings json file.
+
+62
+00:05:21,220 --> 00:05:27,550
+This file may or may not have some contents already based on other extensions or configurations that
+
+63
+00:05:27,550 --> 00:05:28,960
+you might have already done.
+
+64
+00:05:29,080 --> 00:05:33,400
+So if it's a new installation, it might look empty like this.
+
+65
+00:05:33,850 --> 00:05:39,580
+So whatever it may be, our goal is to simply add a small section of code into this file.
+
+66
+00:05:40,540 --> 00:05:46,090
+It should have the YAML schema section if you came here following the path that I showed.
+
+67
+00:05:46,450 --> 00:05:50,200
+We're going to add an entry for Kubernetes schema support.
+
+68
+00:05:50,440 --> 00:05:57,550
+We add a schema for Kubernetes for all YAML files using the start YAML pattern.
+
+69
+00:05:57,970 --> 00:06:04,120
+So we're basically saying that we want to use Kubernetes schema for all YAML files that we developed
+
+70
+00:06:04,120 --> 00:06:05,170
+using VS code.
+
+71
+00:06:05,260 --> 00:06:11,680
+If you don't really want to do that, if you don't want to use the Kubernetes schema for all the files
+
+72
+00:06:11,680 --> 00:06:14,140
+instead if you plan to create.
+
+73
+00:06:15,070 --> 00:06:21,130
+Kubernetes fires using a particular pattern, then you can specify that pattern or extension here.
+
+74
+00:06:21,700 --> 00:06:24,370
+So we will just leave it as it is.
+
+75
+00:06:25,280 --> 00:06:27,380
+Now, this is a case sensitive as well.
+
+76
+00:06:27,380 --> 00:06:32,330
+So make sure that you use all small case for the word Kubernetes in this file.
+
+77
+00:06:33,080 --> 00:06:38,480
+So one thing that you'll have to do is to reload the Visual Studio code after making this change so
+
+78
+00:06:38,480 --> 00:06:39,450
+it takes effect.
+
+79
+00:06:39,470 --> 00:06:43,910
+So just exit and restart vs code at this point.
+
+80
+00:06:44,350 --> 00:06:52,310
+Now, another way, get to these settings JSON file is to use the control plus P shortcut key where
+
+81
+00:06:52,310 --> 00:06:54,530
+a search bar would open at the top.
+
+82
+00:06:54,620 --> 00:07:00,170
+And then there you type in settings JSON and then go to the settings JSON file from there.
+
+83
+00:07:00,320 --> 00:07:06,080
+But if this doesn't work, use the gear icon approach that I just showed.
+
+84
+00:07:06,950 --> 00:07:12,230
+Okay, So here again, as you can see that this file has already been saved so we don't have to do anything
+
+85
+00:07:12,230 --> 00:07:12,920
+else.
+
+86
+00:07:13,670 --> 00:07:19,880
+So what I'm going to do is I'm going to close this Visual Studio Code editor and I'm going to open it
+
+87
+00:07:19,880 --> 00:07:20,690
+up again.
+
+88
+00:07:24,540 --> 00:07:29,040
+Once it is up, I'm just going to make sure that the YAML extension is enabled.
+
+89
+00:07:33,430 --> 00:07:38,800
+And so we don't have an option to enable or install here, which means that it is already enabled.
+
+90
+00:07:44,620 --> 00:07:48,610
+Okay, so let's now open a folder on our system.
+
+91
+00:07:48,610 --> 00:07:52,870
+So in this case, I'm going to open the directory called Kubernetes for Beginners, which is where our
+
+92
+00:07:52,870 --> 00:07:59,560
+pod definition file resides, the one that we created earlier with the VIM editor in the previous demo.
+
+93
+00:08:04,120 --> 00:08:05,860
+For the purpose of this demonstration.
+
+94
+00:08:06,010 --> 00:08:07,630
+Let's create another file.
+
+95
+00:08:08,740 --> 00:08:12,970
+So click on a new file and let's call it index.html.
+
+96
+00:08:17,530 --> 00:08:22,750
+So now we are going to create a new YAML file using the Visual Studio code editor and we'll make use
+
+97
+00:08:22,750 --> 00:08:25,180
+of the YAML extension that we just installed.
+
+98
+00:08:25,420 --> 00:08:26,890
+So we'll see how that works.
+
+99
+00:08:27,760 --> 00:08:29,320
+But to make this work.
+
+100
+00:08:30,220 --> 00:08:38,110
+First, we have to create the first root level property or the element called API version and which
+
+101
+00:08:38,110 --> 00:08:39,940
+for POD will be V one.
+
+102
+00:08:40,539 --> 00:08:45,910
+Now once you put that in the Kubernetes support part of the extension we installed kicks in.
+
+103
+00:08:46,210 --> 00:08:51,370
+And then it'll start suggesting additional properties and performing validations.
+
+104
+00:08:51,610 --> 00:08:58,840
+So note that you must have that one line in the first line in for the rest of the suggestions to work.
+
+105
+00:08:59,980 --> 00:09:05,800
+Now, if I type in K four kind, it will suggest the available root level properties, starting with
+
+106
+00:09:05,800 --> 00:09:08,140
+K and it suggests kind.
+
+107
+00:09:08,260 --> 00:09:16,390
+So if I just press tab it will auto finish it auto completed for me and then press control, spacebar
+
+108
+00:09:16,390 --> 00:09:21,490
+and type P and it will show you the list of all different objects that are available, starting with
+
+109
+00:09:21,490 --> 00:09:21,910
+P.
+
+110
+00:09:22,330 --> 00:09:24,210
+So in this case, we're interested in pods.
+
+111
+00:09:24,220 --> 00:09:25,960
+So I'm going to select pod.
+
+112
+00:09:30,290 --> 00:09:39,170
+And if I hit enter and plus M, then metadata is suggested and again hit control space and it will suggest
+
+113
+00:09:39,170 --> 00:09:40,490
+supported options.
+
+114
+00:09:40,820 --> 00:09:47,840
+The YAML extension knows that this metadata is a dictionary, so it has already kind of intended the
+
+115
+00:09:47,840 --> 00:09:49,790
+lines to the right for me.
+
+116
+00:09:49,880 --> 00:09:57,830
+So I'm going to add a name field here and again, we use the control space to complete and you will
+
+117
+00:09:57,830 --> 00:10:05,660
+notice that there is this error indicated here below the name and it is expecting a string type field
+
+118
+00:10:05,660 --> 00:10:05,930
+here.
+
+119
+00:10:05,930 --> 00:10:10,220
+So as long as this is empty, it will continue to show that error.
+
+120
+00:10:10,220 --> 00:10:14,510
+So let me add a name of the part which could be index two.
+
+121
+00:10:14,510 --> 00:10:17,960
+And as soon as I complete that, you'll see that the error indicator is gone.
+
+122
+00:10:17,960 --> 00:10:26,180
+So now again, if I hit enter, you'll see that it maintains the right indentation and it keeps it at
+
+123
+00:10:26,180 --> 00:10:28,070
+the same vertical line.
+
+124
+00:10:29,080 --> 00:10:31,960
+As the child of metadata, which is name.
+
+125
+00:10:32,770 --> 00:10:39,730
+So now the next one that I'm going to add is label again, press control space and it will autocomplete
+
+126
+00:10:39,730 --> 00:10:40,890
+label for me.
+
+127
+00:10:40,900 --> 00:10:45,400
+And now if I press tab, it knows that labels is also a dictionary.
+
+128
+00:10:45,400 --> 00:10:50,180
+So it has maintained that additional formatting.
+
+129
+00:10:50,200 --> 00:10:56,800
+Now here it won't suggest any properties or labels because labels could really be anything.
+
+130
+00:10:56,800 --> 00:11:01,510
+So it's up to you to decide what labels to add or for that pod.
+
+131
+00:11:01,990 --> 00:11:05,410
+And that's why there is no suggestions here.
+
+132
+00:11:05,590 --> 00:11:12,610
+Now I will add a label such as environment and set it to production so that that would be the only label
+
+133
+00:11:12,610 --> 00:11:14,380
+that I want to add right now.
+
+134
+00:11:14,770 --> 00:11:21,190
+So now to go back to the root level again, I'm just going to press backspace twice and it takes me
+
+135
+00:11:21,190 --> 00:11:25,660
+to the level of metadata and in the same vertical line.
+
+136
+00:11:25,660 --> 00:11:30,000
+So now the next thing that we want to add is a specs section.
+
+137
+00:11:30,010 --> 00:11:36,520
+Again, we make use of the control space shortcut and it will suggest options.
+
+138
+00:11:37,090 --> 00:11:42,520
+Note that if the suggestion does not include what you're expecting, then there is probably something
+
+139
+00:11:42,520 --> 00:11:44,770
+wrong with the format of your file.
+
+140
+00:11:44,770 --> 00:11:48,550
+So you're probably not in the right place to add that file.
+
+141
+00:11:48,850 --> 00:11:54,970
+So that's an additional support the extension provides to prevent you from creating a file with an incorrect
+
+142
+00:11:54,970 --> 00:11:55,750
+structure.
+
+143
+00:11:56,630 --> 00:11:59,900
+So I hit tab to choose that suggestion.
+
+144
+00:11:59,900 --> 00:12:06,230
+And the extension knows that for part, what comes directly underneath the specs section is the container
+
+145
+00:12:06,230 --> 00:12:08,840
+section, and that containers is a list.
+
+146
+00:12:08,840 --> 00:12:15,320
+So it has created a list here with the first element already populated and waiting on you for the name.
+
+147
+00:12:15,830 --> 00:12:19,100
+So let us set a value for the name of the container here.
+
+148
+00:12:19,100 --> 00:12:27,650
+We can use Engine X and if I hit enter, it maintains the right indentation for me to add another container
+
+149
+00:12:27,650 --> 00:12:32,150
+and say we would like to specify an image for the first container.
+
+150
+00:12:32,150 --> 00:12:38,990
+So if I make a mistake here, for example, if I add an image property and set it to say engine X,
+
+151
+00:12:39,110 --> 00:12:46,580
+again, it knows that there is an error because and if I just highlight on top of that, it says bad
+
+152
+00:12:47,120 --> 00:12:49,550
+indentation for a mapping entry.
+
+153
+00:12:49,550 --> 00:12:55,430
+So we have to make sure that all properties of a single container are correctly aligned under it.
+
+154
+00:12:56,610 --> 00:13:03,360
+One thing to remember here is that it doesn't really validate if the image name that you're using are
+
+155
+00:13:03,360 --> 00:13:04,770
+valid image names.
+
+156
+00:13:04,920 --> 00:13:11,760
+So the names of images you specify or the names that you use for your pot or containers or the labels
+
+157
+00:13:11,760 --> 00:13:14,940
+that you assign to objects could really be anything.
+
+158
+00:13:14,940 --> 00:13:21,600
+So those are not validated and it won't give you an error if you used an image that's not available
+
+159
+00:13:21,600 --> 00:13:23,070
+on Docker registry.
+
+160
+00:13:23,280 --> 00:13:26,610
+So that's up to you to make sure that you get those right.
+
+161
+00:13:26,640 --> 00:13:34,230
+However, it does validate certain fields that has to have values supported by Kubernetes, such as
+
+162
+00:13:34,230 --> 00:13:38,360
+the kind field at the top being said to POD or a deployment.
+
+163
+00:13:38,370 --> 00:13:46,590
+So if you used a value other than a kind that is supported by Kubernetes, then it will throw an error.
+
+164
+00:13:47,570 --> 00:13:54,260
+Okay, So now if you want to add another element to this array, we can do that by hitting enter and
+
+165
+00:13:54,260 --> 00:13:58,840
+using backspace to go back to the same level as the previous element.
+
+166
+00:13:58,850 --> 00:14:00,980
+And I can add additional containers here.
+
+167
+00:14:00,980 --> 00:14:04,640
+For example, add a new array element with the hyphen.
+
+168
+00:14:05,240 --> 00:14:13,500
+Then let us, for example, say busy box as the new name of the new container and the image is set to
+
+169
+00:14:13,500 --> 00:14:14,930
+a busy box as well.
+
+170
+00:14:15,110 --> 00:14:20,780
+So now our code is clear and as you can see, there are no errors.
+
+171
+00:14:21,440 --> 00:14:26,330
+Now, I don't really need the second container for now, so I'll just go ahead and delete this line
+
+172
+00:14:26,330 --> 00:14:29,690
+and make sure that everything else is is clean.
+
+173
+00:14:30,650 --> 00:14:33,350
+Okay, so now let's save this file.
+
+174
+00:14:34,370 --> 00:14:37,070
+Now, let us check out another property of the editor.
+
+175
+00:14:37,070 --> 00:14:44,150
+So if we click on the outline field here, we can see the entire data structure of the YAML file and
+
+176
+00:14:44,150 --> 00:14:46,020
+in a graphical format.
+
+177
+00:14:46,040 --> 00:14:48,590
+So this is the YAML file on the on the right.
+
+178
+00:14:48,590 --> 00:14:54,890
+And here you can see the four root elements here, the kind and if I click on this it'll highlight the
+
+179
+00:14:54,890 --> 00:14:57,140
+line where we have the root element.
+
+180
+00:14:57,140 --> 00:15:02,690
+So we have the API version which is V one, we have kind, which is port, and you'll see that it also
+
+181
+00:15:02,690 --> 00:15:05,060
+has the other two root elements.
+
+182
+00:15:05,060 --> 00:15:11,300
+For example, metadata, which is a dictionary, as you can see with this curly braces here, which
+
+183
+00:15:11,300 --> 00:15:12,320
+indicates a dictionary.
+
+184
+00:15:12,320 --> 00:15:20,270
+And if you open that, you can see that the the children of metadata, which the first one is labels
+
+185
+00:15:20,270 --> 00:15:24,540
+and labels, is also a dictionary object which has a value of and we.
+
+186
+00:15:26,750 --> 00:15:30,140
+So it presents in a hierarchal or a tree kind of structure.
+
+187
+00:15:30,140 --> 00:15:34,370
+And similar to that, we also have the spec section, which is a dictionary which has an array called
+
+188
+00:15:34,370 --> 00:15:38,390
+containers, and you can spot an array using the double square brackets.
+
+189
+00:15:38,570 --> 00:15:44,570
+And if I narrow it down, the first element of the containers array, which is the element zero, has
+
+190
+00:15:44,570 --> 00:15:51,380
+two values key value pairs, which has an image which is equal to index and which has a name and an
+
+191
+00:15:51,380 --> 00:15:52,190
+X as well.
+
+192
+00:15:52,340 --> 00:15:59,180
+So this is quite handy to help you explore the structure of the file if you are not sure what's wrong
+
+193
+00:15:59,180 --> 00:15:59,990
+and where.
+
+194
+00:16:00,230 --> 00:16:06,410
+So we have successfully created our port definition file, easily using the YAML extension and the auto
+
+195
+00:16:06,410 --> 00:16:07,700
+completion features.
+
+196
+00:16:08,030 --> 00:16:13,850
+So we can now create a port from this yaml file from the command line as you normally would.
+
+197
+00:16:14,030 --> 00:16:20,810
+So you would go to the terminal and just type the LS command and you can see that the engine x yaml
+
+198
+00:16:20,810 --> 00:16:24,710
+file is here under the Kubernetes for beginners directory.
+
+199
+00:16:24,890 --> 00:16:28,070
+And just let us quickly view this file.
+
+200
+00:16:31,600 --> 00:16:34,510
+And you can see that it's exactly as it's supposed to be.
+
+201
+00:16:35,580 --> 00:16:42,510
+And you could now create a pod using the cube cutter, create or apply command and passing in this file
+
+202
+00:16:42,510 --> 00:16:43,260
+as input.
+
+203
+00:16:44,280 --> 00:16:44,490
+Okay.
+
+204
+00:16:44,490 --> 00:16:51,930
+So in this in the upcoming coding exercises section, you will first gain practice on getting the YAML
+
+205
+00:16:51,930 --> 00:16:53,070
+files right?
+
+206
+00:16:53,280 --> 00:16:59,730
+So if you are already familiar with YAML files and the formatting etc., then feel free to skip those.
+
+207
+00:16:59,730 --> 00:17:07,050
+But if you are new then we have we've created these coding exercises so that you get really really comfortable
+
+208
+00:17:07,050 --> 00:17:13,640
+with YAML files, especially the Kubernetes YAML files before you actually head into the real labs.
+
+209
+00:17:13,650 --> 00:17:19,980
+So just like the coding exercises that you worked with earlier, feel free to work through these.
+
+210
+00:17:19,980 --> 00:17:25,710
+And then once you're done with these coding exercises, then you'll have the real lab environments where
+
+211
+00:17:25,710 --> 00:17:33,420
+you will explore existing parts and creating new parts on real Kubernetes clusters by developing YAML
+
+212
+00:17:33,420 --> 00:17:34,140
+files.
+
+213
+00:17:34,950 --> 00:17:38,460
+So that's it for this lecture and I will see you in the next one.
+

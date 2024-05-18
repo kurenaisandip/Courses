@@ -1,0 +1,228 @@
+1
+00:00:05,660 --> 00:00:09,960
+Hello and welcome to this course on Kubernetes for the Absolute Beginners.
+
+2
+00:00:09,980 --> 00:00:11,620
+My name is Mom Shachtman.
+
+3
+00:00:11,630 --> 00:00:14,750
+I'm Beth, and I will be your instructor for this course.
+
+4
+00:00:15,780 --> 00:00:16,800
+So about me.
+
+5
+00:00:16,800 --> 00:00:22,000
+I am a solutions architect and I work on cloud automation and DevOps practice.
+
+6
+00:00:22,020 --> 00:00:24,720
+I am also a part time trainer.
+
+7
+00:00:24,750 --> 00:00:32,549
+I have ordered multiple bestseller and top rated courses on Udemy, on topics like Docker and Ansible.
+
+8
+00:00:33,790 --> 00:00:36,580
+Let's take a look at the structure of this course.
+
+9
+00:00:36,820 --> 00:00:40,630
+This course contains a series of lectures on Kubernetes.
+
+10
+00:00:40,660 --> 00:00:44,890
+We will be discussing the basic concepts of Kubernetes here.
+
+11
+00:00:45,130 --> 00:00:52,120
+These are followed by some demos on setting up a test environment and getting started with Kubernetes.
+
+12
+00:00:52,450 --> 00:00:57,340
+We have optional quizzes that test your knowledge after each lecture.
+
+13
+00:00:57,370 --> 00:00:59,350
+These are completely optional.
+
+14
+00:00:59,350 --> 00:01:03,250
+You don't have to pass these to continue with the course.
+
+15
+00:01:03,580 --> 00:01:10,300
+We then have coding exercises that will help you learn and practice developing YAML files, which will
+
+16
+00:01:10,300 --> 00:01:14,470
+enable you to develop Kubernetes configuration files yourself.
+
+17
+00:01:14,920 --> 00:01:21,370
+This configuration files may be a bit tricky for beginners, so I will also provide some tips and tricks
+
+18
+00:01:21,370 --> 00:01:24,220
+that will help you remember the format.
+
+19
+00:01:24,610 --> 00:01:30,850
+This, plus the coding exercises, will give you enough confidence to develop your own configuration
+
+20
+00:01:30,850 --> 00:01:31,570
+files.
+
+21
+00:01:31,900 --> 00:01:39,130
+We will, in fact spend some extra time on these configuration files because in order to work with Kubernetes,
+
+22
+00:01:39,130 --> 00:01:42,670
+you must have a good understanding around it.
+
+23
+00:01:43,750 --> 00:01:48,280
+At the end, you will be given an assignment to test your knowledge on the topic.
+
+24
+00:01:48,310 --> 00:01:54,640
+The assignment will help you gain exposure in working on a real life task with Kubernetes.
+
+25
+00:01:55,000 --> 00:02:01,370
+And as always, if you have any questions, you may reach out directly to me through the Q&A section.
+
+26
+00:02:01,390 --> 00:02:03,610
+So who is this course for?
+
+27
+00:02:04,000 --> 00:02:06,310
+This is for the absolute beginner.
+
+28
+00:02:06,820 --> 00:02:11,440
+You are not required to have any prior experience working with Kubernetes.
+
+29
+00:02:11,530 --> 00:02:16,480
+We will walk through all the basic concepts required for you to understand Kubernetes.
+
+30
+00:02:16,570 --> 00:02:21,230
+This is for those who are new to containers and container orchestration technology.
+
+31
+00:02:21,250 --> 00:02:27,700
+You could be a developer trying to understand microservices containers and orchestration technology,
+
+32
+00:02:27,700 --> 00:02:33,040
+looking to gain some hands on experience in developing Kubernetes based solutions.
+
+33
+00:02:33,070 --> 00:02:38,470
+You could be a system admin looking to scale up your knowledge in container clusters and trying to get
+
+34
+00:02:38,470 --> 00:02:42,520
+some hands on experience in setting up such clusters.
+
+35
+00:02:42,640 --> 00:02:49,270
+Or you could be a project manager looking to gain only a basic understanding of the underlying concepts.
+
+36
+00:02:49,360 --> 00:02:53,740
+This is for any beginner starting his Kubernetes journey.
+
+37
+00:02:54,130 --> 00:02:58,480
+So that brings us to the question on how you should take up this course.
+
+38
+00:02:58,690 --> 00:03:05,080
+Depending on your interest and the time and resources you have at hand, you may choose to skip certain
+
+39
+00:03:05,080 --> 00:03:10,780
+sections of the course if you're already familiar with the basic concepts such as Docker containers
+
+40
+00:03:10,780 --> 00:03:11,960
+and YAML files.
+
+41
+00:03:11,980 --> 00:03:14,170
+Feel free to skip those sections.
+
+42
+00:03:14,500 --> 00:03:20,080
+In this course we will see different ways of setting up Kubernetes on your local machine or on various
+
+43
+00:03:20,080 --> 00:03:24,070
+cloud platforms such as Google Cloud or AWS.
+
+44
+00:03:24,310 --> 00:03:30,250
+If you are in a hurry or do not have sufficient resources to set up your own instances, we will also
+
+45
+00:03:30,250 --> 00:03:35,860
+see option available to spin up a Kubernetes cluster in a matter of seconds on the cloud.
+
+46
+00:03:36,220 --> 00:03:42,140
+Moving on to the topics we will be covering in this course, we will go through the basics of Kubernetes.
+
+47
+00:03:42,160 --> 00:03:46,870
+We will try to understand what containers are and what container orchestration is.
+
+48
+00:03:46,900 --> 00:03:51,100
+We will see different ways of setting up and getting started with Kubernetes.
+
+49
+00:03:51,130 --> 00:03:57,250
+We will go through the various concepts such as parts, replica sets, deployments and services.
+
+50
+00:03:57,280 --> 00:04:01,780
+We will try and get a basic understanding of networking in Kubernetes.
+
+51
+00:04:01,810 --> 00:04:09,220
+We will also spend some time working with Cube, CTL, Command Line utility and developing Kubernetes
+
+52
+00:04:09,220 --> 00:04:11,110
+YAML to finish in files.
+
+53
+00:04:11,290 --> 00:04:18,430
+And finally, we will see how to deploy a microservices application on a public cloud platform like
+
+54
+00:04:18,430 --> 00:04:19,390
+Google Cloud.
+
+55
+00:04:19,810 --> 00:04:23,980
+As always, feel free to go through this course at your own pace.
+
+56
+00:04:24,010 --> 00:04:30,220
+There may be sections in the course that you may be familiar with already, so feel free to skip them.
+
+57
+00:04:30,520 --> 00:04:34,840
+So let's get started and I will see you in the first module.
+

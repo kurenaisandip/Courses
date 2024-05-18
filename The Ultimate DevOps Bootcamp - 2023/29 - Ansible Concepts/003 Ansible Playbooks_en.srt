@@ -1,0 +1,296 @@
+1
+00:00:00,470 --> 00:00:03,350
+We will now look at playbooks and Ansible.
+
+2
+00:00:03,950 --> 00:00:07,939
+Ansible playbooks are Ansible, orchestration, language.
+
+3
+00:00:08,210 --> 00:00:12,620
+It is in playbooks where we define what we want Ansible to do.
+
+4
+00:00:12,980 --> 00:00:14,660
+It is a set of instructions.
+
+5
+00:00:14,660 --> 00:00:17,630
+You provide Ansible to work its magic.
+
+6
+00:00:17,840 --> 00:00:24,620
+For example, it can be as simple as running a series of commands on different servers in a sequence
+
+7
+00:00:24,620 --> 00:00:27,780
+and restarting those servers in a particular order.
+
+8
+00:00:27,800 --> 00:00:34,520
+Or it could be as complex as deploying hundreds of VMs in a public and private cloud infrastructure,
+
+9
+00:00:34,520 --> 00:00:40,850
+provisioning storage to VMS, setting up their network and cluster configurations, configuring applications
+
+10
+00:00:40,850 --> 00:00:46,280
+on them, such as web server or a database server, setting up load balancing, setting up monitoring
+
+11
+00:00:46,280 --> 00:00:52,790
+components, installing and configuring backup clients, and updating configuration database with information
+
+12
+00:00:52,790 --> 00:00:54,980
+about the new VMs, etc..
+
+13
+00:00:55,520 --> 00:00:58,880
+Let's take a closer look at how playbooks are written.
+
+14
+00:00:59,610 --> 00:01:06,450
+Remember all playbooks are written in YAML format, which is why we spent some time earlier getting
+
+15
+00:01:06,450 --> 00:01:08,370
+our hands dirty with yaml.
+
+16
+00:01:08,760 --> 00:01:12,750
+A playbook is a single YAML file containing a set of plays.
+
+17
+00:01:12,780 --> 00:01:18,510
+A play defines a set of activities to be run on a single or a group of hosts.
+
+18
+00:01:18,960 --> 00:01:23,220
+A task is a single action to be performed on a host.
+
+19
+00:01:23,520 --> 00:01:28,830
+Some examples of a task are executing a command or a script on the host.
+
+20
+00:01:28,920 --> 00:01:34,980
+Installing a package on the host or performing a shutdown or a restart operation.
+
+21
+00:01:35,650 --> 00:01:38,290
+Let's take a look at an actual playbook.
+
+22
+00:01:38,990 --> 00:01:44,750
+Shown here is a simple ansible playbook that contains a single play named Play one.
+
+23
+00:01:44,930 --> 00:01:51,530
+The goal of this play is to run a set of activities one after the other on the local host.
+
+24
+00:01:52,130 --> 00:01:57,620
+Remember that the host you want to run these actions is defined at the play level.
+
+25
+00:01:57,830 --> 00:02:04,460
+In this case, we just want to test on the local host, which is why it is set to local host.
+
+26
+00:02:04,550 --> 00:02:07,400
+This could be anything from your inventory file.
+
+27
+00:02:08,009 --> 00:02:12,240
+Next, we run a set of commands, one after the other on the host.
+
+28
+00:02:12,390 --> 00:02:14,250
+First we print the date.
+
+29
+00:02:14,430 --> 00:02:21,510
+Then we run a script on the server, followed by installing the HTTP feed package using the Yum module
+
+30
+00:02:21,510 --> 00:02:25,200
+and finally starting the web server using the service module.
+
+31
+00:02:26,050 --> 00:02:31,840
+Let's look at this sample Playbook format and try to relate it to what we learned in the Yamal section
+
+32
+00:02:31,840 --> 00:02:32,500
+earlier.
+
+33
+00:02:33,450 --> 00:02:38,310
+I've made a minor change and split the list of tasks into two separate places.
+
+34
+00:02:38,550 --> 00:02:43,590
+The YAML file, which is our playbook, contains a list of two plays.
+
+35
+00:02:43,680 --> 00:02:45,990
+This is noted by the Dash.
+
+36
+00:02:46,440 --> 00:02:51,090
+So the playbook is a list of dictionaries in YAML terms.
+
+37
+00:02:51,570 --> 00:02:57,840
+Each play is a dictionary and has a set of properties called name hosts and tasks.
+
+38
+00:02:58,080 --> 00:03:03,330
+Remember, these are properties of a dictionary and so the order doesn't really matter.
+
+39
+00:03:03,450 --> 00:03:08,760
+So even if you swap the position of name or host, it's still a valid play.
+
+40
+00:03:09,420 --> 00:03:12,120
+However, this is not the same for tasks.
+
+41
+00:03:12,390 --> 00:03:18,390
+The tasks, as you can see, is a list or an array as denoted by the dashes.
+
+42
+00:03:19,130 --> 00:03:24,050
+Lists are ordered collection, so the position of entries matter.
+
+43
+00:03:24,260 --> 00:03:31,190
+If you swap the position of entries here, we're instructing Ansible to start the web service first
+
+44
+00:03:31,190 --> 00:03:35,120
+before installing the HTTP service, which is not desired.
+
+45
+00:03:35,660 --> 00:03:39,630
+So the YAML format is key while developing playbooks.
+
+46
+00:03:39,650 --> 00:03:44,060
+You must pay extra attention to the indentation and structure of the file.
+
+47
+00:03:45,020 --> 00:03:50,000
+The house parameter indicates which host you want these operations to run on.
+
+48
+00:03:50,090 --> 00:03:56,390
+Remember the host you want to perform this operations against is always set at a play level.
+
+49
+00:03:56,480 --> 00:04:03,320
+Currently, this is set to local host, which means that all these actions listed under tasks is going
+
+50
+00:04:03,320 --> 00:04:05,420
+to be performed on the local host.
+
+51
+00:04:05,720 --> 00:04:12,170
+You could have any host or group specified here, but you must ensure that the host or group is first
+
+52
+00:04:12,170 --> 00:04:15,530
+defined in the inventory file we created earlier.
+
+53
+00:04:15,740 --> 00:04:22,250
+The host defined in the inventory file must match the host used in the playbooks and all connection
+
+54
+00:04:22,250 --> 00:04:25,940
+information for the host is retrieved from the inventory file.
+
+55
+00:04:26,660 --> 00:04:28,100
+If you specify a group.
+
+56
+00:04:28,100 --> 00:04:35,450
+Instead, the listed tasks will be executed on all the host listed under that group simultaneously.
+
+57
+00:04:36,770 --> 00:04:38,810
+Let's move on to modules.
+
+58
+00:04:39,320 --> 00:04:45,870
+The different actions run by tasks are called modules, in this case command script.
+
+59
+00:04:45,890 --> 00:04:49,160
+Yum and service are Ansible modules.
+
+60
+00:04:49,430 --> 00:04:53,210
+There are hundreds of other modules available out of the box.
+
+61
+00:04:53,450 --> 00:04:58,190
+Information about these modules is available in the Ansible documentation website.
+
+62
+00:04:58,730 --> 00:05:06,230
+Or you could simply run the Ansible dash dock dash command to get familiar with the basic playbook structure
+
+63
+00:05:06,230 --> 00:05:08,030
+in the upcoming exercises.
+
+64
+00:05:08,060 --> 00:05:11,900
+You simply need to know the basic command module.
+
+65
+00:05:12,260 --> 00:05:16,520
+Later on we will go through some other basic modules in more detail.
+
+66
+00:05:16,940 --> 00:05:22,550
+Finally, once you successfully build the Ansible playbook, how do you run it?
+
+67
+00:05:22,940 --> 00:05:24,080
+It's very simple.
+
+68
+00:05:24,320 --> 00:05:30,980
+Execute the Ansible playbook command and specify the name of the Ansible playbook you just created.
+
+69
+00:05:31,220 --> 00:05:32,180
+And that's it.
+
+70
+00:05:32,450 --> 00:05:39,110
+If you do Ansible dash playbook, dash help command, you will get to know more about some additional
+
+71
+00:05:39,110 --> 00:05:41,270
+parameters available for this command.
+
+72
+00:05:41,870 --> 00:05:44,840
+We will go through some of them in a later section.
+
+73
+00:05:45,350 --> 00:05:46,580
+That's it for now.
+
+74
+00:05:46,610 --> 00:05:53,300
+Head over to the demo and followed by the coding exercises section and practice working with playbooks.
+

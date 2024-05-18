@@ -1,0 +1,208 @@
+1
+00:00:04,970 --> 00:00:06,980
+Hello and welcome to this lecture.
+
+2
+00:00:07,190 --> 00:00:11,060
+In this lecture, we will discuss about Kubernetes deployments.
+
+3
+00:00:12,590 --> 00:00:13,490
+For a minute.
+
+4
+00:00:13,490 --> 00:00:20,990
+Let us forget about pods and replica sets and other Kubernetes concepts and talk about how you might
+
+5
+00:00:20,990 --> 00:00:24,530
+want to deploy your application in a production environment.
+
+6
+00:00:24,650 --> 00:00:30,730
+Say, for example, you have a web server that needs to be deployed in a production environment.
+
+7
+00:00:30,740 --> 00:00:37,070
+You need not one, but many such instances of the web server running for obvious reasons.
+
+8
+00:00:37,460 --> 00:00:44,510
+Secondly, whenever newer versions of application builds become available on the Docker registry, you
+
+9
+00:00:44,510 --> 00:00:48,260
+would like to upgrade your Docker instances seamlessly.
+
+10
+00:00:48,290 --> 00:00:54,980
+However, when you upgrade your instances, you do not want to upgrade all of them at once, as we just
+
+11
+00:00:54,980 --> 00:00:55,550
+did.
+
+12
+00:00:55,580 --> 00:01:02,240
+This may impact users accessing our applications, so you might want to upgrade them one after the other.
+
+13
+00:01:02,420 --> 00:01:06,020
+And that kind of upgrade is known as rolling updates.
+
+14
+00:01:06,440 --> 00:01:12,920
+Suppose one of the upgrades you performed resulted in an unexpected error and you're asked to undo the
+
+15
+00:01:12,920 --> 00:01:14,260
+recent change.
+
+16
+00:01:14,330 --> 00:01:19,010
+You would like to be able to roll back the changes that were recently carried out.
+
+17
+00:01:19,740 --> 00:01:26,190
+Finally say, for example, you would like to make multiple changes to your environment, such as upgrading
+
+18
+00:01:26,190 --> 00:01:31,890
+the underlying web server versions as well as scaling your environment and also modifying the resource
+
+19
+00:01:31,890 --> 00:01:38,310
+allocations, etc. You do not want to apply each change immediately after the command is run.
+
+20
+00:01:38,310 --> 00:01:44,700
+Instead, you would like to apply a pass to your environment, make the changes and then resume so that
+
+21
+00:01:44,700 --> 00:01:47,070
+all the changes are rolled out together.
+
+22
+00:01:47,700 --> 00:01:54,450
+All of these capabilities are available with the Kubernetes deployments so far in this course, we discussed
+
+23
+00:01:54,450 --> 00:02:00,780
+about pods which deploy single instances of our application, such as the web application.
+
+24
+00:02:00,780 --> 00:02:08,940
+In this case, each container is encapsulated in parts Multiple such paths are deployed using replication
+
+25
+00:02:08,940 --> 00:02:11,009
+controllers or replica sets.
+
+26
+00:02:11,460 --> 00:02:17,550
+And then comes deployment, which is a Kubernetes object that comes higher in the hierarchy.
+
+27
+00:02:17,940 --> 00:02:24,900
+The deployment provides us with the capability to upgrade the underlying instances, seamlessly using
+
+28
+00:02:24,900 --> 00:02:30,300
+rolling updates, undo changes, and pause and resume changes as required.
+
+29
+00:02:31,260 --> 00:02:33,330
+So how do we create a deployment?
+
+30
+00:02:33,810 --> 00:02:38,670
+As with the previous components, we first create a deployment definition, file.
+
+31
+00:02:38,670 --> 00:02:44,850
+The contents of the deployment definition file are exactly similar to the replica set definition file,
+
+32
+00:02:44,940 --> 00:02:48,870
+except for the kind which is now going to be deployment.
+
+33
+00:02:49,260 --> 00:02:55,590
+If we walk through the contents of the file, it has an API version which is APS forward slash v one
+
+34
+00:02:55,650 --> 00:03:01,830
+metadata, which has name and labels and a spec that has template replicas and selector.
+
+35
+00:03:02,130 --> 00:03:05,550
+The template has a pod definition inside it.
+
+36
+00:03:06,310 --> 00:03:11,950
+Once the file is ready, run the cube control, create command and specify the deployment definition
+
+37
+00:03:11,950 --> 00:03:12,580
+file.
+
+38
+00:03:13,150 --> 00:03:18,950
+Then run the cube control, get deployments command to see the newly created deployment.
+
+39
+00:03:18,970 --> 00:03:24,880
+The deployment automatically creates a replica set, so if you run the cube control, get replica set
+
+40
+00:03:24,880 --> 00:03:30,100
+command, you will be able to see a new replica set in the name of the deployment.
+
+41
+00:03:30,520 --> 00:03:36,760
+The replica sets ultimately create paths, so if you run the cube control, get pause command, you
+
+42
+00:03:36,760 --> 00:03:41,320
+will be able to see the parts with the name of the deployment and the replica set.
+
+43
+00:03:41,950 --> 00:03:48,430
+So far, there hasn't been much of a difference between replica set and deployments, except for the
+
+44
+00:03:48,430 --> 00:03:53,590
+fact that deployment created a new Kubernetes object called deployments.
+
+45
+00:03:54,070 --> 00:03:59,680
+We will see how to take advantage of the deployment using the use cases we discussed in the previous
+
+46
+00:03:59,680 --> 00:04:01,720
+slide in the upcoming lectures.
+
+47
+00:04:02,970 --> 00:04:08,890
+And one more note before we end this lecture to see all the created objects at once.
+
+48
+00:04:08,910 --> 00:04:11,970
+Run the cube control, get all command.
+
+49
+00:04:12,390 --> 00:04:16,440
+And in this case, we can see that the deployment was created.
+
+50
+00:04:16,440 --> 00:04:22,830
+And then we have the replica set, followed by three parts that were created as part of the deployment.
+
+51
+00:04:24,600 --> 00:04:25,830
+That's it for this lecture.
+
+52
+00:04:25,830 --> 00:04:29,580
+We will now head over to a demo and I will see you in the next lecture.
+
